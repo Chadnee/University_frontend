@@ -1,23 +1,35 @@
 import React from 'react';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu, theme, type MenuProps } from 'antd';
+import { NavLink, Outlet } from 'react-router-dom';
+import { AdminSideBar } from '../../routes/adminRoutes';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-    {
-        key: '1',
-        label: 'Dashboard'
-    },
-    {
-        key:'2',
-        label:'Profile'
-    },
-    {
-        key:3,
-        label:'User Management'
-    }
-]
+// const items: MenuProps['items'] = [
+//     {
+//         key: 'Dashboard',
+//         label: <NavLink to ="/admin/create-admin">Dashboard</NavLink>
+//     },
+//     {
+//         key:'User Management',
+//         label:'User Management',
+//         children:[
+//           {
+//             key: 'Create Admin',
+//             label:<NavLink to = "/admin/create-admin">Create Admin</NavLink>
+//           },
+//           {
+//             key: 'Create Faculty',
+//             label:<NavLink to = "/admin/create-faculty"> Create Faculty</NavLink>
+//           },
+//           {
+//             key: 'Create-student',
+//             label: <NavLink to = "/admin/create-student">Create Student</NavLink>
+//           }
+//         ]
+//     }
+// ]
 
 const MainLayout = () => {
   return (
@@ -34,7 +46,7 @@ const MainLayout = () => {
         }}
       >
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={AdminSideBar} />
       </Sider>
       <Layout>
         <Header style={{ padding: 0}} />
@@ -45,7 +57,7 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            The main content should be here
+            <Outlet></Outlet>
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
