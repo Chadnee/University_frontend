@@ -4,18 +4,24 @@ import { useLoginMutation } from "../features/auth/authApi";
 import { useAppDispatch } from "../features/hooks";
 import { setUser } from "../features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const Login = () => {
   const {register, handleSubmit} = useForm({});
   const [login, {data, error}] = useLoginMutation()
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
  // console.log('data', data)
   // console.log('error', error)
 
   const onSubmit = async (data) => {
-    console.log('d',data)
+    toast.loading('Logging in')
+    //console.log('d',data)
 
-    const userInfo = {
+    try{
+       const userInfo = {
       id: data.userId,
       password: data.password
     };
@@ -23,7 +29,13 @@ const Login = () => {
     const user = verifyToken(res.data.accessToken);
     console.log(user)
     dispatch(setUser({user: user, token: res.data.accessToken}))
+    toast.success('Logged in')
+    navigate(`/${user.role}/dashboard`)
     // {id: 'stfhh', password: 'hjgjvfty'}
+    } catch(err) {
+       toast.error('Something went wrong')
+       console.log(err)
+    }
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
