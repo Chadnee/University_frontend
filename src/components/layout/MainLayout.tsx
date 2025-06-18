@@ -10,7 +10,7 @@ const MainLayout = () => {
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    dispatch(logOut())
+    dispatch(logOut()) //called log out reducer from authSlice 
   }
   return (
     <div>
