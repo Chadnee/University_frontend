@@ -40,5 +40,5 @@ export default authSlice.reducer;
 
 //use the state parameter because Redux selectors always work on the entire Redux store, and you 
 // need to drill into your slice (auth) to return just the piece of data you want (token or user).
-export const useCurrentToken = (state: RootState) => state.auth.token;
-export const useCurrentUser = (state: RootState) => state.auth.user
+export const selectCurrentToken = (state: RootState) => state.auth.token;
+export const selectCurrentUser = (state: RootState) => state.auth.user
