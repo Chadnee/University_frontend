@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "../../features/store";
-import { setUser } from "../../features/auth/authSlice";
+import { logOut, setUser } from "../../features/auth/authSlice";
+import type { BaseQueryApi, BaseQueryFn, DefinitionType, FetchArgs } from "@reduxjs/toolkit/query";
 
 
 const baseQuery = fetchBaseQuery({
@@ -17,9 +19,13 @@ const baseQuery = fetchBaseQuery({
     },
     })
     
+    //custom base query
     //it is an extra support to catch the backend error such as access token expired
-    const baseQueryWithRefreshToken = async(args ,api ,extraOptions) => {
-      const result = await baseQuery(args, api, extraOptions);
+    const baseQueryWithRefreshToken : BaseQueryFn<
+    FetchArgs, 
+    BaseQueryApi, 
+    DefinitionType>= async(args ,api ,extraOptions):Promise<any> => {
+      let result = await baseQuery(args, api, extraOptions);
       console.log(result) //this result will show the backend error with error message
      
       if(result.error?.status === 401) {
@@ -27,11 +33,12 @@ const baseQuery = fetchBaseQuery({
       console.log('sending refresh token');
       const res = await fetch('http://localhost:5000/api/v1/auth/refreshToken', {
         method: 'POST',
-        credentials: 'include'
+        credentials: 'include'  // Refresh token is not in our hand, it stay in cookie, since we can access coockie to get refresh token thats why it must add a crediantials true as 'include', it will send the coockie in backend 
       })
       const data = await res.json();
 
-      //set get the user by getState and set user and refreshtoken as accessToken by dispatch 
+    if(data.data.accessToken){
+        // get the user by getState and set user and refreshtoken as accessToken by dispatch 
         const user = (api.getState() as RootState).auth.user;
 
         api.dispatch(
@@ -40,8 +47,13 @@ const baseQuery = fetchBaseQuery({
             token: data.data.accessToken
           })
         )
+        //after failing again set basequery
+        result = await baseQuery(args, api, extraOptions);
 
        console.log(data);
+    } else {
+      api.dispatch(logOut())// if no access token get by refresh token that means refresh token is also expired, it will cick out the user and log out, no way then without manually login
+    }
      }
      return result
     }
