@@ -1,3 +1,4 @@
+import { Input } from "antd";
 import {useGetAllSemestersQuery } from "../../../features/academicSemesterApi/AcademicSemesterApi";
 
 const AcademicSemester = () => {
@@ -7,6 +8,7 @@ const AcademicSemester = () => {
   return (
     <div>
       <h1>This is AcademicSemester component</h1>
+     
     </div>
   );
 };
