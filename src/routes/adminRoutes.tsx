@@ -1,9 +1,10 @@
 import { Children, type ReactNode } from "react";
 import AdminDashboard from "../pages/admin/AdminDashboard";
-import CreateAdmin from "../pages/admin/CreateAdmin";
-import CreateFaculty from "../pages/admin/CreateFaculty";
-import CreateStudent from "../pages/admin/CreateStudent";
+import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
+import CreateFaculty from "../pages/admin/userManagement/CreateFaculty";
+import CreateStudent from "../pages/admin/userManagement/CreateStudent";
 import AcademicSemester from "../pages/admin/academicManagement/AcademicSemester";
+import CreateAccademicSemester from "../pages/admin/academicManagement/CreateAccademicSemester";
 
 
 
@@ -28,8 +29,8 @@ export const adminPaths = [
             },
             {
                 name:"Create Acc. Semester",
-                path: "academic-semester",
-                element: <AcademicSemester></AcademicSemester>
+                path: "create-semester",
+                element: <CreateAccademicSemester></CreateAccademicSemester>
             },
             {
                 name:"Create Acc. Fcaulty",

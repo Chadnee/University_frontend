@@ -7,7 +7,7 @@ import { verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import AdmitForm from "./form/AdmitForm";
-import FormInput from "./form/FormInput";
+import InputForm from "./form/InputForm";
 
 const Login = () => {
   // const {register, handleSubmit} = useForm({});
@@ -46,9 +46,9 @@ const Login = () => {
   };
   return (
   <Row justify="center" align="middle" style = {{height: '100vh'}}>
-      <AdmitForm onSubmit={onSubmit}>
-      <FormInput type="text" name="userId" label="Id"></FormInput>
-      <FormInput type="text" name="password" label="Password"></FormInput>
+      <AdmitForm onSubmit={onSubmit} >
+      <InputForm type="text" name="userId" label="Id"></InputForm>
+      <InputForm type="text" name="password" label="Password"></InputForm>
       <Button htmlType="submit">Login</Button>
     </AdmitForm>
   </Row>
