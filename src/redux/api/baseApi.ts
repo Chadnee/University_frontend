@@ -31,8 +31,8 @@ const baseQuery = fetchBaseQuery({
      
       //if user will be not found
       if(result.error?.status === 404) {
-        toast.error("User not found");
-      }
+        toast.error(result.error.data.message);
+        }
     
       //when access token will be expired/ non-authorized
       if(result.error?.status === 401) {
@@ -62,11 +62,13 @@ const baseQuery = fetchBaseQuery({
       api.dispatch(logOut())// if no access token get by refresh token that means refresh token is also expired, it will cick out the user and log out, no way then without manually login
     }
      }
+     console.log(result)
      return result
     }
 export const baseApi = createApi({
  reducerPath: 'baseApi',
  baseQuery: baseQueryWithRefreshToken,
+ tagTypes: ['semester','courses', 'assignFaculties'],
  endpoints: () => ({
 //  endpoints: (builder) => ({
     // login: builder.mutation({

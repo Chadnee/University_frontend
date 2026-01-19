@@ -20,7 +20,7 @@ const Login = () => {
   // console.log('error', error)
 
   const onSubmit = async (data: FieldValues) => {
-    toast.loading('Logging in')
+    //toast.loading('Logging in')
     //   When we make direct toast.loading like above it make a override to next toast message,
     //  thats why when we make in a const and set it with next toast success then it occur sequentially one by one
     //  according to duration and also have to provide the error both

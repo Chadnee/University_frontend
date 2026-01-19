@@ -1,3 +1,6 @@
+import type { BaseQueryApi } from "@reduxjs/toolkit/query";
+import type { TAcademicSemester } from "../../types/academicManagementTypes";
+
 export const monthNames = [
   "January",
   "February",
@@ -6,14 +9,87 @@ export const monthNames = [
   "May",
   "June",
   "July",
-  "August",
   "September",
   "October",
   "November",
+  "August",
   "December"
 ];
+
+export const genders = ["male", "female", "other"];
+
+export const bloodGroups = ["A+","A-","B+","B-","AB+","AB-","O+","O-"];
+
+
 
 export const monthOptions = monthNames.map((item) =>({
     value: item,
     label: item
 }))
+
+export const gendersOptions = genders.map((item) =>({
+  value: item,
+  label: item
+}))
+
+export const bloodGroupsOptions = bloodGroups.map((item) => ({
+  value: item,
+  label: item
+}))
+
+export type TError = {
+  data: {
+    message: string;
+    stack: string;
+    success: boolean;
+  };
+  status: number;
+};
+
+export type TMeta = {
+  page: number;
+  limit: number;
+  total: number;
+  totalPage: number;
+}
+
+export type TResponse<T> = {
+  data?: T;
+  error?: TError;
+  meta?: TMeta;
+  success:boolean;
+  message: string
+}
+
+export type TResponseRedux<T> = TResponse<T> & BaseQueryApi;
+
+export type TQueriParam = {
+  name: string,
+  value: boolean | React.Key
+}
+
+export type TSemester = {
+  _id: string;
+  academicSemseter: TAcademicSemester;
+  status: string;
+  startDate: string;
+  endDate: string;
+  minCredit: number;
+  maxCredit: number;
+  createdAt: string;
+  updatedAt: string
+}
+
+export type TPreRequisiteCourse = {
+  course: string;
+  isDeleted: boolean
+}
+export type TCourse = {
+  _id: string;
+  title: string;
+  prefix: string;
+  code: number;
+  credits: number;
+  isDeleted: boolean;
+  preRequisiteCourses: TPreRequisiteCourse[];
+};

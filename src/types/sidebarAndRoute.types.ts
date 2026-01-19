@@ -14,4 +14,4 @@ export type TGeneratedSidebarItems = {
     key:string,
     label:ReactNode,
     children?:TGeneratedSidebarItems[]
-}
+} | undefined

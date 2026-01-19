@@ -7,23 +7,19 @@ import { logOut } from '../../features/auth/authSlice';
 
 
 const MainLayout = () => {
-  const dispatch = useAppDispatch();
-
-  const handleLogout = () => {
-    dispatch(logOut()) //called log out reducer from authSlice 
-  }
+ 
   return (
     <div>
-      <Layout style={{height: "100vh"}}>
+      <Layout style={{height : "100%"}}>
       <Sidebar></Sidebar>
       <Layout>
-        <Header>
-          <Button onClick={handleLogout}>Log out</Button>
-        </Header>
-        <Content style={{ margin: '24px 16px 0' }}>
+        {/* <Header style={{background: '#e6f7ff'}}> */}
+          
+        {/* </Header> */}
+        <Content style={{ background: '#d4e2f9ff'}}>
           <div
             style={{
-              padding: 24,
+              padding: "20px 20px " ,
               minHeight: 360,
             }}
           >

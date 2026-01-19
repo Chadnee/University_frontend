@@ -7,16 +7,20 @@ import { Controller } from "react-hook-form";
 type TSelectForm = {
     label: string,
     name: string,
-    options: {value: string, label: string; disabled?: boolean}[]
-}
-const SelectForm = ({label, name, options} : TSelectForm) => {
+    options: {value: string, label: string; disabled?: boolean}[] | undefined
+    placeholder: string
+    disabled?: boolean;
+    mode?: 'multiple'
+  }
+const SelectForm = ({label, name, options, disabled, placeholder, mode} : TSelectForm) => {
 
   return (
    <Controller
    name = {name}
-     render = {({field}) => (
+     render = {({field, fieldState: {error}}) => (
          <Form.Item label = {label}> 
-        <Select size="large" style={{width: '100%'}} {...field} options = {options}/>
+        <Select size="large" style={{width: '100%'}} mode={mode} placeholder={placeholder} {...field} options = {options} disabled={disabled}/>
+        {error && <small style={{color : "red"}}>{error.message}</small>}
     </Form.Item>
      )}
    />
