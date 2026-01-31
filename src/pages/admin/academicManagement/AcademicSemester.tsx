@@ -1,17 +1,24 @@
 import { useGetAllSemestersQuery } from "../../../features/admin/academicManagementApi";
-import { Table } from 'antd';
+import { Button, Card, Flex, Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
 import {type TQueriParam } from "../../constants/global";
 import { useState } from "react";
 import type { TAcademicSemester } from "../../../types/academicManagementTypes";
+import { useNavigate } from "react-router-dom";
+import { Footer } from "../../../components/Footer";
+import useResponsive from "../../../hooks/useResponsive";
 
 
 export type TTableData = Pick<TAcademicSemester, 'name' | 'startMonth' | 'endMonth' | 'year'> 
 
+
+export const buttonColors = ['#0acf52ff','#e7b025ff','#dc5009ff' ]
+
 const AcademicSemester= () => {
   const [params, setParams] = useState<TQueriParam[] | undefined>(undefined);
   const { data: semesterData, isLoading, isFetching} = useGetAllSemestersQuery(params);
-
+  const navigate = useNavigate()
+  const {isMobile} = useResponsive()
   console.log(semesterData);
 
   const tableData:TTableData[] = semesterData?.data?.map(
@@ -77,6 +84,16 @@ const columns: TableColumnsType<TTableData> = [
     key: 'endMonth',
     dataIndex: 'endMonth',
   },
+  {
+    title: 'Action',
+    key: 'x',
+    width: 20,
+    render:(item,_record, index) => {
+      console.log(item)
+      const bgColor = buttonColors[index % buttonColors.length];
+      return <Button style={{background:bgColor, color:"#ffffff"}}>Update</Button>
+    }
+  }
 ];
 
 const onChange: TableProps<TTableData>['onChange'] = (_pagination, filters, _sorter, extra)=>{
@@ -95,16 +112,37 @@ const onChange: TableProps<TTableData>['onChange'] = (_pagination, filters, _sor
   if (isLoading) {
     return <p>Loading...</p>
   }
+
+  const handleOkButton = async() => {
+      await navigate('/admin/create-acc-semester')
+  }
+  const handleCancleButton = async() => {
+
+  }
+
+  
   
   return (
-    <div>
+   <div>
+     <span style={{fontSize: "25px", fontWeight:"700"}}>Academic Semester List</span>
+       <Flex vertical justify="space-between" style={{minHeight:"80vh"}}>
+      <Card style={{boxShadow: "0 10px 25px rgba(0,0,0,0.1)",border:".7px solid #d7dce5ff",
+         marginTop:"20px",}}>
         <Table<TTableData>
-    columns={columns}
+    columns={columns} style={{width: "100%", border:".5px solid #d7dce5ff"}}
     loading={isFetching}
     dataSource={tableData}
     onChange={onChange}
+      scroll={isMobile ? { x: 'max-content' } : undefined}
   />
+    </Card>
+    <div>
+          <Footer okButton="Create more" cancelButton={"Cancel"} handleOk={handleOkButton} handleCancle={handleCancleButton}>
+          </Footer>
+
     </div>
+   </Flex >
+   </div>
   );
 };
 

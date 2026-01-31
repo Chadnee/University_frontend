@@ -6,6 +6,7 @@ import { useCreateCourseMutation, useGetAllCourseQuery } from "../../../features
 import type { FieldValues, SubmitHandler } from "react-hook-form";
 import type { TResponse } from "../../constants/global";
 import { toast } from "sonner";
+import { ResetButton, SubmitButton } from "../../../components/Footer";
 
 const CreateCourse = () => {
     const {data:courses, isLoading: isCourseLoading} = useGetAllCourseQuery(undefined);
@@ -48,20 +49,27 @@ const CreateCourse = () => {
 
 
   return (
-    <Flex justify = "center" align="ceneter">
-       <Col span={6}>
+          <div>
+            <span style={{fontSize: "25px", fontWeight:"700"}}>Create New Course</span>
+
+    <Flex  style={{marginTop:"25px"}}>
          <AdmitForm onSubmit={onSubmit}>
-               <InputForm type="text" name="title" label="title"/>
-               <InputForm type="text" name="prefix" label="Prefix"/>
-               <InputForm type="text" name="code" label="Code"/>
-               <InputForm type="text" name="credits" label="Credits"/>
+               <InputForm type="text" name="title" label="Course Title" placeholder="Provide a title ..."/>
+               <InputForm type="text" name="prefix" label="Course Prefix" placeholder="Provide a prefix ..."/>
+               <InputForm type="text" name="code" label="Course Code" placeholder="Provide a code ..."/>
+               <InputForm type="text" name="credits" label="Credits" placeholder="Provide a credit ..."/>
                <SelectForm name="preRequisiteCourses" label="PreRequisite Courses"
-                  options={preRequisiteCoursesOption} mode="multiple" placeholder="If there is any PreRequisite Course, Select it"
+                  options={preRequisiteCoursesOption} mode="multiple" placeholder=" Select ..."
                />
-               <Button htmlType="submit">Submit</Button>
+               {/* <Button htmlType="submit">Submit</Button> */}
+               <Flex gap={15} justify="end" align="center" style={{padding:"30px 0"}}>
+                         <SubmitButton type="submit" submitButton="Create Course"></SubmitButton>
+                         <ResetButton resetButton="Reset"></ResetButton>
+               
+                </Flex>
          </AdmitForm>
-       </Col>
     </Flex>
+          </div>
   );
 };
 

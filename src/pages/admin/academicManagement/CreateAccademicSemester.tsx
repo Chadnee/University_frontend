@@ -1,13 +1,16 @@
 import type { FieldValues, SubmitHandler } from "react-hook-form";
 import AdmitForm from "../../form/AdmitForm";
 import SelectForm from "../../form/SelectForm";
-import { Button, Col, Flex } from "antd";
+import { Button, Card, Col, Flex } from "antd";
 import { semesterOptions } from "../../constants/semester";
 import { monthOptions } from "../../constants/global";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { academicSemesterSchema } from "../../../schema/academicManagement.schema";
 import { useAddAcademicSemesterMutation } from "../../../features/admin/academicManagementApi";
 import { toast } from "sonner";
+import { ResetButton, SubmitButton } from "../../../components/Footer";
+import { CiCalendarDate } from "react-icons/ci";
+import { IoIosArrowDown } from "react-icons/io";
 
 const currentYear = new Date().getFullYear();
 const yearOptions = [0,1,2,3,4].map((number) => (
@@ -45,20 +48,35 @@ const CreateAccademicSemester = () => {
         }catch(err){
           toast.error('Something went wrong')
         }
-    }
+     }
+    
+  const handleReset = async() => {
+     
+  }
   return (
-    <Flex justify="center" align="center">
-      <Col span={6}>
-      <h2>This is Create Accademic Semester component</h2>
-      <AdmitForm onSubmit={onSubmit} resolver={zodResolver(academicSemesterSchema)}>
-          <SelectForm label="Name" placeholder="Please select a semester" name="name" options={semesterOptions}></SelectForm>
+       <div>
+         <span style={{fontSize: "25px", fontWeight:"700"}}>Create Academic Semester</span>
+           <Flex vertical justify="space-between" style={{marginTop:"25px"}}>
+          {/* <Card style={{boxShadow: "0 10px 25px rgba(0,0,0,0.1)",border:".7px solid #d7dce5ff", marginTop:"20px"}}> */}
+       <AdmitForm onSubmit={onSubmit} resolver={zodResolver(academicSemesterSchema)}>
+          <SelectForm label="Semester Name" suffixIcon={<IoIosArrowDown style={{fontSize:"20px", color:'#000'}}/>} name="name" options={semesterOptions}></SelectForm>
            {/* value of the 'nameOptions' object will be submitted and the label will be show in dopdown in ui */}
-          <SelectForm label="Year" placeholder="Please select a year" name="year" options={yearOptions}></SelectForm>
-          <SelectForm label="Start Month"placeholder="Please select the start m"  name="startMonth" options={monthOptions}></SelectForm>
-          <SelectForm label="End Month" placeholder="Please select the end month" name="endMonth" options={monthOptions}></SelectForm>
-       <Button htmlType="submit">Submit</Button>
-      </AdmitForm></Col>
-    </Flex>
+          <SelectForm suffixIcon={<CiCalendarDate style={{fontSize:"20px", color:"black"}}/>} label="Academic Year" name="year" options={yearOptions}></SelectForm>
+          <SelectForm label="Start Month" suffixIcon={<IoIosArrowDown style={{fontSize:"20px", color:'#000'}}/>}  name="startMonth" options={monthOptions}></SelectForm>
+          <SelectForm label="End Month" suffixIcon={<IoIosArrowDown style={{fontSize:"20px", color:'#000'}}/>} name="endMonth" options={monthOptions}></SelectForm>
+        
+      <Flex gap={15} justify="end" align="center" style={{padding:"40px 0"}}>
+          <SubmitButton type="submit" submitButton="Create Submit"></SubmitButton>
+          <ResetButton resetButton="Reset"></ResetButton>
+
+        </Flex>
+
+     </AdmitForm>
+   {/* </Card> */}
+
+       </Flex >
+       </div>
+    
   );
 };
 

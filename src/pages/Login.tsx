@@ -37,7 +37,12 @@ const Login = () => {
     console.log(user)
     dispatch(setUser({user: user, token: res.data.accessToken}))
     toast.success('Logged in', {id: toastId, duration: 2000}) // every toast has a own 'id' property which indicate itself and set its own to occur siquentially one by one.
-    navigate(`/${user.role}/dashboard`) //redirect dashboard according to role after loggin
+    
+     if(res.data.needsPasswordChange){
+      navigate('/change-password');
+    } else {
+       navigate(`/${user.role}/dashboard`) //redirect dashboard according to role after loggin
+    }
     // {id: 'stfhh', password: 'hjgjvfty'}
     } catch(err) {
        toast.error('Something went wrong', {id: toastId, duration: 2000}) //have to set error both together as success together

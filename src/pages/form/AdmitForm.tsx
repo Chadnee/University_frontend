@@ -42,7 +42,7 @@ const AdmitForm  = ({onSubmit, children, defaultValues, resolver} : TAdmitFormPr
     }
   return (
     <FormProvider {...methods}>
-        <Form layout="vertical" onFinish={methods.handleSubmit(submit)}>
+        <Form layout="vertical" onFinish={methods.handleSubmit(submit)} style={{width:"100%"}}>
       {children}
     </Form>
     </FormProvider>

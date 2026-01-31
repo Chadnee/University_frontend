@@ -9,6 +9,7 @@ import type { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import { useCreateRegisteredSemesterMutation } from "../../../features/admin/courseManagementApi";
 import type { TResponse } from "../../constants/global";
+import { ResetButton, SubmitButton } from "../../../components/Footer";
 
 const CreateRegisteredSemester = () => {
 
@@ -48,19 +49,26 @@ const CreateRegisteredSemester = () => {
   }
   
   return (
-    <Flex justify="center">
-      <Col>
-        <AdmitForm onSubmit={onSubmit}>
-          <SelectForm options={academicSemesterOptions} label="Academic Semester" name="academicSemester" placeholder="Choose an academic semester"></SelectForm>
-          <SelectForm options={semesterStatusOptions} label="Status" name="status" placeholder="Ensure a staus"></SelectForm>
+        <div>
+          <span style={{fontSize: "25px", fontWeight:"700"}}>Create Registered Semester</span>
+       
+           <Flex  style={{marginTop:"25px"}}>
+     <AdmitForm onSubmit={onSubmit}>
+          <SelectForm options={academicSemesterOptions} label="Academic Semester" name="academicSemester"></SelectForm>
+          <SelectForm options={semesterStatusOptions} label="Status" name="status"></SelectForm>
           <DatePickerInput name="startDate" label="Start Date"></DatePickerInput>
           <DatePickerInput name="endDate" label="End Date"></DatePickerInput>
-          <InputForm type="text" name="minCredit" label="Min Credit"></InputForm>
-          <InputForm type="text" name="maxCredit" label="Max Credit"></InputForm>
-          <Button htmlType="submit"> Submit</Button>
+          <InputForm type="text" name="minCredit" label="Min Credit" placeholder="Provide a minimum credit ..."></InputForm>
+          <InputForm type="text" name="maxCredit" label="Max Credit" placeholder="Provide a maximum credit ..."></InputForm>
+          
+          <Flex gap={15} justify="end" align="center" style={{padding:"30px 0"}}>
+                      <SubmitButton type="submit" submitButton="Register Course"></SubmitButton>
+                      <ResetButton resetButton="Reset"></ResetButton>
+                             
+                              </Flex>
         </AdmitForm>
-      </Col>
-    </Flex>
+           </Flex>
+          </div>
   );
 };
 

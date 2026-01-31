@@ -1,6 +1,5 @@
-import type { TQueriParam } from "../../pages/constants/global";
+import type { TAllUser, TQueriParam, TResponseRedux } from "../../pages/constants/global";
 import { baseApi } from "../../redux/api/baseApi";
-import { data} from 'react-router-dom';
 
 const userManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,6 +9,7 @@ const userManagementApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ['allUser','userStats','student']
     }),
 
     getAllStudent: builder.query({
@@ -26,6 +26,7 @@ const userManagementApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ['student']
     }),
 
     getsingleStudent: builder.query({
@@ -41,6 +42,7 @@ const userManagementApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ['allUser','userStats','faculty']
     }),
 
     getAllFaculty: builder.query({
@@ -56,7 +58,8 @@ const userManagementApi = baseApi.injectEndpoints({
         method: "GET",
         params: params
       }
-    }
+    },
+    providesTags: ['faculty']
 }),
 
     createAdmin : builder.mutation ({
@@ -64,7 +67,8 @@ const userManagementApi = baseApi.injectEndpoints({
         url: "/users/create-admin",
         method: "POST",
         body: data,
-      })
+      }),
+      invalidatesTags: ['allUser','userStats','admin']
     }),
 
     getAllAdmin: builder.query({
@@ -77,11 +81,62 @@ const userManagementApi = baseApi.injectEndpoints({
         }
         return {
           url: '/admins',
-          method: "POST",
-          body: data,
+          method: "Get",
+          params: params
         }
+      },
+      providesTags: ['admin']
+    }),
+
+    changePassword: builder.mutation ({
+      query: (data) => ({
+        url: '/auth/change-password',
+        method: "POST",
+        body: data
+      })
+    }),
+
+    getAllUsers: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams()
+        if(args){
+          args.forEach((item : TQueriParam) => {
+            params.append(item.name, item.value as string)
+          });
+        }
+        return {
+          url : '/users',
+          method: 'GET',
+          params: params
+        }
+      },
+      providesTags: ['allUser'],
+      transformResponse: (response: TResponseRedux <TAllUser>) => {
+         return {
+           meta: response.meta,
+           data:response.data
+         }
       }
-    })
+
+    }),
+
+    getAllCountedTotalUsers: builder.query({
+      query: () => ({
+         url : '/users/total-users',
+         method: 'GET'
+      }),
+       providesTags: ['allUser','userStats']
+    }),
+    
+    GetMe: builder.query({
+      query: () => ({
+        url: "/users/me",
+        method: "GET"
+      })
+
+    }),
+
+   
 
   }),
 });
@@ -95,5 +150,9 @@ export const {
   useCreateFacultyMutation,
   useGetAllFacultyQuery,
   useCreateAdminMutation,
-  useGetAllAdminQuery
+  useGetAllAdminQuery,
+  useGetAllUsersQuery,
+  useGetAllCountedTotalUsersQuery,
+  useChangePasswordMutation,
+  useGetMeQuery,
 } = userManagementApi;

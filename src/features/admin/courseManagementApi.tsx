@@ -89,11 +89,29 @@ const coureManagementApi = baseApi.injectEndpoints({
      }),
 
    getAllAssignFaculties:builder.query({
-        query: (id) => ({
-         url: `/courses/${id}/get-faculties`,
+    query: (courseId) => ({
+         url: `/courses/${courseId}/get-faculties`,
          method: "GET"
     }),
     providesTags: ['assignFaculties']
+   }),
+
+   createOfferedCourse : builder.mutation ({
+    query: (data) => ({
+        url: "/offered-courses/create-offered-course",
+        method: "POST",
+        body: data
+    }),
+    invalidatesTags: ["offeredCourse"]
+   }),
+
+   getAllOfferedCourse: builder.query ({
+    query: () => ({
+        url: "/offered-courses",
+        method: "GET",
+
+    }),
+    providesTags: ["offeredCourse"]
    })
 
 })
@@ -108,5 +126,7 @@ export const
  useGetAllCourseQuery,
  useCreateAssignFacultiesMutation,
  useGetAllAssignFacultiesQuery,
+ useCreateOfferedCourseMutation,
+ useGetAllOfferedCourseQuery
 } 
 = coureManagementApi

@@ -96,7 +96,7 @@ const CreateAdmin = () => {
                   onClick={()=>fileInputRef.current?.click()}
                 type="primary"
                 style={{
-                  backgroundColor: "#4d8de8ff",
+                  backgroundColor: "#1d6fccff",
                 }}
               > <Flex justify="center" align="center" gap={5}>
                     <CiCamera style={{fontSize : "18px"}} /> Upload Image
@@ -113,34 +113,34 @@ const CreateAdmin = () => {
   }}>
             <Row gutter={[28, 5]}>
                <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <InputForm type="text" name="name" label="Full Name"></InputForm>
+                <InputForm type="text" name="name" label="Full Name" placeholder="Provide name"></InputForm>
               </Col>
                <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <InputForm type="text" name="designation" label="Designation"></InputForm>
+                <InputForm type="text" name="designation" label="Designation" placeholder="Provide Designation"></InputForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                 <DatePickerInput name="dateOfBirth" label="Date of Birth" ></DatePickerInput>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <SelectForm name="gender" placeholder="Select gender" label="Gender" options={gendersOptions}></SelectForm>
+                <SelectForm name="gender" label="Gender" options={gendersOptions}></SelectForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <InputForm type="text" name="email" label="Email Address"></InputForm>
+                <InputForm type="text" name="email" label="Email Address" placeholder="Provide email"></InputForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <InputForm type="text" name="contactNo" label="Contact No"></InputForm>
+                <InputForm type="text" name="contactNo" label="Contact No" placeholder="Provide contact No"></InputForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <InputForm type="text" name="emergencyContactNo" label="Emergency Contact No"></InputForm>
+                <InputForm type="text" name="emergencyContactNo" label="Emergency Contact No" placeholder="Provide emergency conatct No"></InputForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                 <SelectForm name="managementDepartment" options={departmentOptions} placeholder="Select department which will be managed" label="Management Department"></SelectForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <InputForm isTextArea={true}  type="text" name="presentAddress" label="Present Address"></InputForm>
+                <InputForm isTextArea={true}  type="text" name="presentAddress" label="Present Address" placeholder="Provide Present Address"></InputForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <InputForm isTextArea={true}  type="text" name="permanentAddress" label="Permanent Address"></InputForm>
+                <InputForm isTextArea={true}  type="text" name="permanentAddress" label="Permanent Address" placeholder="Provide Permanent Address"></InputForm>
               </Col>
 
             </Row>
@@ -156,14 +156,14 @@ const CreateAdmin = () => {
                   backgroundColor: "#f9fafb",
                   color: "black",
                   border: '2px solid #cbd1d8ff',
-                  padding: '3px 10px'
+                  padding: '3px 25px'
                 }}>Cancel</Button>
                <Button
                htmlType="submit"
                 type="primary"
                 style={{
-                  backgroundColor: "#4d8de8ff",
-                  padding: '3px 10px'
+                  backgroundColor: "#1d6fccff",
+                  padding: '3px 25px'
                 }}>Submit</Button>
           </Flex>
           </Col>

@@ -31,6 +31,9 @@ const baseQuery = fetchBaseQuery({
      
       //if user will be not found
       if(result.error?.status === 404) {
+        toast.error(result?.error?.data?.message);
+        }
+      if(result.error?.status === 403) {
         toast.error(result.error.data.message);
         }
     
@@ -68,7 +71,7 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
  reducerPath: 'baseApi',
  baseQuery: baseQueryWithRefreshToken,
- tagTypes: ['semester','courses', 'assignFaculties'],
+ tagTypes: ['semester','courses','userStats', 'assignFaculties', 'offeredCourse', 'enrolledCourse', 'allUser','student','admin','faculty'],
  endpoints: () => ({
 //  endpoints: (builder) => ({
     // login: builder.mutation({

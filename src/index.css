@@ -1,3 +1,45 @@
+/* custom css for selectForm */
+.custom-select .ant-select-selector {
+  border-radius: 7px !important;
+  border:1px solid #4b4c4fff !important
+}
+.custom-select .ant-select-selection-placeholder {
+  font-weight: 400;      /* bold */
+  font-size: 16px;       /* optional */
+  color: #03030d;        /* optional */
+}
+/* Hover */
+.custom-select:hover.ant-select-selector {
+  border-color: #f4dc07 !important; /* indigo */
+}
+
+/* custom css for inputForm */
+.custom-input .ant-input::placeholder {
+  color: #48484a !important;
+  
+}
+/* custom css for Text area -inputForm */
+.custom-input.ant-input::placeholder {
+  color: #48484a !important;
+  
+}
+/* custom css for timepicker */
+.custom-timepicker input::placeholder {
+  color: #03030d !important
+}
+.custom-timepicker.ant-picker {
+  border:1px solid #4b4c4fff !important
+}
+
+/* custom css for date picker */
+.custom-datepicker .ant-picker-input > input::placeholder {
+  color: #03030d !important;
+}
+.custom-datepicker.ant-picker {
+  border:1px solid #4b4c4fff !important
+}
+
+
 /* =========================
    GOOGLE FONT IMPORT
    ⚠️ MUST BE SINGLE LINE

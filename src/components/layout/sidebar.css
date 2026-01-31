@@ -1,0 +1,139 @@
+.sidebar {
+    width:240px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #7c9dd1, #71849d);
+    color: #e6f7ff;
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-link,
+.submenu-item {
+  color: #e6f7ff;
+  text-decoration: none;
+}
+.menu-link a,
+.submenu-item a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.menu-link a:visited,
+.submenu-item a:visited {
+  color: inherit !important;
+}
+.menu-link:visited,
+.menu-link:active,
+.menu-link:hover,
+.submenu-item:visited,
+.submenu-item:active,
+.submenu-item:hover {
+  color: #e6f7ff !important;
+  text-decoration: none !important;
+}
+
+/* Active route highlight */
+.menu-link.active,
+.submenu-item.active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+
+.sidebar.open{
+    transform: translateX(0);
+}
+
+.sidebar-scroll{
+    flex: 1;
+    overflow-y: auto;
+}
+
+.menu-title, .menu-link {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #e6f7ff;
+    text-decoration: none;
+}
+
+.menu-link:hover,
+.menu-title:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.submenu.expanded {
+    max-height: 500px;
+}
+
+.submenu-item {
+    display: block;
+    padding: 8px 30px;
+    color: #cfe8ff;
+    text-decoration: none;
+}
+.submenu-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.sidebar-overaly {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+}
+
+@media (min-width: 992px) {
+    .sidebar{
+        transform: translateX(0);
+    }
+    .sidebar-overaly {
+        display: none;
+    }
+}
+
+/* Mainlayout css */
+/* MAIN CONTENT */
+.main-content {
+  flex: 1;
+  min-height: 100vh;
+  background: #d4e2f9ff;
+  transition: margin-left 0.35s ease;
+}
+
+/* Desktop spacing ,SAME as sidebar width */
+.main-content.with-sidebar {
+  margin-left: 240px; 
+ }  
+
+.sidebar-toggle {
+  position: fixed;
+  top: 16px;
+  left: 16px;   
+  /* default (sidebar closed)  */
+  z-index: 1101;
+  background: #0a3d91;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: left 0.35s ease; /* 👈 smooth motion */
+}
+
+.sidebar-toggle.open {
+  left: 260px; /* 👈 same as sidebar width */
+}
+

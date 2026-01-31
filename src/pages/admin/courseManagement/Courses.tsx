@@ -109,11 +109,7 @@ const AddFacultyModal = ({facultyInfo}) => {
        const showModal = () => {
           setIsModalOpen(true);
         };
-      
-        const handleOk = () => {
-          setIsModalOpen(false);
-        };
-      
+        
         const handleCancel = () => {
           setIsModalOpen(false);
         };
@@ -126,9 +122,9 @@ const AddFacultyModal = ({facultyInfo}) => {
       </Button>
       <Modal
         title="Basic Modal"
-        open={isModalOpen}
-        onOk={handleOk}
+        open={isModalOpen} 
         onCancel={handleCancel}
+        footer={null}
       >
         <AdmitForm onSubmit={handleSubmit}>
             <SelectForm mode="multiple" options={facultiesOptions} name="faculties" 

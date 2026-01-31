@@ -20,6 +20,7 @@ export const genders = ["male", "female", "other"];
 
 export const bloodGroups = ["A+","A-","B+","B-","AB+","AB-","O+","O-"];
 
+export const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 
 export const monthOptions = monthNames.map((item) =>({
@@ -36,6 +37,12 @@ export const bloodGroupsOptions = bloodGroups.map((item) => ({
   value: item,
   label: item
 }))
+
+export const weekDaysOptions = weekDays.map((item) => ({
+  value: item,
+  label: item
+}))
+
 
 export type TError = {
   data: {
@@ -68,6 +75,18 @@ export type TQueriParam = {
   value: boolean | React.Key
 }
 
+export type TAllUser = {
+  _id: string
+  id: string
+  email: string
+  needsPasswordChange: boolean
+  role: string
+  status: string
+  isDeleted: boolean
+  createdAt: string
+  updatedAt: string
+  passWordChangedAt: string
+}
 export type TSemester = {
   _id: string;
   academicSemseter: TAcademicSemester;
@@ -93,3 +112,27 @@ export type TCourse = {
   isDeleted: boolean;
   preRequisiteCourses: TPreRequisiteCourse[];
 };
+
+export type TOfferedCourse = {
+    _id: string
+  semesterRegistration: string
+  academicSemester: string
+  academicFaculty: string
+  academicDepartment: string
+  course: TCourse
+  faculty: string
+  maxCapacity: number
+  section: number
+  days: string[]
+  startTime: string
+  endTime: string
+  isDeleted: boolean
+  __v: number
+  enrolledCourses: any[]
+  completedCourses: any[]
+  completedCourseIds: any[]
+  isPreRequisitesFulFilled: boolean
+  isAlreadyEnrolled: boolean
+}
+
+
