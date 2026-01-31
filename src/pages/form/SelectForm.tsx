@@ -24,7 +24,7 @@ const SelectForm = ({label,suffixIcon, placeholder, name, options, disabled, mod
    name = {name}
    rules={required?{required:`${label?? "This field"} is required`}: undefined}
      render = {({field, fieldState: {error}}) => (
-         <Form.Item label = {<span style={{fontWeight: "600", fontSize:"16px"}}>{label}</span>}> 
+         <Form.Item label = {<span style={{fontWeight: "600", fontSize:"16px", color: "#000"}}>{label}</span>}> 
         <Select size="large"  className="custom-select" 
         suffixIcon={suffixIcon || <IoIosArrowDown style={{fontSize:"20px", color:'#000'}}/>}
  mode={mode} placeholder={placeholder || "Select ..."} required={required} {...field} options = {options} disabled={disabled}/>

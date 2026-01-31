@@ -12,7 +12,7 @@ type TFormInput = {
   rows?:number,
   placeholder?:string
 }
-const InputForm = ({type, name, label, isTextArea = false, rows = 4, placeholder} : TFormInput) => {
+const InputForm = ({type, name, label, isTextArea = false, rows = 2, placeholder} : TFormInput) => {
 
    // const {register} = useFormContext();
    //  //not neeeded the register now beacuse of using controller to co ordinate with antd ,since antd dont know any register 

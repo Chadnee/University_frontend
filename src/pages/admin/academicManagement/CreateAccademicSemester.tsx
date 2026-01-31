@@ -50,9 +50,6 @@ const CreateAccademicSemester = () => {
         }
      }
     
-  const handleReset = async() => {
-     
-  }
   return (
        <div>
          <span style={{fontSize: "25px", fontWeight:"700"}}>Create Academic Semester</span>

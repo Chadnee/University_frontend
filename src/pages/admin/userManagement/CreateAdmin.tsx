@@ -11,6 +11,7 @@ import { useGetAllAccademicDepartmentQuery } from "../../../features/admin/acade
 import { useCreateAdminMutation } from "../../../features/admin/userManagementApi";
 import { toast } from "sonner";
 import useResponsive from "../../../hooks/useResponsive";
+import type { TAdmin, TCreateAdminPayload } from "../../../types/userManagementTypes";
 
 
 const CreateAdmin = () => {
@@ -27,10 +28,10 @@ const CreateAdmin = () => {
       label: item.name
      }))
      
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<TAdmin> = async (data) => {
     //console.log(data);
     
-    const adminData = {
+    const adminData : TCreateAdminPayload = {
       password: "admin1234",
       admin: data
     }

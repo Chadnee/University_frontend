@@ -11,6 +11,7 @@ import { useGetAllAccademicDepartmentQuery } from "../../../features/admin/acade
 import { useCreateFacultyMutation } from "../../../features/admin/userManagementApi";
 import { toast } from "sonner";
 import useResponsive from "../../../hooks/useResponsive";
+import type { TCreateFacultyPayload, TFaculty } from "../../../types/userManagementTypes";
 
 
 const CreateFaculty = () => {
@@ -27,10 +28,10 @@ const CreateFaculty = () => {
       label: item.name
      }))
      
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<TFaculty> = async (data) => {
     //console.log(data);
     
-    const facultyData = {
+    const facultyData : TCreateFacultyPayload = {
       password: "faculty1234",
       faculty: data
     }
@@ -96,7 +97,7 @@ const CreateFaculty = () => {
                   onClick={()=>fileInputRef.current?.click()}
                 type="primary"
                 style={{
-                  backgroundColor: "#4d8de8ff",
+                  backgroundColor: "#1d6fccff",
                 }}
               > <Flex justify="center" align="center" gap={5}>
                     <CiCamera style={{fontSize : "18px"}} /> Upload Image
@@ -162,7 +163,7 @@ const CreateFaculty = () => {
                htmlType="submit"
                 type="primary"
                 style={{
-                  backgroundColor: "#4d8de8ff",
+                  backgroundColor: "#1d6fccff",
                   padding: '3px 10px'
                 }}>Submit</Button>
           </Flex>

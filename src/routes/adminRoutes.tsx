@@ -11,9 +11,11 @@ import CreateofferedCourse from "../pages/admin/courseManagement/CreateofferedCo
 import CreateRegisteredSemester from "../pages/admin/courseManagement/CreateRegisteredSemester";
 import OfferedCourse from "../pages/admin/courseManagement/OfferedCourse";
 import RegisteredSemester from "../pages/admin/courseManagement/RegisteredSemester";
+import Admin from "../pages/admin/userManagement/Admin";
 import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
 import CreateFaculty from "../pages/admin/userManagement/CreateFaculty";
 import CreateStudent from "../pages/admin/userManagement/CreateStudent";
+import Faculty from "../pages/admin/userManagement/Faculty";
 import Student from "../pages/admin/userManagement/Student";
 import StudentDetails from "../pages/admin/userManagement/StudentDetails";
 
@@ -66,7 +68,7 @@ export const adminPaths = [
             {
                 name: 'Admin',
                 path: 'admin',
-                element: <CreateAdmin></CreateAdmin>,
+                element:<Admin></Admin>,
             },
             {
                 name: 'Create Admin',
@@ -76,7 +78,7 @@ export const adminPaths = [
             {
                 name: 'Faculty',
                 path: 'faculty',
-                element: <CreateFaculty></CreateFaculty>
+                element: <Faculty></Faculty>
             },
             {
                 name: 'Create Faculty',

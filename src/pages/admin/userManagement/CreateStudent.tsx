@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import useResponsive from "../../../hooks/useResponsive";
 import { CiCamera } from "react-icons/ci";
 import { useRef, useState } from "react";
+import type { TCreateStudentPayload, TStudent } from "../../../types/userManagementTypes";
 
 const CreateStudent = () => {
   const DEFAULT_IMAGE = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
@@ -61,11 +62,11 @@ const CreateStudent = () => {
       },
   }
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<TStudent> = async (data) => {
     
-    const studentData = {
+    const studentData : TCreateStudentPayload = {
      password: 'student123',
-     student: data
+     student : data
     }
    console.log(studentData);
 
@@ -79,7 +80,7 @@ const CreateStudent = () => {
     const result = await createStudent(formData).unwrap();
     //console.log(Object.fromEntries(formData));
            console.log(result);
-           toast.success('Student is created successfuly')
+           toast.success('Student is created')
 
    }catch(error){
          console.log(error.data.message)
@@ -91,12 +92,13 @@ const CreateStudent = () => {
 
        <div style={{ margin:isTablet||isDesktop? "0 40px" : "0" }}>
           <AdmitForm onSubmit={onSubmit}>
-            <Divider style={{fontSize:'20px', paddingBottom:"15px"  ,fontWeight:600, textAlign: 'center'}}>Add Student</Divider>
+
+            {/* <Divider style={{fontSize:'20px', paddingBottom:"15px"  ,fontWeight:600, textAlign: 'center'}}>Add Student</Divider> */}
             <Row justify="center" >
               <Col span={24}>
                <Row gutter={100}>
                  <Col span={24} lg={{span:5}} md={{span:24}}>
-              <Row justify='center'><p style={{fontSize:'20px'  ,fontWeight:600}}>Upload Photo</p></Row>
+              <Row justify='center'><p style={{fontSize:'20px',marginTop:isDesktop?"40px":"0"  ,fontWeight:600}}>Upload Photo</p></Row>
                 <Controller
                 name="profileImage"
                 render={({field:{onChange}}) => (
@@ -148,8 +150,12 @@ const CreateStudent = () => {
       style={{
         borderLeft: "2px solid #cbd1d8ff",
         paddingLeft: "24px",
-      }}>
+      }}>            
+       <p style={{fontSize: "25px", fontWeight:"600", textAlign:"center"}}>Create Student</p>
+
                 <Row gutter={[28, 5]}>
+                 <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Personal info</Divider>
+
                   {/* Personal info */}
                    <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                     <InputForm type="text" name="name.firstName" label="Student First Name" placeholder="Provide first name"></InputForm>
@@ -170,13 +176,17 @@ const CreateStudent = () => {
                     <SelectForm name="bloodGroup" options={bloodGroupsOptions} label="Blood Group"/>
                   </Col>
                    {/* Contact info */}
+                   <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Contact info</Divider>
                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                     <InputForm type="text" name="email" label="Email Address" placeholder="Provide email ..."></InputForm>
+                  </Col>
+                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                    <InputForm type="text" name="" label="Institutional email (Optional)" placeholder="Provide institutional email if applicable ..."></InputForm>
                   </Col>
                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                     <InputForm type="text" name="contactNo" label="Contact No" placeholder="Provide contact No ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                     <InputForm type="text" name="emergencyContactInfo" label="Emergency Contact Info(Number)" placeholder="Provide emergency conatct No ..."></InputForm>
                   </Col>
                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
@@ -185,8 +195,11 @@ const CreateStudent = () => {
                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                     <InputForm isTextArea={true}  type="text" name="permanentAddress" label="Permanent Address" placeholder="Provide Permanent Address ..."></InputForm>
                   </Col>
+                 
 
                    {/* Gurdian info */}
+                   <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Gurdian info</Divider>
+
                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                    <InputForm type="text" name="guardian.fatherName" label="Father Name" placeholder="Provide father name ..."></InputForm>
                   </Col>
@@ -207,19 +220,31 @@ const CreateStudent = () => {
                   </Col>
                   
                   {/* Local Gurdian info */}
+                  <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Local Gurdian info</Divider>
+
                    <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                    <InputForm type="text" name="localGuardian.name" label="Name" placeholder="Provide local gurdian name ..."></InputForm>
                   </Col>
                    <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                   <InputForm type="text" name="localGuardian.name" label="Name" placeholder="Provide local gurdian name ..."></InputForm>
+                   <InputForm type="text" name="localGuardian.occupation" label="Occupation" placeholder="Provide Occupation ..."></InputForm>
                   </Col>
                    <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                   <InputForm type="text" name="localGuardian.name" label="Name" placeholder="Provide local gurdian name ..."></InputForm>
+                   <InputForm type="text" name="localGuardian.contactNo" label="Contact No" placeholder="Provide Contact No ..."></InputForm>
                   </Col>
                    <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                   <InputForm type="text" name="localGuardian.name" label="Name" placeholder="Provide local gurdian name ..."></InputForm>
+                   <InputForm type="text" name="localGuardian.address" label="Address" placeholder="Provide address ..."></InputForm>
                   </Col>
-    
+                  
+                  {/*Academical info */}
+                 <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Academic info</Divider>
+
+                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <SelectForm name="admissionSemester" disabled={isSemesterLoading} options={semesterOptions} label="Academic Semester"></SelectForm>
+                  </Col>
+                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <SelectForm name="academicDepartment" disabled={isDepartmentLoading} options={departmentOptions} label="Academic Department"></SelectForm>
+                  </Col>
+
                 </Row>
               </Col>
                </Row>

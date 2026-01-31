@@ -1,10 +1,11 @@
-import type { TAcademicDepartment, TAcademicSemester } from "./academicManagementTypes"
+import type { TAcademicDepartment, TAcademicFaculty, TAcademicSemester } from "./academicManagementTypes"
 
+
+//Types for student
 export type TName = {
   firstName: string
   middleName: string
   lastName: string
-  _id: string
 }
 
 export type TGuardian = {
@@ -14,7 +15,6 @@ export type TGuardian = {
   motherName: string
   motherOccupation: string
   motherContactNo: string
-  _id: string
 }
 
 export type TLocalGuardian = {
@@ -22,11 +22,9 @@ export type TLocalGuardian = {
   occupation: string
   contactNo: string
   address: string
-  _id: string
 }
 
 export type TStudent = {
-  _id: string
   id: string
   user: string
   name: TName
@@ -43,6 +41,61 @@ export type TStudent = {
   profileImage: string
   admissionSemester: TAcademicSemester
   academicDepartment: TAcademicDepartment
-  academicFaculty: string
+  // academicFaculty: string
+  // isDeleted: boolean
+}
+export type TCreateStudentPayload = {
+  password: string,
+  student: TStudent;
+}
+
+//Types for Faculty
+
+export type TFaculty = {
+  id: string
+  designation: string
+  name: string
+  user: string
+  gender: string
+  dateOfBirth: string
+  email: string
+  contactNo: string
+  emergencyContactNo: string
+  presentAddress: string
+  permanentAddress: string
+  profileImage: string
+  academicDepartment: TAcademicDepartment
+  academicFaculty: TAcademicFaculty
+}
+
+export type TCreateFacultyPayload = {
+  password: string
+  faculty: TFaculty
+}
+
+//types for Admin 
+
+export type TAdmin = {
+  _id: string
+  name: string
+  id: string
+  designation: string
+  gender: string
+  dateOfBirth: string
+  email: string
+  contactNo: string
+  emergencyContactNo: string
+  user: string
+  presentAddress: string
+  permanentAddress: string
+  profileImage: string
+  managementDepartment: string
   isDeleted: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+export type TCreateAdminPayload = {
+  password: string
+  admin: TAdmin
 }
