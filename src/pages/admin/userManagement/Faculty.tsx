@@ -22,9 +22,9 @@ export type TTableData = Pick<
 const Faculty = () => {
   const [page, setPage] = useState(1)
       const { data: facultyData, isLoading: isFacultyLoading} =
-        useGetAllFacultyQuery(undefined);
-        console.log(facultyData)
-        // useGetAllFacultyQuery([{name:'page', value:page},{name:'sort', value:'id'}]);
+        useGetAllFacultyQuery([{name:'page', value:page},{name:'sort', value:'id'}]);
+        // console.log(facultyData)
+        // // useGetAllFacultyQuery([{name:'page', value:page},{name:'sort', value:'id'}]);
       //   const [image, setImage] = useState<string | null>(null)
       
       //   const studentImage = studentData?.data?.result.map((item) =>{
@@ -37,7 +37,7 @@ const Faculty = () => {
       //  })
       //console.log( studentData?.data?.result);
       const metaData = facultyData?.data?.meta
-      const tableData : TTableData[] = facultyData?.data?.result?.map(
+      const tableData : TTableData[] = facultyData?.data?.map(
         ({
           id,
           name,
@@ -55,9 +55,12 @@ const Faculty = () => {
           gender,
           designation
         })
-      );
-      const id = facultyData?.data?.result?.map((item) => {return item.id})
-      console.log(id)
+      ); 
+
+      //console.log(facultyData?.data)
+      
+      const id = facultyData?.data?.map((item) => {return item.id})
+      console.log(tableData,id)
       const columns: TableColumnsType<TTableData> = [
         {
           title: "Image",
