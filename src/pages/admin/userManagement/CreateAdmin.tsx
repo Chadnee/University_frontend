@@ -135,7 +135,7 @@ const CreateAdmin = () => {
                 <InputForm type="text" name="emergencyContactNo" label="Emergency Contact No" placeholder="Provide emergency conatct No"></InputForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <SelectForm name="managementDepartment" options={departmentOptions} placeholder="Select department which will be managed" label="Management Department"></SelectForm>
+                <SelectForm name="managementDepartment" disabled={!departmentData} options={departmentOptions} placeholder="Select department which will be managed" label="Management Department"></SelectForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                 <InputForm isTextArea={true}  type="text" name="presentAddress" label="Present Address" placeholder="Provide Present Address"></InputForm>

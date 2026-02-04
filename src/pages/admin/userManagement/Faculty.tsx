@@ -6,6 +6,7 @@ import type { TFaculty, TStudent } from "../../../types/userManagementTypes";
 import maleStudent from "../../../assets/images/maleStudent.jpg";
 import femaleStudent from "../../../assets/images/femaileStudent.jpg"
 import { Link } from "react-router-dom";
+import { getFullName } from "../../../utils/GetFullName";
 
 
 export type TTableData = Pick<
@@ -77,8 +78,9 @@ const Faculty = () => {
         },
         {
           title: "Name",
-          key: "firstName",
-          dataIndex: ["name", "firstName"],
+          key: "name",
+          dataIndex: "name",
+          render: (_, record) => getFullName(record?.name)
         },
         {
           title: "Student ID",
@@ -112,7 +114,7 @@ const Faculty = () => {
            // console.log(item);
             return (
               <Space>
-                <Link to={`/admin/student/${item.key}`}>
+                <Link to={`/admin/faculty/${item.key}`}>
                   <Button>Details</Button>
                 </Link>
                 <Button>Update</Button>

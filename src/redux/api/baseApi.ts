@@ -71,7 +71,7 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
  reducerPath: 'baseApi',
  baseQuery: baseQueryWithRefreshToken,
- tagTypes: ['semester','courses','userStats', 'assignFaculties', 'offeredCourse', 'enrolledCourse', 'allUser','student','admin','faculty'],
+ tagTypes: ['semester','courses','userStats', 'allDepartment', 'assignFaculties', 'offeredCourse', 'enrolledCourse', 'allUser','student','admin','faculty'],
  endpoints: () => ({
 //  endpoints: (builder) => ({
     // login: builder.mutation({

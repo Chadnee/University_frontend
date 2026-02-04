@@ -130,8 +130,8 @@ const userManagementApi = baseApi.injectEndpoints({
     
     GetMe: builder.query({
       query: () => ({
-        url: "/users/me",
-        method: "GET"
+        url: `/users/me`,
+        method: "GET",
       })
 
     }),

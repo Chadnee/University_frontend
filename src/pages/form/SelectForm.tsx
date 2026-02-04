@@ -1,8 +1,8 @@
 import { Form, Select } from "antd";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext, type Control, type UseFormSetValue } from "react-hook-form";
 import '../../index.css'
 
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 // const handleChange = (value: string) => {
 //   console.log(`selected ${value}`);
@@ -16,12 +16,28 @@ type TSelectForm = {
     required?: boolean;
     mode?: 'multiple';
     suffixIcon?:ReactNode;
+    fixedValue?: string | string[] 
+  //   control: Control<any>
+  // setValue: UseFormSetValue<any>
   }
-const SelectForm = ({label,suffixIcon, placeholder, name, options, disabled, mode, required} : TSelectForm) => {
+const SelectForm = ({label,suffixIcon, fixedValue, placeholder, name, options, disabled, mode, required} : TSelectForm) => {
+  
+ const { control, setValue } = useFormContext()
+
+  // 🔥 auto-set fixed value into RHF
+ useEffect(() => {
+    if (fixedValue !== undefined) {
+      setValue(name, fixedValue, {
+        shouldValidate: true,
+        shouldDirty: true,
+      })
+    }
+  }, [fixedValue, name, setValue])
 
   return (
    <Controller
    name = {name}
+   control={control}
    rules={required?{required:`${label?? "This field"} is required`}: undefined}
      render = {({field, fieldState: {error}}) => (
          <Form.Item label = {<span style={{fontWeight: "600", fontSize:"16px", color: "#000"}}>{label}</span>}> 

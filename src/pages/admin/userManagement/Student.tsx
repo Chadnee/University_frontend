@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Flex, Pagination, Row, Space, Table } from "antd";
+import { Button, Flex, Pagination, Row, Space, Spin, Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { useGetAllStudentQuery } from "../../../features/admin/userManagementApi";
 import type { TStudent } from "../../../types/userManagementTypes";
@@ -7,6 +7,7 @@ import maleStudent from "../../../assets/images/maleStudent.jpg";
 import femaleStudent from "../../../assets/images/femaileStudent.jpg"
 import type { TQueriParam } from "../../constants/global";
 import { Link } from "react-router-dom";
+import { getFullName } from "../../../utils/GetFullName";
 
 
 export type TTableData = Pick<
@@ -77,6 +78,7 @@ const Student = () => {
       title: "Name",
       key: "firstName",
       dataIndex: ["name", "firstName"],
+      render : (_, record) => getFullName(record?.name)
     },
     {
       title: "Student ID",
@@ -136,9 +138,13 @@ const Student = () => {
   
 
  if( isStudentLoading){
-    return <Flex justify="center" align="center">
-      <h3>Loading...</h3>
-    </Flex>
+    return (
+                  <Flex  justify="center" align="center" style={{ height: "80vh" }}>
+                       <div style={{ color: "#608cd3ff" }}>
+                        <Spin size="medium" />
+                       </div>
+                  </Flex>
+                )
  }
 
   return<> <Table<TTableData> columns={columns} dataSource={tableData} />

@@ -6,6 +6,7 @@ import { SidebarGenenrater } from '../../utils/SidebarGenerater';
 import { adminPaths } from '../../routes/adminRoutes';
 import { facultyPaths } from '../../routes/facultyRoutes';
 import { studentPaths } from '../../routes/studentRoutes';
+import { useState } from 'react';
 
 const { Sider } = Layout;
 
@@ -16,6 +17,7 @@ const userRole = {
 };
 
 const Sidebar = ({isMobile, onClose}) => {
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
     const dispatch = useAppDispatch();
       const token = useAppSelector(selectCurrentToken);
 
@@ -67,6 +69,8 @@ const Sidebar = ({isMobile, onClose}) => {
         items={sidebarItems}
         style={{ background: 'transparent', color: '#fff' }}
         onClick={() => isMobile && onClose?.()}
+        openKeys={openKeys}
+  onOpenChange={keys => setOpenKeys(keys.slice(-1))}
       />
 
       <Flex vertical style={{ marginTop: 'auto' }}>

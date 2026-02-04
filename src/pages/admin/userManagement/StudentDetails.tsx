@@ -1,6 +1,6 @@
 import {useParams } from "react-router-dom";
 import { useGetsingleStudentQuery } from "../../../features/admin/userManagementApi";
-import { Card, Col, Divider, Flex, Row } from "antd";
+import { Card, Col, Divider, Flex, Row, Spin } from "antd";
 import maleStudent from "../../../assets/images/maleStudent.jpg";
 import femaleStudent from "../../../assets/images/femaileStudent.jpg";
 import { AiTwotoneMail } from "react-icons/ai";
@@ -14,6 +14,7 @@ import { IoMdMailOpen } from "react-icons/io";
 import { TbEmergencyBed } from "react-icons/tb";
 import { BiSolidLocationPlus } from "react-icons/bi";
 import { useState } from "react";
+import { getFullName } from "../../../utils/GetFullName";
 
 
 const StudentDetails = () => {
@@ -23,7 +24,11 @@ const StudentDetails = () => {
     const {data, isLoading, isError} = useGetsingleStudentQuery(studentId)
     
   if(isLoading){
-        return<div>Student details is Loading...</div>
+        return <Flex  justify="center" align="center" style={{ height: "80vh" }}>
+                               <div style={{ color: "#608cd3ff" }}>
+                                <Spin size="medium" />
+                               </div>
+                          </Flex>
     }
     if(isError){
         return<div>Something is wrong, try again later</div>
@@ -42,7 +47,7 @@ const StudentDetails = () => {
   emergencyContactInfo,
   profileImage,
 
-  name: { firstName, middleName, lastName },
+  name,
 
   academicDepartment: {
     _id: departmentId,
@@ -85,7 +90,7 @@ return (
          <img src={gender === 'male'? maleStudent : femaleStudent} style={{borderRadius:100}} height={120} width={120} alt="avater" />
         </Col>
         <Col span={20}>
-          <Row><p style={{fontSize: '18px', fontWeight:500, margin: '0 0 8px 0'}}>{firstName} {middleName} {lastName}</p></Row>
+          <Row><p style={{fontSize: '18px', fontWeight:500, margin: '0 0 8px 0'}}>{getFullName(name)}</p></Row>
           <Divider style={{ margin: "0 0 8px 0" }} ></Divider>
           <Row >
             <Col style={{}} span={8}>
@@ -116,7 +121,7 @@ return (
          <Col span={12} style={{alignItems:"flex-start"}}>
            <Card hoverable>
           <Row style={{borderBottom: "1px solid #d9d9d9", fontWeight:700, fontSize: "14px"}}>Personal Information</Row>
-          <Row style={{ borderBottom: "1px solid #d9d9d9", fontSize: "14px"}}>Full Name :  <span style={{fontWeight:500, padding:'0 0 0 6px'}}> {firstName} {middleName} {lastName} </span></Row>
+          <Row style={{ borderBottom: "1px solid #d9d9d9", fontSize: "14px"}}>Full Name :  <span style={{fontWeight:500, padding:'0 0 0 6px'}}> {getFullName(name)} </span></Row>
           <Row style={{ borderBottom: "1px solid #d9d9d9", fontSize: "14px"}}>Student ID : <span style={{fontWeight:500, padding:'0 0 0 6px'}}>  {id}</span></Row>
           <Row style={{ borderBottom: "1px solid #d9d9d9", fontSize: "14px"}}>Current Semester : <span style={{fontWeight:500, padding:'0 0 0 6px'}}>{semesterName}, {year} ({startMonth} - {endMonth})</span></Row>
           <Row style={{ borderBottom: "1px solid #d9d9d9", fontSize: "14px"}}>Department : <span style={{fontWeight:500, padding:'0 0 0 6px'}}>{departmentName}</span></Row>

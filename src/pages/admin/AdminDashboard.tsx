@@ -1,4 +1,4 @@
-import { Button, Card, Col, Divider, Flex, Row, Space } from "antd";
+import { Button, Card, Col, Divider, Flex, Row, Space, Spin } from "antd";
 import {
   useGetAllCountedTotalUsersQuery,
   useGetAllStudentQuery,
@@ -32,6 +32,7 @@ import { WiNightAltLightning } from "react-icons/wi";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { PiArrowFatLinesDownLight } from "react-icons/pi";
 import { LuLightbulb } from "react-icons/lu";
+import { getFullName } from "../../utils/GetFullName";
 
 // import { RechartsDevtools } from '@recharts/devtools';
 
@@ -65,7 +66,13 @@ const AdminDashboard = () => {
   console.log(getvisitors);
 
   if (isUserLoading || isMyselfLoading || isGetvisitorsLoading) {
-    return <p>Loading...</p>;
+    return (
+              <Flex  justify="center" align="center" style={{ height: "80vh" }}>
+                   <div style={{ color: "#608cd3ff" }}>
+                    <Spin size="medium" />
+                   </div>
+              </Flex>
+            );
   }
   console.log(enrollmentStat);
   const { students, faculty, admin } = userStats?.data;
@@ -85,7 +92,7 @@ const AdminDashboard = () => {
   return (
     <div className="">
       <Flex align="center" gap={20}>
-        <h1>Welcome back, {name}</h1>
+        <h1>Welcome back, {getFullName(name)}</h1>
         <img src={waving} height={50} width={50} alt="" />
       </Flex>
       <Flex align="center" justify="space-between" gap={20}>
@@ -248,7 +255,13 @@ const AdminDashboard = () => {
               direction="vertical"
               style={{ width: "100%", padding: "7px 12px" }}
             >
-              {enrollmentStat?.data?.map((item, index) => {
+              {
+                !enrollmentStat? <Flex  justify="center" align="center" style={{ height: "80vh" }}>
+                       <div style={{ color: "#608cd3ff" }}>
+                        <Spin size="medium" />
+                       </div>
+                  </Flex>
+                :enrollmentStat?.data?.map((item, index) => {
                 const color = badgeColors[index % badgeColors.length];
                 return (
                   <div>
@@ -275,7 +288,7 @@ const AdminDashboard = () => {
                         }}
                       >
                         <span style={{ fontWeight: "600" }}>
-                          {item?.name?.firstName} {item?.name?.middleName}
+                            {getFullName(item?.name)}
                         </span>
                         <span
                           title={item?.academicDepartment?.name} // 👈 hover shows full text
@@ -310,7 +323,8 @@ const AdminDashboard = () => {
                     <Divider style={{ margin: "0" }}></Divider>
                   </div>
                 );
-              })}
+              })
+              }
             </Space>
           </div>
         </Col>
@@ -395,94 +409,6 @@ const AdminDashboard = () => {
                   marginTop: "14px",
                 }}
               ></div>
-              <Flex align="center" gap={10} justify="space-between" style={{}}>
-                <Flex
-                  vertical
-                  gap={4}
-                  style={{
-                    borderTop: "0.5px solid #d0ccccff",
-                    borderRight: "0.5px solid #d0ccccff",
-                    borderTopRightRadius: "5px",
-                    padding: "5px 15px",
-                  }}
-                >
-                  <Flex align="center" justify="space-between" gap={15} style={{}}>
-                    <span style={{ fontWeight: "600",flex:1 }}>
-                      <span
-                        className="font-heading-stylish font-italic"
-                        style={{ fontSize: "25px", fontWeight: "800" }}
-                      >
-                        New
-                      </span>{" "}
-                      <br />
-                      <span style={{ fontSize: "18px", fontWeight: "600" }}>
-                        Students
-                      </span>
-                    </span>
-                    <span style={{ fontWeight: "600", fontSize: "18px", flex:1  }}>
-                      <PiArrowFatLinesDownLight
-                        style={{
-                          color: "#36d1d9ff",
-                          fontSize: "40px",
-                          fontWeight: "200",
-                        }}
-                      />
-                      320
-                    </span>
-                    <span style={{}}>
-                       <TiArrowSortedUp
-                      style={{ fontSize: "20px", color: "#36d1d9ff" }}
-                    /><br/>
-                      +18.4%</span>
-                  </Flex>
-                  <span style={{ fontSize: "13px", color: "#7e7979ff" }}>
-                    Unavoidable Growth for past month
-                  </span>
-                </Flex>
-                 <Flex
-                  vertical
-                  gap={4}
-                  style={{
-                    borderTop: "0.5px solid #d0ccccff",
-                    borderLeft: "0.5px solid #d0ccccff",
-                    borderTopLeftRadius: "5px",
-                    padding: "5px 15px",
-                  }}
-                >
-                  <Flex align="center" justify="space-between" gap={15} style={{}}>
-                    <span style={{ fontWeight: "600",flex:1 }}>
-                      <span
-                        className="font-heading-stylish font-italic"
-                        style={{ fontSize: "25px", fontWeight: "800" }}
-                      >
-                        New
-                      </span>{" "}
-                      <br />
-                      <span style={{ fontSize: "18px", fontWeight: "600" }}>
-                        Faculty
-                      </span>
-                    </span>
-                    <span style={{ fontWeight: "600", fontSize: "18px", flex:1  }}>
-                      <LuLightbulb
-                        style={{
-                          color: "#36d1d9ff",
-                          fontSize: "40px",
-                          fontWeight: "200",
-                        }}
-                      />
-                      18
-                    </span>
-                    <span style={{}}>
-                       <TiArrowSortedUp
-                      style={{ fontSize: "20px", color: "#36d1d9ff" }}
-                    /><br/>
-                      +12.3%</span>
-                  </Flex>
-                  <span style={{ fontSize: "13px", color: "#7e7979ff" }}>
-                    Lots of success for past month
-                  </span>
-                </Flex>
-              </Flex>
             </div>
           </div>
         </Col>

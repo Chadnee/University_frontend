@@ -21,7 +21,7 @@ const CreateAccademicDepartment = () => {
      if(!academicFaculty || isacademicFacultyLoading){
             return (
               <Flex  justify="center" align="center" style={{ height: "80vh" }}>
-                   <div style={{ color: "#09af99ff" }}>
+                   <div style={{ color: "#608cd3ff" }}>
                     <Spin size="medium" />
                    </div>
               </Flex>
@@ -50,7 +50,7 @@ const CreateAccademicDepartment = () => {
         <Flex  style={{marginTop:"25px"}}>
              <AdmitForm onSubmit={onSubmit}>
                    <InputForm type="text" name="name" label="Department Name" placeholder="Provide a name ..."/>
-                   <SelectForm name="academicFaculty" label="Academic Faculty"
+                   <SelectForm name="academicFaculty" label="Academic Faculty" disabled={isacademicFacultyLoading}
                       options={facultyOptions}/>
 
                    <Flex gap={15} justify="end" align="center" style={{padding:"30px 0", marginTop:isMobile? "20px": "100px" }}>

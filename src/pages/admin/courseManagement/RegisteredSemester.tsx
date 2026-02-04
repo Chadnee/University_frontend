@@ -1,5 +1,5 @@
 import { useGetAllSemestersQuery } from "../../../features/admin/academicManagementApi";
-import { Button, Dropdown, Table, Tag } from 'antd';
+import { Button, Dropdown, Flex, Spin, Table, Tag } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
 import {type TQueriParam, type TSemester } from "../../constants/global";
 import { useState } from "react";
@@ -119,7 +119,13 @@ const columns: TableColumnsType<TTableData> = [
 //   }
     
   if (isLoading) {
-    return <p>Loading...</p>
+    return (
+                  <Flex  justify="center" align="center" style={{ height: "80vh" }}>
+                       <div style={{ color: "#608cd3ff" }}>
+                        <Spin size="medium" />
+                       </div>
+                  </Flex>
+                )
   }
   
   return (
