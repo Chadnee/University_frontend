@@ -36,7 +36,7 @@ const studentCourseManagementApi = baseApi.injectEndpoints({
     invalidatesTags: ['enrolledCourse']
    }),
 
-   getMyEnrolledCourse : builder.query ({
+   getMyEnrolledAllCourses : builder.query ({
     query: (args) => {
         const params = new URLSearchParams();
         if (args){
@@ -49,15 +49,24 @@ const studentCourseManagementApi = baseApi.injectEndpoints({
             method: 'Get',
             params: params
         }
-    },
+    },  
+    providesTags: ['enrolledCourse'],
       transformResponse: (response:TResponseRedux<TOfferedCourse>) => {
         return {
             data: response.data,
             meta: response.meta
         }
       }, 
-      providesTags: ['enrolledCourse']
-   })
+     
+   }),
+
+   getMyEnrolledSate: builder.query ({
+    query: () => ({
+          url: '/course-enrollment/student-enrollment-stats/getMe',
+          method: "Get"
+    })
+   }),
+
 
   }),
 });
@@ -65,5 +74,6 @@ const studentCourseManagementApi = baseApi.injectEndpoints({
 export const { 
     useGetMyOfferedCourseQuery,
     useCreateEnrolementMutation,
-    useGetMyEnrolledCourseQuery,
+    useGetMyEnrolledAllCoursesQuery,
+    useGetMyEnrolledSateQuery
    } = studentCourseManagementApi;
