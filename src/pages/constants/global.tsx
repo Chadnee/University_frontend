@@ -1,6 +1,10 @@
 import type { BaseQueryApi } from "@reduxjs/toolkit/query";
 import type { TAcademicSemester } from "../../types/academicManagementTypes";
-
+import { DiJavascript } from "react-icons/di";
+import { RiReactjsLine } from "react-icons/ri";
+import { FaQrcode } from "react-icons/fa6";
+import { BiLogoMongodb, BiLogoTypescript } from "react-icons/bi";
+import { TbBrandMongodb, TbBrandTypescript } from "react-icons/tb";
 export const monthNames = [
   "January",
   "February",
@@ -134,5 +138,79 @@ export type TOfferedCourse = {
   isPreRequisitesFulFilled: boolean
   isAlreadyEnrolled: boolean
 }
+
+// courseProgressData.ts
+export const skills = [
+
+  {
+    key: "javascript",
+    label: "JavaScript",
+    percent: 85,
+    color:  {
+    '0%': '#febe1eff',
+    '100%': '#f48c06',
+  },
+    iconColor: "#f48c06",
+    trailColor:"#e6f4ff",
+    rating: 4.2,
+    icon: <DiJavascript/>
+  },
+  {
+    key: "React-Redux",
+    label: "React-Re",
+    percent: 88,
+    color:   {
+    '0%': '#7fb089ff',
+    '100%': '#3a8b30ff',
+  },
+    iconColor: "#3a8b30ff",
+    trailColor:"#e6f4ff",
+    rating: 4.5,
+    icon:<RiReactjsLine/>
+  },
+ {
+    key: "node",
+    label: "Node.js",
+    percent: 78,
+    color:  {
+    '0%': '#f87c07ff',
+    '100%': '#e46d0bff',
+  },
+    iconColor: "#f06c20ff",
+    trailColor:"#e6f4ff",
+    rating: 4,
+    icon:<FaQrcode/>
+  },
+ {
+    key: "mongodb",
+    label: "MongoDB",
+    percent: 82,
+    color: {
+    '0%': '#45a5f3ff',
+    '100%': '#0760c5ff',
+  },
+    iconColor: "#0760c5ff ",
+    trailColor:"#e6f4ff",
+    rating: 4.1,
+    icon:<TbBrandMongodb/>
+  },
+ {
+    key: "typescript",
+    label: "TypeScript",
+    percent: 76,
+    color:  {
+    '0%': '#7fb089ff',
+    '100%': '#3a8b30ff',
+  },
+    iconColor: "#3a8b30ff",
+    trailColor:"#e6f4ff",
+    rating: 4,
+    icon:<TbBrandTypescript/>
+  },
+
+];
+
+
+
 
 

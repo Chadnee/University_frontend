@@ -38,7 +38,7 @@ const MainLayout = () => {
 >
           <div
             style={{
-              padding:isDesktop?"0 40px":"10px 7px",
+              padding:isDesktop?"0 30px":"10px 7px",
               minHeight: 360,
                 maxWidth: '100%',
 

@@ -1,4 +1,4 @@
-import Course from "../pages/student/course";
+import Course from "../pages/student/Course";
 import OfferedCourse from "../pages/student/OfferedCourse";
 import StudentDashboard from "../pages/student/StudentDashboard";
 
