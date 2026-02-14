@@ -9,7 +9,7 @@ import type { TError } from "../../pages/constants/global";
 
 const baseQuery = fetchBaseQuery({
     //set credential to get refresh token in cookies, also make "credentials: true" in backend cors origin 
-    baseUrl: 'http://localhost:5000/api/v1' ,credentials: 'include',
+    baseUrl: 'https://technouniversity.vercel.app/api/v1' ,credentials: 'include',
     //add preparedHeaders from redux toolkit to get token to set authorization in headers tab
     prepareHeaders: (headers, {getState}) => {
        const token = (getState() as RootState).auth.token;
