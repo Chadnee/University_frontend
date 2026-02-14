@@ -13,7 +13,6 @@ import { FaPhone } from "react-icons/fa6";
 import { IoMdMailOpen } from "react-icons/io";
 import { TbEmergencyBed } from "react-icons/tb";
 import { BiSolidLocationPlus } from "react-icons/bi";
-import { useState } from "react";
 import { getFullName } from "../../../utils/GetFullName";
 
 
@@ -26,15 +25,28 @@ const StudentDetails = () => {
   if(isLoading){
         return <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                                <div style={{ color: "#608cd3ff" }}>
-                                <Spin size="medium" />
+                                <Spin />
                                </div>
                           </Flex>
     }
     if(isError){
-        return<div>Something is wrong, try again later</div>
+      return <Flex  justify="center" align="center" style={{ height: "80vh" }}>
+                               <div style={{ color: "rgb(204, 63, 11)" }}>
+                               <div>Something is wrong, try again later</div>
+                               </div>
+                          </Flex>
+        
     }
 
-    
+    if(!data.data){
+        return <Flex  justify="center" align="center" style={{ height: "80vh" }}>
+                               <div style={{ color: "rgb(185, 52, 11)" }}>
+                               <div>No student found</div>
+                               </div>
+                          </Flex>
+    }
+
+    const student = data.data
    const {
   id,
   gender,
@@ -45,14 +57,13 @@ const StudentDetails = () => {
   presentAddress,
   permanentAddress,
   emergencyContactInfo,
-  profileImage,
-
+ // profileImage,
   name,
 
   academicDepartment: {
-    _id: departmentId,
+//_id: departmentId,
     name: departmentName,
-    academicFaculty: facultyInfo,
+    //academicFaculty: facultyInfo,
   },
 
   admissionSemester: {
@@ -77,7 +88,7 @@ const StudentDetails = () => {
     contactNo: localGuardianContact,
     address: localGuardianAddress,
   }
-} = data?.data
+} = student
 
 
 return (

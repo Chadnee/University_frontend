@@ -4,14 +4,19 @@ import type { TableColumnsType, TableProps } from 'antd';
 import {type TQueriParam } from "../../constants/global";
 import { useState } from "react";
 import type { TAcademicDepartment } from "../../../types/academicManagementTypes";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Footer } from "../../../components/Footer";
 import useResponsive from "../../../hooks/useResponsive";
 import UpdateDepartmentModal from "../../modal/UpdateDepartmentModal";
 
 
 
-export type TTableData = Pick<TAcademicDepartment, 'name' | 'academicFaculty'> 
+ type TTableData =  {
+  key: string,
+  name: string,
+  academicFaculty: string
+}
+//Pick<TAcademicDepartment, '_id' | 'name' | 'academicFaculty'> 
 
 const AccademicDepartment= () => {
   const [params, setParams] = useState<TQueriParam[] | undefined>(undefined);
@@ -21,7 +26,7 @@ const AccademicDepartment= () => {
   //console.log(academicDepartmentData);
 
   const facultyFilters =
-  academicDepartmentData?.data?.map(dep => ({
+  academicDepartmentData?.data?.map((dep:TAcademicDepartment) => ({
     text: dep.academicFaculty.name,
     value: dep.academicFaculty._id,
   }))
@@ -31,13 +36,12 @@ const AccademicDepartment= () => {
   )
 
 
-  const tableData:TTableData[] = academicDepartmentData?.data?.map(
-    ({_id, name, academicFaculty}) => ({
-      key: _id,
-      name,
-      academicFaculty: academicFaculty.name
-    })
-  )
+  const tableData:TTableData[] = academicDepartmentData?.data?.map((department: TAcademicDepartment) => ({
+      key: department._id,
+      name: department.name,
+      academicFaculty: department.academicFaculty.name
+
+  })) || []
 
     //console.log(academicDepartmentData)
 
@@ -62,7 +66,8 @@ const columns: TableColumnsType<TTableData> = [
     key: 'x',
     width: 20,
     render:(item,_record, index) => {
-      return<UpdateDepartmentModal departmentInfo={item} index={index}></UpdateDepartmentModal>
+      console.log(item.key)
+      return<UpdateDepartmentModal departmentId={item.key} index={index}></UpdateDepartmentModal>
       
     }
   }
@@ -83,7 +88,7 @@ const onChange: TableProps<TTableData>['onChange'] = (_pagination, filters, _sor
     return (
                   <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                        <div style={{ color: "#608cd3ff" }}>
-                        <Spin size="medium" />
+                        <Spin />
                        </div>
                   </Flex>
                 )
@@ -113,7 +118,7 @@ const onChange: TableProps<TTableData>['onChange'] = (_pagination, filters, _sor
   />
     </Card>
     <div>
-          <Footer okButton="Create more" cancelButton={"Cancel"} handleOk={handleOkButton} handleCancle={handleCancleButton}>
+          <Footer okButton="Create more" cancleButton={"Cancel"} handleOk={handleOkButton} handleCancle={handleCancleButton}>
           </Footer>
 
     </div>

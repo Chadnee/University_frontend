@@ -2,7 +2,6 @@ import {useGetMeQuery } from "../../features/admin/userManagementApi";
 import { Card, Divider, Flex, Row, Spin} from "antd";
 import '../../index.css'
 import { getFullName } from "../../utils/GetFullName";
-import { useGetMyEnrolledAllCoursesQuery, useGetMyEnrolledSateQuery } from "../../features/student/studentCourseManagementApi";
 import { FaCode, FaRegObjectGroup } from "react-icons/fa6";
 import {  IoHeartSharp } from "react-icons/io5";
 import { MdKeyboardArrowRight, MdOutlineLibraryBooks, MdQuiz } from "react-icons/md";
@@ -19,21 +18,19 @@ const DashboardRightSideCol = () => {
        if(isMeLoading) {
        return  <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                           <div style={{ color: "#608cd3ff" }}>
-                           <Spin size="medium" />
+                           <Spin size="default" />
                           </div>
                      </Flex>
      }
-     
+    
      const {name,
      gender,
      email,
      id,
-      academicDepartment: {
-       _id: departmentId,
-       name: departmentName,
-       academicFaculty: facultyInfo
-     },
-   } =getMe?.data
+     academicDepartment: {
+    name: departmentName,
+  } = {},
+   } =getMe?.data ?? {}
    
   return (
     <Flex vertical align="center" gap={10} >

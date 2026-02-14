@@ -1,13 +1,12 @@
-import { Button, Col, Flex} from "antd";
-import { useGetAllAccademicDepartmentQuery, useGetAllAccademicFacultyQuery, useGetAllSemestersQuery } from "../../../features/admin/academicManagementApi";
+import { Flex} from "antd";
+import { useGetAllAccademicDepartmentQuery} from "../../../features/admin/academicManagementApi";
 import AdmitForm from "../../form/AdmitForm";
 import SelectForm from "../../form/SelectForm";
 import InputForm from "../../form/InputForm";
-import {FormProvider, useForm, useFormContext, type FieldValues, type SubmitHandler } from "react-hook-form";
+import {type FieldValues, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
-import { useCreateOfferedCourseMutation, useCreateRegisteredSemesterMutation, useGetAllAssignFacultiesQuery, useGetAllCourseQuery, useGetRegisteredSemesterQuery } from "../../../features/admin/courseManagementApi";
-import { weekDaysOptions, type TResponse } from "../../constants/global";
-import { useGetAllFacultyQuery } from "../../../features/admin/userManagementApi";
+import { useCreateOfferedCourseMutation, useGetAllAssignFacultiesQuery, useGetAllCourseQuery, useGetRegisteredSemesterQuery } from "../../../features/admin/courseManagementApi";
+import {weekDaysOptions, type TError, type TOption } from "../../constants/global";
 import { useEffect, useState } from "react";
 import SelectFormWithWatch from "../../form/SelectFormWithWatch";
 import moment from "moment";
@@ -15,11 +14,12 @@ import TimePickerForm from "../../form/TimePicker";
 import { ResetButton, SubmitButton } from "../../../components/Footer";
 import { IoIosArrowDown } from "react-icons/io";
 import { CiCalendarDate } from "react-icons/ci";
+import type { TFaculty } from "../../../types/userManagementTypes";
 
 const CreateOfferedCourse = () => {
   const [courseId, setCourseId] = useState('');
   const [departmentId, setDepartmentId] = useState('');
-  const [academicFacultyOption, setAcademicFacultyOption] = useState(null);
+  const [academicFacultyOption, setAcademicFacultyOption] = useState<TOption | null >(null);
   
   const [ createOfferedCourse] = useCreateOfferedCourseMutation()
   const {data: registeredSemester, isLoading: isRegisteredSemesterLoading} = useGetRegisteredSemesterQuery([
@@ -28,7 +28,7 @@ const CreateOfferedCourse = () => {
   ]);
 const {data: academicDepartment, isLoading: isacademicDepartmentLoading} = useGetAllAccademicDepartmentQuery(undefined);
   const {data: course, isLoading: iscourseLoading} = useGetAllCourseQuery(undefined);
-  const {data: faculty, isFetching:isFacultyFetching, isLoading: isfacultyLoading} = useGetAllAssignFacultiesQuery(courseId, {skip: !courseId});
+  const {data: faculty, isFetching:isFacultyFetching} = useGetAllAssignFacultiesQuery(courseId, {skip: !courseId});
    //console.log(faculty)// in that case, all faculties is not needed, after selecting course, those faculies will be showed  only which are assigned for this course
   //console.log(registeredSemester)
 
@@ -45,7 +45,9 @@ const {data: academicDepartment, isLoading: isacademicDepartmentLoading} = useGe
     value: item._id,
     label: item.title
   })) 
-  const facultyOptions = faculty?.data?.faculties?.map(item => ({
+  const facultyOptions = faculty?.data?.faculties?.map((item : TFaculty) => (
+    console.log("item", item),
+    {
     value: item._id,
     label: item.name
   }))
@@ -55,22 +57,24 @@ const {data: academicDepartment, isLoading: isacademicDepartmentLoading} = useGe
       "Select a Faculty ...";
   
   // Make specific faculty option is created according to select department to set the dynamic label and value automically
-     useEffect(()=> {
-      if(!departmentId) return;
-      else{
-        const department = academicDepartment?.data?.find((item) => item._id === departmentId)
-        console.log(department?.academicFaculty?.name)
-
-        const academicFaculty = {
-          value: department?.academicFaculty?._id,
-          label: department?.academicFaculty?.name,
-        }
-         console.log(academicFaculty)
-        setAcademicFacultyOption(academicFaculty)
-      }
-     },[departmentId])
-
-  console.log(academicFacultyOption)  
+     useEffect(() => {
+       if (!departmentId) return;
+     
+       const department = academicDepartment?.data?.find(
+         (item) => item._id === departmentId
+       );
+     
+       if (!department?.academicFaculty) return;
+     
+       setAcademicFacultyOption({
+         value: department.academicFaculty._id,
+         label: department.academicFaculty.name,
+       });
+     
+}     , [departmentId, academicDepartment?.data]);
+     
+     
+    console.log(academicFacultyOption)  
   const onSubmit : SubmitHandler<FieldValues> = async(data) => {
     // const toastId = toast.loading('Creating...');
  //console.log(data.academicFaculty)
@@ -87,16 +91,18 @@ const {data: academicDepartment, isLoading: isacademicDepartmentLoading} = useGe
    try{
       const res = await createOfferedCourse(offeredCourseData)
        if(res.error){
-         toast.error(res.error.data.message);
+        const err = res.error as TError
+         toast.error(err.data.message);
        } else{
         console.log(res.data)
         toast.success("Successfuly Course Offered");
        }
    } 
-   catch(error){
-    console.log(error.message)
-    toast.error("Something went wrong")
-   } 
+  catch(error:unknown){
+         const err = error as { data?: { message?: string } };
+        console.log(err.data?.message)
+            toast.error("Something went wrong")
+      }
   }
   
   return (
@@ -109,10 +115,10 @@ const {data: academicDepartment, isLoading: isacademicDepartmentLoading} = useGe
              <AdmitForm onSubmit={onSubmit}>
            <SelectForm options={registeredSemesterOptions} required name="semesterRegistration" disabled={isRegisteredSemesterLoading} label="Registered Semester" suffixIcon={<IoIosArrowDown style={{fontSize:"20px", color:'#000'}}/>}></SelectForm>
           <SelectFormWithWatch options={academicDepartmentOptions} name="academicDepartment" label="Accademic Department" disabled={isacademicDepartmentLoading} onValueChange={setDepartmentId} suffixIcon={<IoIosArrowDown style={{fontSize:"20px", color:'#000'}}/>}></SelectFormWithWatch>
-          <SelectForm name="academicFaculty" label="Academic Faculty" fixedValue={academicFacultyOption?.value}
-  disabled
-  options={
-    academicFacultyOption? [academicFacultyOption] : []} placeholder={!academicFacultyOption? "Select department first (auto select)...": ""}/>
+         
+          <SelectForm name="academicFaculty" label="Academic Faculty" fixedValue={academicFacultyOption?.value} disabled 
+          options={academicFacultyOption? [academicFacultyOption] : []} placeholder={!academicFacultyOption? "Select department first (auto select)...": ""}/>
+         
          <SelectFormWithWatch options={courseOptions} name="course" label="Course" disabled={iscourseLoading} onValueChange={setCourseId} suffixIcon={<IoIosArrowDown style={{fontSize:"20px", color:'#000'}}/>}></SelectFormWithWatch>
          <SelectForm options={facultyOptions} required disabled={!courseId || isFacultyFetching ||!facultyOptions} name="faculty" label="Faculty" placeholder={facultyPlaceholder} suffixIcon={<IoIosArrowDown style={{fontSize:"20px", color:'#000'}}/>}></SelectForm>
         {/* {

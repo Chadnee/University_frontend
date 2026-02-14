@@ -4,9 +4,15 @@ import { Button, Modal } from "antd";
 import AdmitForm from "../form/AdmitForm";
 import InputForm from "../form/InputForm";
 import { toast } from "sonner";
+import type { SubmitHandler } from "react-hook-form";
+import { buttonColors } from "../constants/global";
 
-const UpdateDepartmentModal = ({departmentInfo, index}: {
-  departmentInfo: any;
+type TDepartmentFormData = {
+  name: string;
+};
+
+const UpdateDepartmentModal = ({departmentId, index}: {
+  departmentId: string;
   index: number;
 }) => {
 //console.log(index)
@@ -14,27 +20,23 @@ const UpdateDepartmentModal = ({departmentInfo, index}: {
      const [updateDepartment] = useUpdateDepartmentMutation()
     //  const {data:getTargetedDepartment, isLoading:isTargetedDepartmentLOading} = useGetSingleD
      
-     const buttonColors = ['#0acf52ff','#e7b025ff','#dc5009ff' ]
      const bgColor = buttonColors[index % buttonColors.length];
    
-    console.log('dd',departmentInfo)
-     const handleSubmit = async(data) => {
-      //const department_id = departmentInfo.key
+    console.log('dd',departmentId)
+     const handleSubmit: SubmitHandler<TDepartmentFormData> = async(data:TDepartmentFormData) => {
+      //const department_id = department_id.key
       const updatedData = {
-        department_id : departmentInfo.key,
+        department_id : departmentId,
         body : {name:data.name}
       }
 
       try{
-        const res = await updateDepartment(updatedData)
-        if(res.error){
-            toast.error(res.error.data.message)
-        }else{
-            toast.success("Department is updated")
-            setIsModalOpen(false)
-        }
-      }catch(error){
-        console.log(error.message)
+        const res = await updateDepartment(updatedData).unwrap()
+        toast.success("Department Name is updated.")
+         console.log(res.success)
+      }catch(error:unknown){
+         const err = error as { data?: { message?: string } };
+        console.log(err.data?.message)
             toast.error("Something went wrong")
       }
       

@@ -1,4 +1,4 @@
-import { Button, Col, Flex } from "antd";
+import { Flex } from "antd";
 import { useGetAllSemestersQuery } from "../../../features/admin/academicManagementApi";
 import AdmitForm from "../../form/AdmitForm";
 import SelectForm from "../../form/SelectForm";

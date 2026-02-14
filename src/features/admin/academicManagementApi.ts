@@ -1,11 +1,9 @@
 import type {
-  TAcademicSemester,
   TQueriParam,
-  TResponse,
   TResponseRedux,
 } from "../../pages/constants/global";
 import { baseApi } from "../../redux/api/baseApi";
-import type { TAcademicDepartment } from "../../types/academicManagementTypes";
+import type { TAcademicDepartment, TAcademicSemester } from "../../types/academicManagementTypes";
 
 const academicManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -33,7 +31,7 @@ const academicManagementApi = baseApi.injectEndpoints({
           params: params,
         };
       },
-      transformResponse: (response: TResponseRedux<TAcademicSemester>) => {
+      transformResponse: (response: TResponseRedux<TAcademicSemester[]>) => {
         console.log(response);
         return {
           data: response.data,
@@ -55,7 +53,7 @@ const academicManagementApi = baseApi.injectEndpoints({
       query: (args) => {
         const params = new URLSearchParams;
         if(args){
-          args.forEach((item) => {
+          args.forEach((item : any) => {
             params.append(item.name, item.value as string)
           });
         } return {
@@ -65,7 +63,7 @@ const academicManagementApi = baseApi.injectEndpoints({
         }
       }, 
       providesTags: ['allDepartment'],
-      transformResponse: (response: TResponseRedux <TAcademicDepartment>) => {
+      transformResponse: (response: TResponseRedux <TAcademicDepartment[]>) => {
                console.log(response)
         return {
                  meta: response.meta,

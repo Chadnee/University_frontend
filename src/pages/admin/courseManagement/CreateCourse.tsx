@@ -1,15 +1,15 @@
-import { Button, Col, Flex } from "antd";
+import {Flex } from "antd";
 import AdmitForm from "../../form/AdmitForm";
 import InputForm from "../../form/InputForm";
 import SelectForm from "../../form/SelectForm";
 import { useCreateCourseMutation, useGetAllCourseQuery } from "../../../features/admin/courseManagementApi";
 import type { FieldValues, SubmitHandler } from "react-hook-form";
-import type { TResponse } from "../../constants/global";
+import type { TCourse, TPreRequisiteCourse, TResponse } from "../../constants/global";
 import { toast } from "sonner";
 import { ResetButton, SubmitButton } from "../../../components/Footer";
 
 const CreateCourse = () => {
-    const {data:courses, isLoading: isCourseLoading} = useGetAllCourseQuery(undefined);
+    const {data:courses} = useGetAllCourseQuery(undefined);
     const [createCourse] = useCreateCourseMutation()
         
     console.log(courses)
@@ -26,7 +26,7 @@ const CreateCourse = () => {
             ...data,
             code: Number(data.code),
             credits: Number(data.credits),
-            preRequisiteCourses: prerequisit?prerequisit?.map( item => (
+            preRequisiteCourses: prerequisit?prerequisit?.map( (item:TPreRequisiteCourse) => (
                { course: item, isDeleted: false}
             )): []
         }
@@ -34,7 +34,7 @@ const CreateCourse = () => {
         console.log(courseData);
 
         try{
-            const res = (await createCourse(courseData)) as TResponse<any>;
+            const res = (await createCourse(courseData)) as TResponse<TCourse>;
             if(res.error){
                 toast.error( res.error.data.message, {id:toastId})
             } else{

@@ -1,4 +1,4 @@
-import type { TOfferedCourse, TQueriParam, TResponse, TResponseRedux } from "../../pages/constants/global";
+import type { TMyEnrollement, TOfferedCourse, TQueriParam, TResponseRedux } from "../../pages/constants/global";
 import { baseApi } from "../../redux/api/baseApi";
 
 const studentCourseManagementApi = baseApi.injectEndpoints({
@@ -51,7 +51,7 @@ const studentCourseManagementApi = baseApi.injectEndpoints({
         }
     },  
     providesTags: ['enrolledCourse'],
-      transformResponse: (response:TResponseRedux<TOfferedCourse>) => {
+      transformResponse: (response:TResponseRedux<TMyEnrollement[]>) => {
         return {
             data: response.data,
             meta: response.meta

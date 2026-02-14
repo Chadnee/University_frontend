@@ -16,7 +16,12 @@ const userRole = {
   STUDENT: 'student',
 };
 
-const Sidebar = ({isMobile, onClose}) => {
+type SidebarProps = {
+  isMobile?: boolean;
+  onClose?: () => void;
+};
+
+const Sidebar = ({isMobile, onClose} : SidebarProps) => {
   const [openKeys, setOpenKeys] = useState<string[]>([]);
     const dispatch = useAppDispatch();
       const token = useAppSelector(selectCurrentToken);

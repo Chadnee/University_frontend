@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { useAppDispatch, useAppSelector } from "../../features/hooks";
-import { logOut, selectCurrentToken, selectCurrentUser, type TUser } from "../../features/auth/authSlice";
+import { logOut, selectCurrentToken, type TUser } from "../../features/auth/authSlice";
 import { Navigate } from "react-router-dom";
 import { verifyToken } from "../../utils/verifyToken";
 

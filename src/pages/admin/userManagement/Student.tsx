@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Button, Flex, Pagination, Row, Space, Spin, Table } from "antd";
-import type { TableColumnsType, TableProps } from "antd";
+import { useState } from "react";
+import { Button, Flex, Pagination, Space, Spin, Table } from "antd";
+import type { TableColumnsType} from "antd";
 import { useGetAllStudentQuery } from "../../../features/admin/userManagementApi";
 import type { TStudent } from "../../../types/userManagementTypes";
 import maleStudent from "../../../assets/images/maleStudent.jpg";
 import femaleStudent from "../../../assets/images/femaileStudent.jpg"
-import type { TQueriParam } from "../../constants/global";
 import { Link } from "react-router-dom";
 import { getFullName } from "../../../utils/GetFullName";
 
@@ -37,29 +36,18 @@ const Student = () => {
   //  })
   //console.log( studentData?.data?.result);
   const metaData = studentData?.data?.meta
-  const tableData : TTableData = studentData?.data?.result.map(
-    ({
-      id,
-      name,
-      email,
-      profileImage,
-      contactNo,
-      gender,
-      academicDepartment,
-      admissionSemester,
-    }) =>({
-      key: id,
-      name,
-      email,
-      profileImage,
-      contactNo,
-      gender,
-      academicDepartment,
-      admissionSemester,
-    })
-  );
-  const id = studentData?.data?.result.map((item) => {return item.id})
-  console.log(id)
+  const tableData : TTableData[] = studentData?.data?.result.map((student:TStudent) => ({
+         key: student.id,
+      name : student.name,
+      email: student.email,
+      profileImage: student.profileImage,
+      contactNo: student.contactNo,
+      gender: student.gender,
+      academicDepartment: student.academicDepartment,
+      admissionSemester: student.admissionSemester,
+  })) ?? []
+ 
+ 
   const columns: TableColumnsType<TTableData> = [
     {
       title: "Image",
@@ -141,7 +129,7 @@ const Student = () => {
     return (
                   <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                        <div style={{ color: "#608cd3ff" }}>
-                        <Spin size="medium" />
+                        <Spin/>
                        </div>
                   </Flex>
                 )

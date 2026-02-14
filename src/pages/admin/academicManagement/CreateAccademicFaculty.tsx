@@ -6,6 +6,7 @@ import { useCreateAccademicFacultyMutation } from "../../../features/admin/acade
 import { toast } from "sonner";
 import { ResetButton, SubmitButton } from "../../../components/Footer";
 import useResponsive from "../../../hooks/useResponsive";
+import type { TError } from "../../constants/global";
 
 export type TAccdemicFaculty = {
     name: string
@@ -24,15 +25,18 @@ const CreateAccademicFaculty = () => {
 
     const result = await CreateAccademicFaculty(accdemicFacultyData)
     if(result.error) {
-        toast.error(result.error.data.message, {id:toastId, duration:1000})
+         const err = result.error as TError
+        toast.error(err.data.message, {id:toastId, duration:1000})
     }
      else{
         toast.success("Accademic Faculty is createad successfully", {id:toastId, duration:1000})
      }
 
-   }catch(error){
-      toast.error("Something went wrong", {id:toastId, duration:1000})
-   }
+   }catch(error:unknown){
+            const err = error as { data?: { message?: string } };
+           console.log(err.data?.message)
+               toast.error("Something went wrong", {id:toastId, duration:1000})
+         }
 
   }
   return (

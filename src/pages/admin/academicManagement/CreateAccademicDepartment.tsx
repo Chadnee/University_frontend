@@ -7,13 +7,15 @@ import { ResetButton, SubmitButton } from "../../../components/Footer";
 import type { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import useResponsive from "../../../hooks/useResponsive";
+import type { TAcademicFaculty } from "../../../types/academicManagementTypes";
+import type { TError } from "../../constants/global";
 
 const CreateAccademicDepartment = () => {
       const {data: academicFaculty, isLoading: isacademicFacultyLoading} = useGetAllAccademicFacultyQuery(undefined);
       const [createAcademicSemester] = useCreateAccademicDepartmentMutation()
 
       const {isMobile} = useResponsive()
-      const facultyOptions = academicFaculty?.data?.map(item =>( {
+      const facultyOptions = academicFaculty?.data?.map((item: TAcademicFaculty)=>( {
       value : item._id,
       label: item.name
       }))
@@ -22,7 +24,7 @@ const CreateAccademicDepartment = () => {
             return (
               <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                    <div style={{ color: "#608cd3ff" }}>
-                    <Spin size="medium" />
+                    <Spin />
                    </div>
               </Flex>
             )
@@ -31,8 +33,9 @@ const CreateAccademicDepartment = () => {
           try{
              const res =  await createAcademicSemester(data) 
              if(res.error){
-              toast.error(res.error.data.message)
-             } else {
+              const err = res.error as TError
+              toast.error(err.data.message)
+             }else {
               toast.success("Department is created")
              }
 

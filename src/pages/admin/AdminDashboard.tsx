@@ -1,7 +1,6 @@
-import { Button, Card, Col, Divider, Flex, Row, Space, Spin } from "antd";
+import {Col, Divider, Flex, Row, Space, Spin } from "antd";
 import {
   useGetAllCountedTotalUsersQuery,
-  useGetAllStudentQuery,
   useGetMeQuery,
 } from "../../features/admin/userManagementApi";
 import waving from "../../../src/assets/icons/wave.png";
@@ -28,11 +27,8 @@ import {
   useGetvisitorStateQuery,
 } from "../../features/admin/dashboardManagementApi";
 import { useGetAllCourseQuery } from "../../features/admin/courseManagementApi";
-import { WiNightAltLightning } from "react-icons/wi";
-import { HiOutlineLightBulb } from "react-icons/hi";
-import { PiArrowFatLinesDownLight } from "react-icons/pi";
-import { LuLightbulb } from "react-icons/lu";
 import { getFullName } from "../../utils/GetFullName";
+import type { TEnrolledState } from "../constants/global";
 
 // import { RechartsDevtools } from '@recharts/devtools';
 
@@ -51,44 +47,45 @@ const data = [
 ];
 
 const AdminDashboard = () => {
-  const { data: userStats, isLoading: isUserLoading } =
+  const { data: userStats} =
     useGetAllCountedTotalUsersQuery(undefined);
   const { data: getMySelf, isLoading: isMyselfLoading } =
     useGetMeQuery(undefined);
-  const { data: getvisitors, isLoading: isGetvisitorsLoading } =
+  const { data: getvisitors} =
     useGetvisitorStateQuery(undefined);
-  const { data: enrollmentStat, isLoading: isEnrollmentStatLoading } =
+  const { data: enrollmentStat} =
     useGetStudentEnrolledStatusQuery(undefined);
-  const { data: course, isLoading: isCourseLoading } =
+  const { data: course} =
     useGetAllCourseQuery(undefined);
   //console.log(userStats.data)
   // console.log(getMySelf)
   console.log(getvisitors);
 
-  if (isUserLoading || isMyselfLoading || isGetvisitorsLoading) {
+ // if (isUserLoading || isMyselfLoading || isGetvisitorsLoading) {
+  if ( isMyselfLoading ) {
     return (
               <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                    <div style={{ color: "#608cd3ff" }}>
-                    <Spin size="medium" />
+                    <Spin/>
                    </div>
               </Flex>
             );
   }
   console.log(enrollmentStat);
-  const { students, faculty, admin } = userStats?.data;
-  const { name, profileImage } = getMySelf?.data;
-
-  console.log(course);
+  // const userState = userStats.data;
+  // const mySelf = getMySelf?.data;
+  const { students, faculty} = userStats?.data ?? {};
+  const { name} = getMySelf?.data ?? {};
+  // const {data:courses} = course.data ?? []
 
   const badgeColors = ["#F4B342", "#8f34e4ff", "#4caf4fd3"];
-  const prefixColors = ["#e6390adf", "#4CAF50"];
   const courseData = ["110", "160", "210", "80", "120"];
-
+console.log(course)
   //for when want to use color randomly
-  const getRandomColor = () => {
-    const index = Math.floor(Math.random() * badgeColors.length);
-    return badgeColors[index];
-  };
+  // const getRandomColor = () => {
+  //   const index = Math.floor(Math.random() * badgeColors.length);
+  //   return badgeColors[index];
+  // };
   return (
     <div className="">
       <Flex align="center" gap={20}>
@@ -117,7 +114,7 @@ const AdminDashboard = () => {
               <span style={{}}>Total Students</span>
             </Flex>
             <Flex justify="center">
-              <span style={{ fontSize: "40px" }}>{students}</span>
+              <span style={{ fontSize: "40px" }}>{students??0}</span>
             </Flex>
           </Flex>
         </Flex>
@@ -143,7 +140,7 @@ const AdminDashboard = () => {
               <span style={{}}>Total Faculty</span>
             </Flex>
             <Flex justify="center">
-              <span style={{ fontSize: "40px" }}>{faculty}</span>
+              <span style={{ fontSize: "40px" }}>{faculty?faculty:0}</span>
             </Flex>
           </Flex>
         </Flex>
@@ -169,7 +166,7 @@ const AdminDashboard = () => {
               <span style={{}}>Total Course</span>
             </Flex>
             <Flex justify="center">
-              <span style={{ fontSize: "40px" }}>{students}</span>
+              <span style={{ fontSize: "40px" }}>{(course?.data)?course.data.length : 0}</span>
             </Flex>
           </Flex>
         </Flex>
@@ -258,10 +255,10 @@ const AdminDashboard = () => {
               {
                 !enrollmentStat? <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                        <div style={{ color: "#608cd3ff" }}>
-                        <Spin size="medium" />
+                        <Spin/>
                        </div>
                   </Flex>
-                :enrollmentStat?.data?.map((item, index) => {
+                :enrollmentStat?.data?.map((item: TEnrolledState, index:number) => {
                 const color = badgeColors[index % badgeColors.length];
                 return (
                   <div>

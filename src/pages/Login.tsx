@@ -1,5 +1,5 @@
 import { Button, Row } from "antd";
-import { useForm, type FieldValues } from "react-hook-form";
+import { type FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../features/auth/authApi";
 import { useAppDispatch } from "../features/hooks";
 import { setUser, type TUser } from "../features/auth/authSlice";
@@ -12,7 +12,7 @@ import InputForm from "./form/InputForm";
 const Login = () => {
   // const {register, handleSubmit} = useForm({});
   // const { handleSubmit} = useForm({});
-  const [login, { data, error }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate(); //to implement redirect
 

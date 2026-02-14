@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form } from "antd";
 import type { ReactNode } from "react";
-import { FormProvider, useForm, type FieldValues, type SubmitErrorHandler, type SubmitHandler } from "react-hook-form";
+import { FormProvider, useForm, type SubmitHandler } from "react-hook-form";
 
 // Zod validation system in here as frotend re-usable
 // 1. create a type 
@@ -16,7 +16,7 @@ type TFormConfig = {
   resolver?: any;  
 }
 type TAdmitFormProps = {
-    onSubmit : SubmitErrorHandler<FieldValues> // or can be any//SubmitHandler is from react hook form and can any type of field like text, input or anything
+    onSubmit : SubmitHandler<any> // or can be any//SubmitHandler is from react hook form and can any type of field like text, input or anything
     children: ReactNode
 } & TFormConfig
 const AdmitForm  = ({onSubmit, children, defaultValues, resolver} : TAdmitFormProps) => {
@@ -36,7 +36,7 @@ const AdmitForm  = ({onSubmit, children, defaultValues, resolver} : TAdmitFormPr
     //     console.log(data)
     // }
 
-    const submit: SubmitHandler<FieldValues> = (data) => {
+    const submit: SubmitHandler<any> = (data) => {
       onSubmit(data);
       methods.reset()
     }

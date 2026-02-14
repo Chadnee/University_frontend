@@ -4,6 +4,7 @@ import type { RootState } from "../../features/store";
 import { logOut, setUser } from "../../features/auth/authSlice";
 import type { BaseQueryApi, BaseQueryFn, DefinitionType, FetchArgs } from "@reduxjs/toolkit/query";
 import { toast } from "sonner";
+import type { TError } from "../../pages/constants/global";
 
 
 const baseQuery = fetchBaseQuery({
@@ -30,12 +31,18 @@ const baseQuery = fetchBaseQuery({
       console.log(result) //this result will show the backend error with error message
      
       //if user will be not found
-      if(result.error?.status === 404) {
-        toast.error(result?.error?.data?.message);
-        }
-      if(result.error?.status === 403) {
-        toast.error(result.error.data.message);
-        }
+     if (result.error) {
+  const error = result.error as TError;
+
+  if (error.status === 404) {
+    toast.error(error.data?.message);
+  }
+
+  if (error.status === 403) {
+    toast.error(error.data?.message);
+  }
+}
+
     
       //when access token will be expired/ non-authorized
       if(result.error?.status === 401) {

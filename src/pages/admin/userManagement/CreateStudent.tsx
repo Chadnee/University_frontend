@@ -1,10 +1,10 @@
-import { Controller, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { Controller, type SubmitHandler} from "react-hook-form";
 import { useCreateStudentMutation } from "../../../features/admin/userManagementApi";
 import AdmitForm from "../../form/AdmitForm";
 import InputForm from "../../form/InputForm";
-import { Button, Col, Divider, Flex, Form, Input, Row } from "antd";
+import { Button, Col, Divider, Flex, Form, Row } from "antd";
 import SelectForm from "../../form/SelectForm";
-import { bloodGroupsOptions, gendersOptions } from "../../constants/global";
+import { bloodGroupsOptions, gendersOptions} from "../../constants/global";
 import DatePickerInput from "../../form/DatePicker";
 import { useGetAllAccademicDepartmentQuery, useGetAllSemestersQuery } from "../../../features/admin/academicManagementApi";
 import { toast } from "sonner";
@@ -12,6 +12,7 @@ import useResponsive from "../../../hooks/useResponsive";
 import { CiCamera } from "react-icons/ci";
 import { useRef, useState } from "react";
 import type { TCreateStudentPayload, TStudent } from "../../../types/userManagementTypes";
+import type { TAcademicSemester } from "../../../types/academicManagementTypes";
 
 const CreateStudent = () => {
   const DEFAULT_IMAGE = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
@@ -23,7 +24,7 @@ const CreateStudent = () => {
   const {isTablet, isDesktop} = useResponsive();
   // console.log(semesterData?.data, departmentData?.data)
 
-  const semesterOptions = semesterData?.data?.map((item) => ({
+  const semesterOptions = semesterData?.data?.map((item:TAcademicSemester) => ({
     value: item._id,
     label:`${item.name} ${item.year}`
   }));
@@ -33,36 +34,8 @@ const CreateStudent = () => {
     label: item.name
   }))
 
-  const studentDefaultValues = {
-      name: {
-        firstName: "Abu",
-        middleName: "Jasim",
-        lastName: "Khandakar",
-      },
-      gender: "male",
-      email: "Jasim@gmail.com",
-      contactNo: "+1987654321",
-      emergencyContactInfo: "+1234509876",
-      bloodGroup: "B+",
-      presentAddress: "789 Pine Road, Cityville, Country",
-      permanentAddress: "321 Birch Street, Hometown, Country",
-      guardian: {
-        fatherName: "James Miller",
-        fatherOccupation: "Professor",
-        fatherContactNo: "+4455667788",
-        motherName: "Linda Miller",
-        motherOccupation: "Nurse",
-        motherContactNo: "+5566778899",
-      },
-      localGuardian: {
-        name: "Soer",
-        occupation: "Lawyer",
-        contactNo: "+6677889900",
-        address: "951 Cedar Avenue, Metro City, Country",
-      },
-  }
 
-  const onSubmit: SubmitHandler<TStudent> = async (data) => {
+    const onSubmit: SubmitHandler<TStudent> = async (data) => {
     
     const studentData : TCreateStudentPayload = {
      password: 'student123',
@@ -73,7 +46,7 @@ const CreateStudent = () => {
    try{
     const formData = new FormData();
     formData.append("data", JSON.stringify(studentData));
-    formData.append("file", data.image) 
+    formData.append("file", data.profileImage) 
     //Cause image is not belong in studentData, look at the types of data in object in backend, in where no types of image or file for sending image rather it had a different file of images directly, thats why studentData can not sent
     // the image like others, though we collect the image file from 'data'which are changed in studentDatas, but studentData will not accept that image file, so we take it seperately from data and add in form by append method
     
@@ -82,10 +55,11 @@ const CreateStudent = () => {
            console.log(result);
            toast.success('Student is created')
 
-   }catch(error){
-         console.log(error.data.message)
-         toast.error('Something went wrong')
-   }
+   }catch(error:unknown){
+         const err = error as { data?: { message?: string } };
+        console.log(err.data?.message)
+            toast.error("Something went wrong")
+      }
 };
   return (
 
@@ -207,7 +181,7 @@ const CreateStudent = () => {
                    <InputForm type="text" name="guardian.fatherOccupation" label="Father Occupation" placeholder="Provide father Occupation ..."></InputForm>
                   </Col>
                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                   <InputForm type="text" name="guardian.fatherContact" label="Father Contact" placeholder="Provide father Contact ..."></InputForm>
+                   <InputForm type="text" name="guardian.fatherContactNo" label="Father Contact" placeholder="Provide father Contact ..."></InputForm>
                   </Col>
                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                    <InputForm type="text" name="guardian.motherName" label="Mother Name" placeholder="Provide Mother name ..."></InputForm>
@@ -216,7 +190,7 @@ const CreateStudent = () => {
                    <InputForm type="text" name="guardian.motherOccupation" label="Mother Occupation" placeholder="Provide Mother Occupation ..."></InputForm>
                   </Col>
                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                   <InputForm type="text" name="guardian.motherContact" label="Mother Contact" placeholder="Provide Mother Contact ..."></InputForm>
+                   <InputForm type="text" name="guardian.motherContactNo" label="Mother Contact" placeholder="Provide Mother Contact ..."></InputForm>
                   </Col>
                   
                   {/* Local Gurdian info */}

@@ -1,5 +1,4 @@
 import { DatePicker, Form } from "antd";
-import type { ReactNode } from "react";
 import { Controller } from "react-hook-form";
 import '../../index.css'
 import { CiCalendarDate } from "react-icons/ci";

@@ -1,7 +1,7 @@
-import { Controller, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { Controller, type SubmitHandler } from "react-hook-form";
 import AdmitForm from "../../form/AdmitForm";
 import InputForm from "../../form/InputForm";
-import { Button, Col, Divider, Flex, Form, Grid, Row } from "antd";
+import { Button, Col, Divider, Flex, Form, Row } from "antd";
 import { CiCamera } from "react-icons/ci";
 import { useRef, useState } from "react";
 import DatePickerInput from "../../form/DatePicker";
@@ -21,7 +21,7 @@ const CreateAdmin = () => {
      const [createAdmin] = useCreateAdminMutation()
      const fileInputRef = useRef<HTMLInputElement | null>(null);
      const [preview, setPreview] = useState<string>(DEFAULT_IMAGE)
-     const {isMobile, isTablet, isDesktop} = useResponsive()
+     const {isTablet, isDesktop} = useResponsive()
 
      const departmentOptions = departmentData?.data?.map((item) => ({
       value: item._id,
@@ -46,10 +46,11 @@ const CreateAdmin = () => {
     console.log(result);
          toast.success('Admin is created successfuly')
        
-    }catch(error){
-         toast.error('Something went wrong')
-         console.log(error.data.message)
-    }
+    }catch(error:unknown){
+             const err = error as { data?: { message?: string }};
+            console.log(err.data?.message)
+                toast.error("Something went wrong")
+          }
   };
   return (
     <div style={{ margin:isTablet||isDesktop? "0 40px" : "0" }}>
@@ -135,7 +136,7 @@ const CreateAdmin = () => {
                 <InputForm type="text" name="emergencyContactNo" label="Emergency Contact No" placeholder="Provide emergency conatct No"></InputForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <SelectForm name="managementDepartment" disabled={!departmentData} options={departmentOptions} placeholder="Select department which will be managed" label="Management Department"></SelectForm>
+                <SelectForm name="managementDepartment" disabled={!departmentData || isDepartmentLoading} options={departmentOptions} placeholder="Select department which will be managed" label="Management Department"></SelectForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                 <InputForm isTextArea={true}  type="text" name="presentAddress" label="Present Address" placeholder="Provide Present Address"></InputForm>

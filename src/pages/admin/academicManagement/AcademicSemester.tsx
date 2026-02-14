@@ -1,7 +1,7 @@
 import { useGetAllSemestersQuery } from "../../../features/admin/academicManagementApi";
 import { Button, Card, Flex, Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
-import {type TQueriParam } from "../../constants/global";
+import {buttonColors, type TQueriParam } from "../../constants/global";
 import { useState } from "react";
 import type { TAcademicSemester } from "../../../types/academicManagementTypes";
 import { useNavigate } from "react-router-dom";
@@ -9,10 +9,8 @@ import { Footer } from "../../../components/Footer";
 import useResponsive from "../../../hooks/useResponsive";
 
 
-export type TTableData = Pick<TAcademicSemester, 'name' | 'startMonth' | 'endMonth' | 'year'> 
+export type TTableData = Pick<TAcademicSemester,'name' | 'startMonth' | 'endMonth' | 'year'> 
 
-
-export const buttonColors = ['#0acf52ff','#e7b025ff','#dc5009ff' ]
 
 const AcademicSemester= () => {
   const [params, setParams] = useState<TQueriParam[] | undefined>(undefined);
@@ -21,16 +19,14 @@ const AcademicSemester= () => {
   const {isMobile} = useResponsive()
   console.log(semesterData);
 
-  const tableData:TTableData[] = semesterData?.data?.map(
-    ({_id, name, startMonth, endMonth, year}) => ({
-      key: _id,
-      name,
-      startMonth,
-      endMonth,
-      year
-    })
-  )
-  
+  const tableData:TTableData[] = semesterData?.data?.map((semester : TAcademicSemester) => ({
+      key: semester._id,
+      name: semester.name,
+      startMonth : semester.startMonth,
+      endMonth: semester.endMonth,
+      year: semester.year
+  })) ?? []
+ 
 const columns: TableColumnsType<TTableData> = [
   {
     title: 'Name',
@@ -137,7 +133,7 @@ const onChange: TableProps<TTableData>['onChange'] = (_pagination, filters, _sor
   />
     </Card>
     <div>
-          <Footer okButton="Create more" cancelButton={"Cancel"} handleOk={handleOkButton} handleCancle={handleCancleButton}>
+          <Footer okButton="Create more" cancleButton={"Cancel"} handleOk={handleOkButton} handleCancle={handleCancleButton}>
           </Footer>
 
     </div>

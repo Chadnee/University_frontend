@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Button, Flex, Pagination, Row, Space, Spin, Table } from "antd";
-import type { TableColumnsType, TableProps } from "antd";
-import { useGetAllFacultyQuery, useGetAllStudentQuery } from "../../../features/admin/userManagementApi";
-import type { TFaculty, TStudent } from "../../../types/userManagementTypes";
+import { useState } from "react";
+import { Button, Flex, Pagination, Space, Spin, Table } from "antd";
+import type { TableColumnsType} from "antd";
+import { useGetAllFacultyQuery } from "../../../features/admin/userManagementApi";
+import type { TFaculty} from "../../../types/userManagementTypes";
 import maleStudent from "../../../assets/images/maleStudent.jpg";
 import femaleStudent from "../../../assets/images/femaileStudent.jpg"
 import { Link } from "react-router-dom";
@@ -28,40 +28,23 @@ const Faculty = () => {
         // // useGetAllFacultyQuery([{name:'page', value:page},{name:'sort', value:'id'}]);
       //   const [image, setImage] = useState<string | null>(null)
       
-      //   const studentImage = studentData?.data?.result.map((item) =>{
-      //      if(item.gender === "male"){
-      //           // return <img src={maleStudent} alt="avatar"/>
-      //           setImage(maleStudent)
-      //       } else {
-      //             setImage(femaleStudent)
-      //       }
-      //  })
+    
       //console.log( studentData?.data?.result);
       const metaData = facultyData?.data?.meta
-      const tableData : TTableData[] = facultyData?.data?.map(
-        ({
-          id,
-          name,
-          email,
-          profileImage,
-          contactNo,
-          gender,
-          designation
-        }) =>({
-          key: id,
-          name,
-          email,
-          profileImage,
-          contactNo,
-          gender,
-          designation
-        })
-      ); 
-
+      const tableData : TTableData[] = facultyData?.data?.map((faculty: TFaculty) => ({
+            key: faculty._id,
+          name : faculty.name,
+          email : faculty.email,
+          profileImage : faculty.profileImage,
+          contactNo : faculty.contactNo,
+          gender : faculty.gender,
+          designation : faculty.designation
+      })) ?? []
+ 
       //console.log(facultyData?.data)
       
-      const id = facultyData?.data?.map((item) => {return item.id})
-      console.log(tableData,id)
+      // const id = facultyData?.data?.map((item) => {return item.id})
+      // console.log(tableData,id)
       const columns: TableColumnsType<TTableData> = [
         {
           title: "Image",
@@ -143,7 +126,7 @@ const Faculty = () => {
         return (
          <Flex  justify="center" align="center" style={{ height: "80vh" }}>
               <div style={{ color: "#09af99ff" }}>
-               <Spin size="medium" />
+               <Spin />
               </div>
          </Flex>
         )

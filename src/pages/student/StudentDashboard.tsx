@@ -6,16 +6,7 @@ import { useGetMyEnrolledAllCoursesQuery, useGetMyEnrolledSateQuery } from "../.
 import { FaFilePdf, FaGift, FaPenNib} from "react-icons/fa6";
 import { FaBookReader } from "react-icons/fa";
 import { IoBagAdd} from "react-icons/io5";
-import { MdCheckCircle, MdMessage, MdQuiz } from "react-icons/md";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
-  LabelList,
-  Cell,
-} from "recharts";
+import { MdCheckCircle, MdMessage} from "react-icons/md";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -30,31 +21,17 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import DashboardRightSideCol from "./DashboardRightCol";
 import { IoMdFlask } from "react-icons/io";
-import { RiPresentationFill } from "react-icons/ri";
 import { AiOutlineGroup } from "react-icons/ai";
-import { SiIledefrancemobilites } from "react-icons/si";
-import { BsFillChatLeftTextFill } from "react-icons/bs";
-import { skills } from "../constants/global";
+import { buttonBgColor, classImageArray, skills } from "../constants/global";
 import { Rating, RoundedStar } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
 
-const classImageArray = [
-  "https://plus.unsplash.com/premium_photo-1661963290501-4c1d7a095c0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://media.istockphoto.com/id/1376134616/photo/focus-on-girl-young-school-kids-in-uniform-applauding-or-clapping-at-classroom-concept-of.webp?a=1&b=1&s=612x612&w=0&k=20&c=ONtFuVNgV0iUSnHLY_EB9b5HwlRBcchCNBA4oHiuFqQ=",
-  "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://media.istockphoto.com/id/2183417968/photo/rear-view-of-business-colleagues-attending-a-seminar-in-board-room.jpg?s=612x612&w=0&k=20&c=Ttx19Jr9_sDt36sIIEAMAA42-HXC1a-UEW1UI89hK3E="
-]
-const buttonBgColor = [
-  "linear-gradient(90deg, #45a5f3ff, #0760c5ff)",
-  "linear-gradient(90deg, #f87c07ff, #d00000)",
-  "linear-gradient(90deg, #febe1eff, #f48c06)", 
-  "linear-gradient(90deg, #7fb089ff, #3a8b30ff)"
-]
 
-const getDataClass =(data=[])=> {
+
+const getDataClass =<T,>(data: T[]=[])=> {
      if (!data.length) return []
-     const result:any = [];
+     const result:T[] = [];
      let i = 0;
 
      while (result.length < 4) {
@@ -75,18 +52,18 @@ const StudentDashboard = () => {
   const {data: getMe, isLoading: isMeLoading} = useGetMeQuery(undefined)
   const {data:myEnrollment, isLoading:isMyEnrollmentLoading} = useGetMyEnrolledAllCoursesQuery(undefined)
 
-  const {data: myEnrolledState, isLoading: isMyEnrolledStateLoading} = useGetMyEnrolledSateQuery(undefined)
+  const {data: myEnrolledState} = useGetMyEnrolledSateQuery(undefined)
   
   console.log(myEnrolledState)
 if(isMeLoading) {
     return  <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                        <div style={{ color: "#608cd3ff" }}>
-                        <Spin size="medium" />
+                        <Spin />
                        </div>
                   </Flex>
   }
   const enrolledStat = (myEnrolledState?.data)? myEnrolledState?.data?.totalEnrolledCourses : "0"
-  const {name} =getMe?.data
+  const name =getMe?.data?.name
 
 
 
@@ -96,7 +73,7 @@ if(isMeLoading) {
     <div style={{margin:"0 auto"}} >
         <Row gutter={10} style={{width:"100%"}}>
            <Col lg={{span:18}} sm={{span:24}}>
-              <p className="font-form" style={{fontSize: "26px", fontWeight:"600", lineHeight:"8px"}}>Welcome back, {getFullName(name, {onlyFirstName: true})} !!</p>
+              <p className="font-form" style={{fontSize: "26px", fontWeight:"600", lineHeight:"8px"}}>Welcome back, {name && getFullName(name, {onlyFirstName: true})} !!</p>
               <p style={{lineHeight:"10px"}}>Here is your overview for today.</p>
              <Flex vertical gap={10} style={{padding:"0 5px 0 0"}}>
                   <Row gutter={15} style={{width:"100%"}}>
@@ -176,7 +153,7 @@ if(isMeLoading) {
            {
             (!myEnrollment|| isMyEnrollmentLoading)?<Flex  justify="center" align="center" style={{ height: "80vh" }}>
                        <div style={{ color: "#608cd3ff" }}>
-                        <Spin size="medium" />
+                        <Spin />
                        </div>
                   </Flex> : <> {
               

@@ -22,7 +22,7 @@ const SelectFormWithWatch = ({label, name, options, disabled, suffixIcon, mode, 
     
     useEffect(() => {
         onValueChange(inputValue)
-    }, [inputValue])
+    }, [inputValue, onValueChange])
 
 
   return (
@@ -31,7 +31,7 @@ const SelectFormWithWatch = ({label, name, options, disabled, suffixIcon, mode, 
    render={({field, fieldState: {error}}) => (
       <Form.Item label = {<span style={{fontWeight: "600", fontSize:"16px"}}>{label}</span>}> 
       <Select size="large"  className="custom-select"  mode={mode} style={{width: '100%'}} {...field}
-      options={options} placeholder="Select ..." suffixIcon={suffixIcon} disabled={disabled} size="large"
+      options={options} placeholder="Select ..." suffixIcon={suffixIcon} disabled={disabled}
       />
       {error && <small style={{color: 'red'}}>{error.message}</small>}
     </Form.Item>

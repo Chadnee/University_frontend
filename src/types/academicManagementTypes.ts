@@ -16,6 +16,7 @@ export type TAcademicDepartment =  {
   __v: number
 }
 
+//for creating a semester(not registered) and it is added in TSemester in global.ts
 export type TAcademicSemester = {
   _id: string
   name: string

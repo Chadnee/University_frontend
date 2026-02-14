@@ -1,9 +1,9 @@
 import type { FieldValues, SubmitHandler } from "react-hook-form";
 import AdmitForm from "../../form/AdmitForm";
 import SelectForm from "../../form/SelectForm";
-import { Button, Card, Col, Flex } from "antd";
+import { Flex } from "antd";
 import { semesterOptions } from "../../constants/semester";
-import { monthOptions } from "../../constants/global";
+import { monthOptions, type TError } from "../../constants/global";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { academicSemesterSchema } from "../../../schema/academicManagement.schema";
 import { useAddAcademicSemesterMutation } from "../../../features/admin/academicManagementApi";
@@ -41,13 +41,16 @@ const CreateAccademicSemester = () => {
             const result = await addAcademicSemester(semesterData);
             
             if(result.error){
-              toast.error(result.error.data.message)
+              const err = result.error as TError
+              toast.error(err.data.message)
             } else {
                 toast.success("semester created")
             }
-        }catch(err){
-          toast.error('Something went wrong')
-        }
+        }catch(error:unknown){
+                 const err = error as { data?: { message?: string } };
+                console.log(err.data?.message)
+                    toast.error("Something went wrong")
+              }
      }
     
   return (

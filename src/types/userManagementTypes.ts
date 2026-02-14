@@ -52,6 +52,7 @@ export type TCreateStudentPayload = {
 //Types for Faculty
 
 export type TFaculty = {
+  _id: string
   id: string
   designation: string
   name: string
@@ -68,9 +69,11 @@ export type TFaculty = {
   academicFaculty: TAcademicFaculty
 }
 
+export type TCreateFaculty = Omit<TFaculty, '_id'>
+
 export type TCreateFacultyPayload = {
   password: string
-  faculty: TFaculty
+  faculty: TCreateFaculty
 }
 
 //types for Admin 

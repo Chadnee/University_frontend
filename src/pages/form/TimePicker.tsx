@@ -1,6 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { Form, TimePicker } from 'antd';
-import type { ReactNode } from 'react';
 import { WiTime4 } from 'react-icons/wi';
 import "../../index.css"
 

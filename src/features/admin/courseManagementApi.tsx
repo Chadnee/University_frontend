@@ -28,7 +28,7 @@ const coureManagementApi = baseApi.injectEndpoints({
             }
         },
         providesTags : ['semester'],
-        transformResponse: (response: TResponseRedux<TSemester>) => {
+        transformResponse: (response: TResponseRedux<TSemester[]>) => {
             return {
                 data: response.data,
                 meta: response.meta
@@ -69,7 +69,7 @@ const coureManagementApi = baseApi.injectEndpoints({
              }
         },
         providesTags:['courses'],
-        transformResponse: (response: TResponseRedux<TCourse>) => {
+        transformResponse: (response: TResponseRedux<TCourse[]>) => {
           return {
             data: response.data,
             meta: response.meta

@@ -4,10 +4,10 @@ import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import useResponsive from '../../hooks/useResponsive';
 import { useState } from 'react';
-const { Header, Content } = Layout;
+const {  Content } = Layout;
 
 const MainLayout = () => {
-  const {isMobile, isDesktop, isTablet} = useResponsive()
+  const {isMobile, isDesktop} = useResponsive()
   const [open, setOpen] = useState(false);
 
 

@@ -1,9 +1,7 @@
-import { useGetAllSemestersQuery } from "../../../features/admin/academicManagementApi";
 import { Button, Dropdown, Flex, Spin, Table, Tag } from 'antd';
-import type { TableColumnsType, TableProps } from 'antd';
-import {type TQueriParam, type TSemester } from "../../constants/global";
+import type { MenuProps, TableColumnsType } from 'antd';
+import { type TSemester} from "../../constants/global";
 import { useState } from "react";
-import type { TAcademicSemester } from "../../../types/academicManagementTypes";
 import { useGetRegisteredSemesterQuery, useUpdateRegisteredSemesterMutation } from "../../../features/admin/courseManagementApi";
 import moment from "moment";
 
@@ -32,18 +30,17 @@ const RegisteredSemester= () => {
  const [updateRegisteredSemester] = useUpdateRegisteredSemesterMutation()
   console.log(registeredSemester);
 
-  const tableData:TTableData[] = registeredSemester?.data?.map(
-    ({_id, academicSemester, startDate, endDate, status}) => ({
-      key: _id,
-      name: `${academicSemester.name} ${academicSemester.year}`,
-      startDate: moment(new Date(startDate)).format('MMM') ,
-      endDate: moment(new Date(endDate)).format('MMM'),
-      status
-    })
-  )
-  const handleStatusUpdate = (data)=> {
+const tableData:TTableData[] = registeredSemester?.data?.map((item : TSemester) => ({
+        key: item._id,
+      name: `${item.academicSemester.name} ${item.academicSemester.year}`,
+      startDate: moment(new Date(item.startDate)).format('MMM') ,
+      endDate: moment(new Date(item.endDate)).format('MMM'),
+      status: item.status
+})) ?? []
+
+  const handleStatusUpdate : MenuProps['onClick'] = (data)=> {
      console.log(semesterId)
-     console.log(data.key)
+     console.log(data)
       const updateData = {
         id: semesterId,
         data: {
@@ -104,25 +101,12 @@ const columns: TableColumnsType<TTableData> = [
     }
   }
 ];
-
-// const onChange: TableProps<TTableData>['onChange'] = (_pagination, filters, _sorter, extra)=>{
-//     if (extra.action === 'filter') {
-//       const queryParams:TQueriParam[] = [];
-
-//       filters.name?.forEach((item) => 
-//         queryParams.push({name: 'name', value: item})
-//       )
-//       filters.year?.forEach((item) =>
-//       queryParams.push({name: 'year', value: item}))
-//       setParams(queryParams)
-//     }
-//   }
     
   if (isLoading) {
     return (
                   <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                        <div style={{ color: "#608cd3ff" }}>
-                        <Spin size="medium" />
+                        <Spin/>
                        </div>
                   </Flex>
                 )

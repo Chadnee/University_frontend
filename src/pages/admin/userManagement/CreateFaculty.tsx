@@ -1,7 +1,7 @@
-import { Controller, useFormContext, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { Controller, type SubmitHandler } from "react-hook-form";
 import AdmitForm from "../../form/AdmitForm";
 import InputForm from "../../form/InputForm";
-import { Button, Col, Divider, Flex, Form, Grid, Row } from "antd";
+import { Button, Col, Divider, Flex, Form, Row } from "antd";
 import { CiCamera } from "react-icons/ci";
 import { useRef, useState } from "react";
 import DatePickerInput from "../../form/DatePicker";
@@ -11,7 +11,7 @@ import { useGetAllAccademicDepartmentQuery } from "../../../features/admin/acade
 import { useCreateFacultyMutation } from "../../../features/admin/userManagementApi";
 import { toast } from "sonner";
 import useResponsive from "../../../hooks/useResponsive";
-import type { TCreateFacultyPayload, TFaculty } from "../../../types/userManagementTypes";
+import type { TCreateFaculty, TCreateFacultyPayload} from "../../../types/userManagementTypes";
 
 
 const CreateFaculty = () => {
@@ -21,14 +21,15 @@ const CreateFaculty = () => {
      const [createFaculty] = useCreateFacultyMutation()
      const fileInputRef = useRef<HTMLInputElement | null>(null);
      const [preview, setPreview] = useState<string>(DEFAULT_IMAGE)
-     const {isMobile, isTablet, isDesktop} = useResponsive()
+     const {isTablet, isDesktop} = useResponsive()
 
      const departmentOptions = departmentData?.data?.map((item) => ({
       value: item._id,
       label: item.name
      }))
      
-  const onSubmit: SubmitHandler<TFaculty> = async (data) => {
+     
+  const onSubmit: SubmitHandler<TCreateFaculty> = async (data) => {
     //console.log(data);
     
     const facultyData : TCreateFacultyPayload = {
@@ -46,10 +47,11 @@ const CreateFaculty = () => {
     console.log(result);
          toast.success('Faculty is created successfuly')
        
-    }catch(error){
-         toast.error('Something went wrong')
-         console.log(error.data.message)
-    }
+    }catch(error:unknown){
+             const err = error as { data?: { message?: string } };
+            console.log(err.data?.message)
+                toast.error("Something went wrong")
+          }
   };// style={{ margin:isDesktop?"0 , 40px": isTablet?"0, 7px":"0" }}
   return (
     <div style={{ margin:isTablet||isDesktop? "0 40px" : "0" }}>
@@ -135,7 +137,7 @@ const CreateFaculty = () => {
                 <InputForm type="text" name="emergencyContactNo" label="Emergency Contact No"></InputForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
-                <SelectForm name="academicDepartment" options={departmentOptions} placeholder="Select department" label="Department"></SelectForm>
+                <SelectForm name="academicDepartment" options={departmentOptions} disabled={isDepartmentLoading} placeholder="Select department" label="Department"></SelectForm>
               </Col>
               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
                 <InputForm isTextArea={true}  type="text" name="presentAddress" label="Present Address"></InputForm>
