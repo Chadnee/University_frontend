@@ -16,7 +16,7 @@ const MainLayout = () => {
       {
         !isMobile && <Sidebar />
       }
-      <Layout>
+      <Layout >
         {/* linear-gradient(135deg, #667eea, #764ba2, #6dd5ed) */}
         {/* which header */}
         <Card style={{background : "#eceef5ff", boxShadow: "0 10px 25px rgba(0,0,0,0.08)"}}>
@@ -41,6 +41,7 @@ const MainLayout = () => {
               padding:isDesktop?"0 30px":"10px 7px",
               minHeight: 360,
                 maxWidth: '100%',
+                width:"100%"
 
             }}
           >

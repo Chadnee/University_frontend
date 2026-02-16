@@ -29,6 +29,7 @@ import {
 import { useGetAllCourseQuery } from "../../features/admin/courseManagementApi";
 import { getFullName } from "../../utils/GetFullName";
 import type { TEnrolledState } from "../constants/global";
+import useResponsive from "../../hooks/useResponsive";
 
 // import { RechartsDevtools } from '@recharts/devtools';
 
@@ -47,6 +48,8 @@ const data = [
 ];
 
 const AdminDashboard = () => {
+  const {isMobile} = useResponsive()
+
   const { data: userStats} =
     useGetAllCountedTotalUsersQuery(undefined);
   const { data: getMySelf, isLoading: isMyselfLoading } =
@@ -87,13 +90,14 @@ console.log(course)
   //   return badgeColors[index];
   // };
   return (
-    <div className="">
-      <Flex align="center" gap={20}>
-        <h1>Welcome back, {getFullName(name)}</h1>
-        <img src={waving} height={50} width={50} alt="" />
+    <div className="" style={{width:"100%", overflow:"hidden"}}>
+      <Flex align="center" gap={20} style={{width:"100%", marginBottom:isMobile?"10px" : "0"}}>
+        <p style={{fontSize:isMobile?"18px":"30px", fontWeight:"700",}}>Welcome back, {getFullName(name)}</p>
+        <img src={waving} height={isMobile? 30 :50} width={isMobile? 30 :50}  alt="" />
       </Flex>
-      <Flex align="center" justify="space-between" gap={20}>
-        <Flex justify="center" align="center">
+
+      <Row gutter={[15, 15]} align="stretch">
+        <Col  lg={6} md={12} sm={{span:12}} xs={12} style={{display: "flex"}}>
           <Flex
             vertical
             justify="center"
@@ -101,24 +105,24 @@ console.log(course)
             style={{
               background: "linear-gradient(135deg, #f0854cff, #eb6d19ff, #d94b09ff)",
               borderRadius: "7px",
-              height: "110px",
-              width: "270px ",
-              padding: "7px 10px",
+              width: "100%",
               color: "white",
               fontWeight: 600,
-              fontSize: "20px",
+              flex: 1,
+              padding:"10px 4px"
+              
             }}
           >
-            <Flex align="stretch" justify="center" gap={10}>
+            <Flex justify="center" align="center" gap={isMobile? 5 : 20} style={{width:"100%"}} >
               <BsPeopleFill style={{ fontSize: "30px" }} />
-              <span style={{}}>Total Students</span>
+              <span style={{fontSize: isMobile?"15px" :"23px"}}>Total Students</span>
             </Flex>
             <Flex justify="center">
-              <span style={{ fontSize: "40px" }}>{students??0}</span>
+              <span style={{ fontSize: isMobile?"25px" :"40px" }}>{students??0}</span>
             </Flex>
           </Flex>
-        </Flex>
-        <Flex justify="center" align="center">
+        </Col>
+        <Col lg={6} md={12} sm={{span:12}} xs={12} style={{display: "flex"}} >
           <Flex
             vertical
             justify="center"
@@ -127,24 +131,24 @@ console.log(course)
               // #896ac1ff, #4458cdff
               background: "linear-gradient(100deg, #9770eaff, #104a9bff)",
               borderRadius: "7px",
-              height: "110px",
-              width: "270px ",
-              padding: "7px 10px",
+              width: "100%",
               color: "white",
               fontWeight: 600,
-              fontSize: "20px",
+              fontSize: "15px",
+              flex: 1,
+              padding:"10px 4px"
             }}
           >
-            <Flex align="stretch" justify="center" gap={10}>
+            <Flex justify="center" align="center" gap={isMobile? 5 : 20} style={{width:"100%"}} >
               <GiTeacher style={{ fontSize: "30px" }} />
-              <span style={{}}>Total Faculty</span>
+              <span style={{fontSize: isMobile?"15px" :"23px"}}>Total Faculty</span>
             </Flex>
             <Flex justify="center">
-              <span style={{ fontSize: "40px" }}>{faculty?faculty:0}</span>
+              <span style={{ fontSize: isMobile?"25px" :"40px" }}>{faculty?faculty:0}</span>
             </Flex>
           </Flex>
-        </Flex>
-        <Flex justify="center" align="center">
+        </Col>
+        <Col lg={6} md={12} sm={{span:12}} xs={12} style={{display: "flex"}} >
           <Flex
             vertical
             justify="center"
@@ -153,24 +157,25 @@ console.log(course)
               // linear-gradient(160deg, #0a7929ff, #b9e730ff)
               background: "linear-gradient(160deg, #a47309ff, #d3bc08ff)",
               borderRadius: "7px",
-              height: "110px",
-              width: "270px ",
-              padding: "7px 10px",
+              width: "100%",
+              padding: "",
               color: "white",
               fontWeight: 600,
-              fontSize: "20px",
+              fontSize: "17px",
+              flex:1,
+             
             }}
           >
-            <Flex align="stretch" justify="center" gap={10}>
+            <Flex justify="center" align="center" gap={isMobile? 5 : 20} style={{width:"100%"}} >
               <FaLayerGroup style={{ fontSize: "30px" }} />
-              <span style={{}}>Total Course</span>
+              <span style={{fontSize: isMobile?"15px" :"23px"}}>Total Course</span>
             </Flex>
             <Flex justify="center">
-              <span style={{ fontSize: "40px" }}>{(course?.data)?course.data.length : 0}</span>
+              <span style={{ fontSize: isMobile?"25px" :"40px" }}>{(course?.data)?course.data.length : 0}</span>
             </Flex>
           </Flex>
-        </Flex>
-        <Flex justify="center" align="center">
+        </Col>
+        <Col lg={6} md={12} sm={{span:12}} xs={12} style={{display: "flex"}} >
           <Flex
             vertical
             justify="center"
@@ -178,11 +183,11 @@ console.log(course)
             style={{
               background: "linear-gradient(135deg, #667eea, #764ba2, #6dd5ed)",
               borderRadius: "7px",
-              height: "110px",
-              width: "270px ",
-              padding: "7px 10px",
+              width: "100%",
+              padding: "16px 10px",
               color: "white",
               fontWeight: 600,
+              flex:1,
             }}
           >
             <Row gutter={10}>
@@ -192,8 +197,8 @@ console.log(course)
                   <span style={{ fontSize: "15px" }}>Website Visits</span>
                 </Flex>
                 <Flex align="center" justify="center">
-                  <span style={{ fontSize: "40px" }}>
-                    000{getvisitors?.data?.totalVisistors}
+                  <span style={{ fontSize: isMobile?"25px" :"40px" }}>
+                    {getvisitors?.data?.totalVisistors}
                   </span>
                   <Flex>
                     <TiArrowSortedUp
@@ -203,7 +208,7 @@ console.log(course)
                   </Flex>
                 </Flex>
               </Col>
-              <Col>
+              <Col style={{display: isMobile?"none":""}}>
                 <Space direction="vertical" align="center">
                   <MdStackedLineChart style={{ fontSize: "30px" }} />
                   <button
@@ -222,10 +227,10 @@ console.log(course)
               </Col>
             </Row>
           </Flex>
-        </Flex>
-      </Flex>
+        </Col>
+      </Row>
       <Row gutter={40} align="stretch" style={{ paddingTop: "40px" }}>
-        <Col span={8} style={{ display: "flex" }}>
+        <Col lg={8}  sm={24} >
           <div
             style={{
               boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
@@ -326,7 +331,7 @@ console.log(course)
           </div>
         </Col>
 
-        <Col span={10} style={{ display: "flex" }}>
+        <Col lg={10} sm={24}  style={{ display: "flex" }}>
           <div
             style={{
               borderRadius: "14px",
@@ -409,7 +414,7 @@ console.log(course)
             </div>
           </div>
         </Col>
-        <Col span={6} style={{ display: "flex" }}>
+        <Col lg={6}  sm={24} style={{ display: "flex" }}>
           <div
             style={{
               boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
