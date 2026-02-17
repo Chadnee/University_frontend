@@ -10,8 +10,6 @@ import { GiTeacher } from "react-icons/gi";
 import { FaRegChartBar } from "react-icons/fa";
 import { MdStackedLineChart } from "react-icons/md";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import maleStudent from "../../../src/assets/images/maleStudent.jpg";
-import femaleStudent from "../../../src/assets/images/femaileStudent.jpg";
 //import for displaying re-chart
 import {
   CartesianGrid,
