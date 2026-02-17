@@ -2,7 +2,7 @@ import maleStudent from '../assets/images/maleStudent.jpg';
 import femaleStudent from '../assets/images/femaileStudent.jpg';
 
 type TProfilePic = {
-      gender: "male" | "female" ;
+      gender: "male" | "female" | "other";
       style: React.CSSProperties;
 }
 

@@ -30,6 +30,7 @@ import { useGetAllCourseQuery } from "../../features/admin/courseManagementApi";
 import { getFullName } from "../../utils/GetFullName";
 import type { TEnrolledState } from "../constants/global";
 import useResponsive from "../../hooks/useResponsive";
+import { ProfilePicGenerator } from "../../utils/ProfilePicGenerator";
 
 // import { RechartsDevtools } from '@recharts/devtools';
 
@@ -230,12 +231,13 @@ console.log(course)
         </Col>
       </Row>
       <Row gutter={40} align="stretch" style={{ paddingTop: "40px" }}>
-        <Col lg={8}  sm={24} >
+        <Col lg={8}  sm={24}>
           <div
             style={{
               boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
               flex: 1,
               height: "100%",
+              marginBottom: isMobile? "25px" : 0
             }}
           >
             <p
@@ -243,8 +245,8 @@ console.log(course)
                 fontWeight: 600,
                 background: "#DDE3E3",
                 boxShadow: "0 10px 25px rgba(0,0,0,0.02)",
-                fontSize: "22px",
-                borderRadius: "10px 10px 0px 0px",
+                fontSize: isMobile? "18px" : "22px",
+                borderRadius: "5px 5px 0px 0px",
                 color: "#1f1f1f",
                 padding: "10px ",
                 margin: "0",
@@ -273,14 +275,8 @@ console.log(course)
                       align="center"
                       style={{ marginBottom: "6px" }}
                     >
-                      <img
-                        src={
-                          item?.gender === "male" ? maleStudent : femaleStudent
-                        }
-                        width={45}
-                        height={45}
-                        style={{ borderRadius: "100%" }}
-                        alt=""
+                      <ProfilePicGenerator gender = {item?.gender}
+                        style={{ borderRadius: "100%", height: "45px", width:"45px" }}
                       />
                       <Flex
                         vertical
@@ -331,14 +327,17 @@ console.log(course)
           </div>
         </Col>
 
-        <Col lg={10} sm={24}  style={{ display: "flex" }}>
+        <Col lg={10} sm={24} style={{display: "flex"}}>
           <div
             style={{
-              borderRadius: "14px",
-              display: "flex",
+              borderRadius: "5px",
+              // display: "flex",
               flexDirection: "column",
               flex: 1,
               height: "90%",
+              width:"100%",
+              marginBottom: isMobile? "25px" : 0,
+              marginTop: isMobile? "25px" : 0
             }}
           >
             {/* Title */}
@@ -349,8 +348,8 @@ console.log(course)
                 fontWeight: 600,
                 background: "#DDE3E3",
                 boxShadow: "0 10px 25px rgba(0,0,0,0.02)",
-                fontSize: "22px",
-                borderRadius: "10px 10px 0px 0px",
+                fontSize: isMobile?"17px" : "22px",
+                borderRadius: "5px 5px 0px 0px",
                 color: "#1f1f1f",
                 padding: "10px",
                 margin: "0px",
@@ -360,7 +359,7 @@ console.log(course)
               <span>Enrollments Statictics</span>
               <div
                 style={{
-                  fontSize: "14px",
+                  fontSize: isMobile?"12px" : "14px",
                   color: "#868181ff",
                   padding: "4px 20px",
                   background: "#f1f7f7ff",
@@ -381,7 +380,7 @@ console.log(course)
                 style={{
                   width: "100%",
                   maxWidth: "700px",
-                  maxHeight: "70vh",
+                  maxHeight: "50vh",
                   aspectRatio: 1.618,
                 }}
                 responsive
@@ -414,7 +413,7 @@ console.log(course)
             </div>
           </div>
         </Col>
-        <Col lg={6}  sm={24} style={{ display: "flex" }}>
+        <Col lg={6}  sm={24} style={{width:"100%"}}>
           <div
             style={{
               boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
@@ -427,7 +426,7 @@ console.log(course)
                 fontWeight: 600,
                 background: "#DDE3E3",
                 boxShadow: "0 10px 25px rgba(0,0,0,0.02)",
-                fontSize: "22px",
+                fontSize: isMobile?"17px" : "22px",
                 borderRadius: "10px 10px 0px 0px",
                 color: "#1f1f1f",
                 padding: "10px ",
@@ -452,7 +451,7 @@ console.log(course)
               >
                 <span style={{ flex: 1.5 }}>Course</span>
                 <span style={{ flex: 1 }}>Enrolled</span>
-                <span style={{ flex: 1 }}>Prefix</span>
+                <span style={{ flex: .60 }}>Prefix</span>
               </Flex>
               {course?.data?.slice(1, 7).map((item, index) => {
                 const color = badgeColors[index % badgeColors.length];
@@ -487,18 +486,21 @@ console.log(course)
                         {item?.title}
                       </span>
                       <span style={{ flex: 1 }}>{enrolled}</span>
+                     <Flex vertical align="center" justify="steatch" style={{}}>
                       <span
                         style={{
                           color: "white",
-                          borderRadius: "8px",
+                          borderRadius: "2px",
                           background: color,
                           flex: 1,
-                          padding: "2px 10px",
-                          fontSize: "15px",
+                          padding:"2px 0",
+                          width:"70px",
+                          textAlign:"center",
+                          fontSize: "13px",
                         }}
                       >
                         {item?.prefix}
-                      </span>
+                      </span></Flex> 
                     </Flex>{" "}
                     <Divider style={{ margin: "0" }}></Divider>
                   </div>
@@ -509,11 +511,11 @@ console.log(course)
                   style={{
                     padding: "6px 20px",
                     margin: "10px  12px",
-                    background: "linear-gradient(135deg, #667eea, #764ba2, #6dd5ed)",
+                    background: "linear-gradient(160deg, #667eea, #764ba2, #2bacc8)",
                     color: "white",
                     border: "none",
-                    borderRadius: "3px",
-                    fontSize: "15px",
+                    borderRadius: "2px",
+                    fontSize: "13px",
                   }}
                 >
                   View All{" "}

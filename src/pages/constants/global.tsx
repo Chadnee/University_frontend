@@ -196,7 +196,7 @@ export type TEnrolledState = {
   studentId: string
   totalEnrolledCourses: number
   updatedAt: string
-  gender: string
+  gender: "male" | "female" | "other"
   name: TName
   academicDepartment: TAcademicDepartment
 }

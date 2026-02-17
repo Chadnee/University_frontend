@@ -28,7 +28,7 @@ export type TStudent = {
   id: string
   user: string
   name: TName
-  gender: string
+  gender: "male" | "female" | "other"
   dateOfBirth: string
   email: string
   contactNo: string
@@ -57,7 +57,7 @@ export type TFaculty = {
   designation: string
   name: string
   user: string
-  gender: string
+  gender: "male" | "female" | "other"
   dateOfBirth: string
   email: string
   contactNo: string
@@ -83,7 +83,7 @@ export type TAdmin = {
   name: string
   id: string
   designation: string
-  gender: string
+  gender: "male" | "female" | "other"
   dateOfBirth: string
   email: string
   contactNo: string
