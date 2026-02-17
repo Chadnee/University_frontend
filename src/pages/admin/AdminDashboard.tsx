@@ -253,7 +253,7 @@ console.log(course)
                 textAlign: "start",
               }}
             >
-              Recent Student Activities
+              Recent Student Activitiess
             </p>
             <Space
               direction="vertical"
