@@ -12,6 +12,7 @@ import { getFullName } from "../../../utils/GetFullName";
 export type TTableData = Pick<
   TFaculty,
   | "id"
+  | "_id"
   | "name"
   | "email"
   | "gender"
@@ -29,10 +30,11 @@ const Faculty = () => {
       //   const [image, setImage] = useState<string | null>(null)
       
     
-      //console.log( studentData?.data?.result);
-      const metaData = facultyData?.data?.meta
+      console.log(facultyData);
+      const metaData = facultyData?.meta
       const tableData : TTableData[] = facultyData?.data?.map((faculty: TFaculty) => ({
-            key: faculty._id,
+          key: faculty._id,
+          id: faculty.id,
           name : faculty.name,
           email : faculty.email,
           profileImage : faculty.profileImage,
@@ -41,7 +43,7 @@ const Faculty = () => {
           designation : faculty.designation
       })) ?? []
  
-      //console.log(facultyData?.data)
+      console.log(metaData)
       
       // const id = facultyData?.data?.map((item) => {return item.id})
       // console.log(tableData,id)
@@ -66,9 +68,9 @@ const Faculty = () => {
           render: (_, record) => getFullName(record?.name)
         },
         {
-          title: "Student ID",
+          title: "Faculty ID",
           key: "key",
-          dataIndex: "key",
+          dataIndex: "id",
         },
         {
           title: "Gender",

@@ -1,5 +1,6 @@
 import type { TAllUser, TQueriParam, TResponseRedux } from "../../pages/constants/global";
 import { baseApi } from "../../redux/api/baseApi";
+import type { TAdmin } from "../../types/userManagementTypes";
 
 const userManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -81,11 +82,18 @@ const userManagementApi = baseApi.injectEndpoints({
         }
         return {
           url: '/admins',
-          method: "Get",
+          method: "GET",
           params: params
         }
       },
-      providesTags: ['admin']
+      providesTags: ['admin'],
+
+        transformResponse: (response: TResponseRedux <TAdmin[]>) => {
+         return {
+           meta: response.meta,
+           data:response.data
+         }
+      }
     }),
 
     changePassword: builder.mutation ({

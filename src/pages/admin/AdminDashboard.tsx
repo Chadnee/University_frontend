@@ -8,7 +8,7 @@ import { BsPeopleFill } from "react-icons/bs";
 import { FaLayerGroup } from "react-icons/fa6";
 import { GiTeacher } from "react-icons/gi";
 import { FaRegChartBar } from "react-icons/fa";
-import { MdStackedLineChart } from "react-icons/md";
+import { MdKeyboardArrowRight, MdStackedLineChart } from "react-icons/md";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 //import for displaying re-chart
 import {
@@ -235,7 +235,7 @@ console.log(course)
               boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
               flex: 1,
               height: "100%",
-              marginBottom: isMobile? "25px" : 0
+              marginBottom: "10px",
             }}
           >
             <p
@@ -332,10 +332,9 @@ console.log(course)
               // display: "flex",
               flexDirection: "column",
               flex: 1,
-              height: "90%",
               width:"100%",
-              marginBottom: isMobile? "25px" : 0,
-              marginTop: isMobile? "25px" : 0
+              marginBottom:"10px",
+              marginTop: "10px"
             }}
           >
             {/* Title */}
@@ -377,9 +376,9 @@ console.log(course)
               <LineChart
                 style={{
                   width: "100%",
-                  maxWidth: "700px",
-                  maxHeight: "50vh",
-                  aspectRatio: 1.618,
+                  height:"200px"
+                 
+                  // aspectRatio: 1.618,
                 }}
                 responsive
                 data={data}
@@ -411,12 +410,13 @@ console.log(course)
             </div>
           </div>
         </Col>
-        <Col lg={6}  sm={24} style={{width:"100%"}}>
+        <Col lg={6}  sm={24} style={{width:"100%", display:"flex", flexDirection:"column"}}>
           <div
             style={{
               boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
               flex: 1,
               height: "100%",
+              marginTop:isMobile?"20px":"0"
             }}
           >
             <p
@@ -504,7 +504,11 @@ console.log(course)
                   </div>
                 );
               })}
-              <Flex justify="end" align="center">
+               <a style={{color:"rgb(210, 173, 8)",  fontSize:"12px", fontFamily:"sans-serif"}}>
+                                    <Flex justify="end">
+                                       <span>View All courses</span>  <MdKeyboardArrowRight style={{fontSize:"20px"}}/>
+                                       </Flex></a>
+              {/* <Flex justify="end" align="center">
                 <button
                   style={{
                     padding: "6px 20px",
@@ -518,10 +522,19 @@ console.log(course)
                 >
                   View All{" "}
                 </button>
-              </Flex>
+              </Flex> */}
             </Space>
           </div>
         </Col>
+      </Row>
+
+      <Row style={{width:"100%", marginTop:"20px"}}>
+        <Flex gap={20} style={{width:"100%"}}>
+            
+         <div style={{background:'red', height:"300px", width:"100%"}}>ggffg</div>
+         <div style={{background:'red', height:"300px", width:"100%"}}>ggffg</div>
+         <div style={{background:'red', height:"300px", width:"100%"}}>ggffg</div>
+        </Flex>
       </Row>
     </div>
   );
