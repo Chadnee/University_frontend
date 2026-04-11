@@ -29,7 +29,7 @@ const metaData = adminData?.meta
 //  console.log(adminData)
 //  console.log(metaData)
 const tableData: TTableData[] = adminData?.data?.map((admin: TAdmin) => ({
-  key: admin._id,
+  _id: admin._id,
   id: admin.id,
   name: admin.name,
   email:admin.email,
@@ -91,7 +91,7 @@ const columns: TableColumnsType<TTableData> =[
               // console.log(item);
                return (
                  <Space>
-                   <Link to={`/admin/admin/${item.key}`}>
+                   <Link to={`/admin/admin/${item._id}`}>
                      <Button>Details</Button>
                    </Link>
                    <Button>Update</Button>
