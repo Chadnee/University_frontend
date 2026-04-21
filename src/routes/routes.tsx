@@ -3,7 +3,6 @@ import App from "../App";
 import About from "../pages/About";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Contact from "../pages/Contact";
 import { adminPaths} from "./adminRoutes";
 import { RoutesGenerator } from "../utils/RoutesGenerater";
 import { facultyPaths } from "./facultyRoutes";
@@ -11,6 +10,7 @@ import { studentPaths } from "./studentRoutes";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import ChangePassword from "../pages/ChangePassword";
 import MainLayout from "../components/layout/MainLayout";
+import Home from "../pages/Home/Home";
 
 const router = createBrowserRouter([
     {
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
                 element:<About></About>
             },
             {
-                path:'contact',
-                element:<Contact></Contact>,
+                path:'/',
+                element:<Home></Home>
             },
             {
                 path: 'change-password',

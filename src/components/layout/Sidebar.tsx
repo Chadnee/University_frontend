@@ -7,6 +7,7 @@ import { adminPaths } from '../../routes/adminRoutes';
 import { facultyPaths } from '../../routes/facultyRoutes';
 import { studentPaths } from '../../routes/studentRoutes';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const { Sider } = Layout;
 
@@ -80,12 +81,18 @@ const Sidebar = ({isMobile, onClose} : SidebarProps) => {
 
       <Flex vertical style={{ marginTop: 'auto' }}>
         <hr style={{ width: '100%' }} />
+        <Link to="/"
+         style={{ paddingLeft: 24, cursor: 'pointer', color:"#fff" }}
+        >
+          Home
+        </Link>
         <p
           onClick={handleLogout}
           style={{ paddingLeft: 24, cursor: 'pointer', color:"#fff" }}
         >
           Log Out
         </p>
+        
       </Flex>
     </>
   );
