@@ -232,7 +232,7 @@ const Home = () => {
         justify="center"
         align="center"
         gap={30}
-        style={{ width: isMobile?"100%":"75%", margin: "40px auto",}}
+        style={{ width: isMobile?"100%":"75%", margin: "60px auto",}}
       >
         <span
           style={{ fontFamily: "emoji", fontWeight: "600", fontSize: "24px" }}
@@ -397,7 +397,7 @@ const Home = () => {
         vertical
         justify="center"
         gap={36}
-        style={{ width: isMobile?"100%":"70%", margin: "80px auto", alignItems: "center", height:'100vh'}}
+        style={{ width: isMobile?"100%":"70%", margin: "100px auto", alignItems: "center"}}
       >
         <span
           style={{ fontFamily: "emoji", fontWeight: "600", fontSize: "24px" }}
@@ -419,7 +419,7 @@ const Home = () => {
           {
             <Swiper
               slidesPerView={5.5}
-              spaceBetween={14}
+              spaceBetween={10}
               loop={true} // 🔥 infinite loop
               autoplay={{
                 delay: 0,
@@ -431,7 +431,7 @@ const Home = () => {
               }}
               breakpoints={{
                 0: {
-                  slidesPerView: 2.2, // mobile → swipe
+                  slidesPerView: 1.2, // mobile → swipe
                 },
                 768: {
                   slidesPerView: 5, // tablet
@@ -495,8 +495,8 @@ const Home = () => {
                           >
                             <div
                               style={{
-                                height: "140px",
-                                width: "140px",
+                                height: "170px",
+                                width: "170px",
                                 overflow: "hidden",
                               }}
                             >
@@ -520,11 +520,11 @@ const Home = () => {
                                 flex: 1,
                               }}
                             >
-                              <span style={{ fontWeight: "600",fontSize:"", textAlign:"center" }}>
+                              <span style={{ fontWeight: "600",fontSize:isMobile?"16px":"18px", textAlign:"center" }}>
                                   {item?.name}
                               </span>
 
-                              <span style={{ color: "#6d6565" }}>
+                              <span style={{ color: "#6d6565",  }}>
                                 {item.designation}
                               </span>
                               <p></p>
