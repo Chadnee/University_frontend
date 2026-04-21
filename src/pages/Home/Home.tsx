@@ -3,7 +3,7 @@ import { useAppSelector } from "../../features/hooks";
 import { selectCurrentToken, type TUser } from "../../features/auth/authSlice";
 import { verifyToken } from "../../utils/verifyToken";
 import { ParallaxBanner } from "react-scroll-parallax";
-import { Button, Card, Col, Flex, Row, Spin } from "antd";
+import { Card, Col, Flex, Row, Spin } from "antd";
 import CountUp from "react-countup";
 import banner from "../../assets/images/banner.jpg"
 import {
@@ -32,7 +32,7 @@ import useResponsive from "../../hooks/useResponsive";
 import type { TFaculty } from "../../types/userManagementTypes";
 
 const Home = () => {
-    const {isMobile,} = useResponsive()
+    const {isMobile, isTablet} = useResponsive()
   const { data: courses, isLoading: isCourseLoading } =
     useGetAllCourseQuery(undefined);
   const { data: faculty, isLoading: isFacultyLoading } =
@@ -69,10 +69,10 @@ const Home = () => {
             inset: "0",
             display: "flex",
             alignItems: "center",
-            paddingLeft: isMobile?"5px":"100px",
+            paddingLeft: isMobile?"5px":"120px",
           }}
         >
-          <Flex vertical gap={16} style={{}}>
+          <Flex vertical gap={isMobile?0:16} style={{}}>
             <p
               style={{
                 color: "white",
@@ -80,7 +80,7 @@ const Home = () => {
                 paddingLeft: "10px",
                 fontWeight: "600",
                 fontFamily: "serif",
-                fontSize:isMobile?"26px":"35px"
+                fontSize:isMobile?"26px":"40px"
               }}
             >
               Build Your Future Excellence <br />
@@ -92,13 +92,13 @@ const Home = () => {
                 marginLeft: "5px",
                 borderRadius: "3px",
                 border: "none",
-                padding: isMobile?"6px 12px":"6px 26px",
+                padding: isMobile?"4px 12px":"6px 26px",
                 fontFamily: "serif",
                 background: "#c28514",
                 color: "white",
                 fontWeight: "600",
-                letterSpacing: "2px",
-                fontSize: isMobile?"                                                   ":"18px",
+                letterSpacing: isMobile?".7px":"2px",
+                fontSize: isMobile?"13px":"18px",
               }}
             >
               Learn More
@@ -110,9 +110,9 @@ const Home = () => {
       {/* Count of ingredients */}
 
       <div
-        style={{ margin: "100px 0", display: "flex", justifyContent: "center" }}
+        style={{ margin: isMobile?"60px 0 80px 0" :" 100px 0 150px 0", display: "flex", justifyContent: "center" }}
       >
-        <Row gutter={50}>
+        <Row gutter={isMobile?[10,10]:isTablet?50:70}>
           {info.map((item) => (
             <Col xs={12} sm={12} md={6} lg={6} style={{}}>
               <Flex
@@ -120,7 +120,7 @@ const Home = () => {
                 justify="center"
                 gap={20}
                 style={{
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+                 boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                   padding: "16px 40px",
                 }}
               >
@@ -128,7 +128,7 @@ const Home = () => {
                   <img src={item.image} style={{ height: "100%" }} alt="" />
                 </figure>
                 <Flex vertical gap={4} style={{}}>
-                  <span style={{ fontWeight: "600", fontSize: "25px" }}>
+                  <span style={{ fontWeight: "600", fontSize: isMobile?"18px": "25px" }}>
                     <CountUp
                       start={item.startValue}
                       end={item.quantity}
@@ -140,7 +140,7 @@ const Home = () => {
                     style={{
                       fontFamily: "serif",
                       whiteSpace: "nowrap",
-                      fontSize: "15px",
+                      fontSize: isMobile?"11px" :"15px",
                     }}
                   >
                     {item.title}
@@ -158,7 +158,6 @@ const Home = () => {
         style={{
           background: "linear-gradient(135deg, #f8fafc, #eef2f7)",
           borderRadius: "16px",
-          padding: "30px 0",
           boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
         }}
       >
@@ -231,8 +230,9 @@ const Home = () => {
           <Flex
         vertical
         justify="center"
+        align="center"
         gap={30}
-        style={{ width: isMobile?"100%":"75%", margin: "40px auto", alignItems: "center" }}
+        style={{ width: isMobile?"100%":"75%", margin: "40px auto",}}
       >
         <span
           style={{ fontFamily: "emoji", fontWeight: "600", fontSize: "24px" }}
@@ -245,13 +245,15 @@ const Home = () => {
             color: "#6c6a6a",
             fontWeight: "400",
             fontFamily: "revert",
+            textAlign:"center"
           }}
         >
           Exlore our top-rated Courses to understand better and choose our
           services
         </span>
         
-          {
+         
+             {
             <Swiper
               slidesPerView={5.2}
               spaceBetween={14}
@@ -266,7 +268,7 @@ const Home = () => {
               }}
               breakpoints={{
                 0: {
-                  slidesPerView: 1.5, // mobile → swipe
+                  slidesPerView: 1.2, // mobile → swipe
                 },
                 768: {
                   slidesPerView: 4, // tablet
@@ -278,7 +280,7 @@ const Home = () => {
               modules={[Pagination, Autoplay]}
               className="mySwiper"
               style={{
-                width: "100%",
+                width: isMobile?"80%":"100%",
                 height: "auto",
                 display: "flex",
                 flexDirection: "column",
@@ -303,7 +305,7 @@ const Home = () => {
                     return (
                       <SwiperSlide
                         key={`${item._id} - ${index}`}
-                        style={{ height: "auto", display: "flex",  }}
+                        style={{ height: "auto", display: "flex"  }}
                       >
                         <Card
                           bodyStyle={{ padding: "8px", height: "100%" }}
@@ -342,7 +344,7 @@ const Home = () => {
                             <Flex
                               vertical
                               style={{
-                                padding: "5px 14px",
+                                padding: "5px 3px",
                                 flex: 1,
                                 justifyContent: "space-between",
                               }}
@@ -356,22 +358,24 @@ const Home = () => {
                               <span style={{ fontWeight: "bolder" }}>
                                 4 Years
                               </span>
-                              <span style={{ color: "#6d6565" }}>
+                              <span style={{ color: "#6d6565", fontSize:isMobile?"11px":"" }}>
                                 Learn more and make success to gather knowledge
                                 with research.
                               </span>
                               <p>
-                                <Button
+                                <button
                                   style={{
                                     width: "",
                                     borderRadius: "4px",
                                     background: "#db930d",
                                     color: "#ffffff",
+                                    fontSize:isMobile?"12px":"",
+                                    padding:isMobile?" 6px":"8px 12px",
+                                    border: "none"
                                   }}
                                 >
-                                  {" "}
                                   View Course
-                                </Button>
+                                </button>
                               </p>
                             </Flex>
                           </Flex>
@@ -383,6 +387,7 @@ const Home = () => {
               )}
             </Swiper>
           }
+          
         
       </Flex>
       
