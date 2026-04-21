@@ -61,6 +61,13 @@
 
 
 
+.mySwiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+.mySwiper {
+    --swiper-theme-color: #94979a;
+}
+
 /* =========================
    GOOGLE FONT IMPORT
    ⚠️ MUST BE SINGLE LINE

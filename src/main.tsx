@@ -7,14 +7,17 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./features/store.ts";
 import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "sonner";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
+      <ParallaxProvider>
       <PersistGate loading = {null} persistor={persistor}>
         <RouterProvider router={router}></RouterProvider>
       </PersistGate>
       <Toaster />
+      </ParallaxProvider>
     </Provider>
   </StrictMode>
 );

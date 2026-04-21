@@ -10,6 +10,7 @@ import { facultyPaths } from "./facultyRoutes";
 import { studentPaths } from "./studentRoutes";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import ChangePassword from "../pages/ChangePassword";
+import MainLayout from "../components/layout/MainLayout";
 
 const router = createBrowserRouter([
     {
@@ -33,17 +34,17 @@ const router = createBrowserRouter([
     {
         path:'/admin',
         // element:<AdminLayout></AdminLayout>,
-        element:<ProtectedRoute role="admin"><App></App></ProtectedRoute>,
+        element:<ProtectedRoute role="admin"><MainLayout></MainLayout></ProtectedRoute>,
         children: RoutesGenerator(adminPaths)
     },
     {
         path:'/faculty',
-        element:<ProtectedRoute role="faculty"><App></App></ProtectedRoute>,
+        element:<ProtectedRoute role="faculty"><MainLayout></MainLayout></ProtectedRoute>,
         children:RoutesGenerator(facultyPaths)
     },
     {
         path: '/student',
-        element:<ProtectedRoute role="student"><App></App></ProtectedRoute>,
+        element:<ProtectedRoute role="student"><MainLayout></MainLayout></ProtectedRoute>,
         children: RoutesGenerator(studentPaths)
     },
     {

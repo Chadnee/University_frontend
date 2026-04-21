@@ -1,10 +1,11 @@
-import MainLayout from "./components/layout/MainLayout";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
 import './index.css'
+import Home from "./pages/Home/Home";
 
 const App = () => {
   return <ProtectedRoute role={undefined}>
-        <MainLayout></MainLayout>
+       <Home></Home>
+        {/* <MainLayout></MainLayout> */}
   </ProtectedRoute>
 };
 

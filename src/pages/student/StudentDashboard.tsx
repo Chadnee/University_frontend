@@ -22,24 +22,10 @@ import { Pagination } from 'swiper/modules';
 import DashboardRightSideCol from "./DashboardRightCol";
 import { IoMdFlask } from "react-icons/io";
 import { AiOutlineGroup } from "react-icons/ai";
-import { buttonBgColor, classImageArray, skills } from "../constants/global";
+import { buttonBgColor, classImageArray, getDataClass, skills } from "../constants/global";
 import { Rating, RoundedStar } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
-
-
-
-const getDataClass =<T,>(data: T[]=[])=> {
-     if (!data.length) return []
-     const result:T[] = [];
-     let i = 0;
-
-     while (result.length < 4) {
-      result.push(data[i % data.length]);
-      i++;
-     }
-     return result
-}
 
 const StudentDashboard = () => {
   const ratingStyles = {

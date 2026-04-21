@@ -5,6 +5,15 @@ import { RiReactjsLine } from "react-icons/ri";
 import { FaQrcode } from "react-icons/fa6";
 import { TbBrandMongodb, TbBrandTypescript } from "react-icons/tb";
 import type { TFaculty, TName, TStudent } from "../../types/userManagementTypes";
+import graduationCap from '../../assets/images/graduation cap.png'
+import bag from '../../assets/images/bag.png'
+import books from '../../assets/images/books.png'
+import cup from '../../assets/images/cup.png'
+import malefaculty1 from '../../assets/images/malefaculty1.png' 
+import malefaculty2 from '../../assets/images/malefaculty2.png' 
+import femalefaculty1 from '../../assets/images/femalefaculty1.png' 
+import femalefaculty2 from '../../assets/images/femalefaculty2.png' 
+
 export const monthNames = [
   "January",
   "February",
@@ -206,6 +215,30 @@ export type TOption = {
   label: string;
 };
 
+
+// Get custome image one by ony
+export const getDataClass =<T,>(data: T[]=[])=> {
+     if (!data.length) return []
+     const result:T[] = [];
+     let i = 0;
+
+     while (result.length < 4) {
+      result.push(data[i % data.length]);
+      i++;
+     }
+     return result
+}
+
+export const getDataClassForAll = <T,>(data: T[] = []) => {
+  return data;
+};
+
+export const maleGenderImageArray = [
+   malefaculty1 , malefaculty2
+]
+export const femaleGenderImageArray = [
+   femalefaculty1 , femalefaculty2  
+]
 export const classImageArray = [
   "https://plus.unsplash.com/premium_photo-1661963290501-4c1d7a095c0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   "https://media.istockphoto.com/id/1376134616/photo/focus-on-girl-young-school-kids-in-uniform-applauding-or-clapping-at-classroom-concept-of.webp?a=1&b=1&s=612x612&w=0&k=20&c=ONtFuVNgV0iUSnHLY_EB9b5HwlRBcchCNBA4oHiuFqQ=",
@@ -290,6 +323,37 @@ export const skills = [
   },
 
 ];
+
+export const info = [
+   {
+      image: graduationCap,
+      quantity: 20000,
+      startValue:1000,
+      title: "Students Enrolled",
+      sign:"+"
+   },
+   {
+      image: bag,
+      quantity: 500,
+      startValue:50,
+      title: "Expert Faculty",
+      sign:"+"
+   },
+   {
+      image: books,
+      quantity: 150,
+      startValue:10,
+      title: "Courses Offered ",
+      sign:"+"
+   },
+   {
+      image: cup,
+      quantity: 95,
+      startValue:1,
+      title: "Success Rate",
+      sign:"%"
+   },
+]
 
 
 
