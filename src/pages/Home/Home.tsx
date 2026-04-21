@@ -5,6 +5,7 @@ import { verifyToken } from "../../utils/verifyToken";
 import { ParallaxBanner } from "react-scroll-parallax";
 import { Button, Card, Col, Flex, Row, Spin } from "antd";
 import CountUp from "react-countup";
+import banner from "../../assets/images/banner.jpg"
 import {
   classImageArray,
   femaleGenderImageArray,
@@ -51,7 +52,7 @@ const Home = () => {
     <div style={{padding:isMobile?"":""}}>
       {/* parallax banner */}
       <ParallaxBanner
-        layers={[{ image: "/src/assets/images/banner.jpg", speed: -30 }]}
+        layers={[{ image: banner, speed: -30 }]}
         style={{ height: "100vh" }}
       >
         <div
@@ -540,7 +541,7 @@ const Home = () => {
       
         <div style={{width:"100%", height:isMobile?"600px":"300px"}}>
            <ParallaxBanner
-        layers={[{ image: "/src/assets/images/banner.jpg", speed: -20 }]}
+        layers={[{ image: banner, speed: -20 }]}
         style={{ height: "100%", width:"100%",  objectFit:"cover", objectPosition:'top' }}>
     {/* ✅ Dark Gradient Overlay */}
     <div
