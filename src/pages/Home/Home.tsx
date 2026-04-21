@@ -53,7 +53,7 @@ const Home = () => {
       {/* parallax banner */}
       <ParallaxBanner
         layers={[{ image: banner, speed: -30 }]}
-        style={{ height: "100vh" }}
+        style={{ height:isMobile?"70vh": "100vh" }}
       >
         <div
           style={{
