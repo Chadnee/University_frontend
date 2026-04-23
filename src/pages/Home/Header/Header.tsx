@@ -1,0 +1,162 @@
+import { Flex } from "antd";
+import logo from "../../../assets/images/logo.png";
+import { useAppDispatch, useAppSelector } from "../../../features/hooks";
+import { logOut, selectCurrentToken, type TUser } from "../../../features/auth/authSlice";
+import { BsArrowCounterclockwise } from "react-icons/bs";
+import { HiAcademicCap} from "react-icons/hi2";
+import { RiUserAddLine } from "react-icons/ri";
+import { FaFacebookF, FaGripfire, FaInstagram, FaTwitter } from "react-icons/fa6";
+import { LuSearch } from "react-icons/lu";
+import { MdOutlineEmail } from "react-icons/md";
+import { IoIosCall } from "react-icons/io";
+import { TiSocialLinkedin } from "react-icons/ti";
+import useResponsive from "../../../hooks/useResponsive";
+import { Link } from "react-router-dom";
+import { verifyToken } from "../../../utils/verifyToken";
+
+const Header = () => {
+    const {isMobile} = useResponsive();
+
+  const token = useAppSelector(selectCurrentToken);
+
+  const dispatch = useAppDispatch()
+  const handleLogout = () => {
+    dispatch(logOut())
+  }
+
+  let user;
+
+   if (token) {
+      user = verifyToken(token);
+      // console.log(user);
+    }
+
+  return (
+    <div style={{}}>
+         {
+            !isMobile && <div style={{background:"#000000", color:"#eff4f0", position:"fixed", top:0, width:"100%", left:0, right:"0",zIndex:"1000" }}>
+                 <Flex align="center" justify="space-between" style={{padding:"10px 40px", fontSize:"12px"}}>
+                    <Flex align="center" justify="center" gap={30}>
+                       <Flex gap={3} align="center">
+                           <MdOutlineEmail style={{fontSize:"14px"}}></MdOutlineEmail><span> info@techno.edu.ac.bd</span>
+                       </Flex>
+                       <Flex gap={3} align="center">
+                           <IoIosCall style={{fontSize:"14px"}}></IoIosCall><span>+880 1234-567890</span>
+                       </Flex>
+                    </Flex>
+                    <Flex align="center" justify="center" gap={60}>
+                         <Flex align="center" justify="center" gap={10}>
+                             <span>Students</span>
+                             <span>|</span>
+                             <span>Faculty</span>
+                             <span>|</span>
+                             <span>Alumni</span>
+                             <span>|</span>
+                             <span>Career</span>
+                             <span>|</span>
+                             <span>News & Events</span>
+                         </Flex>
+                         <Flex align="center" justify="center" gap={14}>
+                              <FaFacebookF></FaFacebookF>
+                              <FaTwitter></FaTwitter>
+                              <TiSocialLinkedin style={{fontSize:"17px"}}></TiSocialLinkedin>
+                              <FaInstagram></FaInstagram>
+                         </Flex>
+                    </Flex>
+                 </Flex>
+              </div>
+         }
+         
+         <div
+      style={{
+        position: "fixed",
+        top: 37.5,
+        zIndex: 1000,
+        left: 30,
+        right: 30,
+        background: "rgba(255, 255, 255, 0.30)", // transparent white
+        backdropFilter: "blur(12px)", // main glass effect
+        WebkitBackdropFilter: "blur(12px)", // for Safari support
+
+        borderBottom: "1px solid rgba(255, 255, 255, 0.2)",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+        borderRadius: "10px",
+      }}
+    >
+      <Flex
+        justify="space-between"
+        align="center"
+        style={{ padding: "10px 20px" }}
+      >
+        <Flex justify="center" align="center">
+          <img src={logo} style={{ height: "45px" }} alt="" />
+        </Flex>
+<div
+                style={{ borderLeft: "1.5px solid #b6b1b1", height: "30px" }}
+              ></div>
+        {!token ? (
+          <span
+            style={{
+              paddingRight: "40px",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+          >
+            Login
+          </span>
+        ) : (
+          <Flex justify="space-between" align="center" gap={40}>
+            {/* <span style={{paddingRight:"40px",  fontWeight:"600", cursor:"pointer"}}>Dashboard</span> */}
+            <Flex justify="center" align="center" gap={40} style={{fontSize:"15px",}}>
+              {/* <BsArrowCounterclockwise></BsArrowCounterclockwise> */}
+              <span style={{ cursor: "pointer" }}>Home</span>
+              <span style={{ cursor: "pointer" }}>About Us</span>
+              <Flex align="center" gap={4}>
+                <span>Academics</span>
+                <HiAcademicCap></HiAcademicCap>
+              </Flex>
+              <Flex align="center" gap={2}>
+                <span>Admission</span>
+                <RiUserAddLine></RiUserAddLine>
+              </Flex>
+              <Flex align="center" gap={2}>
+                <span>Campus Life</span>
+                <FaGripfire></FaGripfire>
+              </Flex>
+              <span style={{ cursor: "pointer" }}>Research</span>
+               <Flex align="center" gap={3} onClick={handleLogout} style={{cursor:'pointer'}}>
+                <span>Logout</span>
+                <BsArrowCounterclockwise></BsArrowCounterclockwise>
+              </Flex>
+            </Flex>
+              
+            <Flex align="center" gap={30}>
+              <div
+                style={{ borderLeft: "1.5px solid #c5c1c1", height: "30px" }}
+              ></div>
+              <LuSearch></LuSearch>
+              <Link to={`/${(user as TUser)?.role}/dashboard`}>
+                <button
+                style={{
+                  padding: "10px 24px",
+                  fontSize: "15px",
+                  borderRadius: "5px",
+                  background: "#db930d",
+                  border: "none",
+                  color: "#fff6f6",
+                }}
+              >
+                Dashboard
+              </button>
+              </Link>
+            </Flex>
+          </Flex>
+        )}
+      </Flex>
+    </div>
+    </div>
+    
+  );
+};
+
+export default Header;

@@ -30,6 +30,13 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import useResponsive from "../../hooks/useResponsive";
 import type { TFaculty } from "../../types/userManagementTypes";
+import Header from "./Header/Header";
+import { IoArrowForwardOutline } from "react-icons/io5";
+import { HiOutlineBuildingLibrary } from "react-icons/hi2";
+import { GiGraduateCap } from "react-icons/gi";
+import { MdPeopleAlt } from "react-icons/md";
+import { PiBookOpenTextBold } from "react-icons/pi";
+import AcademicFaculty from "./AcademicFaculty/AcademicFaculty";
 
 const Home = () => {
     const {isMobile, isTablet} = useResponsive()
@@ -50,15 +57,17 @@ const Home = () => {
 
   return (
     <div style={{padding:isMobile?"":""}}>
+     
+      <Header></Header>
       {/* parallax banner */}
       <ParallaxBanner
         layers={[{ image: banner, speed: -30 }]}
-        style={{ height:isMobile?"70vh": "100vh" }}
+        style={{ height:isMobile?"70vh": "100vh", marginTop:"20px" }}
       >
         <div
           style={{
             background:
-              "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, rgba(255,255,255,0.2) 70%, rgba(243, 226, 226, 0.4) 100%)",
+              "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, rgba(255,255,255,0.2) 70%, rgba(243, 226, 226, 0.4) 100%)",
             position: "absolute",
             inset: "0",
           }}
@@ -69,43 +78,132 @@ const Home = () => {
             inset: "0",
             display: "flex",
             alignItems: "center",
-            paddingLeft: isMobile?"5px":"120px",
+            padding: isMobile?"0 5px":"50px",
           }}
         >
-          <Flex vertical gap={isMobile?0:16} style={{}}>
-            <p
+          <Flex vertical justify="start" gap={isMobile?0:20} style={{color:"#ffffff", width:"600px"}}>
+            <Flex align="middle" justify="start" gap={10}>
+              <span style={{width:"25px"}}><hr style={{background:'#c28514', border:"none", height:"1.6px"}}/></span> 
+           <span style={{textTransform:"uppercase", fontSize:"11px"}}>Welcome to techno university</span>
+            </Flex>
+            <span
               style={{
                 color: "white",
-                borderLeft: "5px solid #9d0208",
-                paddingLeft: "10px",
+                // borderLeft: "5px solid #9d0208",
                 fontWeight: "600",
                 fontFamily: "serif",
-                fontSize:isMobile?"26px":"40px"
+                fontSize:isMobile?"26px":"45px"
               }}
             >
-              Build Your Future Excellence <br />
+              Build Your Future <br /><span style={{color:"#da920e"}}>Excellence</span> <br />
               With Learning Research and Innovation
-            </p>
-            <button
+            </span>
+            <span style={{fontSize:"13px"}}>Empowering minds, shaping futures, and driving innovation for a better tomorrow—where knowledge meets opportunity and ambition transforms into achievement.</span>
+             
+             <Flex align="center" justify="start" gap={30}>
+                <Flex align="center" gap={4} justify="center"
               style={{
                 width: "fit-content",
-                marginLeft: "5px",
-                borderRadius: "3px",
+                borderRadius: "5px",
                 border: "none",
-                padding: isMobile?"4px 12px":"6px 26px",
-                fontFamily: "serif",
+                padding: isMobile?"4px 12px":"10px 26px",
                 background: "#c28514",
                 color: "white",
-                fontWeight: "600",
-                letterSpacing: isMobile?".7px":"2px",
-                fontSize: isMobile?"13px":"18px",
+                fontSize: isMobile?"13px":"14px",
               }}
             >
-              Learn More
-            </button>
+              <span>Learn more</span> 
+              <IoArrowForwardOutline></IoArrowForwardOutline>
+            </Flex>
+                <Flex align="center" gap={5} justify="center"
+              style={{
+                width: "fit-content",
+                borderRadius: "5px",
+                border: "1.5px solid #ffffff",
+                padding: isMobile?"4px 12px":"10px 26px",
+                color: "white",
+                fontSize: isMobile?"13px":"14px",
+              }}
+            >
+              <span >Explore Campus</span> 
+              <HiOutlineBuildingLibrary style={{fontSize:"16px", fontWeight:"600"}}></HiOutlineBuildingLibrary>
+            </Flex>
+                
+             </Flex>
           </Flex>
         </div>
+
+        <div style={{position:"absolute", bottom:"20px", borderRadius: "10px", background: "rgba(29, 15, 15, 0.3)", // transparent white
+        backdropFilter: "blur(4px)", // main glass effect
+        WebkitBackdropFilter: "blur(12px)", // for Safari support
+        left: isMobile?"5px":"50px",
+        right: isMobile?"5px":"50px",
+           boxShadow: `
+      inset 0 0 10px rgba(255,255,255,0.05), 
+      0 10px 40px rgba(0,0,0,0.5), 
+      0 0 12px rgba(255,255,255,0.08)
+    `,
+        border:"2px solid rgba(255, 255, 255, 0.12)",
+        padding:"20px 20px"
+ }}>
+           <Flex align="center" justify="space-around" >
+               <Flex justify="center" gap={16} align="center" style={{color:'#ffffff'}}>
+                  <GiGraduateCap style={{fontSize:"35px", background:"rgba(255, 255, 255, 0.13)", 
+                    padding:"8px", borderRadius:"50%",   backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)"}}>
+                  </GiGraduateCap>
+                  <Flex vertical align="cenetr">
+                     <span style={{fontSize:"28px"}}>25+</span>
+                     <span style={{fontSize:"13px"}}>Years of Excellence</span>
+                  </Flex>
+               </Flex>
+               <div
+                style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}
+              ></div>
+               <Flex justify="center" gap={16} align="center" style={{color:'#ffffff'}}>
+                  <MdPeopleAlt style={{fontSize:"35px", background:"rgba(255, 255, 255, 0.13)", 
+                    padding:"8px", borderRadius:"50%",   backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)"}}>
+                  </MdPeopleAlt>
+                  <Flex vertical align="cenetr">
+                     <span style={{fontSize:"28px"}}>12+</span>
+                     <span style={{fontSize:"13px"}}>Students Enrolled</span>
+                  </Flex>
+               </Flex>
+               <div
+                style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}
+              ></div>
+               <Flex justify="center" gap={16} align="center" style={{color:'#ffffff'}}>
+                  <PiBookOpenTextBold style={{fontSize:"35px", background:"rgba(255, 255, 255, 0.13)", 
+                    padding:"8px", borderRadius:"50%",   backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)"}}>
+                  </PiBookOpenTextBold>
+                  <Flex vertical align="cenetr">
+                     <span style={{fontSize:"28px"}}>120+</span>
+                     <span style={{fontSize:"13px"}}>Faculties</span>
+                  </Flex>
+               </Flex>
+               <div
+                style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}
+              ></div>
+               <Flex justify="center" gap={16} align="center" style={{color:'#ffffff'}}>
+                  <GiGraduateCap style={{fontSize:"35px", background:"rgba(255, 255, 255, 0.13)", 
+                    padding:"8px", borderRadius:"50%",   backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)"}}>
+                  </GiGraduateCap>
+                  <Flex vertical align="cenetr">
+                     <span style={{fontSize:"28px"}}>25+</span>
+                     <span style={{fontSize:"13px"}}>Years of Excellence</span>
+                  </Flex>
+               </Flex>
+               <div
+                style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}
+              ></div>
+           </Flex>
+        </div>
       </ParallaxBanner>
+
+      <AcademicFaculty></AcademicFaculty>
 
       {/* Count of ingredients */}
 
@@ -268,7 +366,7 @@ const Home = () => {
               }}
               breakpoints={{
                 0: {
-                  slidesPerView: 1.2, // mobile → swipe
+                  slidesPerView: 1.5, // mobile → swipe
                 },
                 768: {
                   slidesPerView: 4, // tablet

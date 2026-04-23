@@ -13,6 +13,17 @@ import malefaculty1 from '../../assets/images/malefaculty1.png'
 import malefaculty2 from '../../assets/images/malefaculty2.png' 
 import femalefaculty1 from '../../assets/images/femalefaculty1.png' 
 import femalefaculty2 from '../../assets/images/femalefaculty2.png' 
+import gear from "../../assets/images/gear.png"
+import roboticArm from "../../assets/images/robotic arm.png"
+import microChip from "../../assets/images/microchip.png"
+import lightBulb from "../../assets/images/lightbulb.png"
+import buildings from "../../assets/images/buildings.png"
+import labFlask from "../../assets/images/lab-flask.png"
+import growthChart from "../../assets/images/growth chart.png"
+import aiBrain from "../../assets/images/ai-brain.png"
+import sheildLock from "../../assets/images/sheild lock.png"
+import iotChip from "../../assets/images/iot chip.png"
+import pallate from "../../assets/images/pallate.png"
 
 export const monthNames = [
   "January",
@@ -354,6 +365,97 @@ export const info = [
       sign:"%"
    },
 ]
+
+export const AcademicFaculties = [
+  {
+    id: 1,
+    name: "Faculty of Mechanical Engineering",
+    slug: "mechanical-engineering",
+    icon: gear, 
+    description: "Shaping innovative mechanical solutions for a sustainable future.",
+    cta: "Explore"
+  },
+  {
+    id: 2,
+    name: "Faculty of Robotics & Automation",
+    slug: "robotics-automation",
+    icon: roboticArm,
+    description: "Advancing robotics and automation for smarter tomorrow.",
+    cta: "Explore"
+  },
+  {
+    id: 3,
+    name: "Faculty of Computer Science",
+    slug: "computer-science",
+    icon: microChip,
+    description: "Empowering minds through computing, software, and emerging technologies.",
+    cta: "Explore"
+  },
+  {
+    id: 4,
+    name: "Faculty of Electrical Engineering",
+    slug: "electrical-engineering",
+    icon: lightBulb,
+    description: "Driving innovation in electrical systems and renewable energy.",
+    cta: "Explore"
+  },
+  {
+    id: 5,
+    name: "Faculty of Civil Engineering",
+    slug: "civil-engineering",
+    icon: buildings,
+    description: "Building resilient infrastructure for better communities.",
+    cta: "Explore"
+  },
+  {
+    id: 6,
+    name: "Faculty of Applied Sciences",
+    slug: "applied-sciences",
+    icon: labFlask,
+    description: "Exploring the fundamentals of science for real-world applications.",
+    cta: "Explore"
+  },
+  {
+    id: 7,
+    name: "Faculty of Business Administration",
+    slug: "business-administration",
+    icon: growthChart,
+    description: "Developing leaders with strategic thinking and business acumen.",
+    cta: "Explore"
+  },
+  {
+    id: 8,
+    name: "Faculty of Artificial Intelligence",
+    slug: "artificial-intelligence",
+    icon: aiBrain,
+    description: "Building intelligent systems for a future driven by AI and data.",
+    cta: "Explore"
+  },
+  {
+    id: 9,
+    name: "Faculty of Cyber Security",
+    slug: "cyber-security",
+    icon: sheildLock,
+    description: "Securing digital futures through advanced cyber security education.",
+    cta: "Explore"
+  },
+  {
+    id: 10,
+    name: "Faculty of Internet of Things",
+    slug: "internet-of-things",
+    icon: iotChip,
+    description: "Connecting devices and systems for a smarter world.",
+    cta: "Explore"
+  },
+  {
+    id: 11,
+    name: "Faculty of Design & Innovation",
+    slug: "design-innovation",
+    icon: pallate,
+    description: "Inspiring creativity and innovation through design thinking.",
+    cta: "Explore"
+  }
+];
 
 
 
