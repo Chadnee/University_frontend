@@ -15,7 +15,7 @@ import {
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa6";
-import { LuSearch } from "react-icons/lu";
+import { LuLogIn, LuSearch } from "react-icons/lu";
 import { MdDashboardCustomize, MdOutlineEmail } from "react-icons/md";
 import { IoIosCall } from "react-icons/io";
 import { TiSocialLinkedin } from "react-icons/ti";
@@ -30,7 +30,7 @@ import { FaHome } from "react-icons/fa";
 import { IoFlask } from "react-icons/io5";
 
 const Header = () => {
-  const { isMobile} = useResponsive();
+  const { isMobile } = useResponsive();
   const [setOpen, isSetOpen] = useState(false);
 
   const token = useAppSelector(selectCurrentToken);
@@ -148,7 +148,7 @@ const Header = () => {
                   top: "0",
                 }}
               >
-                <Flex vertical style={{ color: "#fff", padding: "20px" }}>
+                <Flex vertical style={{ color: "#fff", padding: "30px 20px" }}>
                   <Flex justify="space-between" align="center">
                     <img src={whiteLogo} style={{ height: "50px" }} alt="" />
                     <span
@@ -159,81 +159,135 @@ const Header = () => {
                     </span>
                   </Flex>
 
-                  <Flex vertical gap={30} style={{ paddingTop: "45px" }}>
-                     <Flex align="center" gap={4}>
-                      <FaHome
-                        style={{ fontSize: "23px" }}
-                      ></FaHome>
-                      <span>Home</span>
-                    </Flex>
-                     <Flex align="center" gap={4}>
-                      <HiAcademicCap
-                        style={{ fontSize: "23px" }}
-                      ></HiAcademicCap>
-                      <span>About Us</span>
-                    </Flex>
-                    <Flex align="center" gap={4}>
-                      <HiAcademicCap
-                        style={{ fontSize: "23px" }}
-                      ></HiAcademicCap>
-                      <span>Academics</span>
-                    </Flex>
-                    <Flex align="center" gap={2}>
-                       <RiUserAddLine
-                        style={{ fontSize: "23px" }}
-                      ></RiUserAddLine>
-                      <span>Admission</span>
+                  {token ? (
+                    <div>
+                      <Flex vertical gap={30} style={{ paddingTop: "45px" }}>
+                        <Flex align="center" gap={4}>
+                          <FaHome style={{ fontSize: "23px" }}></FaHome>
+                          <span>Home</span>
+                        </Flex>
+                        <Flex align="center" gap={4}>
+                          <HiAcademicCap
+                            style={{ fontSize: "23px" }}
+                          ></HiAcademicCap>
+                          <span>About Us</span>
+                        </Flex>
+                        <Flex align="center" gap={4}>
+                          <HiAcademicCap
+                            style={{ fontSize: "23px" }}
+                          ></HiAcademicCap>
+                          <span>Academics</span>
+                        </Flex>
+                        <Flex align="center" gap={2}>
+                          <RiUserAddLine
+                            style={{ fontSize: "23px" }}
+                          ></RiUserAddLine>
+                          <span>Admission</span>
+                        </Flex>
+                        <Flex align="center" gap={2}>
+                          <FaGripfire style={{ fontSize: "23px" }}></FaGripfire>
+                          <span>Campus Life</span>
+                        </Flex>
+                        <Flex align="center" gap={2}>
+                          <IoFlask style={{ fontSize: "23px" }}></IoFlask>
+                          <span>Research</span>
+                        </Flex>
                       </Flex>
-                    <Flex align="center" gap={2}>
-                       <FaGripfire style={{ fontSize: "23px" }}></FaGripfire>
-                       <span>Campus Life</span>
-                     </Flex>
-                    <Flex align="center" gap={2}>
-                       <IoFlask style={{ fontSize: "23px" }}></IoFlask>
-                       <span>Research</span>
-                     </Flex>
-                  </Flex>
 
-                  <Flex vertical gap={20} style={{ paddingTop: "60px" }}>
-                    <Link to={`/${(user as TUser)?.role}/dashboard`}>
-                    <button
-                      style={{
-                        padding: "12px 24px",
-                        fontSize: "15px",
-                        borderRadius: "5px",
-                        background: "#ce8908",
-                        border: "none",
-                        color: "#fff6f6",
-                        width:"100%",
-                        display:"flex",
-                        justifyContent:'center',
-                        alignItems:"center",
-                        gap:"10px",
-                      }}
-                    >  <MdDashboardCustomize style={{fontSize:"26px"}}></MdDashboardCustomize>
-                      <span>Dashboard</span>
-                    </button>
-                  </Link>
-                    <Link to="">
-                    <button  onClick={handleLogout}
-                      style={{
-                        padding: "14px 24px",
-                        fontSize: "16px",
-                        borderRadius: "5px",
-                        background:"none",
-                        color: "#fff6f6",
-                        width:"100%",
-                        display:"flex",
-                        justifyContent:'center',
-                        alignItems:"center",
-                        gap:"10px",
-                        border: "1px solid #fff6f6",
-                      }}
-                    >  <BsArrowCounterclockwise style={{fontSize:"26px"}}></BsArrowCounterclockwise>
-                      <span>Log Out</span>
-                    </button>
-                  </Link>
-                  </Flex>
+                      <Flex vertical gap={20} style={{ paddingTop: "60px" }}>
+                        <Link to={`/${(user as TUser)?.role}/dashboard`}>
+                          <button
+                            style={{
+                              padding: "12px 24px",
+                              fontSize: "15px",
+                              borderRadius: "5px",
+                              background: "#ce8908",
+                              border: "none",
+                              color: "#fff6f6",
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              gap: "10px",
+                            }}
+                          >
+                            {" "}
+                            <MdDashboardCustomize
+                              style={{ fontSize: "26px" }}
+                            ></MdDashboardCustomize>
+                            <span>Dashboard</span>
+                          </button>
+                        </Link>
+                        <button
+                          onClick={handleLogout}
+                          style={{
+                            padding: "14px 24px",
+                            fontSize: "16px",
+                            borderRadius: "5px",
+                            background: "none",
+                            color: "#fff6f6",
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            gap: "10px",
+                            border: "1px solid #fff6f6",
+                          }}
+                        >
+                          {" "}
+                          <BsArrowCounterclockwise
+                            style={{ fontSize: "26px" }}
+                          ></BsArrowCounterclockwise>
+                          <span>Log Out</span>
+                        </button>
+                      </Flex>
+                    </div>
+                  ) : (
+                    <div>
+                      <Flex vertical gap={20} style={{ paddingTop: "45px" }}>
+                        <Flex align="center" gap={4}>
+                          <FaHome style={{ fontSize: "23px" }}></FaHome>
+                          <span>Home</span>
+                        </Flex>
+                        <Flex align="center" gap={4}>
+                          <HiAcademicCap
+                            style={{ fontSize: "23px" }}
+                          ></HiAcademicCap>
+                          <span>About Us</span>
+                        </Flex>
+                        <Flex align="center" gap={2}>
+                          <RiUserAddLine
+                            style={{ fontSize: "23px" }}
+                          ></RiUserAddLine>
+                          <span>Admission</span>
+                        </Flex>
+                      </Flex>
+                      <Link to="/login" style={{}}>
+                          <button
+                            style={{
+                              padding: "10px 24px",
+                              fontSize: "15px",
+                              borderRadius: "5px",
+                              background: "#ce8908",
+                              border: "none",
+                              color: "#fff6f6",
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              gap: "15px",
+                              marginTop:"50px"
+                            }}
+                          >
+                            {" "}
+                            <LuLogIn
+                              style={{ fontSize: "26px" }}
+                            ></LuLogIn>
+                            <span>Login</span>
+                          </button>
+                        </Link>
+                    </div>
+                  )}
                 </Flex>
               </div>
             )}
