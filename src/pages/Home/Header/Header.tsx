@@ -95,7 +95,7 @@ const Header = () => {
                 style={{ borderLeft: "1.5px solid #b6b1b1", height: "30px" }}
               ></div>
         {!token ? (
-          <span
+          <Link to="/login"
             style={{
               paddingRight: "40px",
               fontWeight: "600",
@@ -103,7 +103,7 @@ const Header = () => {
             }}
           >
             Login
-          </span>
+          </Link>
         ) : (
           <Flex justify="space-between" align="center" gap={40}>
             {/* <span style={{paddingRight:"40px",  fontWeight:"600", cursor:"pointer"}}>Dashboard</span> */}

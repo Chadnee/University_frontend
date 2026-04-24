@@ -4,7 +4,7 @@ import { useLoginMutation } from "../features/auth/authApi";
 import { useAppDispatch } from "../features/hooks";
 import { setUser, type TUser } from "../features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import AdmitForm from "./form/AdmitForm";
 import InputForm from "./form/InputForm";
@@ -15,7 +15,8 @@ const Login = () => {
   const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate(); //to implement redirect
-
+  const location = useLocation();
+  const from = location.state?.from?.pathName || "/"
   // console.log('data', data)
   // console.log('error', error)
 
@@ -40,8 +41,12 @@ const Login = () => {
     
      if(res.data.needsPasswordChange){
       navigate('/change-password');
-    } else {
-       navigate(`/${user.role}/dashboard`) //redirect dashboard according to role after loggin
+    } 
+    // else {
+    //    navigate(`/${user.role}/dashboard`) //redirect dashboard according to role after loggin
+    // }
+    else {
+       navigate(from, {replace: true}) //redirect dashboard according to role after loggin
     }
     // {id: 'stfhh', password: 'hjgjvfty'}
     } catch(err) {
