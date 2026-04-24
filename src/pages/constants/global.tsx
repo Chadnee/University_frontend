@@ -2,7 +2,7 @@ import type { BaseQueryApi } from "@reduxjs/toolkit/query";
 import type { TAcademicDepartment, TAcademicFaculty, TAcademicSemester } from "../../types/academicManagementTypes";
 import { DiJavascript } from "react-icons/di";
 import { RiReactjsLine } from "react-icons/ri";
-import { FaQrcode } from "react-icons/fa6";
+import { FaQrcode, FaTrophy } from "react-icons/fa6";
 import { TbBrandMongodb, TbBrandTypescript } from "react-icons/tb";
 import type { TFaculty, TName, TStudent } from "../../types/userManagementTypes";
 import graduationCap from '../../assets/images/graduation cap.png'
@@ -24,6 +24,10 @@ import aiBrain from "../../assets/images/ai-brain.png"
 import sheildLock from "../../assets/images/sheild lock.png"
 import iotChip from "../../assets/images/iot chip.png"
 import pallate from "../../assets/images/pallate.png"
+import { GiGraduateCap } from "react-icons/gi";
+import { MdPeopleAlt } from "react-icons/md";
+import { PiBookOpenTextBold } from "react-icons/pi";
+import type { IconType } from "react-icons/lib";
 
 export const monthNames = [
   "January",
@@ -225,6 +229,14 @@ export type TOption = {
   value: string;
   label: string;
 };
+
+export type TUniversityStats = {
+  id: number,
+  icon: IconType,
+  value: string,
+  label: string
+}
+
 
 
 // Get custome image one by ony
@@ -454,6 +466,33 @@ export const AcademicFaculties = [
     icon: pallate,
     description: "Inspiring creativity and innovation through design thinking.",
     cta: "Explore"
+  }
+];
+
+export const universityStats = [
+  {
+    id: 1,
+    icon: GiGraduateCap,
+    value: "25+",
+    label: "Years of Excellence"
+  },
+  {
+    id: 2,
+    icon: MdPeopleAlt ,
+    value: "12+",
+    label: "Students Enrolled"
+  },
+  {
+    id: 3,
+    icon: PiBookOpenTextBold,
+    value: "120+",
+    label: "Faculties"
+  },
+  {
+    id: 4,
+    icon: FaTrophy,
+    value: "98%",
+    label: "Success Rate"
   }
 ];
 

@@ -11,7 +11,9 @@ import {
   femaleGenderImageArray,
   info,
   maleGenderImageArray,
+  universityStats,
   type TCourse,
+  type TUniversityStats,
 } from "../constants/global";
 import campus from "../../assets/images/campus.png";
 import { useGetAllCourseQuery } from "../../features/admin/courseManagementApi";
@@ -33,10 +35,8 @@ import type { TFaculty } from "../../types/userManagementTypes";
 import Header from "./Header/Header";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { HiOutlineBuildingLibrary } from "react-icons/hi2";
-import { GiGraduateCap } from "react-icons/gi";
-import { MdPeopleAlt } from "react-icons/md";
-import { PiBookOpenTextBold } from "react-icons/pi";
 import AcademicFaculty from "./AcademicFaculty/AcademicFaculty";
+import React from "react";
 
 const Home = () => {
     const {isMobile, isTablet} = useResponsive()
@@ -62,7 +62,7 @@ const Home = () => {
       {/* parallax banner */}
       <ParallaxBanner
         layers={[{ image: banner, speed: -30 }]}
-        style={{ height:isMobile?"70vh": "100vh", marginTop:isMobile?"0":"20px"}}
+        style={{ height:isMobile?"100vh": "100vh", marginTop:isMobile?"0":"20px"}}
       >
         <div
           style={{
@@ -77,12 +77,12 @@ const Home = () => {
             position: "absolute",
             top: "50%",
             transform: "translateY(-50%)",
-            padding: isMobile?"0 5px":"0 50px",
+            padding: isMobile?"0 22px":"0 50px",
           }}
         >
-          <Flex vertical justify="start" gap={isMobile?0:20} style={{color:"#ffffff", width:"700px"}}>
+          <Flex vertical justify="start" gap={isMobile?20:20} style={{color:"#ffffff", width:isMobile?"":"700px"}}>
             <Flex align="middle" justify="start" gap={10}>
-              <span style={{width:"25px"}}><hr style={{background:'#c28514', border:"none", height:"1.6px"}}/></span> 
+              <span style={{width:isMobile?"18px":"25px"}}><hr style={{background:'#c28514', border:"none", height:"1.6px"}}/></span> 
            <span style={{textTransform:"uppercase", fontSize:"11px"}}>Welcome to techno university</span>
             </Flex>
             <span
@@ -91,21 +91,21 @@ const Home = () => {
                 // borderLeft: "5px solid #9d0208",
                 fontWeight: "600",
                 fontFamily: "serif",
-                fontSize:isMobile?"26px":"50px"
+                fontSize:isMobile?"35px":"50px"
               }}
             >
               Build Your Future <br /><span style={{color:"#da920e"}}>Excellence</span> <br />
               With Learning Research and Innovation
             </span>
-            <span style={{fontSize:"13px"}}>Empowering minds, shaping futures, and driving innovation for a better tomorrow—where knowledge meets opportunity and ambition transforms into achievement.</span>
+            <span style={{fontSize:isMobile?"12px":"13px"}}>Empowering minds, shaping futures, and driving innovation for a better tomorrow—where knowledge meets opportunity and ambition transforms into achievement.</span>
              
-             <Flex align="center" justify="start" gap={30}>
+             <Flex vertical={isMobile} align={isMobile?"start":"center"} justify="start" gap={isMobile?10:30}>
                 <Flex align="center" gap={4} justify="center"
               style={{
                 width: "fit-content",
                 borderRadius: "5px",
                 border: "none",
-                padding: isMobile?"4px 12px":"10px 26px",
+                padding: isMobile?"10px 28px":"10px 26px",
                 background: "#c28514",
                 color: "white",
                 fontSize: isMobile?"13px":"14px",
@@ -119,7 +119,7 @@ const Home = () => {
                 width: "fit-content",
                 borderRadius: "5px",
                 border: "1.5px solid #ffffff",
-                padding: isMobile?"4px 12px":"10px 26px",
+                padding: isMobile?"10px 20px":"10px 26px",
                 color: "white",
                 fontSize: isMobile?"13px":"14px",
               }}
@@ -131,8 +131,8 @@ const Home = () => {
              </Flex>
           </Flex>
         </div>
-
-        <div style={{position:"absolute", bottom:"20px", borderRadius: "10px", background: "rgba(29, 15, 15, 0.3)", // transparent white
+     
+        <div style={{position:"absolute", bottom:"20px", borderRadius: "10px", background:isMobile?"rgba(29, 15, 15, 0.9)" : " rgba(29, 15, 15, 0.3)", // transparent white
         backdropFilter: "blur(4px)", // main glass effect
         WebkitBackdropFilter: "blur(12px)", // for Safari support
         left: isMobile?"5px":"50px",
@@ -146,58 +146,30 @@ const Home = () => {
         padding:"20px 20px"
  }}>
            <Flex align="center" justify="space-around" >
-               <Flex justify="center" gap={16} align="center" style={{color:'#ffffff'}}>
-                  <GiGraduateCap style={{fontSize:"35px", background:"rgba(255, 255, 255, 0.13)", 
-                    padding:"8px", borderRadius:"50%",   backdropFilter: "blur(6px)",
-                    WebkitBackdropFilter: "blur(6px)"}}>
-                  </GiGraduateCap>
-                  <Flex vertical align="cenetr">
-                     <span style={{fontSize:"28px"}}>25+</span>
-                     <span style={{fontSize:"13px"}}>Years of Excellence</span>
+               {
+                 universityStats.map((item : TUniversityStats, index : number) => {
+                  const shortLabel = item.label.split(" ")[0]
+                  const Icon = item.icon
+                  return (
+                    <React.Fragment key={item.id} >
+                       <Flex vertical={isMobile} justify="center" gap={isMobile?8:16} align="center" style={{color:'#ffffff'}}>
+                  <Icon style={{fontSize:isMobile?"20px":"35px", background:"rgba(255, 255, 255, 0.13)", padding:"8px",
+                   borderRadius:"50%",  backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)"}}/>
+                  <Flex vertical align="center" gap={isMobile?8:0}>
+                     <span style={{fontSize:isMobile?"16px":"28px", fontWeight:"600"}}>{item.value}</span>
+                     <span style={{fontSize:isMobile?"12px":"16px", textAlign:'center'}}>{isMobile? shortLabel : item.label}</span>
                   </Flex>
                </Flex>
-               <div
-                style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}
-              ></div>
-               <Flex justify="center" gap={16} align="center" style={{color:'#ffffff'}}>
-                  <MdPeopleAlt style={{fontSize:"35px", background:"rgba(255, 255, 255, 0.13)", 
-                    padding:"8px", borderRadius:"50%",   backdropFilter: "blur(6px)",
-                    WebkitBackdropFilter: "blur(6px)"}}>
-                  </MdPeopleAlt>
-                  <Flex vertical align="cenetr">
-                     <span style={{fontSize:"28px"}}>12+</span>
-                     <span style={{fontSize:"13px"}}>Students Enrolled</span>
-                  </Flex>
-               </Flex>
-               <div
-                style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}
-              ></div>
-               <Flex justify="center" gap={16} align="center" style={{color:'#ffffff'}}>
-                  <PiBookOpenTextBold style={{fontSize:"35px", background:"rgba(255, 255, 255, 0.13)", 
-                    padding:"8px", borderRadius:"50%",   backdropFilter: "blur(6px)",
-                    WebkitBackdropFilter: "blur(6px)"}}>
-                  </PiBookOpenTextBold>
-                  <Flex vertical align="cenetr">
-                     <span style={{fontSize:"28px"}}>120+</span>
-                     <span style={{fontSize:"13px"}}>Faculties</span>
-                  </Flex>
-               </Flex>
-               <div
-                style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}
-              ></div>
-               <Flex justify="center" gap={16} align="center" style={{color:'#ffffff'}}>
-                  <GiGraduateCap style={{fontSize:"35px", background:"rgba(255, 255, 255, 0.13)", 
-                    padding:"8px", borderRadius:"50%",   backdropFilter: "blur(6px)",
-                    WebkitBackdropFilter: "blur(6px)"}}>
-                  </GiGraduateCap>
-                  <Flex vertical align="cenetr">
-                     <span style={{fontSize:"28px"}}>25+</span>
-                     <span style={{fontSize:"13px"}}>Years of Excellence</span>
-                  </Flex>
-               </Flex>
-               <div
-                style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}
-              ></div>
+               {
+                 index !== universityStats.length - 1 && !isMobile &&
+                 <div style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}></div>
+               }
+                 </React.Fragment>
+                  )
+                 })
+               }
+               
            </Flex>
         </div>
       </ParallaxBanner>
