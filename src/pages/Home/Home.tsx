@@ -62,7 +62,7 @@ const Home = () => {
       {/* parallax banner */}
       <ParallaxBanner
         layers={[{ image: banner, speed: -30 }]}
-        style={{ height:isMobile?"70vh": "100vh", marginTop:"20px" }}
+        style={{ height:isMobile?"70vh": "100vh", marginTop:isMobile?"0":"20px"}}
       >
         <div
           style={{
@@ -75,10 +75,9 @@ const Home = () => {
         <div
           style={{
             position: "absolute",
-            inset: "0",
-            display: "flex",
-            alignItems: "center",
-            padding: isMobile?"0 5px":"50px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            padding: isMobile?"0 5px":"0 50px",
           }}
         >
           <Flex vertical justify="start" gap={isMobile?0:20} style={{color:"#ffffff", width:"700px"}}>
