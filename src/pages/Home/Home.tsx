@@ -86,7 +86,7 @@ const Home = () => {
             vertical
             justify="start"
             gap={isMobile ? 20 : 20}
-            style={{ color: "#ffffff", width: isMobile ? "" : "700px" }}
+            style={{ color: "#ffffff", width: isMobile ? "" : "700px", marginTop:isMobile?"-60px" : " "}}
           >
             <Flex align="middle" justify="start" gap={10}>
               <span style={{ width: isMobile ? "18px" : "25px" }}>
