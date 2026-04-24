@@ -59,8 +59,8 @@ const Header = () => {
                          <Flex align="center" justify="center" gap={14}>
                               <FaFacebookF></FaFacebookF>
                               <FaTwitter></FaTwitter>
-                              <TiSocialLinkedin style={{fontSize:"17px"}}></TiSocialLinkedin>
-                              <FaInstagram></FaInstagram>
+                              <TiSocialLinkedin style={{fontSize:"19px"}}></TiSocialLinkedin>
+                              <FaInstagram style={{fontSize:"14px"}}></FaInstagram>
                          </Flex>
                     </Flex>
                  </Flex>
@@ -86,7 +86,7 @@ const Header = () => {
       <Flex
         justify="space-between"
         align="center"
-        style={{ padding: "10px 20px" }}
+        style={{ padding: "15px 20px" }}
       >
         <Flex justify="center" align="center">
           <img src={logo} style={{ height: "45px" }} alt="" />
@@ -107,26 +107,26 @@ const Header = () => {
         ) : (
           <Flex justify="space-between" align="center" gap={40}>
             {/* <span style={{paddingRight:"40px",  fontWeight:"600", cursor:"pointer"}}>Dashboard</span> */}
-            <Flex justify="center" align="center" gap={40} style={{fontSize:"15px",}}>
+            <Flex justify="center" align="center" gap={40} style={{fontSize:"17px",}}>
               {/* <BsArrowCounterclockwise></BsArrowCounterclockwise> */}
               <span style={{ cursor: "pointer" }}>Home</span>
               <span style={{ cursor: "pointer" }}>About Us</span>
               <Flex align="center" gap={4}>
                 <span>Academics</span>
-                <HiAcademicCap></HiAcademicCap>
+                <HiAcademicCap style={{fontSize:"23px",}}></HiAcademicCap>
               </Flex>
               <Flex align="center" gap={2}>
                 <span>Admission</span>
-                <RiUserAddLine></RiUserAddLine>
+                <RiUserAddLine style={{fontSize:"23px",}}></RiUserAddLine>
               </Flex>
               <Flex align="center" gap={2}>
                 <span>Campus Life</span>
-                <FaGripfire></FaGripfire>
+                <FaGripfire style={{fontSize:"23px",}}></FaGripfire>
               </Flex>
               <span style={{ cursor: "pointer" }}>Research</span>
                <Flex align="center" gap={3} onClick={handleLogout} style={{cursor:'pointer'}}>
                 <span>Logout</span>
-                <BsArrowCounterclockwise></BsArrowCounterclockwise>
+                <BsArrowCounterclockwise style={{fontSize:"23px",}}></BsArrowCounterclockwise>
               </Flex>
             </Flex>
               
@@ -134,7 +134,7 @@ const Header = () => {
               <div
                 style={{ borderLeft: "1.5px solid #c5c1c1", height: "30px" }}
               ></div>
-              <LuSearch></LuSearch>
+              <LuSearch style={{fontSize:"25px",}}></LuSearch>
               <Link to={`/${(user as TUser)?.role}/dashboard`}>
                 <button
                 style={{

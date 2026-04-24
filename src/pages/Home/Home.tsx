@@ -81,7 +81,7 @@ const Home = () => {
             padding: isMobile?"0 5px":"50px",
           }}
         >
-          <Flex vertical justify="start" gap={isMobile?0:20} style={{color:"#ffffff", width:"600px"}}>
+          <Flex vertical justify="start" gap={isMobile?0:20} style={{color:"#ffffff", width:"700px"}}>
             <Flex align="middle" justify="start" gap={10}>
               <span style={{width:"25px"}}><hr style={{background:'#c28514', border:"none", height:"1.6px"}}/></span> 
            <span style={{textTransform:"uppercase", fontSize:"11px"}}>Welcome to techno university</span>
@@ -92,7 +92,7 @@ const Home = () => {
                 // borderLeft: "5px solid #9d0208",
                 fontWeight: "600",
                 fontFamily: "serif",
-                fontSize:isMobile?"26px":"45px"
+                fontSize:isMobile?"26px":"50px"
               }}
             >
               Build Your Future <br /><span style={{color:"#da920e"}}>Excellence</span> <br />
