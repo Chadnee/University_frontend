@@ -5,7 +5,7 @@ import { verifyToken } from "../../utils/verifyToken";
 import { ParallaxBanner } from "react-scroll-parallax";
 import { Card, Col, Flex, Row, Spin } from "antd";
 import CountUp from "react-countup";
-import banner from "../../assets/images/banner.jpg"
+import banner from "../../assets/images/banner.jpg";
 import {
   classImageArray,
   femaleGenderImageArray,
@@ -39,7 +39,7 @@ import AcademicFaculty from "./AcademicFaculty/AcademicFaculty";
 import React from "react";
 
 const Home = () => {
-    const {isMobile, isTablet} = useResponsive()
+  const { isMobile, isTablet } = useResponsive();
   const { data: courses, isLoading: isCourseLoading } =
     useGetAllCourseQuery(undefined);
   const { data: faculty, isLoading: isFacultyLoading } =
@@ -54,15 +54,17 @@ const Home = () => {
     user = verifyToken(token);
     // console.log(user);
   }
-
+  const text = "Empowering minds, shaping futures, and driving innovation for a better tomorrow—where knowledge meets opportunity and ambition transforms into achievement.";
   return (
-    <div style={{padding:isMobile?"":""}}>
-     
+    <div style={{ padding: isMobile ? "" : "" }}>
       <Header></Header>
       {/* parallax banner */}
       <ParallaxBanner
         layers={[{ image: banner, speed: -30 }]}
-        style={{ height:isMobile?"100vh": "100vh", marginTop:isMobile?"0":"20px"}}
+        style={{
+          height: isMobile ? "100vh" : "100vh",
+          marginTop: isMobile ? "0" : "20px",
+        }}
       >
         <div
           style={{
@@ -77,13 +79,28 @@ const Home = () => {
             position: "absolute",
             top: "50%",
             transform: "translateY(-50%)",
-            padding: isMobile?"0 22px":"0 50px",
+            padding: isMobile ? "0 22px" : "0 50px",
           }}
         >
-          <Flex vertical justify="start" gap={isMobile?20:20} style={{color:"#ffffff", width:isMobile?"":"700px"}}>
+          <Flex
+            vertical
+            justify="start"
+            gap={isMobile ? 20 : 20}
+            style={{ color: "#ffffff", width: isMobile ? "" : "700px" }}
+          >
             <Flex align="middle" justify="start" gap={10}>
-              <span style={{width:isMobile?"18px":"25px"}}><hr style={{background:'#c28514', border:"none", height:"1.6px"}}/></span> 
-           <span style={{textTransform:"uppercase", fontSize:"11px"}}>Welcome to techno university</span>
+              <span style={{ width: isMobile ? "18px" : "25px" }}>
+                <hr
+                  style={{
+                    background: "#c28514",
+                    border: "none",
+                    height: "1.6px",
+                  }}
+                />
+              </span>
+              <span style={{ textTransform: "uppercase", fontSize: "11px" }}>
+                Welcome to techno university
+              </span>
             </Flex>
             <span
               style={{
@@ -91,86 +108,141 @@ const Home = () => {
                 // borderLeft: "5px solid #9d0208",
                 fontWeight: "600",
                 fontFamily: "serif",
-                fontSize:isMobile?"35px":"50px"
+                fontSize: isMobile ? "29px" : "50px",
               }}
             >
-              Build Your Future <br /><span style={{color:"#da920e"}}>Excellence</span> <br />
+              Build Your Future <br />
+              <span style={{ color: "#da920e" }}>Excellence</span> <br />
               With Learning Research and Innovation
             </span>
-            <span style={{fontSize:isMobile?"12px":"13px"}}>Empowering minds, shaping futures, and driving innovation for a better tomorrow—where knowledge meets opportunity and ambition transforms into achievement.</span>
-             
-             <Flex vertical={isMobile} align={isMobile?"start":"center"} justify="start" gap={isMobile?10:30}>
-                <Flex align="center" gap={4} justify="center"
-              style={{
-                width: "fit-content",
-                borderRadius: "5px",
-                border: "none",
-                padding: isMobile?"10px 28px":"10px 26px",
-                background: "#c28514",
-                color: "white",
-                fontSize: isMobile?"13px":"14px",
-              }}
+            <span style={{ fontSize: isMobile ? "13px" : "13px", letterSpacing:isMobile?"1px":" " }}>
+              {isMobile
+                ? text.slice(
+                    0,
+                    text.toLowerCase().indexOf("tomorrow") + "tomorrow".length,
+                  )
+                : text}
+            </span>
+            <Flex
+              vertical={isMobile}
+              align={isMobile ? "start" : "center"}
+              justify="start"
+              gap={isMobile ? 10 : 30}
             >
-              <span>Learn more</span> 
-              <IoArrowForwardOutline></IoArrowForwardOutline>
+               <Flex
+                align="center"
+                gap={4}
+                justify="center"
+                style={{
+                  width: "fit-content",
+                  borderRadius: "5px",
+                  border: "none",
+                  padding: isMobile ? "10px 28px" : "10px 26px",
+                  background: "#c28514",
+                  color: "white",
+                  fontSize: isMobile ? "13px" : "14px",
+                }}
+              >
+                <span>Learn more</span>
+                <IoArrowForwardOutline></IoArrowForwardOutline>
+              </Flex>
+               {
+                !isMobile && <Flex
+                align="center"
+                gap={5}
+                justify="center"
+                style={{
+                  width: "fit-content",
+                  borderRadius: "5px",
+                  border: "1.5px solid #ffffff",
+                  padding: isMobile ? "10px 20px" : "10px 26px",
+                  color: "white",
+                  fontSize: isMobile ? "13px" : "14px",
+                }}
+              >
+                <span>Explore Campus</span>
+                <HiOutlineBuildingLibrary
+                  style={{ fontSize: "16px", fontWeight: "600" }}
+                ></HiOutlineBuildingLibrary>
+              </Flex>
+               }
             </Flex>
-                <Flex align="center" gap={5} justify="center"
-              style={{
-                width: "fit-content",
-                borderRadius: "5px",
-                border: "1.5px solid #ffffff",
-                padding: isMobile?"10px 20px":"10px 26px",
-                color: "white",
-                fontSize: isMobile?"13px":"14px",
-              }}
-            >
-              <span >Explore Campus</span> 
-              <HiOutlineBuildingLibrary style={{fontSize:"16px", fontWeight:"600"}}></HiOutlineBuildingLibrary>
-            </Flex>
-                
-             </Flex>
           </Flex>
         </div>
-     
-        <div style={{position:"absolute", bottom:"20px", borderRadius: "10px", background:isMobile?"rgba(29, 15, 15, 0.9)" : " rgba(29, 15, 15, 0.3)", // transparent white
-        backdropFilter: "blur(4px)", // main glass effect
-        WebkitBackdropFilter: "blur(12px)", // for Safari support
-        left: isMobile?"5px":"50px",
-        right: isMobile?"5px":"50px",
-           boxShadow: `
+
+        <div
+          style={{
+            position: "absolute",
+            bottom: "20px",
+            borderRadius: "10px",
+            background: " rgba(29, 15, 15, 0.3)", // transparent white
+            backdropFilter: "blur(4px)", // main glass effect
+            WebkitBackdropFilter: "blur(12px)", // for Safari support
+            left: isMobile ? "5px" : "50px",
+            right: isMobile ? "5px" : "50px",
+            boxShadow: `
       inset 0 0 10px rgba(255,255,255,0.05), 
       0 10px 40px rgba(0,0,0,0.5), 
       0 0 12px rgba(255,255,255,0.08)
     `,
-        border:"2px solid rgba(255, 255, 255, 0.12)",
-        padding:"20px 20px"
- }}>
-           <Flex align="center" justify="space-around" >
-               {
-                 universityStats.map((item : TUniversityStats, index : number) => {
-                  const shortLabel = item.label.split(" ")[0]
-                  const Icon = item.icon
-                  return (
-                    <React.Fragment key={item.id} >
-                       <Flex vertical={isMobile} justify="center" gap={isMobile?8:16} align="center" style={{color:'#ffffff'}}>
-                  <Icon style={{fontSize:isMobile?"20px":"35px", background:"rgba(255, 255, 255, 0.13)", padding:"8px",
-                   borderRadius:"50%",  backdropFilter: "blur(6px)",
-                    WebkitBackdropFilter: "blur(6px)"}}/>
-                  <Flex vertical align="center" gap={isMobile?8:0}>
-                     <span style={{fontSize:isMobile?"16px":"28px", fontWeight:"600"}}>{item.value}</span>
-                     <span style={{fontSize:isMobile?"12px":"16px", textAlign:'center'}}>{isMobile? shortLabel : item.label}</span>
+            border: "2px solid rgba(255, 255, 255, 0.12)",
+            padding: "20px 20px",
+          }}
+        >
+          <Flex align="center" justify="space-around">
+            {universityStats.map((item: TUniversityStats, index: number) => {
+              const shortLabel = item.label.split(" ")[0];
+              const Icon = item.icon;
+              return (
+                <React.Fragment key={item.id}>
+                  <Flex
+                    vertical={isMobile}
+                    justify="center"
+                    gap={isMobile ? 8 : 16}
+                    align="center"
+                    style={{ color: "#ffffff" }}
+                  >
+                    <Icon
+                      style={{
+                        fontSize: isMobile ? "20px" : "35px",
+                        background: "rgba(255, 255, 255, 0.13)",
+                        padding: "8px",
+                        borderRadius: "50%",
+                        backdropFilter: "blur(6px)",
+                        WebkitBackdropFilter: "blur(6px)",
+                      }}
+                    />
+                    <Flex vertical align="center" gap={isMobile ? 8 : 0}>
+                      <span
+                        style={{
+                          fontSize: isMobile ? "16px" : "28px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {item.value}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: isMobile ? "12px" : "16px",
+                          textAlign: "center",
+                        }}
+                      >
+                        {isMobile ? shortLabel : item.label}
+                      </span>
+                    </Flex>
                   </Flex>
-               </Flex>
-               {
-                 index !== universityStats.length - 1 && !isMobile &&
-                 <div style={{ borderLeft: "1.5px solid #8c8484", height: "50px" }}></div>
-               }
-                 </React.Fragment>
-                  )
-                 })
-               }
-               
-           </Flex>
+                  {index !== universityStats.length - 1 && !isMobile && (
+                    <div
+                      style={{
+                        borderLeft: "1.5px solid #8c8484",
+                        height: "50px",
+                      }}
+                    ></div>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </Flex>
         </div>
       </ParallaxBanner>
 
@@ -179,9 +251,13 @@ const Home = () => {
       {/* Count of ingredients */}
 
       <div
-        style={{ margin: isMobile?"60px 0 80px 0" :" 100px 0 150px 0", display: "flex", justifyContent: "center" }}
+        style={{
+          margin: isMobile ? "60px 0 80px 0" : " 100px 0 150px 0",
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
-        <Row gutter={isMobile?[10,10]:isTablet?50:70}>
+        <Row gutter={isMobile ? [10, 10] : isTablet ? 50 : 70}>
           {info.map((item) => (
             <Col xs={12} sm={12} md={6} lg={6} style={{}}>
               <Flex
@@ -189,7 +265,7 @@ const Home = () => {
                 justify="center"
                 gap={20}
                 style={{
-                 boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                   padding: "16px 40px",
                 }}
               >
@@ -197,7 +273,12 @@ const Home = () => {
                   <img src={item.image} style={{ height: "100%" }} alt="" />
                 </figure>
                 <Flex vertical gap={4} style={{}}>
-                  <span style={{ fontWeight: "600", fontSize: isMobile?"18px": "25px" }}>
+                  <span
+                    style={{
+                      fontWeight: "600",
+                      fontSize: isMobile ? "18px" : "25px",
+                    }}
+                  >
                     <CountUp
                       start={item.startValue}
                       end={item.quantity}
@@ -209,7 +290,7 @@ const Home = () => {
                     style={{
                       fontFamily: "serif",
                       whiteSpace: "nowrap",
-                      fontSize: isMobile?"11px" :"15px",
+                      fontSize: isMobile ? "11px" : "15px",
                     }}
                   >
                     {item.title}
@@ -232,10 +313,10 @@ const Home = () => {
       >
         <div
           style={{
-            width: isMobile?"100%":"70%",
+            width: isMobile ? "100%" : "70%",
             margin: "40px auto",
             display: "flex",
-            flexDirection:isMobile?"column":"row",
+            flexDirection: isMobile ? "column" : "row",
             justifyContent: "center",
             alignItems: "center",
             gap: "40px",
@@ -276,7 +357,7 @@ const Home = () => {
             <button
               style={{
                 width: "fit-content",
-                margin: isMobile?"5px 0 0 0":"5px 0 0 0 0",
+                margin: isMobile ? "5px 0 0 0" : "5px 0 0 0 0",
                 borderRadius: "3px",
                 border: "none",
                 padding: "6px 20px",
@@ -295,13 +376,13 @@ const Home = () => {
       </div>
 
       {/* Show Popular Course */}
-      
-          <Flex
+
+      <Flex
         vertical
         justify="center"
         align="center"
         gap={30}
-        style={{ width: isMobile?"100%":"75%", margin: "60px auto",}}
+        style={{ width: isMobile ? "100%" : "75%", margin: "60px auto" }}
       >
         <span
           style={{ fontFamily: "emoji", fontWeight: "600", fontSize: "24px" }}
@@ -314,159 +395,158 @@ const Home = () => {
             color: "#6c6a6a",
             fontWeight: "400",
             fontFamily: "revert",
-            textAlign:"center"
+            textAlign: "center",
           }}
         >
           Exlore our top-rated Courses to understand better and choose our
           services
         </span>
-        
-         
-             {
-            <Swiper
-              slidesPerView={5.2}
-              spaceBetween={14}
-             // loop={true} // 🔥 infinite loop
-              // autoplay={{
-              //   delay: 0,
-              //   disableOnInteraction: false,
-              // }}
-              //speed={6000}
-              pagination={{
-                clickable: true,
-              }}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1.5, // mobile → swipe
-                },
-                768: {
-                  slidesPerView: 4, // tablet
-                },
-                1024: {
-                  slidesPerView: 4.5, // desktop → show all nicely
-                },
-              }}
-              modules={[Pagination, Autoplay]}
-              className="mySwiper"
-              style={{
-                width: isMobile?"80%":"100%",
-                height: "auto",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              {!courses || isCourseLoading ? (
-                <Flex
-                  justify="center"
-                  align="center"
-                  style={{ height: "80vh" }}
-                >
-                  <div style={{ color: "#d48516" }}>
-                    <Spin />
-                  </div>
-                </Flex>
-              ) : (
-                <>
-                  {" "}
-                  {courses?.data?.map((item:TCourse, index: number) => {
-                    const image =
-                      classImageArray[index % classImageArray.length];
-                    return (
-                      <SwiperSlide
-                        key={`${item._id} - ${index}`}
-                        style={{ height: "auto", display: "flex"  }}
+
+        {
+          <Swiper
+            slidesPerView={5.2}
+            spaceBetween={14}
+            // loop={true} // 🔥 infinite loop
+            // autoplay={{
+            //   delay: 0,
+            //   disableOnInteraction: false,
+            // }}
+            //speed={6000}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1.5, // mobile → swipe
+              },
+              768: {
+                slidesPerView: 4, // tablet
+              },
+              1024: {
+                slidesPerView: 4.5, // desktop → show all nicely
+              },
+            }}
+            modules={[Pagination, Autoplay]}
+            className="mySwiper"
+            style={{
+              width: isMobile ? "80%" : "100%",
+              height: "auto",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {!courses || isCourseLoading ? (
+              <Flex justify="center" align="center" style={{ height: "80vh" }}>
+                <div style={{ color: "#d48516" }}>
+                  <Spin />
+                </div>
+              </Flex>
+            ) : (
+              <>
+                {" "}
+                {courses?.data?.map((item: TCourse, index: number) => {
+                  const image = classImageArray[index % classImageArray.length];
+                  return (
+                    <SwiperSlide
+                      key={`${item._id} - ${index}`}
+                      style={{ height: "auto", display: "flex" }}
+                    >
+                      <Card
+                        bodyStyle={{ padding: "8px", height: "100%" }}
+                        style={{ borderRadius: "5px", width: "100%" }}
                       >
-                        <Card
-                          bodyStyle={{ padding: "8px", height: "100%" }}
-                          style={{ borderRadius: "5px", width: "100%"
-         }}
-                        >
-                          <Flex vertical style={{ height: "100%" }}>
+                        <Flex vertical style={{ height: "100%" }}>
+                          <div
+                            style={{
+                              height: 140,
+                              position: "relative",
+                              width: "100%",
+                              overflow: "hidden",
+                              background: "#f5f5f5",
+                            }}
+                          >
+                            <img
+                              src={image}
+                              style={{
+                                height: "100%",
+                                width: "100%",
+                                objectFit: "cover",
+                                overflow: "hidden",
+                              }}
+                              alt="class"
+                            />
                             <div
                               style={{
-                                height: 140,
-                                position: "relative",
-                                width: "100%",
-                                overflow: "hidden",
-                                background: "#f5f5f5",
+                                background:
+                                  "linear-gradient(to right, rgba(174, 115, 88, 0.55), rgba(187, 124, 95, 0.08))",
+                                position: "absolute",
+                                inset: "0",
                               }}
-                            >
-                              <img
-                                src={image}
-                                style={{
-                                  height: "100%",
-                                  width: "100%",
-                                  objectFit: "cover",
-                                  overflow: "hidden",
-                                }}
-                                alt="class"
-                              />
-                              <div
-                                style={{
-                                  background:
-                                    "linear-gradient(to right, rgba(174, 115, 88, 0.55), rgba(187, 124, 95, 0.08))",
-                                  position: "absolute",
-                                  inset: "0",
-                                }}
-                              ></div>
-                            </div>
-                            <Flex
-                              vertical
+                            ></div>
+                          </div>
+                          <Flex
+                            vertical
+                            style={{
+                              padding: "5px 3px",
+                              flex: 1,
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <span style={{ fontWeight: "620" }}>
+                              <span style={{ paddingRight: "10px" }}>
+                                {item?.title}
+                              </span>{" "}
+                              <span>Code #{item?.code}</span>
+                            </span>
+                            <span style={{ fontWeight: "bolder" }}>
+                              4 Years
+                            </span>
+                            <span
                               style={{
-                                padding: "5px 3px",
-                                flex: 1,
-                                justifyContent: "space-between",
+                                color: "#6d6565",
+                                fontSize: isMobile ? "11px" : "",
                               }}
                             >
-                              <span style={{ fontWeight: "620" }}>
-                                <span style={{ paddingRight: "10px" }}>
-                                  {item?.title}
-                                </span>{" "}
-                                <span>Code #{item?.code}</span>
-                              </span>
-                              <span style={{ fontWeight: "bolder" }}>
-                                4 Years
-                              </span>
-                              <span style={{ color: "#6d6565", fontSize:isMobile?"11px":"" }}>
-                                Learn more and make success to gather knowledge
-                                with research.
-                              </span>
-                              <p>
-                                <button
-                                  style={{
-                                    width: "",
-                                    borderRadius: "4px",
-                                    background: "#db930d",
-                                    color: "#ffffff",
-                                    fontSize:isMobile?"12px":"",
-                                    padding:isMobile?" 6px":"8px 12px",
-                                    border: "none"
-                                  }}
-                                >
-                                  View Course
-                                </button>
-                              </p>
-                            </Flex>
+                              Learn more and make success to gather knowledge
+                              with research.
+                            </span>
+                            <p>
+                              <button
+                                style={{
+                                  width: "",
+                                  borderRadius: "4px",
+                                  background: "#db930d",
+                                  color: "#ffffff",
+                                  fontSize: isMobile ? "12px" : "",
+                                  padding: isMobile ? " 6px" : "8px 12px",
+                                  border: "none",
+                                }}
+                              >
+                                View Course
+                              </button>
+                            </p>
                           </Flex>
-                        </Card>
-                      </SwiperSlide>
-                    );
-                  })}
-                </>
-              )}
-            </Swiper>
-          }
-          
-        
+                        </Flex>
+                      </Card>
+                    </SwiperSlide>
+                  );
+                })}
+              </>
+            )}
+          </Swiper>
+        }
       </Flex>
-      
 
       {/* Show Expert Faculty */}
       <Flex
         vertical
         justify="center"
         gap={36}
-        style={{ width: isMobile?"100%":"70%", margin: "100px auto", alignItems: "center"}}
+        style={{
+          width: isMobile ? "100%" : "70%",
+          margin: "100px auto",
+          alignItems: "center",
+        }}
       >
         <span
           style={{ fontFamily: "emoji", fontWeight: "600", fontSize: "24px" }}
@@ -484,7 +564,7 @@ const Home = () => {
           Exlore our top-rated Courses to understand better and choose our
           services
         </span>
-        <div style={{ width: "100%", paddingTop:"20px" }}>
+        <div style={{ width: "100%", paddingTop: "20px" }}>
           {
             <Swiper
               slidesPerView={5.5}
@@ -516,8 +596,7 @@ const Home = () => {
                 height: "auto",
                 display: "flex",
                 flexDirection: "column",
-                overflow:"hidden",
-
+                overflow: "hidden",
               }}
             >
               {!faculty || isFacultyLoading ? (
@@ -532,7 +611,7 @@ const Home = () => {
                 </Flex>
               ) : (
                 <>
-                  {faculty?.data?.map((item : TFaculty, index: number) => {
+                  {faculty?.data?.map((item: TFaculty, index: number) => {
                     const image =
                       item.gender === "male"
                         ? maleGenderImageArray[
@@ -544,7 +623,11 @@ const Home = () => {
                     return (
                       <SwiperSlide
                         key={`${item._id} - ${index}`}
-                        style={{ height: "auto", display: "flex", overflow:"hidden" }}
+                        style={{
+                          height: "auto",
+                          display: "flex",
+                          overflow: "hidden",
+                        }}
                       >
                         <Card
                           bodyStyle={{ padding: "8px", height: "100%" }}
@@ -589,11 +672,17 @@ const Home = () => {
                                 flex: 1,
                               }}
                             >
-                              <span style={{ fontWeight: "600",fontSize:isMobile?"16px":"18px", textAlign:"center" }}>
-                                  {item?.name}
+                              <span
+                                style={{
+                                  fontWeight: "600",
+                                  fontSize: isMobile ? "16px" : "18px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {item?.name}
                               </span>
 
-                              <span style={{ color: "#6d6565",  }}>
+                              <span style={{ color: "#6d6565" }}>
                                 {item.designation}
                               </span>
                               <p></p>
@@ -602,7 +691,7 @@ const Home = () => {
                         </Card>
                       </SwiperSlide>
                     );
-                  }) }
+                  })}
                 </>
               )}
             </Swiper>
@@ -610,50 +699,89 @@ const Home = () => {
         </div>
       </Flex>
 
-
       {/* Count the acheivement */}
-      
-        <div style={{width:"100%", height:isMobile?"600px":"300px"}}>
-           <ParallaxBanner
-        layers={[{ image: banner, speed: -20 }]}
-        style={{ height: "100%", width:"100%",  objectFit:"cover", objectPosition:'top' }}>
-    {/* ✅ Dark Gradient Overlay */}
-    <div
-      style={{
-        position: "absolute",
-        inset: "0",
-        zIndex: 1,
-        background:
-          "linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45))",
-      }}
-    ></div>
 
-     <div style={{position:"absolute", inset:"0", zIndex:"2", color:"#fff", display:"flex",  alignItems:"center"}}>
-         <div style={{display:"flex", flexDirection:isMobile?"column":"row", width:"100%", justifyContent:"space-around", alignItems:"center", gap:isMobile?"30px":"0"}}>
-            {info.map((item) => <Flex vertical justify="center" align="center">
-                 {/* <span style={{fontSize:"50px", fontWeight:"600"}}><IoPeopleSharp></IoPeopleSharp></span> */}
-                 <span style={{color:"#db930d", fontSize:isMobile?"50px":"55px", fontWeight:"600"}}>
-                      <CountUp
+      <div style={{ width: "100%", height: isMobile ? "600px" : "300px" }}>
+        <ParallaxBanner
+          layers={[{ image: banner, speed: -20 }]}
+          style={{
+            height: "100%",
+            width: "100%",
+            objectFit: "cover",
+            objectPosition: "top",
+          }}
+        >
+          {/* ✅ Dark Gradient Overlay */}
+          <div
+            style={{
+              position: "absolute",
+              inset: "0",
+              zIndex: 1,
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45))",
+            }}
+          ></div>
+
+          <div
+            style={{
+              position: "absolute",
+              inset: "0",
+              zIndex: "2",
+              color: "#fff",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: isMobile ? "column" : "row",
+                width: "100%",
+                justifyContent: "space-around",
+                alignItems: "center",
+                gap: isMobile ? "30px" : "0",
+              }}
+            >
+              {info.map((item) => (
+                <Flex vertical justify="center" align="center">
+                  {/* <span style={{fontSize:"50px", fontWeight:"600"}}><IoPeopleSharp></IoPeopleSharp></span> */}
+                  <span
+                    style={{
+                      color: "#db930d",
+                      fontSize: isMobile ? "50px" : "55px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    <CountUp
                       start={item.startValue}
                       end={item.quantity}
                       duration={5}
-                    />{item.sign}
+                    />
+                    {item.sign}
                   </span>
-                 <span style={{fontSize:isMobile?"20px":"30px", fontWeight:"600", fontFamily: "'Montserrat'"}}>{item.title}</span>
-            </Flex> )}
-         </div>
-     </div>
+                  <span
+                    style={{
+                      fontSize: isMobile ? "20px" : "30px",
+                      fontWeight: "600",
+                      fontFamily: "'Montserrat'",
+                    }}
+                  >
+                    {item.title}
+                  </span>
+                </Flex>
+              ))}
+            </div>
+          </div>
+        </ParallaxBanner>
 
-      </ParallaxBanner>
-      
-            {/* <figure style={{height:"300px", width:'100%', position:"relative", padding:"0", margin:"0"}}>
+        {/* <figure style={{height:"300px", width:'100%', position:"relative", padding:"0", margin:"0"}}>
                 <img src="https://plus.unsplash.com/premium_photo-1728262247643-bb75be51c15b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 style={{height:"100%", width:'100%', objectFit:"cover", objectPosition:"top"}} alt="" />
 
             <div style={{position:"absolute", inset:"0"}}></div>
 
            </figure> */}
-        </div>
+      </div>
 
       <Link to={`/${(user as TUser)?.role}/dashboard`}>
         <button>Dashboard</button>
