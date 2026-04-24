@@ -148,7 +148,7 @@ const Header = () => {
                   top: "0",
                 }}
               >
-                <Flex vertical justify="space-between" style={{ color: "#fff", padding: "20px", height:"100%" }}>
+                <Flex vertical style={{ color: "#fff", padding: "20px" }}>
                   <Flex justify="space-between" align="center">
                     <img src={whiteLogo} style={{ height: "50px" }} alt="" />
                     <span
@@ -159,7 +159,7 @@ const Header = () => {
                     </span>
                   </Flex>
 
-                  <Flex vertical gap={30} style={{ paddingTop: "40px" }}>
+                  <Flex vertical gap={30} style={{ paddingTop: "45px" }}>
                      <Flex align="center" gap={4}>
                       <FaHome
                         style={{ fontSize: "23px" }}
@@ -194,7 +194,7 @@ const Header = () => {
                      </Flex>
                   </Flex>
 
-                  <Flex vertical gap={20}>
+                  <Flex vertical gap={20} style={{ paddingTop: "60px" }}>
                     <Link to={`/${(user as TUser)?.role}/dashboard`}>
                     <button
                       style={{
