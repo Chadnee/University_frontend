@@ -214,8 +214,8 @@ const Header = () => {
                       <span>Dashboard</span>
                     </button>
                   </Link>
-                    <Link to={`/${(user as TUser)?.role}/dashboard`}>
-                    <button
+                    <Link to="">
+                    <button  onClick={handleLogout}
                       style={{
                         padding: "14px 24px",
                         fontSize: "16px",
