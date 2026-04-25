@@ -108,7 +108,7 @@ const Home = () => {
                 // borderLeft: "5px solid #9d0208",
                 fontWeight: "600",
                 fontFamily: "serif",
-                fontSize: isMobile ? "35px" : "50px",
+                fontSize: isMobile ? "32px" : "50px",
                 marginTop:isMobile? "-10px":""
               }}
             >
@@ -176,7 +176,7 @@ const Home = () => {
         <div
           style={{
             position: "absolute",
-            bottom: "20px",
+            bottom: isMobile?"35px":"20px",
             borderRadius: "10px",
             background: " rgba(29, 15, 15, 0.3)", // transparent white
             backdropFilter: "blur(4px)", // main glass effect
