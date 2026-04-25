@@ -22,7 +22,7 @@ const UpdateDepartmentModal = ({departmentId, index}: {
      
      const bgColor = buttonColors[index % buttonColors.length];
    
-    console.log('dd',departmentId)
+    // console.log('dd',departmentId)
      const handleSubmit: SubmitHandler<TDepartmentFormData> = async(data:TDepartmentFormData) => {
       //const department_id = department_id.key
       const updatedData = {

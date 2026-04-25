@@ -12,12 +12,12 @@ const CreateCourse = () => {
     const {data:courses} = useGetAllCourseQuery(undefined);
     const [createCourse] = useCreateCourseMutation()
         
-    console.log(courses)
+    // console.log(courses)
     const preRequisiteCoursesOption = courses?.data?.map((item) =>({
         value: item._id,
         label: item.title
     }))
-    console.log(preRequisiteCoursesOption)
+    // console.log(preRequisiteCoursesOption)
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
           const toastId = toast.loading('Creating...')
@@ -31,7 +31,7 @@ const CreateCourse = () => {
             )): []
         }
 
-        console.log(courseData);
+        // console.log(courseData);
 
         try{
             const res = (await createCourse(courseData)) as TResponse<TCourse>;
@@ -41,7 +41,7 @@ const CreateCourse = () => {
                 toast.success('Semester created', {id: toastId})
             }
         } catch(error){
-            console.log(error)
+            // console.log(error)
             toast.error('Something went wrong', {id:toastId})
         }
     }

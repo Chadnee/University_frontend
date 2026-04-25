@@ -32,11 +32,11 @@ const CreateRegisteredSemester = () => {
       maxCredit: Number(data.maxCredit)
       
     } 
-    console.log(semesterData)
+    // console.log(semesterData)
 
     try{
        const res = (await createRegisteredSemester(semesterData)) as TResponse<any>
-       console.log(res);
+      //  console.log(res);
        if(res.error){
         toast.error(res.error.data.message, {id:toastId})
        } else {

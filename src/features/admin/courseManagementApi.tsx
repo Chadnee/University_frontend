@@ -79,7 +79,7 @@ const coureManagementApi = baseApi.injectEndpoints({
 
      CreateAssignFaculties: builder.mutation ({
         query: (args) => {
-            console.log(args) 
+            // console.log(args) 
             return{
             url:`/courses/${args.course_Id}/assign-faculties`,
             method: "PUT",

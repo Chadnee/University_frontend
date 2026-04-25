@@ -15,7 +15,7 @@ const AcademicFaculty= () => {
   const { data: academicFacultyData, isLoading, isFetching} = useGetAllAccademicFacultyQuery(undefined);
   const navigate = useNavigate()
   const {isMobile} = useResponsive()
-  console.log(academicFacultyData);
+  // console.log(academicFacultyData);
 
   const tableData:TTableData[] = academicFacultyData?.data?.map((faculty: TAcademicFaculty ) => ({
     key: faculty._id,

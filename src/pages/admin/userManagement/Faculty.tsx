@@ -30,7 +30,7 @@ const Faculty = () => {
       //   const [image, setImage] = useState<string | null>(null)
       
     
-      console.log(facultyData);
+      // console.log(facultyData);
       const metaData = facultyData?.meta
       const tableData : TTableData[] = facultyData?.data?.map((faculty: TFaculty) => ({
           key: faculty._id,
@@ -43,7 +43,7 @@ const Faculty = () => {
           designation : faculty.designation
       })) ?? []
  
-      console.log(metaData)
+      // console.log(metaData)
       
       // const id = facultyData?.data?.map((item) => {return item.id})
       // console.log(tableData,id)

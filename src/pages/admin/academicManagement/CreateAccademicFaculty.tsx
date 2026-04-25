@@ -16,7 +16,7 @@ const CreateAccademicFaculty = () => {
   const [CreateAccademicFaculty] = useCreateAccademicFacultyMutation()
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data)
+    // console.log(data)
     const toastId = toast.loading("Faculty is creating")
    try {
        const accdemicFacultyData = {

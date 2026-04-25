@@ -32,14 +32,14 @@ const AddFacultyModal = ({courseId, index} : TFacultyForm) => {
         value: item._id,
         label: item.name
      }))
-    console.log(facultiesData)
+    // console.log(facultiesData)
      const handleSubmit = async(data : TAssignFaculty) => {
       console.log('d',data)
          const facultyData: TAssignFacultyData= {
             course_Id: courseId,
             data //it will provide facultyOptionsData by clicking on handleSubmit which gets a _id as value and a name (showed indaisplay) as label 
          }
-         console.log(facultyData);
+        //  console.log(facultyData);
 
         try{
              const res = await CreateAssignFaculties(facultyData)

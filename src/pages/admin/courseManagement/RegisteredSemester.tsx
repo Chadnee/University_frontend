@@ -39,8 +39,8 @@ const tableData:TTableData[] = registeredSemester?.data?.map((item : TSemester) 
 })) ?? []
 
   const handleStatusUpdate : MenuProps['onClick'] = (data)=> {
-     console.log(semesterId)
-     console.log(data)
+    //  console.log(semesterId)
+    //  console.log(data)
       const updateData = {
         id: semesterId,
         data: {

@@ -17,7 +17,7 @@ const AcademicSemester= () => {
   const { data: semesterData, isLoading, isFetching} = useGetAllSemestersQuery(params);
   const navigate = useNavigate()
   const {isMobile} = useResponsive()
-  console.log(semesterData);
+  // console.log(semesterData);
 
   const tableData:TTableData[] = semesterData?.data?.map((semester : TAcademicSemester) => ({
       key: semester._id,

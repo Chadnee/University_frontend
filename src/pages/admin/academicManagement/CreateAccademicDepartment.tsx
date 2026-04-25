@@ -40,7 +40,7 @@ const CreateAccademicDepartment = () => {
              }
 
           } catch(err){
-            console.log(err)
+            // console.log(err)
             toast.error("Something went wrong")
           }
       }

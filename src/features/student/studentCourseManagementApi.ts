@@ -5,7 +5,7 @@ const studentCourseManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getMyOfferedCourse: builder.query({
       query: (args) => {
-        console.log(args);
+        // console.log(args);
         const params = new URLSearchParams();
         if (args) {
           args.forEach((item: TQueriParam) => {

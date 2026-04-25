@@ -13,7 +13,7 @@ const ChangePassword = () => {
     const navigate = useNavigate()
 
     const onSubmit : SubmitHandler<FieldValues>= async(data) => {
-       console.log(data)
+      //  console.log(data)
        const res = await ChangePassword(data) ;
        if(res?.data?.success) {
           dispatch(logOut());

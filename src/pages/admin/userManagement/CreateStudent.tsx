@@ -41,7 +41,7 @@ const CreateStudent = () => {
      password: 'student123',
      student : data
     }
-   console.log(studentData);
+  //  console.log(studentData);
 
    try{
     const formData = new FormData();

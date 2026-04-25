@@ -40,7 +40,7 @@ const StudentDashboard = () => {
 
   const {data: myEnrolledState} = useGetMyEnrolledSateQuery(undefined)
   
-  console.log(myEnrolledState)
+  // console.log(myEnrolledState)
 if(isMeLoading) {
     return  <Flex  justify="center" align="center" style={{ height: "80vh" }}>
                        <div style={{ color: "#608cd3ff" }}>

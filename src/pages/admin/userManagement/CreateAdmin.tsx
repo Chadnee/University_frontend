@@ -35,7 +35,7 @@ const CreateAdmin = () => {
       password: "admin1234",
       admin: data
     }
-    console.log(adminData)
+    // console.log(adminData)
    
     try{
      const formData = new FormData();

@@ -46,7 +46,7 @@ const {data: academicDepartment, isLoading: isacademicDepartmentLoading} = useGe
     label: item.title
   })) 
   const facultyOptions = faculty?.data?.faculties?.map((item : TFaculty) => (
-    console.log("item", item),
+    // console.log("item", item),
     {
     value: item._id,
     label: item.name
@@ -86,7 +86,7 @@ const {data: academicDepartment, isLoading: isacademicDepartmentLoading} = useGe
      endTime: moment(new Date(data.endTime)).format('HH:mm'),
     
  } 
- console.log(offeredCourseData)
+//  console.log(offeredCourseData)
 
    try{
       const res = await createOfferedCourse(offeredCourseData)
@@ -94,7 +94,7 @@ const {data: academicDepartment, isLoading: isacademicDepartmentLoading} = useGe
         const err = res.error as TError
          toast.error(err.data.message);
        } else{
-        console.log(res.data)
+        // console.log(res.data)
         toast.success("Successfuly Course Offered");
        }
    } 

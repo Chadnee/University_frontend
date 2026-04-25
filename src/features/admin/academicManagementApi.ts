@@ -32,7 +32,7 @@ const academicManagementApi = baseApi.injectEndpoints({
         };
       },
       transformResponse: (response: TResponseRedux<TAcademicSemester[]>) => {
-        console.log(response);
+        // console.log(response);
         return {
           data: response.data,
           meta: response.meta,
@@ -64,7 +64,7 @@ const academicManagementApi = baseApi.injectEndpoints({
       }, 
       providesTags: ['allDepartment'],
       transformResponse: (response: TResponseRedux <TAcademicDepartment[]>) => {
-               console.log(response)
+              //  console.log(response)
         return {
                  meta: response.meta,
                  data:response.data

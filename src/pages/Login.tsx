@@ -26,7 +26,7 @@ const Login = () => {
     //  thats why when we make in a const and set it with next toast success then it occur sequentially one by one
     //  according to duration and also have to provide the error both
     const toastId = toast.loading('Logging in')
-    console.log(data);
+    // console.log(data);
 
     try{
        const userInfo = {
@@ -35,7 +35,7 @@ const Login = () => {
     };
     const res = await login(userInfo).unwrap();
     const user = verifyToken(res.data.accessToken) as TUser;
-    console.log(user)
+    // console.log(user)
     dispatch(setUser({user: user, token: res.data.accessToken}))
     toast.success('Logged in', {id: toastId, duration: 2000}) // every toast has a own 'id' property which indicate itself and set its own to occur siquentially one by one.
     
@@ -51,7 +51,7 @@ const Login = () => {
     // {id: 'stfhh', password: 'hjgjvfty'}
     } catch(err) {
        toast.error('Something went wrong', {id: toastId, duration: 2000}) //have to set error both together as success together
-       console.log(err)
+      //  console.log(err)
     }
   };
   return (

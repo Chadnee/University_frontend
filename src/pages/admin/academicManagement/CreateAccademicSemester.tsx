@@ -24,7 +24,7 @@ const CreateAccademicSemester = () => {
       const [addAcademicSemester] = useAddAcademicSemesterMutation();
 
     const onSubmit:SubmitHandler<FieldValues> = async(data) => {
-        console.log(data)
+        // console.log(data)
         const name = semesterOptions[Number(data?.name) -1]?.label;
         //         = nameOptions[Number(01 -1)]?.label //in here data.name willbe value submitted from the object
         //         = nameOptions[0]?.label
@@ -37,7 +37,7 @@ const CreateAccademicSemester = () => {
           endMonth: data.endMonth
         }
         try {
-            console.log(semesterData)
+            // console.log(semesterData)
             const result = await addAcademicSemester(semesterData);
             
             if(result.error){

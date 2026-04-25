@@ -45,7 +45,7 @@ const Home = () => {
   const { data: faculty, isLoading: isFacultyLoading } =
     useGetAllFacultyQuery(undefined);
 
-  console.log(faculty?.data);
+  // console.log(faculty?.data);
 
   const token = useAppSelector(selectCurrentToken);
   // console.log(token);
@@ -77,7 +77,7 @@ const Home = () => {
         <div
           style={{
             position: "absolute",
-            top: "50%",
+            top:isMobile?"49%": "50%",
             transform: "translateY(-50%)",
             padding: isMobile ? "0 22px" : "0 50px",
           }}
@@ -108,18 +108,21 @@ const Home = () => {
                 // borderLeft: "5px solid #9d0208",
                 fontWeight: "600",
                 fontFamily: "serif",
-                fontSize: isMobile ? "29px" : "50px",
+                fontSize: isMobile ? "35px" : "50px",
+                marginTop:isMobile? "-10px":""
               }}
             >
               Build Your Future <br />
               <span style={{ color: "#da920e" }}>Excellence</span> <br />
-              With Learning Research and Innovation
+                {isMobile
+    ? "With Learning Research"
+    : "With Learning Research and Innovation"}
             </span>
             <span style={{ fontSize: isMobile ? "13px" : "13px", letterSpacing:isMobile?"1px":" " }}>
               {isMobile
                 ? text.slice(
                     0,
-                    text.toLowerCase().indexOf("tomorrow") + "tomorrow".length,
+                    text.toLowerCase().indexOf("knowledge") + "knowledge".length,
                   )
                 : text}
             </span>

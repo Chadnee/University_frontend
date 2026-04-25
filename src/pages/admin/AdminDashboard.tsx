@@ -61,7 +61,7 @@ const AdminDashboard = () => {
     useGetAllCourseQuery(undefined);
   //console.log(userStats.data)
   // console.log(getMySelf)
-  console.log(getvisitors);
+  // console.log(getvisitors);
 
  // if (isUserLoading || isMyselfLoading || isGetvisitorsLoading) {
   if ( isMyselfLoading ) {
@@ -73,7 +73,7 @@ const AdminDashboard = () => {
               </Flex>
             );
   }
-  console.log(enrollmentStat);
+  // console.log(enrollmentStat);
   // const userState = userStats.data;
   // const mySelf = getMySelf?.data;
   const { students, faculty} = userStats?.data ?? {};
@@ -82,7 +82,7 @@ const AdminDashboard = () => {
 
   const badgeColors = ["#F4B342", "#8f34e4ff", "#4caf4fd3"];
   const courseData = ["110", "160", "210", "80", "120"];
-console.log(course)
+// console.log(course)
   //for when want to use color randomly
   // const getRandomColor = () => {
   //   const index = Math.floor(Math.random() * badgeColors.length);

@@ -106,7 +106,7 @@ const Header = () => {
         <div
           style={{
             position: "fixed",
-            top: isMobile ? 0 : 37.5,
+            top: isMobile ? 8 : 37.5,
             zIndex: 1000,
             left: 12,
             right: 12,
