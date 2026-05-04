@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useAppDispatch, useAppSelector } from "../../features/hooks";
 import { logOut, selectCurrentToken, type TUser } from "../../features/auth/authSlice";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { verifyToken } from "../../utils/verifyToken";
 
 type TProtectedRoute = {
@@ -20,6 +20,7 @@ const ProtectedRoute = ({children, role}: TProtectedRoute) => {
     //we dont take user.role by this storage method, because it is not 
     // preferd for professional ,if we call it in here , it can be hacked as this stored by persisted in cookie and anyone can get this 
     //so we get the current user by token verify and decoded.. token generating
+    const location = useLocation();
     let user;
     if(token) {
       user = verifyToken(token)

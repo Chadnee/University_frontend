@@ -16,7 +16,7 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate(); //to implement redirect
   const location = useLocation();
-  const from = location.state?.from?.pathName || "/"
+  const from = location.state?.from?.pathname || "/";
   // console.log('data', data)
   // console.log('error', error)
 
@@ -25,43 +25,91 @@ const Login = () => {
     //   When we make direct toast.loading like above it make a override to next toast message,
     //  thats why when we make in a const and set it with next toast success then it occur sequentially one by one
     //  according to duration and also have to provide the error both
-    const toastId = toast.loading('Logging in')
+    const toastId = toast.loading("Logging in");
     // console.log(data);
 
     try{
-       const userInfo = {
+    const userInfo = {
       id: data.userId,
-      password: data.password
+      password: data.password,
     };
     const res = await login(userInfo).unwrap();
-    const user = verifyToken(res.data.accessToken) as TUser;
-    // console.log(user)
-    dispatch(setUser({user: user, token: res.data.accessToken}))
-    toast.success('Logged in', {id: toastId, duration: 2000}) // every toast has a own 'id' property which indicate itself and set its own to occur siquentially one by one.
-    
-     if(res.data.needsPasswordChange){
-      navigate('/change-password');
-    } 
-    // else {
-    //    navigate(`/${user.role}/dashboard`) //redirect dashboard according to role after loggin
-    // }
-    else {
-       navigate(from, {replace: true}) //redirect dashboard according to role after loggin
-    }
+      if (res.success === true) {
+          const user = verifyToken(res.data.accessToken) as TUser;
+          //console.log(user)
+          dispatch(setUser({ user: user, token: res.data.accessToken }));
+          toast.success("Logged in", { id: toastId, duration: 2000 }); // every toast has a own 'id' property which indicate itself and set its own to occur siquentially one by one.
+          console.log(res, user);
+          if (res.data.needsPasswordChange) {
+            navigate("/change-password");
+          }
+          // else {
+          //    navigate(`/${user.role}/dashboard`) //redirect dashboard according to role after loggin
+          // }
+          else {
+            navigate(from, { replace: true }); //redirect dashboard according to role after loggin
+          }
+      }
+        else {
+           console.log("something went wrong")
+        }
     // {id: 'stfhh', password: 'hjgjvfty'}
-    } catch(err) {
-       toast.error('Something went wrong', {id: toastId, duration: 2000}) //have to set error both together as success together
-      //  console.log(err)
     }
+    catch (err: unknown) {
+  console.log("login error:", err);
+
+  let message = "Something went wrong";
+
+  if (typeof err === "object" && err !== null) {
+    const e = err as { data?: { message?: string }; message?: string };
+
+    message =
+      e.data?.message ||
+      e.message ||
+      message;
+  }
+
+
+       toast.error(message, {id: toastId, duration: 2000}) //have to set error both together as success together
+
+    }
+    // try{
+    //    const userInfo = {
+    //   id: data.userId,
+    //   password: data.password
+    // };
+    // const res = await login(userInfo).unwrap();
+    // const user = verifyToken(res.data.accessToken) as TUser;
+    // //console.log(user)
+    // dispatch(setUser({user: user, token: res.data.accessToken}))
+    // toast.success('Logged in', {id: toastId, duration: 2000}) // every toast has a own 'id' property which indicate itself and set its own to occur siquentially one by one.
+    // console.log(res , user)
+    //  if(res.data.needsPasswordChange){
+    //   navigate('/change-password');
+    // }
+    // // else {
+    // //    navigate(`/${user.role}/dashboard`) //redirect dashboard according to role after loggin
+    // // }
+    // else {
+    //    navigate(from, {replace: true}) //redirect dashboard according to role after loggin
+    // }
+    // // {id: 'stfhh', password: 'hjgjvfty'}
+    // } catch(err:any) {
+    //   console.log("login error:", err)
+
+    //    toast.error(
+    //     err?.data?.message || err?.message || 'Something went wrong', {id: toastId, duration: 2000}) //have to set error both together as success together
+
+    // }
   };
   return (
-  <Row justify="center" align="middle" style = {{height: '100vh'}}>
-      <AdmitForm onSubmit={onSubmit} >
-      <InputForm type="text" name="userId" label="Id"></InputForm>
-      <InputForm type="text" name="password" label="Password"></InputForm>
-      <Button htmlType="submit">Login</Button>
-    </AdmitForm>
-  </Row>
+    <Row justify="center" align="middle" style={{ height: "100vh" }}>
+      <AdmitForm onSubmit={onSubmit}>
+        <InputForm type="text" name="userId" label="Id"></InputForm>
+        <InputForm type="text" name="password" label="Password"></InputForm>
+        <Button htmlType="submit">Login</Button>
+      </AdmitForm>
+    </Row>
     //   <form onSubmit={handleSubmit(onSubmit)}>
     // <label htmlFor="id">Id:</label>
     //   <input type="text" id="id" {...register('userId')}/>
