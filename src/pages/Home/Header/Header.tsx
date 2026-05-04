@@ -322,16 +322,29 @@ const Header = () => {
               style={{ borderLeft: "1.5px solid #b6b1b1", height: "30px" }}
             ></div>
             {!token ? (
-              <Link
-                to="/login"
-                style={{
-                  paddingRight: "40px",
-                  fontWeight: "600",
-                  cursor: "pointer",
-                }}
-              >
-                Login
-              </Link>
+                 <Link to="/login">
+                    <button
+         
+         style={{
+                        padding: "10px 24px",
+                        fontSize: "15px",
+                        borderRadius: "5px",
+                        background: "#db930d",
+                        border: "none",
+                        color: "#fff6f6",
+                        display:"flex",
+                        justifyContent:"center",
+                        alignItems:"center",
+                        gap:"5px"
+                      }}
+                    >   
+                     <span style={{ fontSize: "16px" }}>Login</span>
+                    <LuLogIn
+                              style={{ fontSize: "20px" }}
+                            ></LuLogIn>
+                      
+                    </button>
+                  </Link>
             ) : (
               <Flex justify="space-between" align="center" gap={40}>
                 {/* <span style={{paddingRight:"40px",  fontWeight:"600", cursor:"pointer"}}>Dashboard</span> */}

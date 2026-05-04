@@ -8,10 +8,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import AdmitForm from "./form/AdmitForm";
 import InputForm from "./form/InputForm";
+import useResponsive from "../hooks/useResponsive";
+import { LuLogIn } from "react-icons/lu";
 
 const Login = () => {
   // const {register, handleSubmit} = useForm({});
   // const { handleSubmit} = useForm({});
+  const {isMobile} = useResponsive()
   const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate(); //to implement redirect
@@ -103,13 +106,32 @@ const Login = () => {
     // }
   };
   return (
-    <Row justify="center" align="middle" style={{ height: "100vh" }}>
+    <div   style={{
+    minHeight: "100vh",   // full screen height
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    
+  }}>
+          <div style={{ height: isMobile?"50vh":"65vh", width:isMobile?"100vw":"50vw", display:'flex' , flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+           <Row justify="center" align="middle" style={{background: "#f4c05f",
+borderRadius: "8px",
+boxShadow: "0 10px 30px rgba(0,0,0,0.1)",padding:isMobile?"0 10px": "0 80px", width:"100%", height:"100%"}}>
       <AdmitForm onSubmit={onSubmit}>
-        <InputForm type="text" name="userId" label="Id"></InputForm>
-        <InputForm type="text" name="password" label="Password"></InputForm>
-        <Button htmlType="submit">Login</Button>
+        <InputForm type="text" name="userId" placeholder="Id"></InputForm>
+        <InputForm type="text" name="password" placeholder="Password"></InputForm>
+        <div style={{display:"flex", justifyContent:"center"}}>
+           <Button htmlType="submit" style={{height:"40px", width:"150px", borderRadius:"4px", border:"none", fontSize:"19px", display:"inline-flex", justifyContent:"center", alignItems:"center", gap:"5px",}}>
+            <span>Login</span>
+            <LuLogIn style={{ fontSize: "19px", position: "relative", top: "2px" }} ></LuLogIn>
+            </Button>
+        </div>
+        
       </AdmitForm>
     </Row>
+     </div>
+  </div>
+
     //   <form onSubmit={handleSubmit(onSubmit)}>
     // <label htmlFor="id">Id:</label>
     //   <input type="text" id="id" {...register('userId')}/>
