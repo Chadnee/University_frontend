@@ -14,15 +14,15 @@ import malefaculty2 from '../../assets/images/malefaculty2.png'
 import femalefaculty1 from '../../assets/images/femalefaculty1.png' 
 import femalefaculty2 from '../../assets/images/femalefaculty2.png' 
 import gear from "../../assets/images/gear.png"
-import roboticArm from "../../assets/images/robotic arm.png"
+import roboticArm from "../../assets/images/robotic_arm.png"
 import microChip from "../../assets/images/microchip.png"
-import lightBulb from "../../assets/images/lightbulb.png"
+import lightBulb from "../../assets/images/light_bulb.png"
 import buildings from "../../assets/images/buildings.png"
-import labFlask from "../../assets/images/lab-flask.png"
-import growthChart from "../../assets/images/growth chart.png"
+import labFlask from "../../assets/images/lab_flask.png"
+import growthChart from "../../assets/images/growth_chart.png"
 import aiBrain from "../../assets/images/ai-brain.png"
-import sheildLock from "../../assets/images/sheild lock.png"
-import iotChip from "../../assets/images/iot chip.png"
+import sheildLock from "../../assets/images/sheild_lock.png"
+import iotChip from "../../assets/images/iot_chip.png"
 import pallate from "../../assets/images/pallate.png"
 import { GiGraduateCap } from "react-icons/gi";
 import { MdPeopleAlt } from "react-icons/md";
