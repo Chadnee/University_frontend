@@ -49,6 +49,7 @@ const Header = () => {
 
   return (
     <div style={{}}>
+      {/* This upper header Only for Large and medium device */}
       {!isMobile && (
         <div
           style={{
@@ -322,6 +323,18 @@ const Header = () => {
               style={{ borderLeft: "1.5px solid #b6b1b1", height: "30px" }}
             ></div>
             {!token ? (
+                <Flex justify="space-between" align="center" gap={40}> 
+                 
+                 <Link to = "/"><span style={{ cursor: "pointer", color:"#000" }}>Home</span></Link>
+                  <Link to = "/about"><span style={{ cursor: "pointer",color:"#000" }}>About Us</span></Link>
+                  <Flex align="center" gap={4}>
+                    <span>Academics</span>
+                    <HiAcademicCap style={{ fontSize: "23px" }}></HiAcademicCap>
+                  </Flex>
+                  <Flex align="center" gap={2}>
+                    <span>Admission</span>
+                    <RiUserAddLine style={{ fontSize: "23px" }}></RiUserAddLine>
+                  </Flex>
                  <Link to="/login">
                     <button
          
@@ -345,6 +358,8 @@ const Header = () => {
                       
                     </button>
                   </Link>
+                </Flex>
+                 
             ) : (
               <Flex justify="space-between" align="center" gap={40}>
                 {/* <span style={{paddingRight:"40px",  fontWeight:"600", cursor:"pointer"}}>Dashboard</span> */}
@@ -355,8 +370,8 @@ const Header = () => {
                   style={{ fontSize: "17px" }}
                 >
                   {/* <BsArrowCounterclockwise></BsArrowCounterclockwise> */}
-                  <span style={{ cursor: "pointer" }}>Home</span>
-                  <span style={{ cursor: "pointer" }}>About Us</span>
+                  <Link to = "/"><span style={{ cursor: "pointer", color:"#000" }}>Home</span></Link>
+                  <Link to = "/about"><span style={{ cursor: "pointer",color:"#000" }}>About Us</span></Link>
                   <Flex align="center" gap={4}>
                     <span>Academics</span>
                     <HiAcademicCap style={{ fontSize: "23px" }}></HiAcademicCap>

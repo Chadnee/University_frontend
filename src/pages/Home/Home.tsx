@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../features/hooks";
-import { selectCurrentToken, type TUser } from "../../features/auth/authSlice";
-import { verifyToken } from "../../utils/verifyToken";
+// import { Link } from "react-router-dom";
+// import { useAppSelector } from "../../features/hooks";
+// import { selectCurrentToken, type TUser } from "../../features/auth/authSlice";
+// import { verifyToken } from "../../utils/verifyToken";
 import { ParallaxBanner } from "react-scroll-parallax";
-import { Card, Col, Flex, Row, Spin } from "antd";
+import { Card, Flex, Spin } from "antd";
 import CountUp from "react-countup";
 import banner from "../../assets/images/banner.jpg";
 import {
@@ -32,14 +32,13 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import useResponsive from "../../hooks/useResponsive";
 import type { TFaculty } from "../../types/userManagementTypes";
-import Header from "./Header/Header";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { HiOutlineBuildingLibrary } from "react-icons/hi2";
 import AcademicFaculty from "./AcademicFaculty/AcademicFaculty";
 import React from "react";
 
 const Home = () => {
-  const { isMobile, isTablet } = useResponsive();
+  const { isMobile} = useResponsive();
   const { data: courses, isLoading: isCourseLoading } =
     useGetAllCourseQuery(undefined);
   const { data: faculty, isLoading: isFacultyLoading } =
@@ -47,17 +46,17 @@ const Home = () => {
 
   // console.log(faculty?.data);
 
-  const token = useAppSelector(selectCurrentToken);
+  // const token = useAppSelector(selectCurrentToken);
   // console.log(token);
-  let user;
-  if (token) {
-    user = verifyToken(token);
-    // console.log(user);
-  }
+  // let user;
+  // if (token) {
+  //   user = verifyToken(token);
+  //   // console.log(user);
+  // }
   const text = "Empowering minds, shaping futures, and driving innovation for a better tomorrow—where knowledge meets opportunity and ambition transforms into achievement.";
   return (
     <div style={{ padding: isMobile ? "" : "" }}>
-      <Header></Header>
+      {/* <Header></Header> */}
       {/* parallax banner */}
       <ParallaxBanner
         layers={[{ image: banner, speed: -30 }]}
@@ -253,7 +252,7 @@ const Home = () => {
 
       {/* Count of ingredients */}
 
-      <div
+      {/* <div
         style={{
           margin: isMobile ? "60px 0 80px 0" : " 100px 0 150px 0",
           display: "flex",
@@ -303,7 +302,7 @@ const Home = () => {
             </Col>
           ))}
         </Row>
-      </div>
+      </div> */}
 
       {/* Ensure Necessity */}
 
@@ -312,6 +311,7 @@ const Home = () => {
           background: "linear-gradient(135deg, #f8fafc, #eef2f7)",
           borderRadius: "16px",
           boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          margin:"20px 0"
         }}
       >
         <div
@@ -325,15 +325,24 @@ const Home = () => {
             gap: "40px",
           }}
         >
-          <Flex vertical style={{ flex: 1 }} gap={24}>
-            <span
-              style={{
-                fontFamily: "'Inter', 'Montserrat', sans-serif",
-                fontSize: "18px",
-              }}
-            >
-              About Our University
-            </span>
+          {/* 
+          fontFamily: "'Inter', 'Montserrat', sans-serif",
+                fontSize: "18px", */}
+          <Flex vertical style={{ flex: 1 , padding:'0 8px'}} gap={24}>
+              <Flex align="middle" justify="start" gap={10} style={{paddingTop:"20px"}}>
+                                      <span style={{ width: isMobile ? "16px" : "20px" }}>
+                                        <hr
+                                          style={{
+                                            background: "#db930d",
+                                            border: "none",
+                                            height: "1.2px",
+                                          }}
+                                        />
+                                      </span>
+                                      <span style={{fontFamily:"emoji", textTransform: "uppercase", fontSize: "9px", color:"#e7a11f", }}>
+                                        About Our University
+                                      </span>
+                                    </Flex>
             <span
               style={{
                 fontFamily: "'Montserrat'",
@@ -408,7 +417,7 @@ const Home = () => {
         {
           <Swiper
             slidesPerView={5.2}
-            spaceBetween={14}
+            spaceBetween={isMobile? 8 : 14}
             // loop={true} // 🔥 infinite loop
             // autoplay={{
             //   delay: 0,
@@ -461,7 +470,7 @@ const Home = () => {
                         <Flex vertical style={{ height: "100%" }}>
                           <div
                             style={{
-                              height: 140,
+                              height: isMobile?120:140,
                               position: "relative",
                               width: "100%",
                               overflow: "hidden",
@@ -562,9 +571,10 @@ const Home = () => {
             color: "#6c6a6a",
             fontWeight: "400",
             fontFamily: "revert",
+            padding:isMobile?"0 8px" :"0"
           }}
         >
-          Exlore our top-rated Courses to understand better and choose our
+          Exlore our top-rated Faculty to understand better and choose our
           services
         </span>
         <div style={{ width: "100%", paddingTop: "20px" }}>
@@ -583,7 +593,7 @@ const Home = () => {
               }}
               breakpoints={{
                 0: {
-                  slidesPerView: 1.2, // mobile → swipe
+                  slidesPerView: 1, // mobile → swipe
                 },
                 768: {
                   slidesPerView: 5, // tablet
@@ -786,10 +796,7 @@ const Home = () => {
            </figure> */}
       </div>
 
-      <Link to={`/${(user as TUser)?.role}/dashboard`}>
-        <button>Dashboard</button>
-      </Link>
-    </div>
+     </div>
   );
 };
 

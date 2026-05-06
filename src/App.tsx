@@ -1,10 +1,12 @@
+import { Outlet } from 'react-router-dom';
 import './index.css'
-import Home from "./pages/Home/Home";
+import Header from './pages/Home/Header/Header';
 
 const App = () => {
   return (
     <div>
-      <Home></Home>
+      <Header></Header>
+      <Outlet></Outlet>
     </div>
   )
        

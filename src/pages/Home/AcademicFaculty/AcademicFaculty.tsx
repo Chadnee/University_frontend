@@ -8,7 +8,7 @@ const AcademicFaculty = () => {
     const {isMobile} = useResponsive()
     return (
         <div style={{width:isMobile?"100%":"90vw", margin:"60px auto"}}>
-              <Flex align="middle" justify="start" gap={10} style={{paddingBottom:"16px" }}>
+              <Flex align="middle" justify="start" gap={10} style={{padding:"0 0 16px 12px" }}>
                           <span style={{ width: isMobile ? "18px" : "20px" }}>
                             <hr
                               style={{
@@ -22,7 +22,7 @@ const AcademicFaculty = () => {
                             our academic faculties
                           </span>
                         </Flex>
-          <span style={{fontFamily: "Robotto",fontSize: "22px", }}>Explore Our Academic Faculties</span>
+          <span style={{fontFamily: "Robotto",fontSize: "22px", paddingLeft:"12px"}}>Explore Our Academic Faculties</span>
         
         <div style={{display:'flex', flexDirection:"column", justifyContent:"center", marginTop:"40px"}}>
              <div style={{display:"flex", width:"100%", flexWrap:"wrap", gap:isMobile?"8px" : "30px", justifyContent:isMobile?"justify-between":"center", alignItems: "stretch"}}>
@@ -32,7 +32,7 @@ const AcademicFaculty = () => {
                         <img style={{height:isMobile?"50px": "60px"}} src={item.icon} alt="" />
                         <span style={{fontSize:isMobile?"12px":"13px",textAlign:"center", fontWeight:"600", fontFamily: "poppins",}}>{item.name}</span>
                         <span style={{fontSize:isMobile?"12px":"12px",textAlign:"center",color:"#6a5f5f", fontFamily: ""}}>{item.description}</span>
-                        <span style={{fontSize:"13px",textAlign:"center", display:"flex", alignItems:"center", gap:"2px"}}><span>Explore</span>
+                        <span style={{fontSize:"13px",textAlign:"center", display:"flex", alignItems:"center", gap:"2px", color:"#e79d13"}}><span>Explore</span>
                         <FaArrowRight></FaArrowRight> </span>
                     </div>
                 ))
