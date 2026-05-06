@@ -38,7 +38,7 @@ import AcademicFaculty from "./AcademicFaculty/AcademicFaculty";
 import React from "react";
 
 const Home = () => {
-  const { isMobile} = useResponsive();
+  const { isMobile, isTablet} = useResponsive();
   const { data: courses, isLoading: isCourseLoading } =
     useGetAllCourseQuery(undefined);
   const { data: faculty, isLoading: isFacultyLoading } =
@@ -394,7 +394,7 @@ const Home = () => {
         justify="center"
         align="center"
         gap={30}
-        style={{ width: isMobile ? "100%" : "75%", margin: "60px auto" }}
+        style={{ width: isMobile ? "100%":isTablet? "90%" : "75%", margin: "60px auto" }}
       >
         <span
           style={{ fontFamily: "emoji", fontWeight: "600", fontSize: "24px" }}
@@ -432,7 +432,7 @@ const Home = () => {
                 slidesPerView: 1.5, // mobile → swipe
               },
               768: {
-                slidesPerView: 4, // tablet
+                slidesPerView: 3.4, // tablet
               },
               1024: {
                 slidesPerView: 4.5, // desktop → show all nicely
@@ -555,7 +555,7 @@ const Home = () => {
         justify="center"
         gap={36}
         style={{
-          width: isMobile ? "100%" : "70%",
+          width: isMobile ? "100%": isTablet? "95%" : "70%",
           margin: "100px auto",
           alignItems: "center",
         }}
@@ -596,7 +596,7 @@ const Home = () => {
                   slidesPerView: 1, // mobile → swipe
                 },
                 768: {
-                  slidesPerView: 5, // tablet
+                  slidesPerView: 3.5, // tablet
                 },
                 1024: {
                   slidesPerView: 4.2, // desktop → show all nicely

@@ -25,10 +25,10 @@ const AcademicFaculty = () => {
           <span style={{fontFamily: "Robotto",fontSize: "22px", paddingLeft:"12px"}}>Explore Our Academic Faculties</span>
         
         <div style={{display:'flex', flexDirection:"column", justifyContent:"center", marginTop:"40px"}}>
-             <div style={{display:"flex", width:"100%", flexWrap:"wrap", gap:isMobile?"8px" : "30px", justifyContent:isMobile?"justify-between":"center", alignItems: "stretch"}}>
+             <div style={{display:"flex", width:"100%", flexWrap:"wrap", gap:isMobile?"8px" : "0px", justifyContent:isMobile?"justify-between":"center", alignItems: "stretch"}}>
             {
                 AcademicFaculties?.map((item) => (
-                    <div style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", width:isMobile?"120px":"160px", display:"flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center", padding:isMobile?"20px 10px" : "20px 6px", gap:"10px"}}>
+                    <div key={item.slug} style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", width:isMobile?"120px":"160px", display:"flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center", padding:isMobile?"20px 10px" : "20px 6px", gap:"10px"}}>
                         <img style={{height:isMobile?"50px": "60px"}} src={item.icon} alt="" />
                         <span style={{fontSize:isMobile?"12px":"13px",textAlign:"center", fontWeight:"600", fontFamily: "poppins",}}>{item.name}</span>
                         <span style={{fontSize:isMobile?"12px":"12px",textAlign:"center",color:"#6a5f5f", fontFamily: ""}}>{item.description}</span>
