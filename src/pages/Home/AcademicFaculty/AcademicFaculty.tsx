@@ -5,7 +5,7 @@ import { Flex } from "antd";
 
 
 const AcademicFaculty = () => {
-    const {isMobile} = useResponsive()
+    const {isMobile, isTablet} = useResponsive()
     return (
         <div style={{width:isMobile?"100%":"90vw", margin:"60px auto"}}>
               <Flex align="middle" justify="start" gap={10} style={{padding:"0 0 16px 12px" }}>
@@ -25,7 +25,7 @@ const AcademicFaculty = () => {
           <span style={{fontFamily: "Robotto",fontSize: "22px", paddingLeft:"12px"}}>Explore Our Academic Faculties</span>
         
         <div style={{display:'flex', flexDirection:"column", justifyContent:"center", marginTop:"40px"}}>
-             <div style={{display:"flex", width:"100%", flexWrap:"wrap", gap:isMobile?"8px" : "0px", justifyContent:isMobile?"justify-between":"center", alignItems: "stretch"}}>
+             <div style={{display:"flex", width:"100%", flexWrap:"wrap", gap:isMobile?"8px" :isTablet?"20px": "30px", justifyContent:isMobile?"justify-between":"center", alignItems: "stretch"}}>
             {
                 AcademicFaculties?.map((item) => (
                     <div key={item.slug} style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", width:isMobile?"120px":"160px", display:"flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center", padding:isMobile?"20px 10px" : "20px 6px", gap:"10px"}}>

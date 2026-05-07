@@ -276,6 +276,12 @@ export const buttonBgColor = [
 ]
 export const buttonColors = ['#0acf52ff','#e7b025ff','#dc5009ff' ]
 
+export const backgroundGroundGradients = [
+  "linear-gradient(135deg, #f0854cff, #fc6480, #ff4d6d)",
+  "linear-gradient(100deg, #9770eaff, #104a9bff)",
+  "linear-gradient(160deg, #a47309ff, #d3bc08ff)",
+  "linear-gradient(135deg, #667eea, #764ba2, #6dd5ed)"
+]
 // courseProgressData.ts
 export const skills = [
 

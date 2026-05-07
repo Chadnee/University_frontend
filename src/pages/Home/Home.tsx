@@ -15,7 +15,7 @@ import {
   type TCourse,
   type TUniversityStats,
 } from "../constants/global";
-import campus from "../../assets/images/campus.png";
+import group from "../../assets/images/group.png";
 import { useGetAllCourseQuery } from "../../features/admin/courseManagementApi";
 import { useGetAllFacultyQuery } from "../../features/admin/userManagementApi";
 
@@ -316,8 +316,8 @@ const Home = () => {
       >
         <div
           style={{
-            width: isMobile ? "100%" : "70%",
-            margin: "40px auto",
+            width: isMobile ? "100%" : "80%",
+            margin: "30px auto",
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
             justifyContent: "center",
@@ -381,8 +381,14 @@ const Home = () => {
               Read more
             </button>
           </Flex>
-          <div style={{ flex: 1 }}>
-            <img src={campus} style={{ width: "100%" }} alt="" />
+          <div style={{ flex: 1, margin:isMobile?"0 0 30px 0":"30px 0", position:"relative" }}>
+            <img src={group} style={{ width: "100%", borderRadius:isMobile?"10px": "40px" }} alt="" />
+            <Flex vertical gap={10} style={{position:"absolute", width:isMobile?"90px":"125px", top:"8px", right:'10px',
+              background:"linear-gradient(135deg, #1E3A5F, #09325e)", padding:"16px 10px", color:"#ffffff", fontSize:isMobile?"10px":"14px", borderRadius:isMobile?"10px":"20px"}}>
+             <span style={{ fontSize: isMobile?"40px":"60px", color: "#F4B740", lineHeight: isMobile?".7":"1",  marginBottom: isMobile?"-16px":"-28px"}}>“</span>
+             <span >Education is the most powerful weapon which you can use to change the world.</span> 
+             <span>- Nelson Mandela</span>
+            </Flex>
           </div>
         </div>
       </div>
