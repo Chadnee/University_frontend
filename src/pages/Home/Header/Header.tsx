@@ -164,23 +164,33 @@ const Header = () => {
 
                   {token ? (
                     <div>
+                        {/* <Link to="/">
+                       </Link> */}
                       <Flex vertical gap={30} style={{ paddingTop: "45px" }}>
-                        <Flex align="center" gap={4}>
+                       <Link style={{color:"#ffffff"}} to="/">
+                       <Flex align="center" gap={4}>
                           <FaHome style={{ fontSize: "23px" }}></FaHome>
                           <span>Home</span>
                         </Flex>
-                        <Flex align="center" gap={4}>
+                       </Link>
+                        <Link style={{color:"#ffffff"}} to="/about">
+                          <Flex align="center" gap={4}>
                           <HiAcademicCap
                             style={{ fontSize: "23px" }}
                           ></HiAcademicCap>
                           <span>About Us</span>
                         </Flex>
+                       </Link>
+                       
+                       <Link style={{color:"#ffffff"}} to="/academics">
                         <Flex align="center" gap={4}>
                           <HiAcademicCap
                             style={{ fontSize: "23px" }}
                           ></HiAcademicCap>
                           <span>Academics</span>
                         </Flex>
+                       </Link>
+                       
                         <Flex align="center" gap={2}>
                           <RiUserAddLine
                             style={{ fontSize: "23px" }}
@@ -198,7 +208,7 @@ const Header = () => {
                       </Flex>
 
                       <Flex vertical gap={20} style={{ paddingTop: "60px" }}>
-                        <Link to={`/${(user as TUser)?.role}/dashboard`}>
+                        <Link style={{color:"#ffffff"}} to={`/${(user as TUser)?.role}/dashboard`}>
                           <button
                             style={{
                               padding: "12px 24px",
@@ -248,22 +258,31 @@ const Header = () => {
                   ) : (
                     <div>
                       <Flex vertical gap={20} style={{ paddingTop: "45px" }}>
-                        <Flex align="center" gap={4}>
+                        <Link style={{color:"#ffffff"}} to="/">
+                         <Flex align="center" gap={4}>
                           <FaHome style={{ fontSize: "23px" }}></FaHome>
                           <span>Home</span>
                         </Flex>
-                        <Flex align="center" gap={4}>
+                       </Link>
+                       
+                       <Link style={{color:"#ffffff"}} to="/about">
+                          <Flex align="center" gap={4}>
                           <HiAcademicCap
                             style={{ fontSize: "23px" }}
                           ></HiAcademicCap>
                           <span>About Us</span>
                         </Flex>
+                       </Link>
+                        
+                        <Link style={{color:"#ffffff"}} to="/admission">
                         <Flex align="center" gap={2}>
                           <RiUserAddLine
                             style={{ fontSize: "23px" }}
                           ></RiUserAddLine>
                           <span>Admission</span>
                         </Flex>
+                       </Link>
+                        
                       </Flex>
                       <Link to="/login" style={{}}>
                           <button

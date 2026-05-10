@@ -28,6 +28,8 @@ import { GiGraduateCap } from "react-icons/gi";
 import { MdPeopleAlt } from "react-icons/md";
 import { PiBookOpenTextBold } from "react-icons/pi";
 import type { IconType } from "react-icons/lib";
+import campus2 from "../../assets/images/campus2.png"
+import campus3 from "../../assets/images/campus3.png"
 
 export const monthNames = [
   "January",
@@ -237,7 +239,14 @@ export type TUniversityStats = {
   label: string
 }
 
-
+export type TNewsEventsData = {
+    id: number,
+    date: string,
+    month: string,
+    title: string,
+    description:string,
+    image: string,
+}
 
 // Get custome image one by ony
 export const getDataClass =<T,>(data: T[]=[])=> {
@@ -359,28 +368,36 @@ export const info = [
       quantity: 20000,
       startValue:1000,
       title: "Students Enrolled",
-      sign:"+"
+      sign:"+",
+      imageColor:"#fcd5ce",
+      textColor:"#de2808"
    },
    {
       image: bag,
       quantity: 500,
       startValue:50,
       title: "Expert Faculty",
-      sign:"+"
+      sign:"+",
+      imageColor:"#f2e6fd",
+      textColor:"#7a0ce1"
    },
    {
       image: books,
       quantity: 150,
       startValue:10,
       title: "Courses Offered ",
-      sign:"+"
+      sign:"+",
+      imageColor:"#f9e3be",
+      textColor:"#cb8409"
    },
    {
       image: cup,
       quantity: 95,
       startValue:1,
       title: "Success Rate",
-      sign:"%"
+      sign:"%",
+      imageColor:"#d4e2ef",
+      textColor:"#1a76cb"
    },
 ]
 
@@ -501,6 +518,41 @@ export const universityStats = [
     label: "Success Rate"
   }
 ];
+
+
+export const newsEventsData : TNewsEventsData[] = [
+  {
+    id: 1,
+    date: "20",
+    month: "MAY",
+    title: "Techno University Hosts International Research Conference 2024",
+    description:
+      "Scholars and researchers from around the world gather to share knowledge and innovations.",
+    image: campus3,
+    
+  },
+  {
+    id: 2,
+    date: "12",
+    month: "JUN",
+    title: "New Engineering Lab Inaugurated for Advanced Robotics",
+    description:
+      "The university launches a modern robotics laboratory to inspire future engineers.",
+    image: campus2,
+    
+  },
+  {
+    id: 3,
+    date: "03",
+    month: "JUL",
+    title: "Annual Cultural Festival Celebrates Diversity on Campus",
+    description:
+      "Students showcase music, art, and performances representing multiple cultures.",
+    image: campus3,
+    
+  },
+];
+
 
 
 
