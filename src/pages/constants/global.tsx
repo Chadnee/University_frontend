@@ -18,7 +18,6 @@ import roboticArm from "../../assets/images/robotic_arm.png"
 import microChip from "../../assets/images/microchip.png"
 import lightBulb from "../../assets/images/light_bulb.png"
 import buildings from "../../assets/images/buildings.png"
-import labFlask from "../../assets/images/lab_flask.png"
 import growthChart from "../../assets/images/growth_chart.png"
 import aiBrain from "../../assets/images/ai-brain.png"
 import sheildLock from "../../assets/images/sheild_lock.png"
@@ -30,7 +29,10 @@ import { PiBookOpenTextBold } from "react-icons/pi";
 import type { IconType } from "react-icons/lib";
 import campus2 from "../../assets/images/campus2.png"
 import campus3 from "../../assets/images/campus3.png"
-
+import excellence from "../../assets/images/excellence.png"
+import globe from "../../assets/images/globe.png"
+import people from "../../assets/images/people.png"
+import labFlask from "../../assets/images/labFlask.png"
 export const monthNames = [
   "January",
   "February",
@@ -246,6 +248,12 @@ export type TNewsEventsData = {
     title: string,
     description:string,
     image: string,
+}
+
+export type TVerticalMobileStat = {
+  image: string;   
+  value: string;   
+  title: string;  
 }
 
 // Get custome image one by ony
@@ -553,6 +561,28 @@ export const newsEventsData : TNewsEventsData[] = [
   },
 ];
 
+export const VerticalMobileStat : TVerticalMobileStat [] = [
+  {
+    value: "25+",
+    title: "Years of Excellence",
+    image: excellence
+  },
+  {
+    value: "30+",
+    title: "Countries Represented",
+    image: globe
+  },
+  {
+    value: "120+",
+    title: "Research Projects",
+    image: labFlask
+  },
+  {
+    value: "100+",
+    title: "Student Organizations",
+    image: people
+  }
+]
 
 
 

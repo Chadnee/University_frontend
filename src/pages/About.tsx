@@ -2,7 +2,15 @@ import { Button, Col, Flex, Row, Spin } from "antd";
 import useResponsive from "../hooks/useResponsive";
 import group from "../../src/assets/images/group.png";
 import campus2 from "../../src/assets/images/campus2.png";
-import { femaleGenderImageArray, info, maleGenderImageArray, newsEventsData, type TNewsEventsData } from "./constants/global";
+import {
+  femaleGenderImageArray,
+  info,
+  maleGenderImageArray,
+  newsEventsData,
+  VerticalMobileStat,
+  type TNewsEventsData,
+  type TVerticalMobileStat,
+} from "./constants/global";
 import CountUp from "react-countup";
 import { FaArrowRight } from "react-icons/fa6";
 // Import Swiper React components
@@ -18,6 +26,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { useGetAllFacultyQuery } from "../features/admin/userManagementApi";
 import type { TFaculty } from "../types/userManagementTypes";
+import React from "react";
 
 const About = () => {
   const { isMobile, isTablet } = useResponsive();
@@ -25,7 +34,7 @@ const About = () => {
     useGetAllFacultyQuery(undefined);
   console.log(faculty?.data);
   return (
-    <div style={{ paddingTop: "100px", background: "#f6f9fc" }}>
+    <div style={{ paddingTop: "100px", background: "#f6f9fc", width:"100%", height:"100%",}}>
       <div style={{ position: "relative", height: "90vh" }}>
         <div
           style={{
@@ -273,13 +282,14 @@ const About = () => {
           margin: "150px auto 0 auto",
           paddingBottom: "50px",
           width: isMobile ? "100%" : "85%",
-          height: "210px",
+          height: isMobile ? "" : "210px",
+          padding:"0 10px"
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection:isMobile?"column":"row",
+            flexDirection: isMobile ? "column" : "row",
             gap: "22px",
             alignItems: "stretch",
             justifyContent: "space-between",
@@ -287,7 +297,15 @@ const About = () => {
           }}
         >
           {/*  1st part of second section */}
-          <div style={{ display: "flex", width: "50%", height: "100%" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+              width: isMobile ? "100%" : "50%",
+              height: "100%",
+              marginBottom: isMobile ? "" : "",
+            }}
+          >
             {/* Ensure Necessity */}
 
             {/* <div
@@ -384,7 +402,7 @@ const About = () => {
               <div
                 style={{
                   flex: isMobile ? 1 : isTablet ? 1 : "0 0 60%",
-                  margin: isMobile ? "0 0 30px 0" : "0",
+                  // margin: isMobile ? "0 0 100px 0" : "0",
                   position: "relative",
                 }}
               >
@@ -406,25 +424,30 @@ const About = () => {
                   />
                 </figure>
                 <Flex
-                  vertical
-                  gap={10}
+                  vertical={!isMobile}
+                  gap={16}
                   style={{
                     position: "absolute",
-                    width: isMobile ? "90px" : "80px",
-                    top: 6,
-                    bottom: 6,
-                    right: 6,
+                    transform: isMobile
+                      ? "translateX(-50%) translateY(50%)"
+                      : "",
+                    width: isMobile ? "80%" : "80px",
+                    top: isMobile ? "" : 6,
+                    bottom: isMobile ? 0 : 6,
+                    right: isMobile ? "" : 6,
+                    left: isMobile ? "50%" : "",
                     background: "linear-gradient(135deg, #1E3A5F, #09325e)",
-                    padding: "16px 10px",
-                    color: "#ffffff",
-                    fontSize: isMobile ? "10px" : "12px",
+                    padding: isMobile ? "20px 20px" : "16px 10px",
+                    boxSizing: "border-box",
+                    color: "#ebedef",
+                    fontSize: isMobile ? "13px" : "12px",
                     borderRadius: isMobile ? "10px" : "20px",
                   }}
                 >
                   <span
                     style={{
-                      fontSize: isMobile ? "40px" : "40px",
-                      color: "#F4B740",
+                      fontSize: isMobile ? "70px" : "40px",
+                      color: "#de990f",
                       lineHeight: isMobile ? ".7" : "1",
                       margin: isMobile ? "0 0 -16px 0" : "0 0 -28px 0",
                       fontFamily: "-apple-system",
@@ -432,25 +455,97 @@ const About = () => {
                   >
                     “
                   </span>
-                  <span>
-                    Education is the most powerful weapon which you can use to
-                    change the world.
-                  </span>
-                  <span>- Nelson Mandela</span>
+                  <Flex
+                    vertical
+                    gap={5}
+                    style={{ lineHeight: "20px", fontFamily: "sans-serif" }}
+                  >
+                    <span>
+                      Education is the most powerful weapon which you can use to
+                      change the world.
+                    </span>
+                    <span>- Nelson Mandela</span>
+                  </Flex>
                 </Flex>
               </div>
             </div>
+
+            {isMobile && (
+              <div style={{width:"100%",}}>
+                 <Flex
+                vertical
+                align="center"
+                style={{ margin: "100px 0 0 0", width: "100%", height: "100%",}}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Robotto'",
+                    textAlign: "center",
+                    fontWeight: "800",
+                    fontSize: "24px",
+                  }}
+                >
+                  {" "}
+                  Our Global Impact
+                </span>
+                <Flex
+                  vertical
+                  gap={10}
+                  align="stretch"
+                  style={{
+                    background: "#fff",
+                    width:"100%",
+                    boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+                    transition: "0.3s ease",
+                    height: "100%",
+                    borderRadius: "20px",
+                  }}
+                >
+                  {VerticalMobileStat.map(
+                    (item: TVerticalMobileStat, index: number) => {
+                      return (
+                        <React.Fragment key={index}>
+                          <Flex justify="start" align="center" >
+                            <figure style={{ height: "50px" }}>
+                              <img
+                                src={item.image}
+                                style={{ height: "100%", width: "100%" }}
+                                alt=""
+                              />
+                            </figure>
+                            <Flex vertical gap={5}>
+                              <span>{item.value}+</span>
+                              <span>{item.title}</span>
+                            </Flex>
+                          </Flex>
+                          {(index !== 3) && <span style={{ width: "100%" }}>
+                            <hr
+                              style={{
+                                border: "none",
+                                background: "#000",
+                                height: ".5px",
+                              }}
+                            />
+                          </span> }
+                        </React.Fragment>
+                      );
+                    },
+                  )}
+                </Flex>
+              </Flex>
+              </div>
+            )}
             {/* </div> */}
           </div>
 
           {/*  2nd part of second section */}
-          <div style={{ width: "50%", height: "100%" }}>
+          <div style={{ width: isMobile ? "100%" : "50%", height: "100%" }}>
             <div
               style={{
                 width: "100%",
                 height: "100%",
                 display: "flex",
-                flexDirection:isMobile?"column":"row",
+                flexDirection: isMobile ? "column" : "row",
                 gap: "10px",
               }}
             >
@@ -458,7 +553,11 @@ const About = () => {
               <Flex
                 vertical
                 gap={12}
-                style={{ height: "100%", width: "50%", borderRadius: "14px" }}
+                style={{
+                  height: "100%",
+                  width: isMobile ? "100%" : "50%",
+                  borderRadius: "14px",
+                }}
               >
                 <span
                   style={{
@@ -572,9 +671,13 @@ const About = () => {
                   })}
                 </Swiper>
               </Flex>
-              
+
               {/* 2nd flex */}
-              <Flex vertical gap={10} style={{ width: "50%", height: "100%" }}>
+              <Flex
+                vertical
+                gap={10}
+                style={{ width: isMobile ? "100%" : "50%", height: "100%" }}
+              >
                 <span
                   style={{
                     fontFamily: "'Robotto'",
@@ -582,8 +685,10 @@ const About = () => {
                     fontWeight: 600,
                   }}
                 >
-                  Voices of Our 
-                  <span style={{ color: "#db930d" }}>Community</span>
+                  Voices of Our
+                  <span style={{ color: "#db930d", paddingLeft: "4px" }}>
+                    Community
+                  </span>
                 </span>
 
                 <Swiper
@@ -625,82 +730,113 @@ const About = () => {
                     </Flex>
                   ) : (
                     <>
-                      {faculty?.data?.map((item: TFaculty, index: number) => {
-                                          const image =
-                                            item.gender === "male"
-                                              ? maleGenderImageArray[
-                                                  index % maleGenderImageArray.length
-                                                ]
-                                              : femaleGenderImageArray[
-                                                  index % femaleGenderImageArray.length
-                                                ];
-                                          return (
-                                            <SwiperSlide
-                        key={item.id}
-                        style={{
-                          display: "flex",
-                          borderRadius: "16px",
-                          height: "100%",
-                        }}
-                      >
-                        <Flex
-                          vertical
-                          gap={10}
-                          style={{
-                            background: "#fff",
-                            overflow: "hidden",
-
-                            // Premium soft shadow
-                            boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
-
-                            // Smooth transition
-                            transition: "0.3s ease",
-
-                            height: "100%",
-                            width:"100%",
-                            // alignItems: "stretch",
-                            borderRadius: "20px",
-                            padding:"17px 20px",
-                          }}
-                        >
-                          <Flex gap={20} style={{ width: "100%" }}>
-                            <figure
-                              style={{ margin: "0", width: "35%", flex: 1 }}
+                      {faculty?.data
+                        ?.slice(0, 3)
+                        .map((item: TFaculty, index: number) => {
+                          const image =
+                            item.gender === "male"
+                              ? maleGenderImageArray[
+                                  index % maleGenderImageArray.length
+                                ]
+                              : femaleGenderImageArray[
+                                  index % femaleGenderImageArray.length
+                                ];
+                          return (
+                            <SwiperSlide
+                              key={item.id}
+                              style={{
+                                display: "flex",
+                                borderRadius: "16px",
+                                height: "100%",
+                              }}
                             >
-                              <img
-                                src={image}
+                              <Flex
+                                vertical
+                                gap={10}
                                 style={{
-                                  height: "",
+                                  background: "#fff",
+                                  overflow: "hidden",
+
+                                  // Premium soft shadow
+                                  boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+
+                                  // Smooth transition
+                                  transition: "0.3s ease",
+
+                                  height: "100%",
                                   width: "100%",
-                                  objectFit: "cover",
-                                  borderRadius:"50%"
+                                  // alignItems: "stretch",
+                                  borderRadius: "20px",
+                                  padding: "17px 20px",
                                 }}
-                                alt=""
-                              />
-                            </figure>
-                             <div style={{width:"66%"}}>
-                               <span style={{fontSize:"11px", fontFamily:""}}>
-                                  Techno University has provided me with endless opportunities to learn, grow, and make a difference. I’m proud to be a part of this incredible community.
-                               </span>
-                             </div>
-                          </Flex>
-                           <Flex vertical >
-                               <span style={{fontWeight:600, fontSize:"11px"}}>{item?.name}</span>
-                               <span style={{fontSize:"11px", lineHeight:"2.2"}}>{item?.academicDepartment?.name}</span>
-                           </Flex>
-                        </Flex>
-                      </SwiperSlide>
-                    );
-                  })}
+                              >
+                                <Flex gap={20} style={{ width: "100%" }}>
+                                  <figure
+                                    style={{
+                                      margin: "0",
+                                      width: "35%",
+                                      flex: 1,
+                                    }}
+                                  >
+                                    <img
+                                      src={image}
+                                      style={{
+                                        height: "",
+                                        width: "100%",
+                                        objectFit: "cover",
+                                        borderRadius: "50%",
+                                      }}
+                                      alt=""
+                                    />
+                                  </figure>
+                                  <div style={{ width: "66%" }}>
+                                    <span
+                                      style={{
+                                        fontSize: "11px",
+                                        fontFamily: "",
+                                      }}
+                                    >
+                                      Techno University has provided me with
+                                      endless opportunities to learn, grow, and
+                                      make a difference. I’m proud to be a part
+                                      of this incredible community.
+                                    </span>
+                                  </div>
+                                </Flex>
+                                <Flex vertical>
+                                  <span
+                                    style={{
+                                      fontWeight: 600,
+                                      fontSize: "11px",
+                                    }}
+                                  >
+                                    {item?.name}
+                                  </span>
+                                  <span
+                                    style={{
+                                      fontSize: "11px",
+                                      lineHeight: "2.2",
+                                    }}
+                                  >
+                                    {item?.academicDepartment?.name}
+                                  </span>
+                                </Flex>
+                              </Flex>
+                            </SwiperSlide>
+                          );
+                        })}
                     </>
                   )}
-                  
                 </Swiper>
               </Flex>
             </div>
           </div>
         </div>
       </div>
+
+      {/*  */}
+
+      <div style={{}}></div>
     </div>
   );
 };
