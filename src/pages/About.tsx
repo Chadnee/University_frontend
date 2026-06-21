@@ -295,7 +295,7 @@ const About = () => {
           style={{
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
-            gap: isMobile ? "34px" :"22px",
+            gap: isMobile ? "40px" :"22px",
             alignItems: "stretch",
             justifyContent: "space-between",
             height: "100%",
@@ -306,6 +306,7 @@ const About = () => {
             style={{
               display: "flex",
               flexDirection: isMobile ? "column" : "row",
+              gap:"30px",
               width: isMobile ? "100%" : "50%",
               height: "100%",
               marginBottom: isMobile ? "" : "",
@@ -345,7 +346,7 @@ const About = () => {
                   style={{
                     fontFamily: "emoji",
                     textTransform: "uppercase",
-                    fontSize: "9px",
+                    fontSize: isMobile ? "13px" :"9px",
                     color: "#e7a11f",
                     fontWeight: "600",
                   }}
@@ -356,14 +357,14 @@ const About = () => {
                   style={{
                     fontFamily: "'Montserrat'",
                     fontWeight: "800",
-                    fontSize: "24px",
+                    fontSize: isMobile ? "30px" :"24px",
                   }}
                 >
                   Who We Are
                 </span>
                 <span
                   style={{
-                    width: isMobile ? "16px" : "24px",
+                    width: isMobile ? "32px" : "24px",
                     paddingLeft: "2px",
                   }}
                 >
@@ -377,9 +378,9 @@ const About = () => {
                 </span>
                 <span
                   style={{
-                    letterSpacing: "0.6px",
+                    letterSpacing: isMobile ? "" :"0.6px",
                     fontFamily: "'Inter', 'Segoe UI', sans-serif",
-                    fontSize: "11px",
+                    fontSize: isMobile ? "15px" :"11px",
                     textAlign: "justify",
                   }}
                 >
@@ -392,13 +393,13 @@ const About = () => {
                 <button
                   style={{
                     width: "fit-content",
-                    margin: isMobile ? "5px 0 0 0" : "10px 0 0 0",
-                    borderRadius: "3px",
+                    margin: isMobile ? "13px 0 14px 0" : "10px 0 0 0",
+                    borderRadius: isMobile ? "5px" :"3px",
                     border: "none",
-                    padding: "6px 18px",
+                    padding: isMobile ? "9px 18px" :"6px 18px",
                     background: "#db930d",
                     color: "white",
-                    fontSize: "12px",
+                    fontSize: isMobile ? "16px" :"12px",
                   }}
                 >
                   Read more
@@ -413,9 +414,10 @@ const About = () => {
               >
                 <figure
                   style={{
-                    height: "100%",
+                    height: isMobile ? "180px" :"100%",
                     width: "100%",
                     margin: 0,
+                    flexShrink:0
                   }}
                 >
                   <img
@@ -424,28 +426,30 @@ const About = () => {
                       width: "100%",
                       borderRadius: isMobile ? "10px" : "30px",
                       height: "100%",
+                      objectFit:"contain"
                     }}
                     alt=""
                   />
                 </figure>
                 <Flex
                   vertical={!isMobile}
-                  gap={16}
+                  gap={isMobile?26:16}
                   style={{
                     position: "absolute",
                     transform: isMobile
-                      ? "translateX(-50%) translateY(50%)"
+                      ? "translateX(-50%) translateY(70%)"
                       : "",
-                    width: isMobile ? "80%" : "80px",
+                    width: isMobile ? "90%" : "80px",
                     top: isMobile ? "" : 6,
                     bottom: isMobile ? 0 : 6,
                     right: isMobile ? "" : 6,
                     left: isMobile ? "50%" : "",
-                    background: "linear-gradient(135deg, #1E3A5F, #09325e)",
+                    // background: "linear-gradient(135deg, #1E3A5F, #09325e)",
+                    background: "linear-gradient(135deg, #1E3A5F, #061c33)",
                     padding: isMobile ? "20px 20px" : "16px 10px",
                     boxSizing: "border-box",
                     color: "#ebedef",
-                    fontSize: isMobile ? "13px" : "12px",
+                    fontSize: isMobile ? "14px" : "12px",
                     borderRadius: isMobile ? "10px" : "20px",
                   }}
                 >
@@ -465,14 +469,13 @@ const About = () => {
                     gap={5}
                     style={{ 
                       // lineHeight: "20px", 
-                      fontFamily: "sans-serif", 
-                    fontSize:"12px" }}
+                      fontFamily:"fangsong", lineHeight: isMobile ? "1.5" : "",}}
                   >
                     <span>
                       Education is the most powerful weapon which you can use to
                       change the world.
                     </span>
-                    <span>- Nelson Mandela</span>
+                    <span style={{paddingTop:"3px"}}>- Nelson Mandela</span>
                   </Flex>
                 </Flex>
               </div>
@@ -511,10 +514,10 @@ const About = () => {
                     (item: TVerticalMobileStat, index: number) => (
                       <Flex key={index} gap={26} align="center" style={{              gap: "15px",
               backgroundColor: "#ffffff",
-              padding: "13px 26px",
+              padding: "16px 26px",
               borderRadius: "8px",
               boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-              fontFamily:""
+              fontFamily:"'Robotto'"
 }}>
                            <figure style={{ width: "43px",height:"43px", margin:"0",flexShrink:0 }}>
                               <img
@@ -524,7 +527,7 @@ const About = () => {
                               />
                             </figure>
                             <Flex vertical gap={5}>
-                              <span style={{fontWeight:600, fontSize:"18px"}}>{item.value}</span>
+                              <span style={{fontWeight:800, fontSize:"20px"}}>{item.value}</span>
                               <span>{item.title}</span>
                             </Flex>
                       </Flex>
@@ -546,7 +549,7 @@ const About = () => {
                 height: "100%",
                 display: "flex",
                 flexDirection: isMobile ? "column" : "row",
-                gap: isMobile? "20px" :"10px",
+                gap: isMobile? "30px" :"10px",
               }}
             >
               {/* 1st flex */}

@@ -65,7 +65,8 @@
   transition-timing-function: linear !important;
 }
 .mySwiper {
-    --swiper-theme-color: #94979a;
+    /* --swiper-theme-color: #94979a; */
+    --swiper-theme-color: #db930d;
 }
 
 /* =========================
