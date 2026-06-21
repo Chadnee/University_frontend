@@ -511,20 +511,20 @@ const About = () => {
                     (item: TVerticalMobileStat, index: number) => (
                       <Flex key={index} gap={26} align="center" style={{              gap: "15px",
               backgroundColor: "#ffffff",
-              padding: "8px 26px",
+              padding: "13px 26px",
               borderRadius: "8px",
               boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
               fontFamily:""
 }}>
-                           <figure style={{ width: "35px", margin:"0",  }}>
+                           <figure style={{ width: "43px",height:"43px", margin:"0",flexShrink:0 }}>
                               <img
                                 src={item.image}
-                                style={{ height: "100%", width: "100%" }}
+                                style={{ height: "100%", width: "100%", objectFit:"contain" }}
                                 alt=""
                               />
                             </figure>
                             <Flex vertical gap={5}>
-                              <span style={{fontWeight:600, fontFamily:"-apple-system", fontSize:"18px"}}>{item.value}</span>
+                              <span style={{fontWeight:600, fontSize:"18px"}}>{item.value}</span>
                               <span>{item.title}</span>
                             </Flex>
                       </Flex>
