@@ -377,8 +377,9 @@ export const info = [
       startValue:1000,
       title: "Students Enrolled",
       sign:"+",
-      imageColor:"#fcd5ce",
-      textColor:"#de2808"
+      imageColor:"#f3dfdc",
+      textColor:"#de2808",
+      // backgroundColor:"#fcd5ce"
    },
    {
       image: bag,
@@ -387,7 +388,8 @@ export const info = [
       title: "Expert Faculty",
       sign:"+",
       imageColor:"#f2e6fd",
-      textColor:"#7a0ce1"
+      textColor:"#7a0ce1",
+      // backgroundColor:""
    },
    {
       image: books,
@@ -396,7 +398,8 @@ export const info = [
       title: "Courses Offered ",
       sign:"+",
       imageColor:"#f9e3be",
-      textColor:"#cb8409"
+      textColor:"#cb8409",
+      // backgroundColor:""
    },
    {
       image: cup,
@@ -404,8 +407,9 @@ export const info = [
       startValue:1,
       title: "Success Rate",
       sign:"%",
-      imageColor:"#d4e2ef",
-      textColor:"#1a76cb"
+      imageColor:"#d8e9f8",
+      textColor:"#1a76cb",
+      // backgroundColor:""
    },
 ]
 

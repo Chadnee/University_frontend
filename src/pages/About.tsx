@@ -26,7 +26,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { useGetAllFacultyQuery } from "../features/admin/userManagementApi";
 import type { TFaculty } from "../types/userManagementTypes";
-import React from "react";
+// import React from "react";
 
 const About = () => {
   const { isMobile, isTablet } = useResponsive();
@@ -35,7 +35,7 @@ const About = () => {
   console.log(faculty?.data);
   return (
     <div style={{ paddingTop: "100px", background: "#f6f9fc", width:"100%", height:"100%",}}>
-      <div style={{ position: "relative", height: "90vh" }}>
+      <div style={{ position:"relative", height: isMobile?"auto":"auto" }}>
         <div
           style={{
             position: "relative",
@@ -43,6 +43,7 @@ const About = () => {
             width: "100%",
             overflow: "visible",
             background: "#f8f8f8",
+            marginBottom:isMobile?"":"130px"
           }}
         >
           {/* RIGHT IMAGE */}
@@ -184,41 +185,44 @@ const About = () => {
         <div
           style={{
             // margin: isMobile ? "60px 0 80px 0" : " 100px 0 150px 0",
+            marginTop:isMobile?"30px":"",
             display: "flex",
             justifyContent: "center",
-            position: "absolute",
+            position: isMobile? "static": "absolute",
             bottom: 0,
             zIndex: 10,
-            transform: "translateX(-50%) translateY(50%)",
+            transform: isMobile? "none":"translateX(-50%) translateY(50%)",
             width: "100%",
-            left: "50%",
+            left: isMobile? "":"50%",
+            marginBottom:isMobile?"40px":""
           }}
         >
           <Row
-            gutter={isMobile ? [10, 10] : isTablet ? 50 : 70}
-            style={{ display: "flex" }}
+            gutter={isMobile ? [16, 16] : isTablet ? [50,50] : 70} style={{margin:isMobile?"24px 3px 40px 3px":""}}
+            // style={{ display: "flex" }}
           >
             {info.map((item) => (
-              <Col xs={12} sm={12} md={6} lg={6} style={{ flex: 1 }}>
+              <Col xs={12} sm={12} md={6} lg={6} style={{  }}>
                 <Flex
+                  vertical={isMobile}
                   align="center"
                   justify="center"
-                  gap={20}
+                  gap={isMobile?10:20}
                   style={{
                     boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                    padding: "24px 18px",
-                    background: "#ffffff",
+                    padding: isMobile?"14px 0":"24px 18px",
+                    background: !isMobile?"#ffffff":`${item.imageColor}35`,
                     width: "100%",
-                    borderRadius: "14px",
+                    borderRadius: isMobile?"6px":"14px",
                   }}
                 >
                   <figure
                     style={{
-                      height: "80px",
-                      width: "85px",
+                      height: isMobile? "45px":"80px",
+                      width: isMobile? "45px":"85px",
                       margin: "0",
                       background: item.imageColor,
-                      borderRadius: "14px",
+                      borderRadius: isMobile?"8px":"14px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
@@ -227,14 +231,14 @@ const About = () => {
                     <img
                       src={item.image}
                       style={{
-                        height: "45px",
-                        width: "45px",
+                        height: isMobile?"30px":"45px",
+                        width: isMobile?"30px":"45px",
                         objectFit: "contain",
                       }}
                       alt=""
                     />
                   </figure>
-                  <Flex vertical gap={4} style={{}}>
+                  <Flex vertical align={isMobile?"center" :"start"} gap={4} style={{}}>
                     <span
                       style={{
                         fontWeight: "700",
@@ -253,18 +257,18 @@ const About = () => {
                     <span
                       style={{
                         whiteSpace: "nowrap",
-                        fontSize: isMobile ? "11px" : "19px",
+                        fontSize: isMobile ? "12px" : "19px",
                         fontWeight: 600,
                       }}
                     >
                       {item.title}
                     </span>
-                    <span style={{ width: isMobile ? "16px" : "24px" }}>
+                    <span style={{ width: isMobile ? "24px" : "24px" }}>
                       <hr
                         style={{
                           background: item.textColor,
                           border: "none",
-                          height: "2px",
+                          height: isMobile ? "1.3px" :"2px",
                         }}
                       />
                     </span>
@@ -279,18 +283,19 @@ const About = () => {
       {/* Second section */}
       <div
         style={{
-          margin: "150px auto 0 auto",
+          margin: "0 auto",
           paddingBottom: "50px",
           width: isMobile ? "100%" : "85%",
-          height: isMobile ? "" : "210px",
-          padding:"0 10px"
+          height: isMobile ? "auto" : "210px",
+          padding:"0 10px",
+           boxSizing: "border-box",
         }}
       >
         <div
           style={{
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
-            gap: "22px",
+            gap: isMobile ? "34px" :"22px",
             alignItems: "stretch",
             justifyContent: "space-between",
             height: "100%",
@@ -458,7 +463,10 @@ const About = () => {
                   <Flex
                     vertical
                     gap={5}
-                    style={{ lineHeight: "20px", fontFamily: "sans-serif" }}
+                    style={{ 
+                      // lineHeight: "20px", 
+                      fontFamily: "sans-serif", 
+                    fontSize:"12px" }}
                   >
                     <span>
                       Education is the most powerful weapon which you can use to
@@ -474,7 +482,7 @@ const About = () => {
               <div style={{width:"100%",}}>
                  <Flex
                 vertical
-                align="center"
+                align="center" gap={16}
                 style={{ margin: "100px 0 0 0", width: "100%", height: "100%",}}
               >
                 <span
@@ -490,23 +498,25 @@ const About = () => {
                 </span>
                 <Flex
                   vertical
-                  gap={10}
+                  gap={1.5}
                   align="stretch"
                   style={{
-                    background: "#fff",
                     width:"100%",
-                    boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
-                    transition: "0.3s ease",
                     height: "100%",
-                    borderRadius: "20px",
+                    borderRadius: "5px",
+                    
                   }}
                 >
                   {VerticalMobileStat.map(
-                    (item: TVerticalMobileStat, index: number) => {
-                      return (
-                        <React.Fragment key={index}>
-                          <Flex justify="start" align="center" >
-                            <figure style={{ height: "50px" }}>
+                    (item: TVerticalMobileStat, index: number) => (
+                      <Flex key={index} gap={26} align="center" style={{              gap: "15px",
+              backgroundColor: "#ffffff",
+              padding: "8px 26px",
+              borderRadius: "8px",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+              fontFamily:""
+}}>
+                           <figure style={{ width: "35px", margin:"0",  }}>
                               <img
                                 src={item.image}
                                 style={{ height: "100%", width: "100%" }}
@@ -514,22 +524,11 @@ const About = () => {
                               />
                             </figure>
                             <Flex vertical gap={5}>
-                              <span>{item.value}+</span>
+                              <span style={{fontWeight:600, fontFamily:"-apple-system", fontSize:"18px"}}>{item.value}</span>
                               <span>{item.title}</span>
                             </Flex>
-                          </Flex>
-                          {(index !== 3) && <span style={{ width: "100%" }}>
-                            <hr
-                              style={{
-                                border: "none",
-                                background: "#000",
-                                height: ".5px",
-                              }}
-                            />
-                          </span> }
-                        </React.Fragment>
-                      );
-                    },
+                      </Flex>
+                    )
                   )}
                 </Flex>
               </Flex>
@@ -538,7 +537,8 @@ const About = () => {
             {/* </div> */}
           </div>
 
-          {/*  2nd part of second section */}
+         
+ {/*  2nd part of second section */}
           <div style={{ width: isMobile ? "100%" : "50%", height: "100%" }}>
             <div
               style={{
@@ -546,7 +546,7 @@ const About = () => {
                 height: "100%",
                 display: "flex",
                 flexDirection: isMobile ? "column" : "row",
-                gap: "10px",
+                gap: isMobile? "20px" :"10px",
               }}
             >
               {/* 1st flex */}
@@ -569,7 +569,7 @@ const About = () => {
                   News & <span style={{ color: "#db930d" }}>Events</span>
                 </span>
                 <Swiper
-                  slidesPerView={5.2}
+                  slidesPerView={1}
                   spaceBetween={isMobile ? 8 : 14}
                   pagination={{
                     clickable: true,
@@ -591,6 +591,7 @@ const About = () => {
                     width: "100%",
                     height: "100%",
                     borderRadius: "20px",
+                    paddingBottom: "27px", // space for bullets
                     //  display: "flex",
                     //  flexDirection: "column",
                   }}
@@ -603,6 +604,7 @@ const About = () => {
                           display: "flex",
                           borderRadius: "16px",
                           height: "100%",
+                          overflow:" hidden"
                         }}
                       >
                         <div
@@ -692,7 +694,7 @@ const About = () => {
                 </span>
 
                 <Swiper
-                  slidesPerView={5.2}
+                  slidesPerView={1}
                   spaceBetween={isMobile ? 8 : 14}
                   pagination={{
                     clickable: true,
@@ -714,6 +716,7 @@ const About = () => {
                     width: "100%",
                     height: "100%",
                     borderRadius: "20px",
+                    paddingBottom: "25px", // space for bullets
                     //  display: "flex",
                     //  flexDirection: "column",
                   }}
@@ -748,6 +751,7 @@ const About = () => {
                                 display: "flex",
                                 borderRadius: "16px",
                                 height: "100%",
+                                overflow:" hidden"
                               }}
                             >
                               <Flex
@@ -767,7 +771,7 @@ const About = () => {
                                   width: "100%",
                                   // alignItems: "stretch",
                                   borderRadius: "20px",
-                                  padding: "17px 20px",
+                                  padding: "10px 20px",
                                 }}
                               >
                                 <Flex gap={20} style={{ width: "100%" }}>
@@ -803,11 +807,12 @@ const About = () => {
                                     </span>
                                   </div>
                                 </Flex>
-                                <Flex vertical>
+                                <Flex vertical style={{paddingBottom:""}}>
                                   <span
                                     style={{
                                       fontWeight: 600,
                                       fontSize: "11px",
+                                      
                                     }}
                                   >
                                     {item?.name}
@@ -834,11 +839,10 @@ const About = () => {
         </div>
       </div>
 
-      {/*  */}
-
-      <div style={{}}></div>
+     
     </div>
   );
 };
 
 export default About;
+
