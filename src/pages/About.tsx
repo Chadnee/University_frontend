@@ -39,7 +39,7 @@ const About = () => {
         <div
           style={{
            position: "relative",
-    height: isMobile ? "70vh" : "90vh",
+    height: isMobile ? "500px" : "90vh",
     width: "100%",
     backgroundImage: isMobile ? `url(${campus2})` : undefined,
     backgroundSize: "cover",
@@ -81,7 +81,7 @@ const About = () => {
               :"linear-gradient(to right, rgba(255,255,255,0.98), rgba(255,255,255,0.93), rgba(255,255,255,0.82), transparent)",
               clipPath: isMobile?"" :"polygon(0 0, 78% 0, 100% 100%, 0% 100%)",
               display: "flex",
-              alignItems: isMobile?"start":"center",
+              alignItems: "center",
             }}
           >
             {/* TEXT CONTENT */}
