@@ -38,16 +38,18 @@ const About = () => {
       <div style={{ position:"relative", height: isMobile?"auto":"auto" }}>
         <div
           style={{
-            position: "relative",
-            height: "90vh",
-            width: "100%",
-            overflow: "visible",
-            background: "#f8f8f8",
-            marginBottom:isMobile?"":"130px"
+           position: "relative",
+    height: isMobile ? "70vh" : "90vh",
+    width: "100%",
+    backgroundImage: isMobile ? `url(${campus2})` : undefined,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
           }}
         >
           {/* RIGHT IMAGE */}
-          <div
+          {
+            !isMobile && <div
             style={{
               position: "absolute",
               inset: 0,
@@ -60,10 +62,11 @@ const About = () => {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit:  isMobile?"contain" :"cover",
               }}
             />
           </div>
+          }
 
           {/* LEFT CURVE OVERLAY */}
           <div
@@ -72,25 +75,26 @@ const About = () => {
               left: 0,
               top: 0,
               height: "100%",
-              width: "58%",
+              width: isMobile ? "100%":"58%",
               zIndex: 2,
-              background:
-                "linear-gradient(to right, rgba(255,255,255,0.98), rgba(255,255,255,0.93), rgba(255,255,255,0.82), transparent)",
-              clipPath: "polygon(0 0, 78% 0, 100% 100%, 0% 100%)",
+              background:isMobile?"linear-gradient(to bottom, rgba(235, 223, 223, 0.98), transparent)"
+              :"linear-gradient(to right, rgba(255,255,255,0.98), rgba(255,255,255,0.93), rgba(255,255,255,0.82), transparent)",
+              clipPath: isMobile?"" :"polygon(0 0, 78% 0, 100% 100%, 0% 100%)",
               display: "flex",
-              alignItems: "center",
+              alignItems: isMobile?"start":"center",
             }}
           >
             {/* TEXT CONTENT */}
             <div
               style={{
-                paddingLeft: "80px",
-                maxWidth: "560px",
+                padding: isMobile ? "30px 13px" :"0 0 0 80px",
+                // maxWidth: isMobile ? " 100%" :"70%",
+                // maxWidth: "560px",
               }}
             >
               {/* TOP LABEL */}
-              <Flex align="center" gap={10} style={{ marginBottom: "18px" }}>
-                <span style={{ width: "28px" }}>
+              <Flex  align={isMobile ? " " : "center"} gap={10} style={{ marginBottom: "18px" }}>
+                <span style={{ width: isMobile ? "16px":"28px" }}>
                   <hr
                     style={{
                       border: "none",
@@ -104,7 +108,7 @@ const About = () => {
                   style={{
                     textTransform: "uppercase",
                     color: "#d89b1d",
-                    fontSize: "14px",
+                    fontSize: isMobile ? "10px" :"14px",
                     letterSpacing: "1px",
                     fontWeight: 600,
                     fontFamily: "Poppins",
@@ -117,8 +121,8 @@ const About = () => {
               {/* MAIN TITLE */}
               <h1
                 style={{
-                  fontSize: "50px",
-                  lineHeight: "60px",
+                  fontSize: isMobile ? "25px":"50px",
+                  lineHeight: isMobile ? "30px":"60px",
                   fontWeight: 700,
                   color: "#111827",
                   margin: 0,
@@ -133,12 +137,13 @@ const About = () => {
               {/* DESCRIPTION */}
               <p
                 style={{
-                  fontSize: "18px",
-                  lineHeight: "32px",
-                  color: "#5f6368",
-                  marginTop: "28px",
+                  fontSize: isMobile ? "13px":"18px",
+                  lineHeight: isMobile ? "":"32px",
+                  color: "#15345a",
+                  // color: "#0a1e36",
+                  marginTop: isMobile ? "":"28px",
                   maxWidth: "520px",
-                  fontFamily: "Poppins",
+                  fontFamily:"Poppins",
                 }}
               >
                 Empowering minds through quality education, innovative research,
@@ -149,14 +154,14 @@ const About = () => {
               <Button
                 style={{
                   marginTop: "34px",
-                  height: "56px",
-                  padding: "0 34px",
+                  height: isMobile ? "34px":"56px",
+                  padding: isMobile ? "":"0 34px",
                   background: "#d89b1d",
                   border: "none",
-                  borderRadius: "10px",
+                  borderRadius: isMobile ? "":"10px",
                   color: "#fff",
-                  fontSize: "17px",
-                  fontWeight: 600,
+                  fontSize: isMobile ? "14px":"17px",
+                  fontWeight: isMobile ? "":600,
                   display: "flex",
                   alignItems: "center",
                   gap: "10px",
