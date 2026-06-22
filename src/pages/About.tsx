@@ -35,16 +35,17 @@ const About = () => {
   console.log(faculty?.data);
   return (
     <div style={{ paddingTop: "100px", background: "#f6f9fc", width:"100%", height:"100%",}}>
-      <div style={{ position:"relative", height: isMobile?"auto":"auto" }}>
+      <div style={{ position:"relative", height: isMobile?"auto":"auto",  marginBottom: isMobile ? "0" : "140px", }}>
         <div
           style={{
            position: "relative",
-    height: isMobile ? "500px" : "90vh",
+    height:"90vh",
     width: "100%",
     backgroundImage: isMobile ? `url(${campus2})` : undefined,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
+    
           }}
         >
           {/* RIGHT IMAGE */}
@@ -77,8 +78,7 @@ const About = () => {
               height: "100%",
               width: isMobile ? "100%":"58%",
               zIndex: 2,
-              background:isMobile?"linear-gradient(to bottom, rgba(235, 223, 223, 0.98), transparent)"
-              :"linear-gradient(to right, rgba(255,255,255,0.98), rgba(255,255,255,0.93), rgba(255,255,255,0.82), transparent)",
+              background:"linear-gradient(to right, rgba(255,255,255,0.98), rgba(255,255,255,0.93), rgba(255,255,255,0.82), transparent)",
               clipPath: isMobile?"" :"polygon(0 0, 78% 0, 100% 100%, 0% 100%)",
               display: "flex",
               alignItems: "center",
@@ -94,7 +94,8 @@ const About = () => {
             >
               {/* TOP LABEL */}
               <Flex  align={isMobile ? " " : "center"} gap={10} style={{ marginBottom: "18px" }}>
-                <span style={{ width: isMobile ? "16px":"28px" }}>
+              {
+                !isMobile &&    <span style={{ width: isMobile ? "16px":"28px" }}>
                   <hr
                     style={{
                       border: "none",
@@ -103,6 +104,7 @@ const About = () => {
                     }}
                   />
                 </span>
+              }
 
                 <span
                   style={{
@@ -121,8 +123,8 @@ const About = () => {
               {/* MAIN TITLE */}
               <h1
                 style={{
-                  fontSize: isMobile ? "25px":"50px",
-                  lineHeight: isMobile ? "30px":"60px",
+                  fontSize: isMobile ? "30px":"50px",
+                  lineHeight: isMobile ? "45px":"60px",
                   fontWeight: 700,
                   color: "#111827",
                   margin: 0,
@@ -154,7 +156,7 @@ const About = () => {
               <Button
                 style={{
                   marginTop: "34px",
-                  height: isMobile ? "34px":"56px",
+                  height: isMobile ? "40px":"56px",
                   padding: isMobile ? "":"0 34px",
                   background: "#d89b1d",
                   border: "none",
