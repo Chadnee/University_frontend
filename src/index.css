@@ -70,11 +70,19 @@ body {
 .mySwiper .swiper-wrapper {
   transition-timing-function: linear !important;
 }
-.mySwiper {
+/* .mySwiper { */
     /* --swiper-theme-color: #94979a; */
-    --swiper-theme-color: #db930d;
+    /* --swiper-theme-color: #db930d; */
+/* }  */
+.mySwiper .swiper-pagination-bullet {
+  background: #ffffff !important;
+  opacity: 0.5;
 }
 
+.mySwiper .swiper-pagination-bullet-active {
+  background: #db930d !important;
+  opacity: 1;
+}
 /* =========================
    GOOGLE FONT IMPORT
    ⚠️ MUST BE SINGLE LINE
@@ -180,10 +188,11 @@ body {
   font-weight: 600;
   letter-spacing: 1px;
 }
-
-.font-heading-stylish {
-  font-family: var(--font-heading-stylish);
-  font-weight: 700;
+.font-heading-stylish{
+    font-family:var(--font-heading-stylish);
+    font-weight:700;
+    line-height:1.15;
+    letter-spacing:-0.6px;
 }
 
 /* ===== TEXT WEIGHT VARIANTS ===== */
@@ -226,3 +235,45 @@ body {
 }
 
 
+/* for arrow button */
+.prevBtn,
+.nextBtn {
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  transition: .3s;
+}
+@media (max-width: 767px) {
+  .prevBtn,
+  .nextBtn {
+    width: 40px;
+    height: 40px;
+    border-width: 1px;
+  }
+}
+.prevBtn:hover,
+.nextBtn:hover {
+  background: #d89b1d;
+  border-color: #d89b1d;
+}
+
+ /* newscard css design for newsAndEventSection */
+.middle-card {
+  transform: translateY(-60px);
+}
+
+.news-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+}
+/* 2nd card keeps its initial position and moves 10px more */
+.middle-card:hover {
+  transform: translateY(-70px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+}

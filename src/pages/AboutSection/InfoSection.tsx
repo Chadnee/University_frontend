@@ -1,18 +1,14 @@
-import { Button, Col, Flex, Row, Spin } from "antd";
-import useResponsive from "../hooks/useResponsive";
-import group from "../../src/assets/images/group.png";
-import campus2 from "../../src/assets/images/campus2.png";
+import { Flex,Spin } from "antd";
+import useResponsive from "../../hooks/useResponsive";
+import group from "../../assets/images/group.png";
 import {
   femaleGenderImageArray,
-  info,
   maleGenderImageArray,
   newsEventsData,
   VerticalMobileStat,
   type TNewsEventsData,
   type TVerticalMobileStat,
-} from "./constants/global";
-import CountUp from "react-countup";
-import { FaArrowRight } from "react-icons/fa6";
+} from "../constants/global";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -24,288 +20,32 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
-import { useGetAllFacultyQuery } from "../features/admin/userManagementApi";
-import type { TFaculty } from "../types/userManagementTypes";
-import { MdOutlineEmail } from "react-icons/md";
-// import React from "react";
+import type { TFaculty } from "../../types/userManagementTypes";
+import { useGetAllFacultyQuery } from "../../features/admin/userManagementApi";
 
-const About = () => {
-  const { isMobile, isTablet } = useResponsive();
-  const { data: faculty, isLoading: isFacultyLoading } =
+
+const InfoSection = () => {
+     const { isMobile, isTablet } = useResponsive();
+     const { data: faculty, isLoading: isFacultyLoading } =
     useGetAllFacultyQuery(undefined);
   console.log(faculty?.data);
+
   return (
-    <div style={{ paddingTop: "100px", background: "#f6f9fc", width:"100%", height:"100%",}}>
-     
-      {/* First section */}
-      <div style={{ position:"relative", height: isMobile?"auto":"auto",  marginBottom: isMobile ? "0" : "140px", }}>
-        <div
-          style={{
-           position: "relative",
-    height:"90vh",
-    width: "100%",
-    backgroundImage: isMobile ? `url(${campus2})` : undefined,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    
-          }}
-        >
-          {/* RIGHT IMAGE */}
-          {
-            !isMobile && <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-            }}
-          >
-            <img
-              src={campus2}
-              alt=""
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit:  isMobile?"contain" :"cover",
-              }}
-            />
-          </div>
-          }
-
-          {/* LEFT CURVE OVERLAY */}
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              height: "100%",
-              width: isMobile ? "100%":"58%",
-              zIndex: 2,
-              background:"linear-gradient(to right, rgba(255,255,255,0.98), rgba(255,255,255,0.93), rgba(255,255,255,0.82), transparent)",
-              clipPath: isMobile?"" :"polygon(0 0, 78% 0, 100% 100%, 0% 100%)",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            {/* TEXT CONTENT */}
-            <div
-              style={{
-                padding: isMobile ? "30px 13px" :"0 0 0 80px",
-                // maxWidth: isMobile ? " 100%" :"70%",
-                // maxWidth: "560px",
-              }}
-            >
-              {/* TOP LABEL */}
-              <Flex  align={isMobile ? " " : "center"} gap={10} style={{ marginBottom: "18px" }}>
-              {
-                !isMobile &&    <span style={{ width: isMobile ? "16px":"28px" }}>
-                  <hr
-                    style={{
-                      border: "none",
-                      background: "#d89b1d",
-                      height: "2px",
-                    }}
-                  />
-                </span>
-              }
-
-                <span
-                  style={{
-                    textTransform: "uppercase",
-                    color: "#d89b1d",
-                    fontSize: isMobile ? "10px" :"14px",
-                    letterSpacing: "1px",
-                    fontWeight: 600,
-                    fontFamily: "Poppins",
-                  }}
-                >
-                  Welcome To Techno University
-                </span>
-              </Flex>
-
-              {/* MAIN TITLE */}
-              <h1
-                style={{
-                  fontSize: isMobile ? "30px":"50px",
-                  lineHeight: isMobile ? "45px":"60px",
-                  fontWeight: 700,
-                  color: "#111827",
-                  margin: 0,
-                  fontFamily: "Montserrat",
-                }}
-              >
-                Shaping Futures,
-                <br />
-                Building Leaders
-              </h1>
-
-              {/* DESCRIPTION */}
-              <p
-                style={{
-                  fontSize: isMobile ? "13px":"18px",
-                  lineHeight: isMobile ? "":"32px",
-                  color: "#15345a",
-                  // color: "#0a1e36",
-                  marginTop: isMobile ? "":"28px",
-                  maxWidth: "520px",
-                  fontFamily:"Poppins",
-                }}
-              >
-                Empowering minds through quality education, innovative research,
-                and a commitment to excellence.
-              </p>
-
-              {/* BUTTON */}
-              <Button
-                style={{
-                  marginTop: "34px",
-                  height: isMobile ? "40px":"56px",
-                  padding: isMobile ? "":"0 34px",
-                  background: "#d89b1d",
-                  border: "none",
-                  borderRadius: isMobile ? "":"10px",
-                  color: "#fff",
-                  fontSize: isMobile ? "14px":"17px",
-                  fontWeight: isMobile ? "":600,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  boxShadow: "0 8px 24px rgba(216,155,29,0.35)",
-                }}
-              >
-                <span>Discover More</span>
-                <FaArrowRight />
-              </Button>
-            </div>
-          </div>
-
-          {/* OPTIONAL DARK OVERLAY */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "rgba(0,0,0,0.08)",
-              zIndex: 0,
-            }}
-          ></div>
-        </div>
-
-        {/* Count of ingredients */}
-
-        <div
-          style={{
-            // margin: isMobile ? "60px 0 80px 0" : " 100px 0 150px 0",
-            marginTop:isMobile?"30px":"",
-            display: "flex",
-            justifyContent: "center",
-            position: isMobile? "static": "absolute",
-            bottom: 0,
-            zIndex: 10,
-            transform: isMobile? "none":"translateX(-50%) translateY(50%)",
-            width: "100%",
-            left: isMobile? "":"50%",
-            marginBottom:isMobile?"40px":""
-          }}
-        >
-          <Row
-            gutter={isMobile ? [16, 16] : isTablet ? [50,50] : 70} style={{margin:isMobile?"24px 3px 40px 3px":""}}
-            // style={{ display: "flex" }}
-          >
-            {info.map((item) => (
-              <Col xs={12} sm={12} md={6} lg={6} style={{  }}>
-                <Flex
-                  vertical={isMobile}
-                  align="center"
-                  justify="center"
-                  gap={isMobile?10:20}
-                  style={{
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                    padding: isMobile?"14px 0":"24px 18px",
-                    background: !isMobile?"#ffffff":`${item.imageColor}35`,
-                    width: "100%",
-                    borderRadius: isMobile?"6px":"14px",
-                  }}
-                >
-                  <figure
-                    style={{
-                      height: isMobile? "45px":"80px",
-                      width: isMobile? "45px":"85px",
-                      margin: "0",
-                      background: item.imageColor,
-                      borderRadius: isMobile?"8px":"14px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <img
-                      src={item.image}
-                      style={{
-                        height: isMobile?"30px":"45px",
-                        width: isMobile?"30px":"45px",
-                        objectFit: "contain",
-                      }}
-                      alt=""
-                    />
-                  </figure>
-                  <Flex vertical align={isMobile?"center" :"start"} gap={4} style={{}}>
-                    <span
-                      style={{
-                        fontWeight: "700",
-                        fontSize: isMobile ? "18px" : "25px",
-                        color: item.textColor,
-                        fontFamily: "cursive",
-                      }}
-                    >
-                      <CountUp
-                        start={item.startValue}
-                        end={item.quantity}
-                        duration={5}
-                      />
-                      {item.sign}
-                    </span>
-                    <span
-                      style={{
-                        whiteSpace: "nowrap",
-                        fontSize: isMobile ? "12px" : "19px",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {item.title}
-                    </span>
-                    <span style={{ width: isMobile ? "24px" : "24px" }}>
-                      <hr
-                        style={{
-                          background: item.textColor,
-                          border: "none",
-                          height: isMobile ? "1.3px" :"2px",
-                        }}
-                      />
-                    </span>
-                  </Flex>
-                </Flex>
-              </Col>
-            ))}
-          </Row>
-        </div>
-      </div>
-
-      {/* Second section */}
-      <div
+     <div
         style={{
           margin: "0 auto",
           paddingBottom: "50px",
           width: isMobile ? "100%" : "85%",
           height: isMobile ? "auto" : "210px",
-          padding:"0 10px",
-           boxSizing: "border-box",
+          padding: "0 10px",
+          boxSizing: "border-box",
         }}
       >
         <div
           style={{
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
-            gap: isMobile ? "40px" :"22px",
+            gap: isMobile ? "40px" : "22px",
             alignItems: "stretch",
             justifyContent: "space-between",
             height: "100%",
@@ -316,7 +56,7 @@ const About = () => {
             style={{
               display: "flex",
               flexDirection: isMobile ? "column" : "row",
-              gap:"30px",
+              gap: "30px",
               width: isMobile ? "100%" : "50%",
               height: "100%",
               marginBottom: isMobile ? "" : "",
@@ -356,7 +96,7 @@ const About = () => {
                   style={{
                     fontFamily: "emoji",
                     textTransform: "uppercase",
-                    fontSize: isMobile ? "13px" :"9px",
+                    fontSize: isMobile ? "13px" : "9px",
                     color: "#e7a11f",
                     fontWeight: "600",
                   }}
@@ -367,7 +107,7 @@ const About = () => {
                   style={{
                     fontFamily: "'Montserrat'",
                     fontWeight: "800",
-                    fontSize: isMobile ? "30px" :"24px",
+                    fontSize: isMobile ? "30px" : "24px",
                   }}
                 >
                   Who We Are
@@ -388,9 +128,9 @@ const About = () => {
                 </span>
                 <span
                   style={{
-                    letterSpacing: isMobile ? "" :"0.6px",
+                    letterSpacing: isMobile ? "" : "0.6px",
                     fontFamily: "'Inter', 'Segoe UI', sans-serif",
-                    fontSize: isMobile ? "15px" :"11px",
+                    fontSize: isMobile ? "15px" : "11px",
                     textAlign: "justify",
                   }}
                 >
@@ -404,12 +144,12 @@ const About = () => {
                   style={{
                     width: "fit-content",
                     margin: isMobile ? "13px 0 14px 0" : "10px 0 0 0",
-                    borderRadius: isMobile ? "5px" :"3px",
+                    borderRadius: isMobile ? "5px" : "3px",
                     border: "none",
-                    padding: isMobile ? "9px 18px" :"6px 18px",
+                    padding: isMobile ? "9px 18px" : "6px 18px",
                     background: "#db930d",
                     color: "white",
-                    fontSize: isMobile ? "16px" :"12px",
+                    fontSize: isMobile ? "16px" : "12px",
                   }}
                 >
                   Read more
@@ -424,10 +164,10 @@ const About = () => {
               >
                 <figure
                   style={{
-                    height: isMobile ? "180px" :"100%",
+                    height: isMobile ? "180px" : "100%",
                     width: "100%",
                     margin: 0,
-                    flexShrink:0
+                    flexShrink: 0,
                   }}
                 >
                   <img
@@ -436,14 +176,14 @@ const About = () => {
                       width: "100%",
                       borderRadius: isMobile ? "10px" : "30px",
                       height: "100%",
-                      objectFit:"contain"
+                      objectFit: "contain",
                     }}
                     alt=""
                   />
                 </figure>
                 <Flex
                   vertical={!isMobile}
-                  gap={isMobile?26:16}
+                  gap={isMobile ? 26 : 16}
                   style={{
                     position: "absolute",
                     transform: isMobile
@@ -477,81 +217,105 @@ const About = () => {
                   <Flex
                     vertical
                     gap={5}
-                    style={{ 
-                      // lineHeight: "20px", 
-                      fontFamily:"fangsong", lineHeight: isMobile ? "1.5" : "",}}
+                    style={{
+                      // lineHeight: "20px",
+                      fontFamily: "fangsong",
+                      lineHeight: isMobile ? "1.5" : "",
+                    }}
                   >
                     <span>
                       Education is the most powerful weapon which you can use to
                       change the world.
                     </span>
-                    <span style={{paddingTop:"3px"}}>- Nelson Mandela</span>
+                    <span style={{ paddingTop: "3px" }}>- Nelson Mandela</span>
                   </Flex>
                 </Flex>
               </div>
             </div>
 
             {isMobile && (
-              <div style={{width:"100%",}}>
-                 <Flex
-                vertical
-                align="center" gap={16}
-                style={{ margin: "100px 0 0 0", width: "100%", height: "100%",}}
-              >
-                <span
-                  style={{
-                    fontFamily: "'Robotto'",
-                    textAlign: "center",
-                    fontWeight: "800",
-                    fontSize: "24px",
-                  }}
-                >
-                  {" "}
-                  Our Global Impact
-                </span>
+              <div style={{ width: "100%" }}>
                 <Flex
                   vertical
-                  gap={1.5}
-                  align="stretch"
+                  align="center"
+                  gap={16}
                   style={{
-                    width:"100%",
+                    margin: "100px 0 0 0",
+                    width: "100%",
                     height: "100%",
-                    borderRadius: "5px",
-                    
                   }}
                 >
-                  {VerticalMobileStat.map(
-                    (item: TVerticalMobileStat, index: number) => (
-                      <Flex key={index} gap={26} align="center" style={{              gap: "15px",
-              backgroundColor: "#ffffff",
-              padding: "16px 26px",
-              borderRadius: "8px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-              fontFamily:"'Robotto'"
-}}>
-                           <figure style={{ width: "43px",height:"43px", margin:"0",flexShrink:0 }}>
-                              <img
-                                src={item.image}
-                                style={{ height: "100%", width: "100%", objectFit:"contain" }}
-                                alt=""
-                              />
-                            </figure>
-                            <Flex vertical gap={5}>
-                              <span style={{fontWeight:800, fontSize:"20px"}}>{item.value}</span>
-                              <span>{item.title}</span>
-                            </Flex>
-                      </Flex>
-                    )
-                  )}
+                  <span
+                    style={{
+                      fontFamily: "'Robotto'",
+                      textAlign: "center",
+                      fontWeight: "800",
+                      fontSize: "24px",
+                    }}
+                  >
+                    {" "}
+                    Our Global Impact
+                  </span>
+                  <Flex
+                    vertical
+                    gap={1.5}
+                    align="stretch"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    {VerticalMobileStat.map(
+                      (item: TVerticalMobileStat, index: number) => (
+                        <Flex
+                          key={index}
+                          gap={26}
+                          align="center"
+                          style={{
+                            gap: "15px",
+                            backgroundColor: "#ffffff",
+                            padding: "16px 26px",
+                            borderRadius: "8px",
+                            boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                            fontFamily: "'Robotto'",
+                          }}
+                        >
+                          <figure
+                            style={{
+                              width: "43px",
+                              height: "43px",
+                              margin: "0",
+                              flexShrink: 0,
+                            }}
+                          >
+                            <img
+                              src={item.image}
+                              style={{
+                                height: "100%",
+                                width: "100%",
+                                objectFit: "contain",
+                              }}
+                              alt=""
+                            />
+                          </figure>
+                          <Flex vertical gap={5}>
+                            <span style={{ fontWeight: 800, fontSize: "20px" }}>
+                              {item.value}
+                            </span>
+                            <span>{item.title}</span>
+                          </Flex>
+                        </Flex>
+                      ),
+                    )}
+                  </Flex>
                 </Flex>
-              </Flex>
               </div>
             )}
             {/* </div> */}
           </div>
 
-         
- {/*  2nd part of second section */}
+          {/*  2nd part of second section */}
           <div style={{ width: isMobile ? "100%" : "50%", height: "100%" }}>
             <div
               style={{
@@ -559,7 +323,7 @@ const About = () => {
                 height: "100%",
                 display: "flex",
                 flexDirection: isMobile ? "column" : "row",
-                gap: isMobile? "30px" :"10px",
+                gap: isMobile ? "30px" : "10px",
               }}
             >
               {/* 1st flex */}
@@ -617,7 +381,7 @@ const About = () => {
                           display: "flex",
                           borderRadius: "16px",
                           height: "100%",
-                          overflow:" hidden"
+                          overflow: " hidden",
                         }}
                       >
                         <div
@@ -764,7 +528,7 @@ const About = () => {
                                 display: "flex",
                                 borderRadius: "16px",
                                 height: "100%",
-                                overflow:" hidden"
+                                overflow: " hidden",
                               }}
                             >
                               <Flex
@@ -820,12 +584,11 @@ const About = () => {
                                     </span>
                                   </div>
                                 </Flex>
-                                <Flex vertical style={{paddingBottom:""}}>
+                                <Flex vertical style={{ paddingBottom: "" }}>
                                   <span
                                     style={{
                                       fontWeight: 600,
                                       fontSize: "11px",
-                                      
                                     }}
                                   >
                                     {item?.name}
@@ -852,84 +615,7 @@ const About = () => {
         </div>
       </div>
 
-      {/* Third scetion */}
-      {
-        !isMobile &&  <div style={{background:"#060d2b", color:"#f1f5f9", borderRadius: "16px", width: "86%", margin:"40px auto"}}>
-          <Row gutter={10}>
-              <Col span={16} style={{}} >
-                  <Flex >
-                       {VerticalMobileStat.map(
-                    (item: TVerticalMobileStat, index: number) => (
-                         <Flex key={index} gap={16} align="center" style={{
-              padding:"16px 26px",
-              fontFamily:"'Robotto'",
-              flexShrink:0 ,
-              position: "relative", margin:"0 auto"
-      
-}}>
-                           <figure style={{ width: "43px",height:"43px", margin:"0",flexShrink:0 }}>
-                              <img
-                                src={item.image}
-                                style={{ height: "100%", width: "100%", objectFit:"contain" }}
-                                alt=""
-                              />
-                            </figure>
-                            <Flex vertical gap={5}>
-                              <span style={{fontWeight:800, fontSize:"19px"}}>{item.value}</span>
-                              <span style={{fontSize:"12px"}}>{item.title}</span>
-                            </Flex>
-                            {index !== VerticalMobileStat.length - 1 && <div style={{position:"absolute", height:"40px",
-                               width:"1px", background:"#475569", right:0, top:"50%",  transform: "translateY(-50%)",
-                            }}/>}
-                           </Flex>
-                        
-                      
-                    )
-                  )}
-                  </Flex>
-              </Col>
-              
-               <Col span={8} style={{padding:"16px 26px 16px 0"}}>
-                 <Flex justify="center" align="center" gap={8}>
-                    <span >
-                     <MdOutlineEmail style={{fontSize:"25px", background:"#d89b1d", borderRadius:"50%", padding:"8px"}}></MdOutlineEmail>
-                  </span>
-                 <div >
-                    <span style={{fontSize:"14px",}}>Ready to Shape Your Future?</span>
-             <br /><span style={{color: "#d1d5db", fontSize:"9px", lineHeight:"5px"}}>Join Techno university and embark on a journey of knowledge, innovation and success</span>
-                 </div>
-             
-             <Button
-                style={{ 
-                  padding:"5px 10px",
-                  background: "#d89b1d",
-                  border: "none",
-                  borderRadius:"5px",
-                  color: "#fff",
-                  fontSize:"15px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent:"center",
-                  gap: "4px",
-                  boxShadow: "0 8px 24px rgba(216,155,29,0.35)",
-                }}
-              >
-                <span>Apply now</span>
-                <FaArrowRight />
-              </Button>
-                 </Flex>
-          </Col>
-          </Row>
-         
-      </div>
-      }
-    </div>
   );
 };
 
-export default About;
-
-
- {/* <div
-              style={{ borderLeft: "1.5px solid #475569", height: "40px" }}
-            ></div> */}
+export default InfoSection;

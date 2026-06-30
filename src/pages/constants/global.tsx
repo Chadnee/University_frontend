@@ -27,12 +27,22 @@ import { GiGraduateCap } from "react-icons/gi";
 import { MdPeopleAlt } from "react-icons/md";
 import { PiBookOpenTextBold } from "react-icons/pi";
 import type { IconType } from "react-icons/lib";
-import campus2 from "../../assets/images/campus2.png"
-import campus3 from "../../assets/images/campus3.png"
+import news1 from "../../assets/images/news1.png"
+import news2 from "../../assets/images/news2.png"
+import news3 from "../../assets/images/news3.png"
 import excellence from "../../assets/images/excellence.png"
 import globe from "../../assets/images/globe.png"
 import people from "../../assets/images/people.png"
 import labFlask from "../../assets/images/labFlask.png"
+import course1 from "../../assets/images/programee_1st.png"
+import course2 from "../../assets/images/programee_2nd.png"
+import course3 from "../../assets/images/programee_3rd.png"
+import course4 from "../../assets/images/programee_4th.png"
+import course5 from "../../assets/images/programee_5th.png"
+import campusClub from "../../assets/images/campus_Club.png"
+import campusSports from "../../assets/images/campus_sports.png"
+import campusEvents from "../../assets/images/Campus_Events.png"
+import campusArts from "../../assets/images/campus_arts.png"
 export const monthNames = [
   "January",
   "February",
@@ -246,6 +256,8 @@ export type TNewsEventsData = {
     date: string,
     month: string,
     title: string,
+    category: string,
+    tag: string,
     description:string,
     image: string,
 }
@@ -279,12 +291,27 @@ export const maleGenderImageArray = [
 export const femaleGenderImageArray = [
    femalefaculty1 , femalefaculty2  
 ]
-export const classImageArray = [
-  "https://plus.unsplash.com/premium_photo-1661963290501-4c1d7a095c0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://media.istockphoto.com/id/1376134616/photo/focus-on-girl-young-school-kids-in-uniform-applauding-or-clapping-at-classroom-concept-of.webp?a=1&b=1&s=612x612&w=0&k=20&c=ONtFuVNgV0iUSnHLY_EB9b5HwlRBcchCNBA4oHiuFqQ=",
-  "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://media.istockphoto.com/id/2183417968/photo/rear-view-of-business-colleagues-attending-a-seminar-in-board-room.jpg?s=612x612&w=0&k=20&c=Ttx19Jr9_sDt36sIIEAMAA42-HXC1a-UEW1UI89hK3E="
-]
+export const classImageArray = [course1, course2, course3, course4, course5]
+
+export const campusItems = [
+  {
+    title: "Clubs & Societies",
+    image:campusClub  
+  },
+  {
+    title: "Sports & Fitness",
+    image:campusSports
+  },
+  {
+    title: "Events & Activities",
+    image: campusEvents
+  },
+  {
+    title: "Arts & Culture",
+    image: campusArts
+  },
+];
+
 export const buttonBgColor = [
   "linear-gradient(90deg, #45a5f3ff, #0760c5ff)",
   "linear-gradient(90deg, #f87c07ff, #d00000)",
@@ -533,36 +560,68 @@ export const universityStats = [
 
 
 export const newsEventsData : TNewsEventsData[] = [
-  {
-    id: 1,
+  {id:1,
+    image:news1,
+    category: "Event",
+    tag: "Superb",
     date: "20",
     month: "MAY",
-    title: "Techno University Hosts International Research Conference 2024",
+    title: "International Research Conference 2024",
     description:
-      "Scholars and researchers from around the world gather to share knowledge and innovations.",
-    image: campus3,
-    
+      "Scholars and researchers from around the world gather to share knowledge and explore severally.",
   },
   {
     id: 2,
+    image: news2,
+    category: "News",
+    tag: "Star",
     date: "12",
     month: "JUN",
-    title: "New Engineering Lab Inaugurated for Advanced Robotics",
+    title: "Techno University Ranked Among Top 50",
     description:
-      "The university launches a modern robotics laboratory to inspire future engineers.",
-    image: campus2,
-    
+      "We are proud to be recognized for academic excellence, talent and for the status.",
   },
   {
     id: 3,
+    image: news3,
+    category: "Achievement",
+    tag: "Premium",
     date: "03",
     month: "JUL",
-    title: "Annual Cultural Festival Celebrates Diversity on Campus",
+    title: "Students Win National Robotics Competition",
     description:
-      "Students showcase music, art, and performances representing multiple cultures.",
-    image: campus3,
-    
+      "Our team secured first place in the National Robotics Challenge in last year 2025.",
   },
+  // {
+  //   id: 1,
+  //   date: "20",
+  //   month: "MAY",
+  //   title: "Techno University Hosts International Research Conference 2024",
+  //   description:
+  //     "Scholars and researchers from around the world gather to share knowledge and innovations.",
+  //   image: news1,
+    
+  // },
+  // {
+  //   id: 2,
+  //   date: "12",
+  //   month: "JUN",
+  //   title: "New Engineering Lab Inaugurated for Advanced Robotics",
+  //   description:
+  //     "The university launches a modern robotics laboratory to inspire future engineers.",
+  //   image: news2,
+    
+  // },
+  // {
+  //   id: 3,
+  //   date: "03",
+  //   month: "JUL",
+  //   title: "Annual Cultural Festival Celebrates Diversity on Campus",
+  //   description:
+  //     "Students showcase music, art, and performances representing multiple cultures.",
+  //   image: news3,
+    
+  // },
 ];
 
 export const VerticalMobileStat : TVerticalMobileStat [] = [
