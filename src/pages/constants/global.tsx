@@ -2,7 +2,7 @@ import type { BaseQueryApi } from "@reduxjs/toolkit/query";
 import type { TAcademicDepartment, TAcademicFaculty, TAcademicSemester } from "../../types/academicManagementTypes";
 import { DiJavascript } from "react-icons/di";
 import { RiReactjsLine } from "react-icons/ri";
-import { FaQrcode, FaTrophy } from "react-icons/fa6";
+import { FaEnvelope, FaFacebookF, FaInstagram, FaLinkedinIn, FaLocationCrosshairs, FaPhone, FaQrcode, FaTrophy, FaTwitter } from "react-icons/fa6";
 import { TbBrandMongodb, TbBrandTypescript } from "react-icons/tb";
 import type { TFaculty, TName, TStudent } from "../../types/userManagementTypes";
 import graduationCap from '../../assets/images/graduation cap.png'
@@ -43,6 +43,7 @@ import campusClub from "../../assets/images/campus_Club.png"
 import campusSports from "../../assets/images/campus_sports.png"
 import campusEvents from "../../assets/images/Campus_Events.png"
 import campusArts from "../../assets/images/campus_arts.png"
+import logo from '../../assets/images/logo(White).png'
 export const monthNames = [
   "January",
   "February",
@@ -647,6 +648,117 @@ export const VerticalMobileStat : TVerticalMobileStat [] = [
   }
 ]
 
+export const footerData = {
+  about: {
+    logo: logo,
+    description:
+      "Empowering minds through quality education, innovative research, and a commitment to excellence.",
+  },
+
+  social: [
+    {
+      icon: <FaFacebookF></FaFacebookF>,
+      link: "/",
+    },
+    {
+      icon: <FaTwitter></FaTwitter>,
+      link: "/",
+    },
+    {
+      icon: <FaLinkedinIn></FaLinkedinIn>,
+      link: "/",
+    },
+    {
+      icon: <FaInstagram></FaInstagram>,
+      link: "/",
+    },
+  ],
+
+  quickLinks: [
+    {
+      title: "About Us",
+      path: "/about",
+    },
+    {
+      title: "Academics",
+      path: "/academics",
+    },
+    {
+      title: "Admissions",
+      path: "/admission",
+    },
+    {
+      title: "Research",
+      path: "/research",
+    },
+    {
+      title: "Contact Us",
+      path: "/contact",
+    },
+  ],
+
+  programs: [
+    {
+      title: "Engineering",
+      path: "/engineering",
+    },
+    {
+      title: "Computer Science",
+      path: "/cse",
+    },
+    {
+      title: "Business Administration",
+      path: "/bba",
+    },
+    {
+      title: "Applied Sciences",
+      path: "/science",
+    },
+    {
+      title: "Law",
+      path: "/law",
+    },
+  ],
+
+  resources: [
+    {
+      title: "Library",
+      path: "/library",
+    },
+    {
+      title: "Careers",
+      path: "/career",
+    },
+    {
+      title: "Student Portal",
+      path: "/portal",
+    },
+    {
+      title: "Alumni",
+      path: "/alumni",
+    },
+    {
+      title: "News & Events",
+      path: "/news",
+    },
+  ],
+
+  contact: [
+    {
+      icon: <FaLocationCrosshairs></FaLocationCrosshairs>,
+      value1: "123 University Avenue,",
+      value2: "Knowledge City",
+    },
+    {
+      icon: <FaPhone></FaPhone>,
+      value1: "+880 123456789",
+    },
+    {
+      icon: <FaEnvelope></FaEnvelope>,
+      value1: "info@technouniversity.edu",
+    },
+  ],
+};
 
 
 

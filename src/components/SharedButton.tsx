@@ -2,7 +2,7 @@ import { Divider, Flex } from "antd";
 import { useFormContext } from "react-hook-form";
 import useResponsive from "../hooks/useResponsive";
 
-type TFooter = {
+type TFooterButton = {
   okButton: string;
   cancleButton: string;
   handleOk: ()=>void;
@@ -17,7 +17,7 @@ type TResetButton = {
   resetButton: string
 }
 
-export const Footer = ({okButton, cancleButton, handleOk, handleCancle} : TFooter) => {
+export const FooterButton = ({okButton, cancleButton, handleOk, handleCancle} : TFooterButton) => {
   return (
     <div style={{width:"100%",padding: "0"}}>
     <Divider style={{marginBottom:"20px"}}></Divider>

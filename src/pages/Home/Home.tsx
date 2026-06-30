@@ -2,10 +2,10 @@
 // import { useAppSelector } from "../../features/hooks";
 // import { selectCurrentToken, type TUser } from "../../features/auth/authSlice";
 // import { verifyToken } from "../../utils/verifyToken";
-import { ParallaxBanner } from "react-scroll-parallax";
-import CountUp from "react-countup";
-import banner from "../../assets/images/campus_sports.png"
-import {info} from "../constants/global";
+// import { ParallaxBanner } from "react-scroll-parallax";
+// import CountUp from "react-countup";
+// import banner from "../../assets/images/campus_sports.png"
+// import {info} from "../constants/global";
 import { useGetAllCourseQuery } from "../../features/admin/courseManagementApi";
 
 import useResponsive from "../../hooks/useResponsive";
@@ -14,8 +14,9 @@ import HomeBanner from "./HomeBanner";
 import ProgramSection from "./ProgramSection";
 import CampusLife from "./CampusLife";
 import FacultySection from "./FacultySection";
-import { Flex } from "antd";
+// import { Flex } from "antd";
 import NewsAndEventSection from "./NewsAndEventSection";
+import Footer from "../Footer";
 
 const Home = () => {
   const { isMobile} = useResponsive();
@@ -232,7 +233,7 @@ return (
       <NewsAndEventSection></NewsAndEventSection>
       {/* Count the acheivement */}
 
-      <div style={{ width: "100%", height: isMobile ? "600px" : "300px" }}>
+      {/* <div style={{ width: "100%", height: isMobile ? "600px" : "300px" }}>
         <ParallaxBanner
           layers={[{ image: banner, speed: -20 }]}
           style={{
@@ -241,9 +242,9 @@ return (
             objectFit: "cover",
             objectPosition: "top",
           }}
-        >
+        > */}
           {/* ✅ Dark Gradient Overlay */}
-          <div
+          {/* <div
             style={{
               position: "absolute",
               inset: "0",
@@ -274,9 +275,9 @@ return (
               }}
             >
               {info.map((item) => (
-                <Flex vertical justify="center" align="center">
+                <Flex vertical justify="center" align="center"> */}
                   {/* <span style={{fontSize:"50px", fontWeight:"600"}}><IoPeopleSharp></IoPeopleSharp></span> */}
-                  <span
+                  {/* <span
                     style={{
                       color: "#db930d",
                       fontSize: isMobile ? "50px" : "55px",
@@ -303,7 +304,7 @@ return (
               ))}
             </div>
           </div>
-        </ParallaxBanner>
+        </ParallaxBanner> */}
 
         {/* <figure style={{height:"300px", width:'100%', position:"relative", padding:"0", margin:"0"}}>
                 <img src="https://plus.unsplash.com/premium_photo-1728262247643-bb75be51c15b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
@@ -312,7 +313,9 @@ return (
             <div style={{position:"absolute", inset:"0"}}></div>
 
            </figure> */}
-      </div>
+      {/* </div> */}
+      {/* Footer */}
+      <Footer></Footer>
     </div>
   );
 };
