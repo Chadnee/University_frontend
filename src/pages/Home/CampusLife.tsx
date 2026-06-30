@@ -10,13 +10,13 @@ const CampusLife = () => {
   return (
     <div
       style={{
-        width: isMobile ? "100%" : "80%",
-        margin: isMobile ? "30px 5px" : "40px auto",
+        width: isMobile ? "" : "80%",
+        margin: isMobile ? "30px 10px" : "40px auto",
       }}
     >
-      <Row gutter={20} justify="center" align="middle" style={{width:"100%", }}>
+      <Row gutter={[20,20]} justify={isMobile?"start":"center"} align="middle" style={{width:"100%", }}>
         <Col sm={24} lg={8}>
-          <Flex vertical gap={24}>
+          <Flex vertical gap={isMobile?10:24}>
               <span
             style={{
               fontFamily: "'",
@@ -29,14 +29,17 @@ const CampusLife = () => {
           >
             Campus Life
           </span>
-          <span style={{ fontFamily:"sans-serif", textTransform: "capitalize", fontWeight:600, fontSize:"36px", }}>
+          <span style={{ fontFamily:"sans-serif", textTransform: "capitalize", fontWeight:600, fontSize:isMobile?"20px":"36px", }}>
             More than just academics
           </span>
-          <span style={{ fontSize: "12px",color:"#504e4e"}}>
+          {
+            !isMobile && <span style={{ fontSize: "12px",color:"#504e4e"}}>
             Exprerience a vibrent campus life filled with opportunities to
             learn, grow and create unforgettable memories
           </span>
-          <Link to="/">
+          }
+          {
+            !isMobile && <Link to="/">
             <Flex
               gap={6}
               align="center"
@@ -54,14 +57,17 @@ const CampusLife = () => {
               <FaArrowRight></FaArrowRight>
             </Flex>
           </Link>
+          }
           </Flex>
         </Col>
         {/* Right grid */}
         <Col sm={24} lg={16} >
-            <div style={{display:"grid",gap:"16px", justifyContent:"stretch", gridTemplateRows: "130px 130px", gridTemplateColumns:"2fr 1fr 1fr", cursor:"pointer", width:"100%", }}>
-                <figure style={{borderRadius:"16px", gridRow:"span 2", width:"100%", flex:1, margin:"0"}}>
+            <div style={{display:"grid",gap:isMobile?"10px":"16px", justifyContent:"stretch", gridTemplateRows: isMobile?"110px 110px":"130px 130px", gridTemplateColumns:isMobile?"1fr 1fr":"2fr 1fr 1fr", cursor:"pointer", width:"100%", }}>
+                {
+                  !isMobile && <figure style={{borderRadius:"16px", gridRow:"span 2", width:"100%", flex:1, margin:"0"}}>
                     <img src={campusLife} height="100%" width="100%" style={{objectFit:"cover", flex:1, borderRadius:"16px",}} alt="" />
                 </figure>
+                }
             
             {
                 campusItems.map((item, index) =>(
@@ -74,6 +80,29 @@ const CampusLife = () => {
             </div>
         </Col>
       </Row>
+      <Flex justify="center">
+         {
+            isMobile && <Link style={{textDecoration:"none", marginTop:"26px"}} to="/">
+            <Flex
+              gap={6}
+              align="center"
+              style={{
+                color: "#c28514",
+                fontSize: "11px",
+                border: "1.5px solid #c28514",
+                padding: "8px 20px",
+                borderRadius: "6px",
+                width:"fit-content", 
+                
+                // fontWeight:600
+              }}
+            >
+              <span>View Campus Life</span>
+              <FaArrowRight></FaArrowRight>
+            </Flex>
+          </Link>
+          }
+      </Flex>
     </div>
   );
 };
