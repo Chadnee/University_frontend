@@ -11,7 +11,8 @@ const NewsAndEventSection = () => {
     <div
       style={{
         width: isMobile ? "" : "80%",
-        margin: isMobile ? "40px auto" : "80px auto",
+        margin: isMobile ? "40px 7px" : "80px auto",
+        padding:""
       }}
     >
       <Flex justify="space-between" align="center">
@@ -21,12 +22,12 @@ const NewsAndEventSection = () => {
               fontFamily: "var(--font-heading-bold)",
               fontWeight: 600,
               fontSize: "12px",
-              letterSpacing: "1px",
+              letterSpacing: isMobile?".5px":"1px",
               textTransform: "uppercase",
-              color: "#D89B1D",
+              color: "#f4ac1b",
             }}
           >
-            latest news & events
+           { isMobile?<span>Latest News</span> : <span>latest news & events</span>}
           </span>
           {
             !isMobile && <span
@@ -46,16 +47,17 @@ const NewsAndEventSection = () => {
             gap={6}
             align="center"
             style={{
-              color: "#c28514",
-              fontSize: "13px",
-              border: "1.8px solid #c28514",
+              color: "#f1a40a",
+              fontSize: isMobile?"11px":"13px",
+              border: "1.8px solid #f4ac1b",
               padding: "8px 20px",
               borderRadius: "6px",
               width: "fit-content",
               // fontWeight:600
             }}
           >
-            <span>View All News</span>
+          { isMobile?<span>View All</span> : <span>View All News</span>}
+
             <FaArrowRight></FaArrowRight>
           </Flex>
         </Link>
