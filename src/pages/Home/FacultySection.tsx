@@ -1,4 +1,4 @@
-import { Card, Col, Flex, Row, Spin } from "antd";
+import { Col, Flex, Row, Spin } from "antd";
 import {
   femaleGenderImageArray,
   maleGenderImageArray,
@@ -16,7 +16,7 @@ import "swiper/css/pagination";
 // import './styles.css';
 
 // import required modules
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 import useResponsive from "../../hooks/useResponsive";
 import type { TFaculty } from "../../types/userManagementTypes";
@@ -31,7 +31,7 @@ const FacultySection = () => {
 
   return (
     <div>
-      <Flex
+      {/* <Flex
         vertical
         justify="center"
         gap={36}
@@ -191,7 +191,7 @@ const FacultySection = () => {
             </Swiper>
           }
         </div>
-      </Flex>
+      </Flex> */}
        <div style={{
           borderRadius: "16px",
           padding: isMobile ? "10px" : isTablet ? "20px" : "20px",

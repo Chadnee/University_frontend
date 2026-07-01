@@ -11,10 +11,10 @@ const CampusLife = () => {
     <div
       style={{
         width: isMobile ? "" : "80%",
-        margin: isMobile ? "30px 10px" : "40px auto",
+        margin: isMobile ? "30px auto" : "40px auto"
       }}
     >
-      <Row gutter={[20,20]} justify={isMobile?"start":"center"} align="middle" style={{width:"100%", }}>
+      <Row gutter={[20,20]} justify={isMobile?"start":"center"} style={{margin:0, width:"100%"}} align="middle">
         <Col sm={24} lg={8}>
           <Flex vertical gap={isMobile?10:24}>
               <span

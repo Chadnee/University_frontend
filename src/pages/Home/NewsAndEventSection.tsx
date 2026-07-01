@@ -62,7 +62,7 @@ const NewsAndEventSection = () => {
           </Flex>
         </Link>
       </Flex>
-      <Row gutter={[10,10] }style={{ marginTop:isMobile?"12px": "40px" }}>
+      <Row gutter={[10,10] }style={{ marginTop:isMobile?"20px": "40px" }}>
         {(isMobile
     ? newsEventsData?.slice(0, 1)
     : newsEventsData?.slice(0, 3)
