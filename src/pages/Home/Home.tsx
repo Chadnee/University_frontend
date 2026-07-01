@@ -15,7 +15,7 @@ import HomeBanner from "./HomeBanner";
 import CampusLife from "./CampusLife";
 import FacultySection from "./FacultySection";
 // import { Flex } from "antd";
-// import NewsAndEventSection from "./NewsAndEventSection";
+import NewsAndEventSection from "./NewsAndEventSection";
 import Footer from "../Footer";
 
 const Home = () => {
@@ -230,7 +230,7 @@ return (
       {/* Show Expert Faculty */}
       <FacultySection></FacultySection>
       
-      {/* <NewsAndEventSection></NewsAndEventSection> */}
+      <NewsAndEventSection></NewsAndEventSection>
       {/* Count the acheivement */}
 
       {/* <div style={{ width: "100%", height: isMobile ? "600px" : "300px" }}>

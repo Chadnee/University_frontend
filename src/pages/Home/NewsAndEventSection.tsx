@@ -22,7 +22,7 @@ const NewsAndEventSection = () => {
               fontFamily: "var(--font-heading-bold)",
               fontWeight: 600,
               fontSize: "12px",
-              letterSpacing: isMobile?".5px":"1px",
+              letterSpacing: isMobile?"":"1px",
               textTransform: "uppercase",
               color: "#f4ac1b",
             }}
@@ -62,8 +62,11 @@ const NewsAndEventSection = () => {
           </Flex>
         </Link>
       </Flex>
-      <Row gutter={[10,10] }style={{ marginTop: "40px" }}>
-        {newsEventsData?.map((item, index) => (
+      <Row gutter={[10,10] }style={{ marginTop:isMobile?"12px": "40px" }}>
+        {(isMobile
+    ? newsEventsData?.slice(0, 1)
+    : newsEventsData?.slice(0, 3)
+  )?.map((item, index) => (
           // card of news
           <Col key={index} sm={12} md={8} lg={8}>
             <Flex

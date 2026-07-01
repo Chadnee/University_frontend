@@ -1,12 +1,12 @@
-// import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import './index.css'
-// import Header from './pages/Home/Header/Header';
+import Header from './pages/Home/Header/Header';
 
 const App = () => {
   return (
     <div style={{margin:"0",overflow:"hidden"}}>
-      {/* <Header></Header> */}
-      {/* <Outlet></Outlet> */}
+      <Header></Header>
+      <Outlet></Outlet>
     </div>
   )
        
