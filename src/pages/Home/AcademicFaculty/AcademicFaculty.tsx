@@ -8,7 +8,7 @@ const AcademicFaculty = () => {
     const {isMobile, isTablet} = useResponsive()
     return (
         <div style={{width:isMobile?"100%":"90vw", margin:"60px auto"}}>
-              <Flex align="middle" justify="start" gap={10} style={{padding:"0 0 16px 12px" }}>
+              {/* <Flex align="middle" justify="start" gap={10} style={{padding:"0 0 16px 12px" }}>
                           <span style={{ width: isMobile ? "18px" : "20px" }}>
                             <hr
                               style={{
@@ -23,7 +23,23 @@ const AcademicFaculty = () => {
                           </span>
                         </Flex>
           <span style={{fontFamily: "Robotto",fontSize: "22px", paddingLeft:"12px"}}>Explore Our Academic Faculties</span>
-        
+         */}
+         <Flex vertical gap={isMobile?18:15} align="center" justify="center" style={{ margin:"auto"}}>
+             <span style={{textTransform:"uppercase",color:"#e79d13", fontSize:"12px", fontWeight: 600, fontFamily:"'poppins'", letterSpacing:".6px"}}>Discover Techno</span>
+             <span style={{
+              textTransform: "capitalize",
+              fontWeight: 600,
+              fontSize: isMobile?"23px":"30px",
+              textAlign:"center"
+            }}>A university that {<br />}  opens infinity possibilities</span>
+             <span style={{
+              // textTransform: "capitalize",
+              // fontWeight: 600,
+              fontSize: "12px",
+              textAlign:"center",
+              width:isMobile?"300px":"420px",
+            }}>We combine academic excellence with practical learning,{isMobile?<></>:<br />} research and global exposure to prepare students for real-world success</span>
+         </Flex>
         <div style={{display:'flex', flexDirection:"column", justifyContent:"center", marginTop:"40px"}}>
              <div style={{display:"flex", width:"100%", flexWrap:"wrap", gap:isMobile?"8px" :isTablet?"20px": "30px", justifyContent:isMobile?"justify-between":"center", alignItems: "stretch"}}>
             {

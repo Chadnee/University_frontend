@@ -11,7 +11,7 @@ const Footer = () => {
                 <figure style={{width:"150px", margin:"0" }}>
                     <img style={{width:"100%", height:"100%", }} src={footerData.about.logo} alt="" />
                 </figure>
-                <span style={{fontSize:"10px", width:"220px", letterSpacing:"1px",lineHeight:"17px", fontFamily:"'poppins'", color:"#cbd5e1"}}>{footerData.about.description}</span>
+                <span style={{fontSize:"12px", width:"220px", letterSpacing:"1px",lineHeight:"17px", fontFamily:"'poppins'", color:"#cbd5e1"}}>{footerData.about.description}</span>
                 <Flex gap={12}>
                     {
                         footerData.social.map((item, index) =>(
@@ -36,7 +36,7 @@ const Footer = () => {
                 <Flex vertical gap={8}>
                     {
                         footerData.quickLinks.map((item, index) => (
-                            <span key={index} style={{fontSize:"10px", color:"#cbd5e1"}}>{item.title}</span>
+                            <span key={index} style={{fontSize:"13px", color:"#cbd5e1"}}>{item.title}</span>
                         ))
                     }
                 </Flex>
@@ -46,7 +46,7 @@ const Footer = () => {
                 <Flex vertical gap={8}>
                     {
                         footerData.programs.map((item, index) => (
-                            <span key={index} style={{fontSize:"10px", color:"#cbd5e1"}}>{item.title}</span>
+                            <span key={index} style={{fontSize:"13px", color:"#cbd5e1"}}>{item.title}</span>
                         ))
                     }
                 </Flex>
@@ -56,7 +56,7 @@ const Footer = () => {
                 <Flex vertical gap={8}>
                     {
                         footerData.resources.map((item, index) => (
-                            <span key={index} style={{fontSize:"10px", color:"#cbd5e1"}}>{item.title}</span>
+                            <span key={index} style={{fontSize:"13px", color:"#cbd5e1"}}>{item.title}</span>
                         ))
                     }
                 </Flex>
@@ -67,8 +67,8 @@ const Footer = () => {
                     {
                         footerData.contact.map((item, index) => (
                             <Flex key={index} gap={5} align="center">
-                                <span style={{fontSize:"10px", color:"#cbd5e1"}}>{item.icon}</span>
-                                <span style={{fontSize:"10px", color:"#cbd5e1"}}>{item.value1} <br />
+                                <span style={{fontSize:"13px", color:"#cbd5e1"}}>{item.icon}</span>
+                                <span style={{fontSize:"13px", color:"#cbd5e1"}}>{item.value1} <br />
                                 {item.value2?<span>{item.value2}</span>:<></>}</span>
                             </Flex>
                         ))

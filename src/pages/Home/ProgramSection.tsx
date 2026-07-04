@@ -28,20 +28,17 @@ const ProgramSection = () => {
     useGetAllCourseQuery(undefined);
 
   return (
-    <div>
+    <div style={{borderRadius: "16px",
+         width: isMobile ? "100%" : isTablet ? "90%" : "80%",
+          margin: "60px auto",
+          background: "#060d2b"}}>
       
       <Flex
         vertical
         justify="center"
         align="start"
         gap={10}
-        style={{
-          borderRadius: "16px",
-          padding: isMobile ? "6px" : isTablet ? "20px" : "20px",
-          width: isMobile ? "100%" : isTablet ? "90%" : "80%",
-          margin: "60px auto",
-          background: "#060d2b",
-        }}
+        style={{padding: isMobile ? "6px" : isTablet ? "20px" : "17px 28px"}}
       >
         <Flex justify="space-between" align="center" style={{width:"100%"}}>
           <Flex vertical gap={4}>
@@ -109,7 +106,7 @@ const ProgramSection = () => {
               },
             }}
             modules={[Pagination, Autoplay]}
-            className="mySwiper"
+            className="mySwiper programSwiper"
             style={{
               width: isMobile ? "80%" : "100%",
               height: "auto",

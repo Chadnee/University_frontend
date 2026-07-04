@@ -151,7 +151,9 @@ const HomeBanner = () => {
             </Flex>
           </Flex>
         </div>
-
+       
+        
+        
         <div
           style={{
             position: "absolute",

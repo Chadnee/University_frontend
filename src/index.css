@@ -78,14 +78,21 @@ html,
     /* --swiper-theme-color: #db930d; */
 /* }  */
 .mySwiper .swiper-pagination-bullet {
+  background: #d89b1d !important;
+}
+.programSwiper .swiper-pagination-bullet {
   background: #ffffff !important;
-  opacity: 0.5;
+  opacity: .5;
 }
 
-.mySwiper .swiper-pagination-bullet-active {
-  background: #db930d !important;
+.programSwiper .swiper-pagination-bullet-active {
+  background: #ffffff !important;
   opacity: 1;
 }
+/* .programSwiper .swiper-pagination-bullet-active {
+  background: #db930d !important;
+  opacity: 1;
+} */
 /* =========================
    GOOGLE FONT IMPORT
    ⚠️ MUST BE SINGLE LINE
