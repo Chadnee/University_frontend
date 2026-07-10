@@ -68,11 +68,16 @@ html,
   border-radius: 3px;
 }
 
-
+/* .mySwiper .swiper-pagination {
+    bottom: -20px !important;
+}
+.mySwiper {
+    overflow: visible;
+}
 
 .mySwiper .swiper-wrapper {
   transition-timing-function: linear !important;
-}
+} */
 /* .mySwiper { */
     /* --swiper-theme-color: #94979a; */
     /* --swiper-theme-color: #db930d; */
@@ -88,6 +93,45 @@ html,
 .programSwiper .swiper-pagination-bullet-active {
   background: #ffffff !important;
   opacity: 1;
+}
+
+/* Day picker of calender */
+/* Make all day numbers bold */
+/* Make all day numbers bold */
+.dashboard-calendar .rdp-day_button {
+  font-weight: 700;
+}
+
+/* Today's day */
+.dashboard-calendar .rdp-today .rdp-day_button {
+  background: #b7791f;
+  color: #fff;
+  border-radius: 50%;
+}
+
+/* Selected day */
+.dashboard-calendar .rdp-selected .rdp-day_button {
+  background: #d89b1d;
+  color: #fff;
+  border-radius: 50%;
+}
+
+/* Hover */
+.dashboard-calendar .rdp-day_button:hover {
+  background: #f4e2bc;
+  color: #000;
+}
+.dashboard-calendar .rdp-button_previous svg,
+.dashboard-calendar .rdp-button_next svg {
+  stroke: #ffffff !important;
+}
+.dashboard-calendar .rdp-outside {
+  color: #bfbfbf;
+  opacity: 0.6;
+}
+
+.dashboard-calendar .rdp-outside .rdp-day_button {
+  color: #bfbfbf;
 }
 /* .programSwiper .swiper-pagination-bullet-active {
   background: #db930d !important;

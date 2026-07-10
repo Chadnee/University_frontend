@@ -11,7 +11,7 @@ const CampusLife = () => {
     <div
       style={{
         width: isMobile ? "" : "80%",
-        margin: isMobile ? "30px auto" : "40px auto"
+        margin: isMobile ? "30px auto" : "50px auto"
       }}
     >
       <Row gutter={[20,20]} justify={isMobile?"start":"center"} style={{margin:0, width:"100%"}} align="middle">

@@ -120,7 +120,7 @@ const Sidebar = ({isMobile, onClose} : SidebarProps) => {
       // width={260}
       style={{
         height: '100vh',
-        background: '#05458fff',
+        background: '#202f47',
         position: 'sticky',
         top: 0,
       }}

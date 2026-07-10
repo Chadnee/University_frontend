@@ -71,7 +71,7 @@ const StateSection = () => {
             color: "#f1f5f9",
             borderRadius: "16px",
             width: "86%",
-            margin: "50px auto",
+            margin: "60px auto 20px auto",
           }}
         >
           <Row gutter={10}>

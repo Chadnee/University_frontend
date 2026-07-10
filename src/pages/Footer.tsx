@@ -5,7 +5,7 @@ import useResponsive from "../hooks/useResponsive";
 const Footer = () => {
  const {isMobile} = useResponsive()
   return (
-    <div style={{background:"#020617", margin:isMobile?"":"30px", padding:isMobile?"16px 30px": "40px 70px",}}>
+    <div style={{background:"#020617",borderRadius:"13px", margin:isMobile?"":"30px", padding:isMobile?"16px 30px": "40px 70px",}}>
         <Flex vertical={isMobile} style={{ fontFamily:"'poppins'"}} justify="space-between">
             <Flex vertical gap={20}>
                 <figure style={{width:"150px", margin:"0" }}>
