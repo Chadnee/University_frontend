@@ -21,7 +21,7 @@ const Chart = () => {
     const {isMobile} = useResponsive()
   return (
     <>
-      <Col lg={12} sm={24} style={{ display: "flex", width: "100%" }}>
+      <Col lg={12} sm={24} md={24} style={{ display: "flex", width: "100%" }}>
               <div
                 style={{
                   background: "#fff",
@@ -32,6 +32,9 @@ const Chart = () => {
                   width: "100%",
                   boxShadow: "10px 10px 25px rgba(0,0,0,0.08)",
                   overflow: "hidden",
+                  padding:0,
+                  margin:0
+                  
                 }}
               >
                 {/* Title */}
@@ -163,7 +166,7 @@ const Chart = () => {
                   ></div> */}
               </div>
             </Col>
-            <Col lg={12} sm={24} style={{ display: "flex" }}>
+            <Col lg={12} sm={24} md={24} style={{ display: "flex", width:"100%" }}>
               <div
                 style={{
                   background: "#fff",
@@ -174,6 +177,8 @@ const Chart = () => {
                   width: "100%",
                   boxShadow: "10px 10px 25px rgba(0,0,0,0.08)",
                   overflow: "hidden",
+                  padding:0,
+                  margin:0
                 }}
               >
                 {/* Title */}

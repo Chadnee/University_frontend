@@ -1,4 +1,4 @@
-import { Col, Divider, Flex, Space, Spin } from "antd";
+import { Col, Divider, Flex, Space, Spin,} from "antd";
 import { useGetStudentEnrolledStatusQuery } from "../../../features/admin/dashboardManagementApi";
 import { useGetAllCourseQuery } from "../../../features/admin/courseManagementApi";
 import useResponsive from "../../../hooks/useResponsive";
@@ -6,15 +6,60 @@ import { getFullName } from "../../../utils/GetFullName";
 import { ProfilePicGenerator } from "../../../utils/ProfilePicGenerator";
 import type { TEnrolledState } from "../../constants/global";
 import { MdKeyboardArrowRight } from "react-icons/md";
+// import maleStudent from '../../../assets/images/maleStudent.jpg'
+// import femaleStudent from '../../../assets/images/femaileStudent.jpg'
+
+type TStudentTaleData = Pick<TEnrolledState , "name" | "studentId" | "gender" | "totalEnrolledCourses" | "academicDepartment" | "createdAt">
 
 const TableData = () => {
-        const { data: enrollmentStat } = useGetStudentEnrolledStatusQuery(undefined);
+        const { data: enrollmentStat, } = useGetStudentEnrolledStatusQuery(undefined);
         const { data: course } = useGetAllCourseQuery(undefined);
         const {isMobile} = useResponsive()
+console.log(enrollmentStat)
+        // const tableData : TTableData[] = studentData?.data?.result.map((student:TStudent) => ({
+        //        key: student.id,
+        //     name : student.name,
+        //     email: student.email,
+        //     profileImage: student.profileImage,
+        //     contactNo: student.contactNo,
+        //     gender: student.gender,
+        //     academicDepartment: student.academicDepartment,
+        //     admissionSemester: student.admissionSemester,
+        // })) ?? []
 
-        
+        const studentTaleData: TStudentTaleData[] = enrollmentStat?.data?.map((enrollement:TStudentTaleData) => ({
+            key: enrollement.studentId,
+            name: enrollement.name,
+            gender: enrollement.gender,
+            totalEnrolledCourses: enrollement.totalEnrolledCourses,
+            academicDepartment: enrollement.academicDepartment.name,
+            createdAt: enrollement.createdAt,
+        }))
+        console.log(studentTaleData)
   const badgeColors = ["#F4B342", "#8f34e4ff", "#4caf4fd3"];
   const courseData = ["110", "160", "210", "80", "120"];
+         
+  // const columns: TableProps<TStudentTaleData> = [
+  //   {
+  //       title : 'Name',
+  //       render:(_, record : TStudentTaleData) => {
+  //         const image = record.gender === "male" ? maleStudent : femaleStudent
+  //          return (
+  //            <Flex>
+  //                <img src={image} alt="avatar"  
+  //           style={{height:"30px", width:"30px", borderRadius:"50%", objectPosition:"cover"}}/>
+  //               <span style={{ fontWeight: "600" }}>
+  //                                 {getFullName(record?.name)}
+  //                               </span>
+  //            </Flex>
+  //          )
+  //       }
+  //   },
+  //   {
+  //     title: "Program"
+  //   }
+  // ]
+  
   return (
     <>
       <Col lg={16} sm={24}>

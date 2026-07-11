@@ -71,11 +71,11 @@ const AdminDashboard = () => {
       </Flex>
 
       <Row gutter={16}>
-        <Col xs={24} md={24} lg={19}>
-          <Row gutter={[15, 15]} align="stretch">
+        <Col xs={24} md={24} lg={19} style={{}}>
+          <Row gutter={[15, 15]} align="stretch" style={{ marginRight:0, }}>
                <State></State>
           </Row>
-          <Row gutter={16} align="stretch" style={{ paddingTop: "20px" }}>
+          <Row gutter={[15, 15]} align="stretch" style={{ paddingTop: "20px", width:'100%', marginRight:0, marginLeft:0 }}>
                <Chart></Chart>
             {/* <Col
               lg={12}
