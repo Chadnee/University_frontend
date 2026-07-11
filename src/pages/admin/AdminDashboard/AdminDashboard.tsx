@@ -70,9 +70,9 @@ const AdminDashboard = () => {
         </span>
       </Flex>
 
-      <Row gutter={16}>
+      <Row gutter={16} style={{}}>
         <Col xs={24} md={24} lg={19} style={{}}>
-          <Row gutter={[15, 15]} align="stretch" style={{ marginRight:0, }}>
+          <Row gutter={[15, 15]} align="stretch" style={{ marginRight:0,marginLeft:0}}>
                <State></State>
           </Row>
           <Row gutter={[15, 15]} align="stretch" style={{ paddingTop: "20px", width:'100%', marginRight:0, marginLeft:0 }}>
@@ -203,7 +203,7 @@ const AdminDashboard = () => {
             </Col> */}
           </Row>
 
-          <Row gutter={16} style={{ width: "100%", marginTop: "20px" }}>
+          <Row gutter={16} style={{ width: "100%", marginTop: "20px", marginRight:0,marginLeft:0 }}>
             <TableData></TableData>
           </Row>
         </Col>
