@@ -8,6 +8,7 @@ export type TAcademicFaculty = {
 }
 
 export type TAcademicDepartment =  {
+  replace(arg0: RegExp, arg1: string): unknown
   _id: string
   name: string
   academicFaculty: TAcademicFaculty

@@ -331,7 +331,7 @@ const Header = () => {
             boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
             borderRadius: "10px",
           }}
-        >
+        >                                                 
           <Flex
             justify="space-between"
             align="center"

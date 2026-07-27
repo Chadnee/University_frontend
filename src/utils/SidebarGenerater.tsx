@@ -14,6 +14,7 @@ export const SidebarGenenrater = (
     if (item.path && item.name) {
       acc.push({
         key: item.name,
+        icon: item.icon,
         label: (
           <NavLink to={`/${role}/${item.path}`}>
             {item.name}
@@ -28,6 +29,7 @@ export const SidebarGenenrater = (
         .filter(child => child.name && child.path) // 🔥 remove undefined
         .map(child => ({
           key: child.name!,
+          icon: child.icon!,
           label: (
             <NavLink to={`/${role}/${child.path}`}>
               {child.name}
@@ -38,6 +40,7 @@ export const SidebarGenenrater = (
       acc.push({
         key: item.name!,
         label: item.name,
+        icon: item.icon,
         children,
       });
     }

@@ -3,12 +3,11 @@ import {useGetMeQuery,} from "../../../features/admin/userManagementApi";
 import waving from "../../../assets/icons/wave.png";
 import { getFullName } from "../../../utils/GetFullName";
 import useResponsive from "../../../hooks/useResponsive";
-import { useState } from "react";
-import { DayPicker } from "@daypicker/react";
-import "@daypicker/react/style.css";
+
 import State from "./State";
 import Chart from "./Chart";
 import TableData from "./TableData";
+import UpComingSchedule from "./UpComingSchedule";
 
 
 
@@ -18,9 +17,9 @@ const AdminDashboard = () => {
   const { data: getMySelf, isLoading: isMyselfLoading } =
     useGetMeQuery(undefined);
 
-  const [selected, setSelected] = useState<Date>();
+ 
   //console.log(userStats.data)
-  // console.log(getMySelf)
+  console.log(getMySelf)
   // console.log(getvisitors);
 
   // if (isUserLoading || isMyselfLoading || isGetvisitorsLoading) {
@@ -50,7 +49,7 @@ const AdminDashboard = () => {
       <Flex
         vertical
         gap={1}
-        style={{ width: "100%", margin: isMobile ? "10px  0" : "20px 0" }}
+        style={{ width: "100%", margin: isMobile ? "10px  0" : "8px 0 16px  0" }}
       >
         <Flex align="center" gap={14}>
           <span
@@ -70,12 +69,12 @@ const AdminDashboard = () => {
         </span>
       </Flex>
 
-      <Row gutter={16} style={{}}>
+      <Row gutter={10} style={{}}>
         <Col xs={24} md={24} lg={19} style={{}}>
-          <Row gutter={[15, 15]} align="stretch" style={{ marginRight:0,marginLeft:0}}>
+          <Row gutter={10} align="stretch" style={{ marginRight:0,marginLeft:0}}>
                <State></State>
           </Row>
-          <Row gutter={[15, 15]} align="stretch" style={{ paddingTop: "20px", width:'100%', marginRight:0, marginLeft:0 }}>
+          <Row gutter={10} align="stretch" style={{ paddingTop: "20px", width:'100%', marginRight:0, marginLeft:0 }}>
                <Chart></Chart>
             {/* <Col
               lg={12}
@@ -203,34 +202,14 @@ const AdminDashboard = () => {
             </Col> */}
           </Row>
 
-          <Row gutter={16} style={{ width: "100%", marginTop: "20px", marginRight:0,marginLeft:0 }}>
+          <Row gutter={30} style={{ width: "100%", marginTop: "20px", marginRight:0,marginLeft:0 }}>
             <TableData></TableData>
           </Row>
         </Col>
         <Col xs={24} md={24} lg={5}>
-          <Row
-            style={{
-              boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-              flex: 1,
-              height: "100%",
-            }}
-          >
-            <Col lg={24} style={{ padding: "5px" }}>
-              <div>
-                <DayPicker
-                  className="dashboard-calendar outside"
-                  animate
-                  mode="single"
-                  selected={selected}
-                  onSelect={setSelected}
-                  showOutsideDays
-                  // footer={
-                  //   selected ? `Selected: ${selected.toLocaleDateString()}` : "Pick a day."
-                  // }
-                />
-              </div>
-            </Col>
-          </Row>
+          
+               <UpComingSchedule></UpComingSchedule>
+          
         </Col>
       </Row>
     </div>

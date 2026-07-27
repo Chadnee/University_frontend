@@ -100,31 +100,66 @@ html,
 /* Make all day numbers bold */
 .dashboard-calendar .rdp-day_button {
   font-weight: 700;
+  
 }
 
 /* Today's day */
 .dashboard-calendar .rdp-today .rdp-day_button {
-  background: #b7791f;
+  background: #ce8c2a;
   color: #fff;
   border-radius: 50%;
+  height: 28px;
+  width: 28px;
 }
-
+.dashboard-calendar .rdp-day_button {
+  font-size: 12px;
+  font-weight: 600;
+}
 /* Selected day */
 .dashboard-calendar .rdp-selected .rdp-day_button {
-  background: #d89b1d;
+  background: #626161;
   color: #fff;
   border-radius: 50%;
+  height: 28px;
+  width: 28px;
+  border: none;
+}
+.dashboard-calendar .rdp-day,
+.dashboard-calendar .rdp-button {
+  height: 20px !important  ; /* reduce this to tighten row-to-row gap */
+  padding: 0;
+  line-height: 20px !important; 
+}
+.dashboard-calendar .rdp-month,
+.dashboard-calendar .rdp-table {
+  width: 100%;
 }
 
+.dashboard-calendar table {
+  width: 100%;
+  table-layout: fixed;
+}
+.dashboard-calendar .rdp-month_caption {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: -3px;
+  margin-top: -12px;
+  padding-left: 12px;
+  
+}
 /* Hover */
 .dashboard-calendar .rdp-day_button:hover {
   background: #f4e2bc;
   color: #000;
 }
-.dashboard-calendar .rdp-button_previous svg,
-.dashboard-calendar .rdp-button_next svg {
-  stroke: #ffffff !important;
+/* In your CSS/SCSS file, not inline */
+.dashboard-calendar .rdp-chevron {
+  fill: #252526; /* the arrow is usually an SVG path, so `fill` not `color` */
+  width: 16px;
+  height:30px;
+  margin-top: -12px;
 }
+
 .dashboard-calendar .rdp-outside {
   color: #bfbfbf;
   opacity: 0.6;
@@ -132,6 +167,30 @@ html,
 
 .dashboard-calendar .rdp-outside .rdp-day_button {
   color: #bfbfbf;
+}
+
+/* Ant design's table style */
+.student-table .ant-table-tbody > tr > td {
+  padding: 6px 13px;
+  border-radius: none;
+}
+
+.student-table .ant-table-thead > tr > th {
+  padding: 6px 13px 6px 8px;
+  font-size: 11px;
+  color: #404347;
+  background:#ecedef;
+  border-radius: none;
+}
+.student-table .ant-table-thead > tr > th::before {
+  display: none !important;
+}
+.student-table .ant-table-thead > tr > th:first-child {
+  border-top-left-radius: 0 !important;
+}
+
+.student-table .ant-table-thead > tr > th:last-child {
+  border-top-right-radius: 0 !important;
 }
 /* .programSwiper .swiper-pagination-bullet-active {
   background: #db930d !important;
@@ -331,3 +390,75 @@ body {
   transform: translateY(-70px);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
 }
+
+/* .dashboard-menu.ant-menu-inline .ant-menu-item,
+.dashboard-menu.ant-menu-inline .ant-menu-submenu-title {
+  padding-inline: 4px !important;
+} */
+ /* Parent menu */
+.dashboard-menu > .ant-menu-submenu > .ant-menu-submenu-title,
+.dashboard-menu > .ant-menu-item {
+  padding-left: 8px !important;
+}
+
+/* Submenu items */
+.dashboard-menu .ant-menu-sub .ant-menu-item {
+  padding-left: 32px !important;
+}
+.dashboard-menu .ant-menu-submenu-arrow {
+  inset-inline-end: -3px !important;
+}
+
+/* parent icon */
+.dashboard-menu .ant-menu-item-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* background: rgba(255,255,255,.08); */
+  border-radius: 8px;
+  /* margin-right: 10px; */
+}
+
+.dashboard-menu .ant-menu-item-icon svg,
+.dashboard-menu .ant-menu-item .anticon,
+.dashboard-menu .ant-menu-submenu .anticon {
+  
+  font-size: 20px;
+}
+
+
+ .dashboard-menu .ant-menu-item:hover,
+.dashboard-menu .ant-menu-item-selected,
+.dashboard-menu .ant-menu-submenu-title:hover {
+  background:  #052365!important;
+  color: #fff !important;
+  border-radius: 8px;
+}
+.dashboard-menu .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+
+/* Text */
+/* .dashboard-menu .ant-menu-item:hover a,
+.dashboard-menu .ant-menu-item-selected a,
+.dashboard-menu .ant-menu-submenu-title:hover,
+.dashboard-menu .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: #1890ff !important;
+} */
+
+/* Icons */
+/* .dashboard-menu .ant-menu-item:hover .anticon,
+.dashboard-menu .ant-menu-item-selected .anticon,
+.dashboard-menu .ant-menu-submenu-title:hover .anticon,
+.dashboard-menu .ant-menu-submenu-selected > .ant-menu-submenu-title .anticon {
+  color: #1890ff !important;
+} */
+/* .dashboard-menu .ant-menu-submenu-title {
+  padding-left: 28px !important;
+} */

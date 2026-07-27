@@ -114,7 +114,7 @@ const Login = () => {
     
   }}>
           <div style={{ height: isMobile?"50vh":isTablet?"50vh":"65vh", width:isMobile?"100vw":isTablet?"85vw":"50vw", display:'flex' , flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-           <Row justify="center" align="middle" style={{background: "#d5cab5",
+           <Row justify="center" align="middle" style={{background: "#dde0e2", 
 borderRadius: "8px",
 boxShadow: "0 10px 30px rgba(0,0,0,0.1)",padding:isMobile?"0 10px": "0 80px", width:"100%", height:"100%"}}>
       <AdmitForm onSubmit={onSubmit}>

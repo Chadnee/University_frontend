@@ -8,6 +8,7 @@ export type TUserPath = {
     name?: string;
     path?: string;
     element?: ReactNode;
+    icon?:ReactNode;
     children?: TUserPath[];
 };
 export type TGeneratedSidebarItems = {

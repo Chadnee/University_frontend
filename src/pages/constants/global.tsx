@@ -2,7 +2,7 @@ import type { BaseQueryApi } from "@reduxjs/toolkit/query";
 import type { TAcademicDepartment, TAcademicFaculty, TAcademicSemester } from "../../types/academicManagementTypes";
 import { DiJavascript } from "react-icons/di";
 import { RiReactjsLine } from "react-icons/ri";
-import { FaEnvelope, FaFacebookF, FaInstagram, FaLinkedinIn, FaLocationCrosshairs, FaPhone, FaQrcode, FaTrophy, FaTwitter } from "react-icons/fa6";
+import { FaEnvelope, FaFacebookF, FaFileInvoice, FaInstagram, FaLinkedinIn, FaLocationCrosshairs, FaPhone, FaQrcode, FaTrophy, FaTwitter } from "react-icons/fa6";
 import { TbBrandMongodb, TbBrandTypescript } from "react-icons/tb";
 import type { TFaculty, TName, TStudent } from "../../types/userManagementTypes";
 import graduationCap from '../../assets/images/graduation cap.png'
@@ -24,7 +24,7 @@ import sheildLock from "../../assets/images/sheild_lock.png"
 import iotChip from "../../assets/images/iot_chip.png"
 import pallate from "../../assets/images/pallate.png"
 import { GiGraduateCap } from "react-icons/gi";
-import { MdPeopleAlt } from "react-icons/md";
+import { MdAssignment, MdMenuBook, MdPeopleAlt } from "react-icons/md";
 import { PiBookOpenTextBold } from "react-icons/pi";
 import type { IconType } from "react-icons/lib";
 import news1 from "../../assets/images/news1.png"
@@ -759,6 +759,54 @@ export const footerData = {
     },
   ],
 };
+
+export const calenderSchedule = [
+    {
+        title : "Class committee meeting",
+        time: "10.00 AM - 11.00AM",
+        buttonColor: "#1152c3"
+    },
+    {
+        title : "Research Review Meeting",
+        time: "01.00 AM - 02.30AM",
+        buttonColor: "#eca31c"
+    },
+    {
+        title : "Annual Sport Event",
+        time: "03.00 AM - 05.00AM",
+        buttonColor: "#05bc24"
+    },
+];
+
+export const notice = [
+  {
+    id: 1,
+    title: "Semester Exam Schedule",
+    description: "The end semester exams will begin from June 10, 2024.",
+    time: "2 hours ago",
+    icon: <FaFileInvoice></FaFileInvoice>, // or use an actual icon component
+    iconBg: "#e5eefe",
+    iconColor: "#2563EB",
+  },
+  {
+    id: 2,
+    title: "Library Maintenance",
+    description: "Library will remain closed on May 20, 2024 for maintenance.",
+    time: "5 hours ago",
+    icon: <MdMenuBook/>,
+    iconBg: "#def9ea",
+    iconColor: "#16A34A",
+  },
+  {
+    id: 3,
+    title: "Research Grant Applications",
+    description: "Last date to apply for research grants is May 31, 2024.",
+    time: "1 day ago",
+    icon: <MdAssignment></MdAssignment>,
+    iconBg: "#ede4ff",
+    iconColor: "#7c3aed",
+  },
+];
 
 
 
