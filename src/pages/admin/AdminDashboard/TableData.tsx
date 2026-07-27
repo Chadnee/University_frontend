@@ -222,6 +222,7 @@ const TableData = () => {
           paddingLeft: 0,
           paddingRight: 0,
           borderRadius: "10px",
+          
         }}
       >
         <Flex
@@ -267,6 +268,9 @@ const TableData = () => {
           width: "100%",
           display: "flex",
           flexDirection: "column",
+          paddingLeft: 0,
+          paddingRight: 0,
+          
         }}
       >
         <div
@@ -274,7 +278,6 @@ const TableData = () => {
             boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
             flex: 1,
             height: "100%",
-            marginTop: isMobile ? "20px" : "0",
             background: "#fff",
             borderRadius: "10px",
             padding:"16px"

@@ -142,7 +142,7 @@ const Sidebar = ({isMobile, onClose, sidebarWidth} : SidebarProps) => {
         style={{
           width: '100%',
           height: '100%',
-          background: '#05458fff',
+          background: '#092149',
           display: 'flex',
           flexDirection: 'column',
         }}

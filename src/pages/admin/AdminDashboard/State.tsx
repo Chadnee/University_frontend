@@ -96,16 +96,16 @@ const State = () => {
                   <Col>
                     <Flex align="center" gap={8}>
                       <FaRegChartBar
-                        style={{ fontSize: "30px", color: "#bad2f0ff" }}
+                        style={{ fontSize: isMobile ? "23px" :"30px", color: "#bad2f0ff" }}
                       />
-                      <span style={{ fontSize: "15px", color: "#000" }}>
+                      <span style={{ fontSize: isMobile ? "12px" :"15px", color: "#000" }}>
                         Website Visits
                       </span>
                     </Flex>
                     <Flex align="center" justify="center">
                       <span
                         style={{
-                          fontSize: isMobile ? "25px" : "25px",
+                          fontSize: isMobile ? "21px" : "25px",
                           color: "rgb(6, 73, 150)",
                         }}
                       >

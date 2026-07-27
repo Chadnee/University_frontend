@@ -4,10 +4,12 @@ import "@daypicker/react/style.css";
 import { Col, Flex, Row } from "antd";
 import { calenderSchedule, newsEventsData } from "../../constants/global";
 import { FaArrowRight } from "react-icons/fa6";
+import useResponsive from "../../../hooks/useResponsive";
 
 const UpComingSchedule = () => {
+  const {isMobile} = useResponsive()
   const [selected, setSelected] = useState<Date>();
-
+  
   return (
     <Row gutter={10}>
       <Row>
@@ -19,7 +21,7 @@ const UpComingSchedule = () => {
           flex: 1,
           height: "100%",
           padding: "10px",
-          borderRadius:"12px",
+          borderRadius:"20px",
           background:"#fff"
         }}
       >
@@ -38,30 +40,30 @@ const UpComingSchedule = () => {
 
         <Flex
           vertical
-          gap={8}
+          gap={isMobile ? 11 :8}
           style={{
-            marginTop: "12px",
+            margin: isMobile ? "18px 5px 1px 5px" :"12px 0",
             border: "2px solid #e9e7e7",
             borderRadius: "13px",
             padding: "12px",
           }}
         >
           {calenderSchedule.map((item) => (
-            <Flex align="start" gap={8}>
+            <Flex align="start" gap={isMobile ? 12 :8}>
               <div
                 style={{
-                  height: "8px",
-                  width: "8px",
+                  height: isMobile ? "12px" :"8px",
+                  width: isMobile ? "12px" :"8px",
                   borderRadius: "50%",
                   background: item.buttonColor,
                   marginTop: "6px",
                 }}
               ></div>
               <Flex vertical gap={4}>
-                <span style={{ fontWeight: 600,letterSpacing:'-.3px', fontSize: "12px" }}>
+                <span style={{ fontWeight: 600,letterSpacing:'-.3px', fontSize: isMobile ? "15px" :"12px" }}>
                   {item.title}
                 </span>
-                <span style={{ color: "#6c6969", fontSize: "10px" }}>
+                <span style={{ color: "#6c6969", fontSize: isMobile ? "12px" :"10px" }}>
                   {item.time}
                 </span>
               </Flex>
@@ -73,9 +75,9 @@ const UpComingSchedule = () => {
             align="center"
             style={{
               color: "#d49217",
-              fontSize: "12px",
+              fontSize: isMobile ? "14px" :"12px",
               fontWeight: 600,
-              paddingLeft:"13px",
+              paddingLeft:isMobile ? "23px" :"13px",
               paddingTop:"2px"
             }}
           >

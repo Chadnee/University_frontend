@@ -26,15 +26,15 @@ export const StatsCard = ({title , icon, value }: TStatsCard) => {
                     <Flex
                       justify="center"
                       align="center"
-                      gap={isMobile ? 5 : 20}
+                      gap={isMobile ? 11 : 20}
                       style={{ width: "100%"}}
                     >
                       {icon && React.cloneElement(icon, {
-                        style: { fontSize: "30px", color: "#bad2f0ff" }
+                        style: { fontSize: isMobile ? "23px" :"30px", color: "#bad2f0ff" }
                       })}
                       <span
                         style={{
-                          fontSize: isMobile ? "15px" : "16px",
+                          fontSize: isMobile ? "12px" : "16px",
                           color: "#000",
                         }}
                       >
@@ -44,7 +44,7 @@ export const StatsCard = ({title , icon, value }: TStatsCard) => {
                     <Flex justify="center">
                       <span
                         style={{
-                          fontSize: isMobile ? "25px" : "30px",
+                          fontSize: isMobile ? "20px" : "30px",
                           color: "rgb(5, 60, 124)",
                         }}
                       >
