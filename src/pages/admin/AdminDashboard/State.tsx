@@ -29,6 +29,7 @@ const State = () => {
   const { data: course } = useGetAllCourseQuery(undefined);
 
   const { students, faculty } = userStats?.data ?? {};
+  console.log(students)
   return (
     <>
        <Col

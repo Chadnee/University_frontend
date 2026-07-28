@@ -1,6 +1,7 @@
 import {
   Col,
   Flex,
+  Row,
   Table,
   Tag,
   type TableColumnsType,
@@ -208,24 +209,26 @@ const TableData = () => {
   ];
 
   return (
-    <>
+    <Row gutter={26} style={{ width: "100%", marginTop: "16px", }}>
       <Col
         lg={15}
         md={24}
         sm={24}
         style={{
           width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          boxShadow: "0 10px 25px rgba(0,0,0,0.02)",
-          background: "#fff",
-          paddingLeft: 0,
-          paddingRight: 0,
-          borderRadius: "10px",
+          
           
         }}
       >
-        <Flex
+        <div style={{display: "flex",
+          flexDirection: "column",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.02)",
+          background: "#fff",
+          // paddingLeft: 0,
+          // paddingRight: 0,
+          borderRadius: "10px",
+          }}>
+          <Flex
           style={{ padding: "10px 16px" }}
           align="center"
           justify="space-between"
@@ -260,6 +263,7 @@ const TableData = () => {
           showHeader={!isMobile}
           style={{ width: "100%", margin: "0", padding: 0 }}
         />
+        </div>
       </Col>
       <Col
         lg={9}
@@ -271,6 +275,7 @@ const TableData = () => {
           paddingLeft: 0,
           paddingRight: 0,
           
+          
         }}
       >
         <div
@@ -280,7 +285,8 @@ const TableData = () => {
             height: "100%",
             background: "#fff",
             borderRadius: "10px",
-            padding:"16px"
+            padding:"16px",
+            
           }}
         >
           <Flex
@@ -326,7 +332,7 @@ const TableData = () => {
             </Flex>
         </div>
       </Col>
-    </>
+    </Row>
   );
 };
 

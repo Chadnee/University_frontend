@@ -78,9 +78,9 @@ const AdminDashboard = () => {
                <Chart></Chart>
           </Row>
 
-          <Row gutter={[16,16]} style={{ width: "100%", marginTop: "16px", marginRight:0,marginLeft:0 }}>
+          
             <TableData></TableData>
-          </Row>
+          {/* </Row> */}
         </Col>
         <Col xs={24} md={24} lg={5}>
           
