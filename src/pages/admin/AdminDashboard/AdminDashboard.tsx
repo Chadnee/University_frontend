@@ -12,8 +12,9 @@ import UpComingSchedule from "./UpComingSchedule";
 
 
 const AdminDashboard = () => {
-  const { isMobile } = useResponsive();
-
+  const { isMobile,isSmallDesktop, isLargeDesktop } = useResponsive();
+  const colSpan1 = (isSmallDesktop || isLargeDesktop)? 19 :24
+  const colSpan2 = (isSmallDesktop || isLargeDesktop)? 5 :24
   const { data: getMySelf, isLoading: isMyselfLoading } =
     useGetMeQuery(undefined);
 
@@ -70,7 +71,7 @@ const AdminDashboard = () => {
       </Flex>
 
       <Row gutter={[16,16]} style={{}}>
-        <Col xs={24} md={24} lg={19} style={{}}>
+        <Col span={colSpan1}>
           <Row gutter={[16,16]} align="stretch" style={{ marginRight:0,marginLeft:0}}>
                <State></State>
           </Row>
@@ -82,7 +83,7 @@ const AdminDashboard = () => {
             <TableData></TableData>
           {/* </Row> */}
         </Col>
-        <Col xs={24} md={24} lg={5}>
+        <Col span={colSpan2}>
           
                <UpComingSchedule></UpComingSchedule>
           

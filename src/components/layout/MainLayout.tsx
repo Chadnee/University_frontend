@@ -17,7 +17,7 @@ import { CgProfile } from "react-icons/cg"
 const { Content } = Layout;
 
 const MainLayout = () => {
-  const { isMobile, isDesktop } = useResponsive();
+  const { isMobile, isTablet, isLaptop } = useResponsive();
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(200);
@@ -124,7 +124,7 @@ const MainLayout = () => {
         >
           <div
             style={{
-              padding: isDesktop ? "0 30px" : "10px 7px",
+              padding: isMobile ? "10px 7px": (isTablet || isLaptop)?"0 12px" : "0 30px ",
               minHeight: 360,
               maxWidth: "100%",
               width: "100%",

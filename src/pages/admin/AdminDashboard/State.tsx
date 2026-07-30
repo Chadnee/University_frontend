@@ -21,7 +21,7 @@ import { StatsCard } from "./SharedComponent";
 
 const State = () => {
 
-    const { isMobile } = useResponsive();
+    const { isMobile, isSmallDesktop, isLargeDesktop } = useResponsive();
 
   const { data: userStats } = useGetAllCountedTotalUsersQuery(undefined);
     useGetMeQuery(undefined);
@@ -30,13 +30,13 @@ const State = () => {
 
   const { students, faculty } = userStats?.data ?? {};
   console.log(students)
+  // const colsPan = isLaptop ? 12 : 6
+  const cardSpan = (isSmallDesktop || isLargeDesktop)? 6 :12
   return (
     <>
        <Col
-              lg={6}
-              md={12}
-              sm={{ span: 12 }}
-              xs={12}
+             
+              span={cardSpan}
               style={{ display: "flex" }}
             >
               <StatsCard
@@ -46,10 +46,7 @@ const State = () => {
               />
             </Col>
             <Col
-              lg={6}
-              md={12}
-              sm={{ span: 12 }}
-              xs={12}
+              span={cardSpan}
               style={{ display: "flex" }}
             >
               <StatsCard
@@ -59,10 +56,7 @@ const State = () => {
               />
             </Col>
             <Col
-              lg={6}
-              md={12}
-              sm={{ span: 12 }}
-              xs={12}
+              span={cardSpan}
               style={{ display: "flex" }}
             >
               <StatsCard
@@ -72,10 +66,7 @@ const State = () => {
               />
             </Col>
             <Col
-              lg={6}
-              md={12}
-              sm={{ span: 12 }}
-              xs={12}
+              span={cardSpan}
               style={{ display: "flex" }}
             >
               <Flex
@@ -99,14 +90,14 @@ const State = () => {
                       <FaRegChartBar
                         style={{ fontSize: isMobile ? "23px" :"30px", color: "#bad2f0ff" }}
                       />
-                      <span style={{ fontSize: isMobile ? "12px" :"15px", color: "#000" }}>
+                      <span style={{ fontSize: isMobile ? "12px" :"16px", color: "#000" }}>
                         Website Visits
                       </span>
                     </Flex>
                     <Flex align="center" justify="center">
                       <span
                         style={{
-                          fontSize: isMobile ? "21px" : "25px",
+                          fontSize: isMobile?"21px":isSmallDesktop?"21px": "25px",
                           color: "rgb(6, 73, 150)",
                         }}
                       >
@@ -125,7 +116,7 @@ const State = () => {
                       <MdStackedLineChart
                         style={{ fontSize: "25px", color: "#bad2f0ff" }}
                       />
-                      <button
+                      {!isSmallDesktop && <button
                         style={{
                           fontSize: "10px",
                           background: "#3c76ceff",
@@ -136,7 +127,7 @@ const State = () => {
                         }}
                       >
                         Last 30 days
-                      </button>
+                      </button>}
                     </Space>
                   </Col>
                 </Row>

@@ -30,7 +30,7 @@ import { FaHome } from "react-icons/fa";
 import { IoFlask } from "react-icons/io5";
 
 const Header = () => {
-  const { isMobile,isTablet, isDesktop } = useResponsive();
+  const { isMobile,isTablet } = useResponsive();
   const [setOpen, isSetOpen] = useState(false);
 
   const token = useAppSelector(selectCurrentToken);
@@ -91,7 +91,7 @@ const Header = () => {
                 <span>News & Events</span>
               </Flex>
             {
-              !isTablet && isDesktop &&    <Flex align="center" justify="center" gap={14}>
+              !isTablet  &&    <Flex align="center" justify="center" gap={14}>
                 <FaFacebookF></FaFacebookF>
                 <FaTwitter></FaTwitter>
                 <TiSocialLinkedin

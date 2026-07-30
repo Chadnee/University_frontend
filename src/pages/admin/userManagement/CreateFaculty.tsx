@@ -21,7 +21,7 @@ const CreateFaculty = () => {
      const [createFaculty] = useCreateFacultyMutation()
      const fileInputRef = useRef<HTMLInputElement | null>(null);
      const [preview, setPreview] = useState<string>(DEFAULT_IMAGE)
-     const {isTablet, isDesktop} = useResponsive()
+     const {isMobile, isTablet, isLargeDesktop} = useResponsive()
 
      const departmentOptions = departmentData?.data?.map((item) => ({
       value: item._id,
@@ -53,14 +53,16 @@ const CreateFaculty = () => {
                 toast.error("Something went wrong")
           }
   };// style={{ margin:isDesktop?"0 , 40px": isTablet?"0, 7px":"0" }}
+     const colSpan = isMobile || isTablet? 24 : 12
+
   return (
-    <div style={{ margin:isTablet||isDesktop? "0 40px" : "0" }}>
+    <div style={{width:"100%", display:"flex", flexDirection:'column', justifyContent:"center", alignItems:" center"}}>
       <AdmitForm onSubmit={onSubmit}>
         <Divider style={{fontSize:'20px', paddingBottom:"15px"  ,fontWeight:600, textAlign: 'center'}}>Add Faculties</Divider>
         <Row justify="center" >
           <Col span={24}>
-           <Row gutter={100}>
-             <Col span={24} lg={{span:5}} md={{span:24}}>
+           <Row gutter={100} style={{marginLeft:"16px", marginRight:"0px"}}>
+             <Col span={isLargeDesktop? 5 : 24}>
           <Row justify='center'><p style={{fontSize:'20px'  ,fontWeight:600}}>Upload Photo</p></Row>
             <Controller
             name="profileImage"
@@ -109,40 +111,40 @@ const CreateFaculty = () => {
             </Row>
           </Col>
             
-          <Col  lg={{span:19}} md={{span: 24}} span={24}
+          <Col  span={isLargeDesktop?19 : 24}
   style={{
     borderLeft: "2px solid #cbd1d8ff",
-    paddingLeft: "24px",
+    paddingLeft: "20px",
   }}>
             <Row gutter={[28, 5]}>
-               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+               <Col className="font-stylish" span = {colSpan}>
                 <InputForm type="text" name="name" label="Full Name"></InputForm>
               </Col>
-               <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+               <Col className="font-stylish" span = {colSpan}>
                 <InputForm type="text" name="designation" label="Designation"></InputForm>
               </Col>
-              <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+              <Col className="font-stylish" span = {colSpan}>
                 <DatePickerInput name="dateOfBirth" label="Date of Birth" ></DatePickerInput>
               </Col>
-              <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+              <Col className="font-stylish" span = {colSpan}>
                 <SelectForm name="gender" placeholder="Select gender" label="Gender" options={gendersOptions}></SelectForm>
               </Col>
-              <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+              <Col className="font-stylish" span = {colSpan}>
                 <InputForm type="text" name="email" label="Email Address"></InputForm>
               </Col>
-              <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+              <Col className="font-stylish" span = {colSpan}>
                 <InputForm type="text" name="contactNo" label="Contact No"></InputForm>
               </Col>
-              <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+              <Col className="font-stylish" span = {colSpan}>
                 <InputForm type="text" name="emergencyContactNo" label="Emergency Contact No"></InputForm>
               </Col>
-              <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+              <Col className="font-stylish" span = {colSpan}>
                 <SelectForm name="academicDepartment" options={departmentOptions} disabled={isDepartmentLoading} placeholder="Select department" label="Department"></SelectForm>
               </Col>
-              <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+              <Col className="font-stylish" span = {colSpan}>
                 <InputForm isTextArea={true}  type="text" name="presentAddress" label="Present Address"></InputForm>
               </Col>
-              <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+              <Col className="font-stylish" span = {colSpan}>
                 <InputForm isTextArea={true}  type="text" name="permanentAddress" label="Permanent Address"></InputForm>
               </Col>
 

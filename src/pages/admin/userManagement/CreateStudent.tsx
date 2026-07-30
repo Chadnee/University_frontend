@@ -21,7 +21,7 @@ const CreateStudent = () => {
   const [createStudent] = useCreateStudentMutation();
   const {data: semesterData, isLoading:isSemesterLoading} = useGetAllSemestersQuery(undefined);
   const {data: departmentData, isLoading: isDepartmentLoading} = useGetAllAccademicDepartmentQuery(undefined)
-  const {isTablet, isDesktop} = useResponsive();
+  const {isMobile, isTablet, isLargeDesktop} = useResponsive();
   // console.log(semesterData?.data, departmentData?.data)
 
   const semesterOptions = semesterData?.data?.map((item:TAcademicSemester) => ({
@@ -61,18 +61,19 @@ const CreateStudent = () => {
             toast.error("Something went wrong")
       }
 };
+     const colSpan = isMobile || isTablet? 24 : 12
   return (
 
 
-       <div style={{ margin:isTablet||isDesktop? "0 40px" : "0" }}>
+       <div style={{paddingBottom:"20px", width:"100%", display:"flex", flexDirection:'column', justifyContent:"center", alignItems:" center", }}>
           <AdmitForm onSubmit={onSubmit}>
-
-            {/* <Divider style={{fontSize:'20px', paddingBottom:"15px"  ,fontWeight:600, textAlign: 'center'}}>Add Student</Divider> */}
-            <Row justify="center" >
+              {/* <Divider style={{fontSize:'20px', paddingBottom:"15px"  ,fontWeight:600, textAlign: 'center'}}>Add Admin</Divider> */}
+            <Divider style={{fontSize:'26px', paddingBottom:"15px"  ,fontWeight:600, textAlign: 'center'}}>Add Student</Divider>
+            <Row justify="center" style={{width:"100%"}}>
               <Col span={24}>
-               <Row gutter={100}>
-                 <Col span={24} lg={{span:5}} md={{span:24}}>
-              <Row justify='center'><p style={{fontSize:'20px',marginTop:isDesktop?"40px":"0"  ,fontWeight:600}}>Upload Photo</p></Row>
+               <Row gutter={100} style={{margin:isMobile || isTablet ?"0px -30px 0px 14px": "0px 20px 0px 30px"}}>
+                 <Col span={isLargeDesktop? 5 : 24}>
+              <Row justify='center'><p style={{fontSize:'20px' ,fontWeight:600}}>Upload Photo</p></Row>
                 <Controller
                 name="profileImage"
                 render={({field:{onChange}}) => (
@@ -120,106 +121,114 @@ const CreateStudent = () => {
                 </Row>
               </Col>
                 
-              <Col  lg={{span:19}} md={{span: 24}} span={24}
+              <Col  span = {isLargeDesktop? 19 : 24}
       style={{
         borderLeft: "2px solid #cbd1d8ff",
-        paddingLeft: "24px",
+        paddingLeft: isMobile||isTablet?"14px":"38px",width:"100%",
+        
       }}>            
-       <p style={{fontSize: "25px", fontWeight:"600", textAlign:"center"}}>Create Student</p>
+       {/* <p style={{fontSize: "25px", fontWeight:"600", textAlign:"center"}}>Create Student</p> */}
 
-                <Row gutter={[28, 5]}>
-                 <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Personal info</Divider>
-
+                
+                  
+                 <Divider orientation="center" style={{ margin:"30px auto"}}>Personal info</Divider>
+                    <Row gutter={[28, 5]} style={{}}>
                   {/* Personal info */}
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                     <InputForm type="text" name="name.firstName" label="Student First Name" placeholder="Provide first name"></InputForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                     <InputForm type="text" name="name.middleName" label="Middle Name" placeholder="Provide middle name"></InputForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                     <InputForm type="text" name="name.lastName" label="last Name" placeholder="Provide last name"></InputForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                     <SelectForm name="gender" options={gendersOptions} label="Gender"/>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                     <DatePickerInput name="dateOfBirth" label="Date of Birth" ></DatePickerInput>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                     <SelectForm name="bloodGroup" options={bloodGroupsOptions} label="Blood Group"/>
                   </Col>
+                  </Row>
+
                    {/* Contact info */}
-                   <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Contact info</Divider>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Divider orientation="center" style={{ margin:"30px auto"}}>Contact info</Divider>
+                   <Row gutter={[28, 5]} >
+                      <Col className="font-stylish" span = {colSpan}>
                     <InputForm type="text" name="email" label="Email Address" placeholder="Provide email ..."></InputForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                     <InputForm type="text" name="" label="Institutional email (Optional)" placeholder="Provide institutional email if applicable ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                     <InputForm type="text" name="contactNo" label="Contact No" placeholder="Provide contact No ..."></InputForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                     <InputForm type="text" name="emergencyContactInfo" label="Emergency Contact Info(Number)" placeholder="Provide emergency conatct No ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                     <InputForm isTextArea={true}  type="text" name="presentAddress" label="Present Address" placeholder="Provide Present Address ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                     <InputForm isTextArea={true}  type="text" name="permanentAddress" label="Permanent Address" placeholder="Provide Permanent Address ..."></InputForm>
                   </Col>
+                  </Row>
+                  
                  
 
                    {/* Gurdian info */}
-                   <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Gurdian info</Divider>
-
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Divider orientation="center" style={{ margin:"30px auto"}}>Gurdian info</Divider>
+                   <Row gutter={[28, 5]} >
+                  <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="guardian.fatherName" label="Father Name" placeholder="Provide father name ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="guardian.fatherOccupation" label="Father Occupation" placeholder="Provide father Occupation ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="guardian.fatherContactNo" label="Father Contact" placeholder="Provide father Contact ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="guardian.motherName" label="Mother Name" placeholder="Provide Mother name ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="guardian.motherOccupation" label="Mother Occupation" placeholder="Provide Mother Occupation ..."></InputForm>
                   </Col>
-                  <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="guardian.motherContactNo" label="Mother Contact" placeholder="Provide Mother Contact ..."></InputForm>
                   </Col>
+                  </Row>
                   
                   {/* Local Gurdian info */}
-                  <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Local Gurdian info</Divider>
-
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                  <Divider orientation="center" style={{ margin:"30px auto"}}>Local Gurdian info</Divider>
+                   <Row gutter={[28, 5]} >
+                   <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="localGuardian.name" label="Name" placeholder="Provide local gurdian name ..."></InputForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="localGuardian.occupation" label="Occupation" placeholder="Provide Occupation ..."></InputForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="localGuardian.contactNo" label="Contact No" placeholder="Provide Contact No ..."></InputForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                    <InputForm type="text" name="localGuardian.address" label="Address" placeholder="Provide address ..."></InputForm>
                   </Col>
-                  
+                  </Row>
                   {/*Academical info */}
-                 <Divider orientation="center" style={{ width: "500px", minWidth: "500px", margin:"30px auto"}}>Academic info</Divider>
-
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                 <Divider orientation="center" style={{ margin:"30px auto"}}>Academic info</Divider>
+                   <Row gutter={[28, 5]} >
+                   <Col className="font-stylish" span = {colSpan}>
                   <SelectForm name="admissionSemester" disabled={isSemesterLoading} options={semesterOptions} label="Academic Semester"></SelectForm>
                   </Col>
-                   <Col className="font-stylish" span={24} lg={{ span: 12 }} md={{ span: 12 }}>
+                   <Col className="font-stylish" span = {colSpan}>
                   <SelectForm name="academicDepartment" disabled={isDepartmentLoading} options={departmentOptions} label="Academic Department"></SelectForm>
                   </Col>
-
-                </Row>
+                  </Row>
+                {/* </Row> */}
               </Col>
                </Row>
               </Col>
@@ -246,111 +255,6 @@ const CreateStudent = () => {
             </Row>
           </AdmitForm>
         </div>
-    // <Row>
-    //   <Col span={24}>
-    //     <AdmitForm onSubmit={onSubmit} defaultValues={studentDefaultValues}>
-    //       <Divider>Personal Info</Divider>
-    //        <Row gutter={8}>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="name.firstName" label="First Name"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="name.middleName" label="Middle Name"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="name.lastName" label="Last Name"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <SelectForm options={gendersOptions} placeholder="Select gender" name="gender" label="Gender"></SelectForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <DatePickerInput name="dateOfBirth" label="Date of Birth"></DatePickerInput>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}}>
-    //         <SelectForm options={bloodGroupsOptions} placeholder="Select blood group" name="bloodGroup" label="Blood Group"></SelectForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}}>
-    //          <Controller
-    //            name="image"
-    //            render={({field: {onChange, value, ...field}}) =>(
-    //             <Form.Item label="Picture">
-    //                 <Input type="file"
-    //                 value={value?.fileName}
-    //                 {...field}
-    //                 onChange={(e) => onChange(e.target.files?.[0])}
-    //                 />
-    //             </Form.Item>
-    //            )}
-    //          />
-    //       </Col>
-    //        </Row>
-    //        <Divider>Contact Info</Divider>
-    //        <Row gutter={8}>
-    //          <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="email" label="Email"></InputForm>
-    //       </Col>
-    //           <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="contactNo" label="Contact No"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="emergencyContactInfo" label="Emergency Contact Info(Number)"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="presentAddress" label="Present Address"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="permanentAddress" label="Permanent Address"></InputForm>
-    //       </Col>
-    //        </Row>
-    //        <Divider>Gurdian Info</Divider>
-    //        <Row gutter={8}>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="guardian.fatherName" label="Father Name"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="guardian.fatherOccupation" label="Father Occupation"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="guardian.fatherContactNo" label="Father Contact No"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="guardian.motherName" label="Mother Name"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="guardian.motherOccupation" label="Mother Occupation"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="guardian.motherContactNo" label="Mother Contact No"></InputForm>
-    //       </Col>
-    //       </Row>
-    //       <Divider>Local Gurdian Info</Divider>
-    //       <Row gutter={8}>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="localGuardian.name" label="Name"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="localGuardian.occupation" label="occupation"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="localGuardian.contactNo" label="Contact No"></InputForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:8}} >
-    //         <InputForm type="text" name="localGuardian.address" label="Address"></InputForm>
-    //       </Col>
-    //       </Row>
-    //       <Divider>Accademical Info</Divider>
-    //       <Row gutter={8}>
-    //         <Col span={24} md={{span:12}} lg={{span:12}} >
-    //         <SelectForm name="admissionSemester" placeholder="Select admission semester" disabled={isSemesterLoading} options={semesterOptions} label="Admission Semester"></SelectForm>
-    //       </Col>
-    //       <Col span={24} md={{span:12}} lg={{span:12}} >
-    //         <SelectForm name="academicDepartment" placeholder="Select department" disabled={isDepartmentLoading} options={departmentOptions} label="Academic Department"></SelectForm>
-    //       </Col>
-    //       </Row>
-    //       <Button htmlType="submit">Submit</Button>
-    //     </AdmitForm>
-    //   </Col>
-    // </Row>
   );
 };
 

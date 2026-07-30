@@ -9,11 +9,12 @@ type TFormInput = {
   name: string,
   label?: string,
   isTextArea?: boolean,
+  isPassword?: boolean,
   rows?:number,
   placeholder?:string
   readonly?: boolean
 }
-const InputForm = ({type, name, label, isTextArea = false, rows = 2, placeholder, readonly} : TFormInput) => {
+const InputForm = ({type, name, label, isTextArea = false, isPassword = false, rows = 2, placeholder, readonly} : TFormInput) => {
 
    // const {register} = useFormContext();
    //  //not neeeded the register now beacuse of using controller to co ordinate with antd ,since antd dont know any register 
@@ -38,7 +39,16 @@ const InputForm = ({type, name, label, isTextArea = false, rows = 2, placeholder
      render = {({field}) => isTextArea? (
       <Input.TextArea {...field} 
        rows={rows} size="large" placeholder={placeholder} className="custom-input"/>
-     ) : (
+     ) : isPassword? (
+      <Input.Password {...field} type={type} placeholder={placeholder} readOnly={readonly} className="custom-input"
+       suffix={<LiaEditSolid style={{fontSize:"20px", color:'#000'}}/>}
+      style={{
+        width: "100%",
+        color: "#1f2937",          // text color
+        backgroundColor: "#ffffff",// input background
+        border: "1px solid #4b4c4fff",   // border color
+        // borderRadius:"20px"
+      }} id={name} size="large"/>): (
       <Input {...field} type={type} placeholder={placeholder} readOnly={readonly} className="custom-input"
        suffix={<LiaEditSolid style={{fontSize:"20px", color:'#000'}}/>}
       style={{

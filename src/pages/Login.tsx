@@ -119,7 +119,7 @@ borderRadius: "8px",
 boxShadow: "0 10px 30px rgba(0,0,0,0.1)",padding:isMobile?"0 10px": "0 80px", width:"100%", height:"100%"}}>
       <AdmitForm onSubmit={onSubmit}>
         <InputForm type="text" name="userId" placeholder="Id"></InputForm>
-        <InputForm type="text" name="password" placeholder="Password"></InputForm>
+        <InputForm isPassword={true} type="password" name="password" placeholder="Enter a Password"></InputForm>
         <div style={{display:"flex", justifyContent:"center"}}>
            <Button htmlType="submit" style={{height:"40px", width:"150px", borderRadius:"4px", border:"none", fontSize:"19px", display:"inline-flex", justifyContent:"center", alignItems:"center", gap:"5px",}}>
             <span>Login</span>
