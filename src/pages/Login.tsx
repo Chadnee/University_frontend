@@ -10,11 +10,13 @@ import AdmitForm from "./form/AdmitForm";
 import InputForm from "./form/InputForm";
 import useResponsive from "../hooks/useResponsive";
 import { LuLogIn } from "react-icons/lu";
+import { useState } from "react";
 
 const Login = () => {
   // const {register, handleSubmit} = useForm({});
   // const { handleSubmit} = useForm({});
   const {isMobile, isTablet} = useResponsive()
+  const [demoValues, setDemoValues] = useState<Record<string, string> | undefined>(undefined)
   const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate(); //to implement redirect
@@ -22,7 +24,13 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   // console.log('data', data)
   // console.log('error', error)
-
+ 
+  const handleDemoUser= () => {
+    setDemoValues({
+      userId: "A-0001",
+      password: "12345678"
+    })
+  }
   const onSubmit = async (data: FieldValues) => {
     //toast.loading('Logging in')
     //   When we make direct toast.loading like above it make a override to next toast message,
@@ -117,7 +125,7 @@ const Login = () => {
            <Row justify="center" align="middle" style={{background: "#dde0e2", 
 borderRadius: "8px",
 boxShadow: "0 10px 30px rgba(0,0,0,0.1)",padding:isMobile?"0 10px": "0 80px", width:"100%", height:"100%"}}>
-      <AdmitForm onSubmit={onSubmit}>
+      <AdmitForm onSubmit={onSubmit} defaultValues={demoValues}>
         <InputForm type="text" name="userId" placeholder="Id"></InputForm>
         <InputForm isPassword={true} type="password" name="password" placeholder="Enter a Password"></InputForm>
         <div style={{display:"flex", justifyContent:"center"}}>
@@ -125,6 +133,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.1)",padding:isMobile?"0 10px": "0 80px", wi
             <span>Login</span>
             <LuLogIn style={{ fontSize: "19px", position: "relative", top: "2px" }} ></LuLogIn>
             </Button>
+            <button onClick={handleDemoUser}>Log in as demo user</button>
         </div>
         
       </AdmitForm>

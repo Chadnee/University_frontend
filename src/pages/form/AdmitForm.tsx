@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form } from "antd";
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { FormProvider, useForm, type SubmitHandler } from "react-hook-form";
 
 // Zod validation system in here as frotend re-usable
@@ -35,7 +35,12 @@ const AdmitForm  = ({onSubmit, children, defaultValues, resolver} : TAdmitFormPr
     // const onSubmit = (data) => {
     //     console.log(data)
     // }
-
+  useEffect(() => {
+    if(defaultValues) {
+      methods.reset(defaultValues);
+    }
+  }, [defaultValues, methods])
+  
     const submit: SubmitHandler<any> = (data) => {
       onSubmit(data);
       methods.reset()
