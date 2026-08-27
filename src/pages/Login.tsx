@@ -1,4 +1,4 @@
-import { Button, Row } from "antd";
+import { Button, Divider, Flex} from "antd";
 import { type FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../features/auth/authApi";
 import { useAppDispatch } from "../features/hooks";
@@ -11,11 +11,14 @@ import InputForm from "./form/InputForm";
 import useResponsive from "../hooks/useResponsive";
 import { LuLogIn } from "react-icons/lu";
 import { useState } from "react";
+import image from "../assets/images/loginImage.png"
+import { FiUser } from "react-icons/fi";
+import { MdLockOutline } from "react-icons/md";
 
 const Login = () => {
   // const {register, handleSubmit} = useForm({});
   // const { handleSubmit} = useForm({});
-  const {isMobile, isTablet} = useResponsive()
+  const {isMobile, isTablet, isSmallDesktop, isLargeDesktop, isLaptop} = useResponsive()
   const [demoValues, setDemoValues] = useState<Record<string, string> | undefined>(undefined)
   const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
@@ -121,23 +124,76 @@ const Login = () => {
     alignItems: "center",
     
   }}>
-          <div style={{ height: isMobile?"50vh":isTablet?"50vh":"65vh", width:isMobile?"100vw":isTablet?"85vw":"50vw", display:'flex' , flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-           <Row justify="center" align="middle" style={{background: "#dde0e2", 
-borderRadius: "8px",
-boxShadow: "0 10px 30px rgba(0,0,0,0.1)",padding:isMobile?"0 10px": "0 80px", width:"100%", height:"100%"}}>
-      <AdmitForm onSubmit={onSubmit} defaultValues={demoValues}>
-        <InputForm type="text" name="userId" placeholder="Id"></InputForm>
-        <InputForm isPassword={true} type="password" name="password" placeholder="Enter a Password"></InputForm>
+          <div style={{ 
+            // height: isMobile?"50vh":isTablet?"50vh":"65vh", width:isMobile?"100vw":isTablet?"85vw":"50vw", 
+            width:"100%", height:"100vh",
+            display:'flex' , flexDirection:isMobile || isTablet?"column": "row", justifyContent:"center", alignItems:"center"}}>
+           <figure style={{width:isLargeDesktop || isLaptop || isSmallDesktop?"60%" : "100%", height:"100%", margin:0,}}>
+             <img src={image} style={{width:"100%", height:"100%", objectFit:"cover",padding: isMobile||isTablet? "10px": ""}} alt="" />
+           </figure>
+            <div style={{width:"100%", height:"100%"}}>
+               <Flex vertical gap={20} justify="center" align="center" style={{background: "#fff", 
+  width:isMobile||isTablet||isLaptop?"100%" : "60%", height:"100%", margin:"auto",}}>
+      <div><MdLockOutline style={{background:"#fff5e3", color:"#d08c0c", padding:"13px", borderRadius:"50%", fontSize:"32px", fontWeight:"800px"}}></MdLockOutline></div>
+      <span
+            className="font-heading-stylish"
+            style={{
+              textTransform: "capitalize",
+              fontWeight: 600,
+              fontSize: "30px",
+            }}
+          >
+           log in to your accpunt
+          </span>
+          <span
+            style={{
+              textTransform: "capitalize",
+              fontSize: "17px",
+              color:"#7b7777"
+            }}
+          >
+           enter your credentials to access your dashboard
+          </span>
+      <div style={{width:"100%"}}>
+        <AdmitForm onSubmit={onSubmit} defaultValues={demoValues}>
+        <InputForm type="text" name="userId" label="User Id" placeholder="Id" prefixIcon={<FiUser style={{color:"#7e7d7d", fontSize:"18px"}}/>}></InputForm>
+        <InputForm isPassword={true} type="password" label="Password" name="password" prefixIcon={<MdLockOutline style={{color:"#7e7d7d", fontSize:"18px"}}/>} placeholder="Enter a Password" ></InputForm>
         <div style={{display:"flex", justifyContent:"center"}}>
-           <Button htmlType="submit" style={{height:"40px", width:"150px", borderRadius:"4px", border:"none", fontSize:"19px", display:"inline-flex", justifyContent:"center", alignItems:"center", gap:"5px",}}>
+           
+           
+           <Button htmlType="submit" style={{height:"40px", fontSize: "15px",
+                              borderRadius: "10px",
+                              background: "#ce8908",
+                              border: "none",
+                              color: "#fff6f6",
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              gap: "15px",}}>
             <span>Login</span>
             <LuLogIn style={{ fontSize: "19px", position: "relative", top: "2px" }} ></LuLogIn>
             </Button>
-            <button onClick={handleDemoUser}>Log in as demo user</button>
+            
+           
         </div>
         
       </AdmitForm>
-    </Row>
+      </div>
+       <Divider style={{fontSize:'20px', paddingBottom:"0"  ,fontWeight:600, textAlign: 'center'}}><span style={{fontSize:"14px",fontWeight:400, color:"#a7a3a3"}}>Or</span></Divider>
+       <Button onClick={handleDemoUser} style={{height:"40px", fontSize: "15px",
+                              borderRadius: "10px",
+                              background: "#fff",
+                              border: "1px solid #737070",
+                              color: "#000",
+                              width: "60%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              gap: "15px",}}>Log in as demo user
+                              </Button>
+    </Flex>
+            </div>
      </div>
   </div>
 

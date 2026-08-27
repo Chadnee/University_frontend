@@ -2,6 +2,7 @@ import { Input } from "antd";
 import { Controller} from "react-hook-form"
 import "../../index.css"
 import { LiaEditSolid } from "react-icons/lia";
+import type { ReactNode } from "react";
 
 
 type TFormInput = {
@@ -12,9 +13,10 @@ type TFormInput = {
   isPassword?: boolean,
   rows?:number,
   placeholder?:string
-  readonly?: boolean
+  readonly?: boolean,
+  prefixIcon?: ReactNode
 }
-const InputForm = ({type, name, label, isTextArea = false, isPassword = false, rows = 2, placeholder, readonly} : TFormInput) => {
+const InputForm = ({type, name, label, isTextArea = false,prefixIcon, isPassword = false, rows = 2, placeholder, readonly} : TFormInput) => {
 
    // const {register} = useFormContext();
    //  //not neeeded the register now beacuse of using controller to co ordinate with antd ,since antd dont know any register 
@@ -27,7 +29,7 @@ const InputForm = ({type, name, label, isTextArea = false, isPassword = false, r
           style={{
             display:"block",
             paddingBottom: "6px",
-            fontWeight: "600", fontSize:"16px",
+            fontWeight: "600", fontSize:"18px",
             
           }}
         >
@@ -40,22 +42,22 @@ const InputForm = ({type, name, label, isTextArea = false, isPassword = false, r
       <Input.TextArea {...field} 
        rows={rows} size="large" placeholder={placeholder} className="custom-input"/>
      ) : isPassword? (
-      <Input.Password {...field} type={type} placeholder={placeholder} readOnly={readonly} className="custom-input"
-       suffix={<LiaEditSolid style={{fontSize:"20px", color:'#000'}}/>}
+      <Input.Password {...field} type={type} placeholder={placeholder} prefix={prefixIcon} readOnly={readonly} className="custom-input"
+       suffix={<LiaEditSolid style={{fontSize:"20px", color:'#000'}} />}
       style={{
         width: "100%",
         color: "#1f2937",          // text color
         backgroundColor: "#ffffff",// input background
-        border: "1px solid #4b4c4fff",   // border color
+        border: "2px solid rgb(176, 177, 179)",    // border color
         // borderRadius:"20px"
       }} id={name} size="large"/>): (
-      <Input {...field} type={type} placeholder={placeholder} readOnly={readonly} className="custom-input"
+      <Input {...field} type={type} placeholder={placeholder} prefix={prefixIcon} readOnly={readonly} className="custom-input"
        suffix={<LiaEditSolid style={{fontSize:"20px", color:'#000'}}/>}
       style={{
         width: "100%",
         color: "#1f2937",          // text color
         backgroundColor: "#ffffff",// input background
-        border: "1px solid #4b4c4fff",   // border color
+        border: "2px solid rgb(176, 177, 179)",   // border color
         // borderRadius:"20px"
       }} id={name} size="large"/>)
      //<Input type={type} id={name} {...register(name)}/> //when we dont use ant desugn , rather only use form provider from react hook form this input tag with register will needed for getting field value
