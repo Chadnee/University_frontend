@@ -3,6 +3,7 @@ import { Controller} from "react-hook-form"
 import "../../index.css"
 import { LiaEditSolid } from "react-icons/lia";
 import type { ReactNode } from "react";
+import useResponsive from "../../hooks/useResponsive";
 
 
 type TFormInput = {
@@ -17,6 +18,7 @@ type TFormInput = {
   prefixIcon?: ReactNode
 }
 const InputForm = ({type, name, label, isTextArea = false,prefixIcon, isPassword = false, rows = 2, placeholder, readonly} : TFormInput) => {
+  const {isMobile, isTablet} = useResponsive()
 
    // const {register} = useFormContext();
    //  //not neeeded the register now beacuse of using controller to co ordinate with antd ,since antd dont know any register 
@@ -29,7 +31,7 @@ const InputForm = ({type, name, label, isTextArea = false,prefixIcon, isPassword
           style={{
             display:"block",
             paddingBottom: "6px",
-            fontWeight: "600", fontSize:"18px",
+            fontWeight: "600", fontSize:isMobile|| isTablet?"14px":"18px",
             
           }}
         >

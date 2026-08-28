@@ -131,7 +131,7 @@ const Login = () => {
            <figure style={{width:isLargeDesktop || isLaptop || isSmallDesktop?"60%" : "100%", height:"100%", boxSizing: "border-box",padding: isMobile||isTablet? "16px": ""}}>
              <img src={image} style={{width:"100%", height:"100%", objectFit:"cover",}} alt="" />
            </figure>
-            <div style={{width:"100%", height:"100%", padding:'20px', boxSizing: "border-box"}}>
+            <div style={{width:"100%", height:"100%", padding:isMobile||isTablet||isLaptop?'0 20px 20px 20px':"", boxSizing: "border-box"}}>
                <Flex vertical gap={20} justify="center" align="center" style={{background: "#fff", 
   width:isMobile||isTablet||isLaptop?"100%" : "60%",boxSizing: "border-box", height:"100%", margin:isLargeDesktop||isSmallDesktop?"auto":"0",}}>
       <div><MdLockOutline style={{background:"#fff5e3", color:"#d08c0c", padding:"13px", borderRadius:"50%", fontSize:"32px", fontWeight:"800px"}}></MdLockOutline></div>
@@ -140,15 +140,15 @@ const Login = () => {
             style={{
               textTransform: "capitalize",
               fontWeight: 600,
-              fontSize: "30px",
+              fontSize: isMobile||isTablet?"20px": "30px",
             }}
           >
-           log in to your accpunt
+           log in to your account
           </span>
           <span
             style={{
               textTransform: "capitalize",
-              fontSize: "17px",
+              fontSize: isMobile||isTablet?"13px":"17px",textAlign:"center",
               color:"#7b7777"
             }}
           >
@@ -180,7 +180,7 @@ const Login = () => {
         
       </AdmitForm>
       </div>
-       <Divider style={{fontSize:'20px', paddingBottom:"0"  ,fontWeight:600, textAlign: 'center'}}><span style={{fontSize:"14px",fontWeight:400, color:"#a7a3a3"}}>Or</span></Divider>
+       <Divider style={{fontSize:'20px',margin:isMobile||isTablet?"0":"", paddingBottom:"0"  ,fontWeight:600, textAlign: 'center'}}><span style={{fontSize:"14px",fontWeight:400, color:"#a7a3a3"}}>Or</span></Divider>
        <Button onClick={handleDemoUser} style={{height:"40px", fontSize: "15px",
                               borderRadius: "10px",
                               background: "#fff",
