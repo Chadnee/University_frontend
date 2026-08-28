@@ -4,7 +4,7 @@ import { useLoginMutation } from "../features/auth/authApi";
 import { useAppDispatch } from "../features/hooks";
 import { setUser, type TUser } from "../features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import AdmitForm from "./form/AdmitForm";
 import InputForm from "./form/InputForm";
@@ -152,7 +152,7 @@ const Login = () => {
               color:"#7b7777"
             }}
           >
-           enter your credentials to access your dashboard
+           enter credentials to access your dashboard
           </span>
       <div style={{width:"100%"}}>
         <AdmitForm onSubmit={onSubmit} defaultValues={demoValues}>
@@ -174,11 +174,17 @@ const Login = () => {
             <span>Login</span>
             <LuLogIn style={{ fontSize: "19px", position: "relative", top: "2px" }} ></LuLogIn>
             </Button>
-            
-           
         </div>
         
       </AdmitForm>
+        <Link to="/"
+            style={{
+              fontSize: isMobile||isTablet?"13px":"17px",textAlign:"center",
+              color:"#7b7777", display:"flex", justifyContent:"center", paddingTop:"12px"
+            }}
+          >
+           <span >Go to <span style={{color:"#ce8908", textDecoration:"underline"}}>Home</span></span>
+          </Link>
       </div>
        <Divider style={{fontSize:'20px',margin:isMobile||isTablet?"0":"", paddingBottom:"0"  ,fontWeight:600, textAlign: 'center'}}><span style={{fontSize:"14px",fontWeight:400, color:"#a7a3a3"}}>Or</span></Divider>
        <Button onClick={handleDemoUser} style={{height:"40px", fontSize: "15px",
