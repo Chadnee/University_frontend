@@ -6,7 +6,7 @@ import { newsEventsData } from "../constants/global";
 import { IoIosStar } from "react-icons/io";
 // isMobile?"":""
 const NewsAndEventSection = () => {
-  const { isMobile } = useResponsive();
+  const { isMobile, isTablet, isLaptop} = useResponsive();
   return (
     <div
       style={{
@@ -67,13 +67,13 @@ const NewsAndEventSection = () => {
     ? newsEventsData?.slice(0, 1)
     : newsEventsData?.slice(0, 3)
   )?.map((item, index) => (
-          // card of news
-          <Col key={index} sm={12} md={8} lg={8}>
+          // card of news 
+          <Col key={index} span={isMobile?"24":isTablet?"24":isLaptop?"12":"8"} offset={isLaptop && index === 2 ? 6 : 0}>
             <Flex
-              className={`news-card ${index === 1 && !isMobile ? "middle-card" : ""}`}
-              justify="center"
+              className={`news-card ${index === 1 && !isMobile && !isTablet && !isLaptop? "middle-card" : ""} `}
+              justify="center" 
               align="stretch"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer",marginTop:index===1?"8px":"" }}
             >
               {/* Card image with text overlay */}
               <div style={{ flex: "0 0 170px", position: "relative" }}>
