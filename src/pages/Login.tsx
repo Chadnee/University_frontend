@@ -128,12 +128,12 @@ const Login = () => {
             // height: isMobile?"50vh":isTablet?"50vh":"65vh", width:isMobile?"100vw":isTablet?"85vw":"50vw", 
             width:"100%", height:"100vh",
             display:'flex' , flexDirection:isMobile || isTablet?"column": "row", justifyContent:"center", alignItems:"center"}}>
-           <figure style={{width:isLargeDesktop || isLaptop || isSmallDesktop?"60%" : "100%", height:"100%", margin:0,}}>
-             <img src={image} style={{width:"100%", height:"100%", objectFit:"cover",padding: isMobile||isTablet? "10px": ""}} alt="" />
+           <figure style={{width:isLargeDesktop || isLaptop || isSmallDesktop?"60%" : "100%", height:"100%", boxSizing: "border-box",padding: isMobile||isTablet? "16px": ""}}>
+             <img src={image} style={{width:"100%", height:"100%", objectFit:"cover",}} alt="" />
            </figure>
-            <div style={{width:"100%", height:"100%"}}>
+            <div style={{width:"100%", height:"100%", padding:'20px', boxSizing: "border-box"}}>
                <Flex vertical gap={20} justify="center" align="center" style={{background: "#fff", 
-  width:isMobile||isTablet||isLaptop?"100%" : "60%", height:"100%", margin:"auto",}}>
+  width:isMobile||isTablet||isLaptop?"100%" : "60%",boxSizing: "border-box", height:"100%", margin:isLargeDesktop||isSmallDesktop?"auto":"0",}}>
       <div><MdLockOutline style={{background:"#fff5e3", color:"#d08c0c", padding:"13px", borderRadius:"50%", fontSize:"32px", fontWeight:"800px"}}></MdLockOutline></div>
       <span
             className="font-heading-stylish"
