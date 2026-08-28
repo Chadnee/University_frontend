@@ -40,8 +40,8 @@ const AcademicFaculty = () => {
               width:isMobile?"300px":"420px",
             }}>We combine academic excellence with practical learning,{isMobile?<></>:<br />} research and global exposure to prepare students for real-world success</span>
          </Flex>
-        <div style={{display:'flex', flexDirection:"column", justifyContent:"center", marginTop:"40px"}}>
-             <div style={{display:"flex", width:"100%", flexWrap:"wrap", gap:isMobile?"8px" :isTablet?"20px": "30px", justifyContent:isMobile?"justify-between":"center", alignItems: "stretch"}}>
+        <div style={{display:'flex', flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:"40px"}}>
+             <div style={{display:"flex", width:"100%", flexWrap:"wrap", gap:isMobile?"8px" :isTablet?"20px": "30px", justifyContent:isMobile?"center":"center", alignItems: "stretch"}}>
             {
                 AcademicFaculties?.map((item) => (
                     <div key={item.slug} style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", width:isMobile?"120px":"160px", display:"flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center", padding:isMobile?"20px 10px" : "20px 6px", gap:"10px"}}>
