@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
@@ -14,8 +14,10 @@ createRoot(document.getElementById("root")!).render(
     <Provider store={store}>
       <ParallaxProvider>
       <PersistGate loading = {null} persistor={persistor}>
+        <Suspense fallback={<div>Loading page...</div>}>
         <RouterProvider router={router}></RouterProvider>
         {/* <div>Hello</div> */}
+        </Suspense>
       </PersistGate>
       <Toaster />
       </ParallaxProvider>

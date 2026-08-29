@@ -4,9 +4,14 @@ import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import { newsEventsData } from "../constants/global";
 import { IoIosStar } from "react-icons/io";
-// isMobile?"":""
+import { useState } from "react";
+// 
+
 const NewsAndEventSection = () => {
   const { isMobile, isTablet, isLaptop} = useResponsive();
+  const [showMore, setShowMore] = useState(false)
+  const newsEvents = isMobile? newsEventsData?.slice(0, showMore?3:1): newsEventsData?.slice(0, 3)
+  
   return (
     <div
       style={{
@@ -56,17 +61,14 @@ const NewsAndEventSection = () => {
               // fontWeight:600
             }}
           >
-          { isMobile?<span>View All</span> : <span>View All News</span>}
+          { isMobile?<span onClick={()=>setShowMore(prev => !prev)}>{showMore?"Show Less":"View All"}</span> : <span>View All News</span>}
 
             <FaArrowRight></FaArrowRight>
           </Flex>
         </Link>
       </Flex>
       <Row gutter={[10,10] }style={{ marginTop:isMobile?"20px": "40px" }}>
-        {(isMobile
-    ? newsEventsData?.slice(0, 1)
-    : newsEventsData?.slice(0, 3)
-  )?.map((item, index) => (
+        {newsEvents?.map((item, index) => (
           // card of news 
           <Col key={index} span={isMobile?"24":isTablet?"24":isLaptop?"12":"8"} offset={isLaptop && index === 2 ? 6 : 0}>
             <Flex

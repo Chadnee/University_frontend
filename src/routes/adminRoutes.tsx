@@ -1,22 +1,25 @@
-import AcademicFaculty from "../pages/admin/academicManagement/AcademicFaculty";
-import AcademicSemesterApi from "../pages/admin/academicManagement/AcademicSemester";
-import AccademicDepartment from "../pages/admin/academicManagement/AccademicDepartment";
-import CreateAccademicDepartment from "../pages/admin/academicManagement/CreateAccademicDepartment";
-import CreateAccademicFaculty from "../pages/admin/academicManagement/CreateAccademicFaculty";
-import CreateAccademicSemester from "../pages/admin/academicManagement/CreateAccademicSemester";
-import AdminDashboard from "../pages/admin/AdminDashboard/AdminDashboard";
-import Courses from "../pages/admin/courseManagement/Courses";
-import CreateCourse from "../pages/admin/courseManagement/CreateCourse";
-import CreateofferedCourse from "../pages/admin/courseManagement/CreateofferedCourse";
-import CreateRegisteredSemester from "../pages/admin/courseManagement/CreateRegisteredSemester";
-import OfferedCourse from "../pages/admin/courseManagement/OfferedCourse";
-import RegisteredSemester from "../pages/admin/courseManagement/RegisteredSemester";
-import Admin from "../pages/admin/userManagement/Admin";
-import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
-import CreateFaculty from "../pages/admin/userManagement/CreateFaculty";
-import CreateStudent from "../pages/admin/userManagement/CreateStudent";
-import Faculty from "../pages/admin/userManagement/Faculty";
-import Student from "../pages/admin/userManagement/Student";
+
+import { lazy } from "react";
+// const AcademicFaculty = lazy(() => import("../pages/admin/academicManagement/AcademicFaculty"));
+const AcademicFaculty  = lazy(() => import("../pages/admin/academicManagement/AcademicFaculty"));
+const AcademicSemesterApi = lazy(() => import( "../pages/admin/academicManagement/AcademicSemester"));
+const AccademicDepartment = lazy(() => import( "../pages/admin/academicManagement/AccademicDepartment"));
+const CreateAccademicDepartment = lazy(() => import( "../pages/admin/academicManagement/CreateAccademicDepartment"));
+const CreateAccademicFaculty = lazy(() => import( "../pages/admin/academicManagement/CreateAccademicFaculty"));
+const CreateAccademicSemester = lazy(() => import( "../pages/admin/academicManagement/CreateAccademicSemester"));
+const AdminDashboard = lazy(() => import( "../pages/admin/AdminDashboard/AdminDashboard"));
+const Courses = lazy(() => import( "../pages/admin/courseManagement/Courses"));
+const CreateCourse = lazy(() => import( "../pages/admin/courseManagement/CreateCourse"));
+const CreateofferedCourse = lazy(() => import( "../pages/admin/courseManagement/CreateofferedCourse"));
+const CreateRegisteredSemester = lazy(() => import( "../pages/admin/courseManagement/CreateRegisteredSemester"));
+const OfferedCourse = lazy(() => import( "../pages/admin/courseManagement/OfferedCourse"));
+const RegisteredSemester = lazy(() => import( "../pages/admin/courseManagement/RegisteredSemester"));
+const Admin = lazy(() => import( "../pages/admin/userManagement/Admin"));
+const CreateAdmin = lazy(() => import( "../pages/admin/userManagement/CreateAdmin"));
+const CreateFaculty = lazy(() => import( "../pages/admin/userManagement/CreateFaculty"));
+const CreateStudent = lazy(() => import( "../pages/admin/userManagement/CreateStudent"));
+const Faculty = lazy(() => import( "../pages/admin/userManagement/Faculty"));
+const Student = lazy(() => import( "../pages/admin/userManagement/Student"));
 // import StudentDetails from "../pages/admin/userManagement/StudentDetails";
 import {
   ApartmentOutlined,

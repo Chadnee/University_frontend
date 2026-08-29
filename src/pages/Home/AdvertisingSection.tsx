@@ -20,7 +20,7 @@ const AdvertisingSection = () => {
                         ></RiDoubleQuotesL>
                       </span>
                       <Flex vertical justify="start" gap={26}>
-                        <Flex vertical gap={isMobile? 18: isTablet?7 :2}>
+                        <Flex vertical gap={isMobile? 16: isTablet?7 :2}>
                        <span className="font-heading-stylish" style={{textTransform: "capitalize",fontWeight: 600, fontSize:isMobile?"18px":"23px", color:"#fff"
             }}>
                           Ready to Shape Your Future?
@@ -29,7 +29,7 @@ const AdvertisingSection = () => {
                           style={{
                             color: "#d1d5db",
                             fontSize: "11px",
-                            lineHeight: "18px",
+                            lineHeight: "17px",
                           }}
                         >
                           Join Techno university and embark on a journey of knowledge,

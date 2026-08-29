@@ -1,6 +1,8 @@
-import Course from "../pages/student/Course";
-import OfferedCourse from "../pages/student/OfferedCourse";
-import StudentDashboard from "../pages/student/StudentDashboard";
+import { lazy } from "react"
+
+const Course = lazy(() => import("../pages/student/Course"))
+const OfferedCourse = lazy(() => import("../pages/student/OfferedCourse"))
+const StudentDashboard = lazy(() => import("../pages/student/StudentDashboard"))
 
 export const studentPaths = [
     {
