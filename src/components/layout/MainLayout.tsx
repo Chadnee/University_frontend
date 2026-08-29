@@ -11,13 +11,13 @@ import { getFullName } from "../../utils/GetFullName";
 import { FaHome } from "react-icons/fa";
 import { useAppDispatch } from "../../features/hooks";
 import { logOut } from "../../features/auth/authSlice";
-import { TbLogout } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg"
+import { BiLogOutCircle } from "react-icons/bi";
 
 const { Content } = Layout;
 
 const MainLayout = () => {
-  const { isMobile, isTablet, isLaptop } = useResponsive();
+  const { isMobile, isTablet, isLaptop, mixMobileTablet } = useResponsive();
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(200);
@@ -59,13 +59,13 @@ const MainLayout = () => {
         {/* linear-gradient(135deg, #667eea, #764ba2, #6dd5ed) */}
         {/* which header */}
         <Card
-          bodyStyle={{ padding: "5px 50px 5px 20px" }}
+          bodyStyle={{ padding: isMobile?"10px 12px":"8px 50px 8px 20px" }}
           style={{
             background: "#eceef5ff",
             boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
           }}
         >
-          <Flex justify="space-between">
+          <Flex justify="space-between" align="center">
             <span style={{}}>
               <LuPanelLeftOpen
                 onClick={handleSidebar}
@@ -78,25 +78,25 @@ const MainLayout = () => {
                 }}
               ></LuPanelLeftOpen>
             </span>
-            <Flex gap={18} align="center">
+            <Flex gap={isMobile?6:18} align="center">
                
                <Link to="/" style={{ paddingLeft: 24, cursor: 'pointer', color:"#03173a" }}>
                   <Flex style={{fontSize:'13px', color:"#03173a", }} gap={4} align="center">
-                     <FaHome style={{fontSize:'15px', color:"#072456", }}></FaHome>
-                     <span style={{fontWeight:"600px"}}>Home</span>
+                     <FaHome title="Home" style={{fontSize:'15px', color:"#072456", }}></FaHome>
+                     {!mixMobileTablet && <span style={{fontWeight:"600px"}}>Home</span> }
                   </Flex>
                 </Link>
                <Link to="/" style={{ paddingLeft: 24, cursor: 'pointer', color:"#03173a" }}>
                   <Flex style={{fontSize:'13px', color:"#03173a"}} gap={4} align="center">
-                     <CgProfile style={{fontSize:'15px', color:"#072456"}}></CgProfile>
-                     <span>Profile</span>
+                     <CgProfile title="Profile" style={{fontSize:'15px', color:"#072456"}}></CgProfile>
+                     {!mixMobileTablet && <span>Profile</span> }
                   </Flex>
                 </Link>
                  <Flex align="center" gap={4}
           onClick={handleLogout}
           style={{ paddingLeft: 24, cursor: 'pointer', color:"#03173a" }}
-        > <TbLogout style={{fontSize:'15px', color:"#072456"}}></TbLogout>
-        <span>Log out</span>
+        > <BiLogOutCircle title="Sign out" style={{fontSize:'15px', color:"#072456"}}></BiLogOutCircle>
+        {!mixMobileTablet && <span style={{fontSize:""}}>Sign out</span> }
         </Flex> 
            <Flex align="center" gap={8} style={{paddingLeft:"10px"}}>
                   <img src={image} style={{width:25, height:25, borderRadius:"50%"}} alt="" />

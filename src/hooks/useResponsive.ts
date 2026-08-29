@@ -14,6 +14,7 @@ const useResponsive = () => {
 
     // isMobile: width < 768,
     isMobile: width < 650,
+    mixMobileTablet:width<850,
     isTablet: width >= 650 && width < 992,
     isLaptop: width >= 992 && width < 1200,
 
